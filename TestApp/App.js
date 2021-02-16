@@ -11,6 +11,7 @@ export default class App extends React.Component {
     this.state = {
       dday : new Date(),
       ddayTitle:'테스트 디데이',
+      chatInput:'',
       chatLog:[],
       settingModal:false,
     }
@@ -19,6 +20,15 @@ export default class App extends React.Component {
   async UNSAFE_componentWillMount(){
     try{
       const ddayString = await AsyncStorage.getItem('@dday')
+      const chatLogString = await AsyncStorage.getItem('@chat');
+
+      if(chatLogString==null){
+        this.setState({chatLog:[]});
+      } else {
+        const chatLog = JSON.parse(chatLogString);
+        this.setState({chatLog:chatLog});
+      }
+
       if(ddayString == null){
         this.setState(
           {
@@ -44,6 +54,16 @@ export default class App extends React.Component {
     this.setState({
       settingModal:!this.state.settingModal
     })
+  }
+
+  chatHandler(){
+    this.setState({
+      chatLog:[...this.state.chatLog,this.makeDateString()+':'+this.state.chatInput],
+      chatInput:'',
+    },async()=>{
+      const chatLogString = JSON.stringify(this.state.chatLog);
+      await AsyncStorage.setItem('@chat',chatLogString);
+    });
   }
 
   async settingHandler(title,date){
@@ -110,11 +130,21 @@ export default class App extends React.Component {
         </View>
         <View style={styles.chatView}>
           <ScrollView style={styles.chatScrollView}>
-
+            {this.state.chatLog.map((chat)=>{
+              return <Text style={styles.chat}>{chat}</Text>
+            })}
           </ScrollView>
           <View style={styles.chatControl}>
-            <TextInput style={styles.chatInput}/>
-            <TouchableOpacity style={styles.sendButton}>
+            <TextInput style={styles.chatInput}
+              value={this.state.chatInput}
+              onChangeText={(changedText)=>{
+                this.setState({chatInput:changedText})}
+              }
+            />
+            <TouchableOpacity 
+              style={styles.sendButton}
+              onPress={()=>this.chatHandler()}
+            >
               <Text>
                 전송
               </Text>
@@ -137,6 +167,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+
+  chat:{
+    fontSize:18,
+    fontWeight:'bold',
+    color:'#4A4A4A',
+    margin:2,
+  },
+
   settingView: {
     flex: 1,
     backgroundColor: 'rgba(3,107,63,0.5)',
