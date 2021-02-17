@@ -10,6 +10,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       dday : new Date(),
+      todayDay : new Date(),
       ddayTitle:'테스트 디데이',
       chatInput:'',
       chatLog:[],
@@ -58,7 +59,7 @@ export default class App extends React.Component {
 
   chatHandler(){
     this.setState({
-      chatLog:[...this.state.chatLog,this.makeDateString()+':'+this.state.chatInput],
+      chatLog:[...this.state.chatLog,this.makeTodayDateString()+':'+this.state.chatInput],
       chatInput:'',
     },async()=>{
       const chatLogString = JSON.stringify(this.state.chatLog);
@@ -86,6 +87,11 @@ export default class App extends React.Component {
 
   makeDateString(){
     return this.state.dday.getFullYear() + '년' + (this.state.dday.getMonth()+1) + '월' + this.state.dday.getDate() + '일';
+  }
+  makeTodayDateString(){
+    var today = new Date();
+    this.setState({todayDay:today});
+    return this.state.todayDay.getFullYear() + '년' + (this.state.todayDay.getMonth()+1) + '월' + this.state.todayDay.getDate() + '일';
   }
 
   makeRemainString(){
