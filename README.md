@@ -9,19 +9,19 @@
 
 응용 프로그램:
 
-Xcode:	12.4 (17801)
+###Xcode:	12.4 (17801)
 
-Instruments:	12.4 (64543.2)
+###Instruments:	12.4 (64543.2)
 
-SDK:
+###SDK:
 
-iOS:
+>iOS:
 
-14.4:	(18D46)
+>>14.4:	(18D46)
 
-iOS Simulator:
+>iOS Simulator:
 
-14.4:	(18D46)
+>>14.4:	(18D46)
 
 macOS:
 
