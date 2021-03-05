@@ -76,7 +76,10 @@ function App() {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{title: 'Overview'}}
+          options={{
+            title: 'Overview',
+            headerTitleAlign: 'center',
+          }}
         />
         <Stack.Screen
           name="Details"
@@ -86,7 +89,10 @@ function App() {
         <Stack.Screen
           name="CreatePost"
           component={CreatePostScreen}
-          options={{title: 'Post'}}
+          options={{
+            title: 'Post',
+            headerTitleAlign: 'center',
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
