@@ -1,1 +1,2 @@
-export const IC_MASK = require('../../assets/icons/mask.png');
+export const IMG_KULOGO = require('../../assets/images/KULogo.jpg');
+export const IMG_BACKGROUND = require('../../assets/images/background1.png');
