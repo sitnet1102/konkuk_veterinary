@@ -9,7 +9,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import { colors } from './utils/Styles';
 
-import {IMG_BACKGROUND, IMG_KULOGO, IC_SETTING} from './utils/icons';
+import {IMG_BACKGROUND, IMG_KULOGO, IC_MENU, IC_HOME, IC_SETTING} from './utils/icons';
 
 //import background1 from '../assets/images/';
 //'https://www.notion.so/Test-fd9f7012616644019d0d2e4f007f6c70' -> 노션 예시 링크
@@ -124,49 +124,60 @@ function MainScreen({navigation, route}){
   );
 }
 
-function RoomReservScreen(){
+function DateLocaScreen(){
   return (
-    <View style={roomreservStyle.container}>
-      <View style={roomreservStyle.roomreservTop}>
+    <View style={DateLocaStyle.container}>
+      <View style={DateLocaStyle.DateLocaTop}>
       </View>
-      <View style={roomreservStyle.roomreservMid}>
-        <View style={roomreservStyle.roomreservContainer}>
-          <View style={roomreservStyle.roomreservTextContainer}>
-            <Text style={roomreservStyle.roomreservText}>날짜 :</Text>
+      <View style={DateLocaStyle.DateLocaMid}>
+        <View style={DateLocaStyle.DateLocaContainer}>
+          <View style={DateLocaStyle.DateLocaTextContainer}>
+            <Text style={DateLocaStyle.DateLocaText}>날짜 :</Text>
           </View>
-          <TouchableOpacity style={roomreservStyle.roomreservSelectBox}>
-            <Text style={roomreservStyle.roomreservInboxText}>선 택</Text>
+          <TouchableOpacity style={DateLocaStyle.DateLocaSelectBox}>
+            <Text style={DateLocaStyle.DateLocaInboxText}>선 택</Text>
           </TouchableOpacity>
         </View>
-        <View style={roomreservStyle.roomreservContainer}>
-          <View style={roomreservStyle.roomreservTextContainer}>
-            <Text style={roomreservStyle.roomreservText}>구분 :</Text>
+        <View style={DateLocaStyle.DateLocaContainer}>
+          <View style={DateLocaStyle.DateLocaTextContainer}>
+            <Text style={DateLocaStyle.DateLocaText}>구분 :</Text>
           </View>
-          <TouchableOpacity style={roomreservStyle.roomreservSelectBox}>
-            <Text style={roomreservStyle.roomreservInboxText}>선 택</Text>
+          <TouchableOpacity style={DateLocaStyle.DateLocaSelectBox}>
+            <Text style={DateLocaStyle.DateLocaInboxText}>선 택</Text>
           </TouchableOpacity>
         </View>
-        <View style={roomreservStyle.roomreservContainer}>
-          <View style={roomreservStyle.roomreservTextContainer}>
-            <Text style={roomreservStyle.roomreservText}>장소 :</Text>
+        <View style={DateLocaStyle.DateLocaContainer}>
+          <View style={DateLocaStyle.DateLocaTextContainer}>
+            <Text style={DateLocaStyle.DateLocaText}>장소 :</Text>
           </View>
-          <TouchableOpacity style={roomreservStyle.roomreservSelectBox}>
-            <Text style={roomreservStyle.roomreservInboxText}>선 택</Text>
+          <TouchableOpacity style={DateLocaStyle.DateLocaSelectBox}>
+            <Text style={DateLocaStyle.DateLocaInboxText}>선 택</Text>
           </TouchableOpacity>
         </View>
       </View>
-      <View style={roomreservStyle.roomreservBot}>
+      <View style={DateLocaStyle.DateLocaBot}>
+        <TouchableOpacity style={DateLocaStyle.DateLocaNextButton}>
+          <Text style={DateLocaStyle.DateLocaNextText}>다     음</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 }
+
+function TimeScreen(){
+  return (
+    <View style={timeStyle.time}>
+
+    </View>
+  );
+} 
 
 const Stack = createStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="RoomReserv">
+      <Stack.Navigator initialRouteName="DateLoca">
         <Stack.Screen
           name="Start"
           component={StartScreen}
@@ -193,7 +204,7 @@ function App() {
             },
             headerRight: () => (
               <TouchableOpacity style={headerStyle.headerMenuTouchBox}>
-                <Image source={IC_SETTING}/>
+                <Image source={IC_MENU}/>
               </TouchableOpacity>
             ),
             title: '',
@@ -201,8 +212,8 @@ function App() {
           }}
         />
         <Stack.Screen
-          name="RoomReserv"
-          component={RoomReservScreen}
+          name="DateLoca"
+          component={DateLocaScreen}
           options={{
             headerStyle: {
               backgroundColor: colors.kuDarkGreen,
@@ -210,10 +221,36 @@ function App() {
             headerRight: () => (
               <View style={headerStyle.headerContainer}>
                 <TouchableOpacity style={headerStyle.headerHomeTouchBox}>
-                  <Image source={IC_SETTING}/>
+                  <Image source={IC_HOME}/>
                 </TouchableOpacity>
                 <TouchableOpacity style={headerStyle.headerMenuTouchBox}>
-                  <Image source={IC_SETTING}/>
+                  <Image source={IC_MENU}/>
+                </TouchableOpacity>
+              </View>
+            ),
+            title: '강의실 예약',
+            headerTintColor: colors.kuLightGray,
+            headerTitleAlign: 'center',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              fontSize: 24,
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Time"
+          component={TimeScreen}
+          options={{
+            headerStyle: {
+              backgroundColor: colors.kuDarkGreen,
+            },
+            headerRight: () => (
+              <View style={headerStyle.headerContainer}>
+                <TouchableOpacity style={headerStyle.headerHomeTouchBox}>
+                  <Image source={IC_HOME}/>
+                </TouchableOpacity>
+                <TouchableOpacity style={headerStyle.headerMenuTouchBox}>
+                  <Image source={IC_MENU}/>
                 </TouchableOpacity>
               </View>
             ),
@@ -366,11 +403,10 @@ const headerStyle = StyleSheet.create({
   headerMenuTouchBox:{
     // padding 크기 정리해야함 
     // 아이콘 바꾸면 바꿀 예정임 
-    backgroundColor: colors.kuBeige,
     padding: 5,
+    //scaleX: 0.5,
   },
   headerHomeTouchBox: {
-    backgroundColor: colors.kuBeige,
     padding: 5,
     marginRight: '10%',
   },
@@ -379,34 +415,35 @@ const headerStyle = StyleSheet.create({
   },
 });
 
-const roomreservStyle = StyleSheet.create({
+const DateLocaStyle = StyleSheet.create({
   container: {
     flex: 1,
   },
-  roomreservTop:{
+  DateLocaTop:{
     flex: 1,
   },
-  roomreservMid: {
-    flex: 8,
+  DateLocaMid: {
+    flex: 7,
   },
-  roomreservBot: {
-    flex: 1,
+  DateLocaBot: {
+    flex: 2,
+    justifyContent: 'center',
   },
-  roomreservContainer: {
+  DateLocaContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
     marginLeft: '2%',
     marginTop: '5%',
   },
-  roomreservTextContainer: {
+  DateLocaTextContainer: {
     width: '30%',
   },
-  roomreservText: {
+  DateLocaText: {
     fontSize: 40,
     fontWeight: 'bold',
   },
-  roomreservSelectBox: {
+  DateLocaSelectBox: {
     height: 40,
     width: 250,
     backgroundColor: colors.kuWhite,
@@ -414,11 +451,27 @@ const roomreservStyle = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.kuDarkGray,
   },
-  roomreservInboxText: {
+  DateLocaInboxText: {
     alignSelf: 'center',
     fontSize: 32,
     fontWeight: 'bold',
     color: colors.kuDarkGray,
+  },
+  DateLocaNextButton: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.kuDarkGreen,
+    width: '70%',
+    height: '60%',
+    opacity: 0.5,
+    borderWidth: 1,
+    borderRadius: 5,
+  }, 
+  DateLocaNextText: {
+    alignSelf: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: colors.kuWhite,
   },
 });
 
