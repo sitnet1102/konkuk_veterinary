@@ -9,7 +9,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import { colors } from './utils/Styles';
 
-import {IMG_BACKGROUND, IMG_KULOGO} from './utils/icons';
+import {IMG_BACKGROUND, IMG_KULOGO, IC_SETTING} from './utils/icons';
 
 //import background1 from '../assets/images/';
 //'https://www.notion.so/Test-fd9f7012616644019d0d2e4f007f6c70' -> 노션 예시 링크
@@ -153,6 +153,11 @@ function App() {
             headerStyle: {
               backgroundColor: colors.kuDarkGreen,
             },
+            headerRight: () => (
+              <TouchableOpacity style={headerStyle.headerMenuTouchBox}>
+                <Image source={IC_SETTING}/>
+              </TouchableOpacity>
+            ),
             title: '',
             headerTitleAlign: 'center',
           }}
@@ -293,8 +298,14 @@ const mainStyle = StyleSheet.create({
   },
 });
 
-
-
+const headerStyle = StyleSheet.create({
+  headerMenuTouchBox:{
+    // padding 크기 정리해야함 
+    // 아이콘 바꾸면 바꿀 예정임 
+    backgroundColor: colors.kuBeige,
+    padding: 5,
+  },
+});
 
 
 
