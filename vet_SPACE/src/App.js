@@ -1,7 +1,8 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, Text, Button, TextInput, ImageBackground, Platform, StyleSheet, Image, CheckBox} from 'react-native';
+import {View, Text, Button, TextInput, ImageBackground, Platform, StyleSheet, Image} from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -43,8 +44,8 @@ function StartScreen({navigation, route}) {
 }
 
 function LoginScreen({navigation, route}) {
-  /// 체크 박스 안드로이드에서 사라질 예정이어서 따로 다운로드를 해주어야 함
   /// 아이디, 비밀번호 입력 시에 화면이 잘 안보이는 현상이 있음 -> 수정이 필요
+  /// 로그인 버튼의 크기가 사이즈 만큼 나오지 않음 -> touchableOpacity 말고 다른 것을 사용하는 것을 고려중 
   const [isSelected, setSelection] = React.useState(false);
   if (Platform.OS === 'web') {
     return (
@@ -69,18 +70,20 @@ function LoginScreen({navigation, route}) {
             <TextInput style={loginStyle.loginInputTextBox}>
               <Text>     비밀번호(Password)</Text>
             </TextInput>
-            <TouchableOpacity style={loginStyle.loginButton}>
-              <View style={loginStyle.loginContainer}>
+            <View style={loginStyle.loginContainer}>
+              <TouchableOpacity style={loginStyle.loginButton}>
                 <Text>로그인(Login)</Text>
-              </View>
-            </TouchableOpacity>
+              </TouchableOpacity>
+            </View>
             <View style={loginStyle.loginAutoLogin}>
               <CheckBox
+                disabled={false}
                 value={isSelected}
                 onValueChange={setSelection}
+                boxType='square'
                 style={loginStyle.loginCheckBox}
               />
-              <Text style={loginStyle.loginAutoLoginText}>자동 로그인(Auto Login)</Text>
+              <Text style={loginStyle.loginAutoLoginText}>  자동 로그인(Auto Login)</Text>
             </View>
           </View>
           <View style={loginStyle.loginBot}>
@@ -246,13 +249,20 @@ const loginStyle = StyleSheet.create({
     borderColor: colors.kuDarkGray,
   },
   loginContainer:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '70%',
+    height: '15%',
+    opacity: 0.8,
+    margin: '2%',
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: colors.kuGreen,
     backgroundColor: colors.kuGreen,
   },
   loginButton: {
     backgroundColor: colors.kuGreen,
     margin: '2%',
-    borderRadius: 5,
-    borderWidth: 1,
   },
   loginAutoLogin: {
     flexDirection: 'row',
@@ -260,7 +270,7 @@ const loginStyle = StyleSheet.create({
     justifyContent: 'center',
   },
   loginCheckBox: {
-
+    transform: [{scaleX: 0.8}, {scaleY: 0.8}]
   },
   loginAutoLoginText: {
     fontWeight: 'bold',
