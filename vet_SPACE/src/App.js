@@ -123,12 +123,50 @@ function MainScreen({navigation, route}){
     </View>
   );
 }
+
+function RoomReservScreen(){
+  return (
+    <View style={roomreservStyle.container}>
+      <View style={roomreservStyle.roomreservTop}>
+      </View>
+      <View style={roomreservStyle.roomreservMid}>
+        <View style={roomreservStyle.roomreservContainer}>
+          <View style={roomreservStyle.roomreservTextContainer}>
+            <Text style={roomreservStyle.roomreservText}>날짜 :</Text>
+          </View>
+          <TouchableOpacity style={roomreservStyle.roomreservSelectBox}>
+            <Text style={roomreservStyle.roomreservInboxText}>선 택</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={roomreservStyle.roomreservContainer}>
+          <View style={roomreservStyle.roomreservTextContainer}>
+            <Text style={roomreservStyle.roomreservText}>구분 :</Text>
+          </View>
+          <TouchableOpacity style={roomreservStyle.roomreservSelectBox}>
+            <Text style={roomreservStyle.roomreservInboxText}>선 택</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={roomreservStyle.roomreservContainer}>
+          <View style={roomreservStyle.roomreservTextContainer}>
+            <Text style={roomreservStyle.roomreservText}>장소 :</Text>
+          </View>
+          <TouchableOpacity style={roomreservStyle.roomreservSelectBox}>
+            <Text style={roomreservStyle.roomreservInboxText}>선 택</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={roomreservStyle.roomreservBot}>
+      </View>
+    </View>
+  );
+}
+
 const Stack = createStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Main">
+      <Stack.Navigator initialRouteName="RoomReserv">
         <Stack.Screen
           name="Start"
           component={StartScreen}
@@ -160,6 +198,32 @@ function App() {
             ),
             title: '',
             headerTitleAlign: 'center',
+          }}
+        />
+        <Stack.Screen
+          name="RoomReserv"
+          component={RoomReservScreen}
+          options={{
+            headerStyle: {
+              backgroundColor: colors.kuDarkGreen,
+            },
+            headerRight: () => (
+              <View style={headerStyle.headerContainer}>
+                <TouchableOpacity style={headerStyle.headerHomeTouchBox}>
+                  <Image source={IC_SETTING}/>
+                </TouchableOpacity>
+                <TouchableOpacity style={headerStyle.headerMenuTouchBox}>
+                  <Image source={IC_SETTING}/>
+                </TouchableOpacity>
+              </View>
+            ),
+            title: '강의실 예약',
+            headerTintColor: colors.kuLightGray,
+            headerTitleAlign: 'center',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              fontSize: 24,
+            },
           }}
         />
       </Stack.Navigator>
@@ -304,6 +368,57 @@ const headerStyle = StyleSheet.create({
     // 아이콘 바꾸면 바꿀 예정임 
     backgroundColor: colors.kuBeige,
     padding: 5,
+  },
+  headerHomeTouchBox: {
+    backgroundColor: colors.kuBeige,
+    padding: 5,
+    marginRight: '10%',
+  },
+  headerContainer: {
+    flexDirection: 'row',
+  },
+});
+
+const roomreservStyle = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  roomreservTop:{
+    flex: 1,
+  },
+  roomreservMid: {
+    flex: 8,
+  },
+  roomreservBot: {
+    flex: 1,
+  },
+  roomreservContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginLeft: '2%',
+    marginTop: '5%',
+  },
+  roomreservTextContainer: {
+    width: '30%',
+  },
+  roomreservText: {
+    fontSize: 40,
+    fontWeight: 'bold',
+  },
+  roomreservSelectBox: {
+    height: 40,
+    width: 250,
+    backgroundColor: colors.kuWhite,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: colors.kuDarkGray,
+  },
+  roomreservInboxText: {
+    alignSelf: 'center',
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: colors.kuDarkGray,
   },
 });
 
