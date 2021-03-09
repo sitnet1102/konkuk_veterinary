@@ -45,7 +45,6 @@ function StartScreen({navigation, route}) {
 
 function LoginScreen({navigation, route}) {
   /// 아이디, 비밀번호 입력 시에 화면이 잘 안보이는 현상이 있음 -> 수정이 필요
-  /// 로그인 버튼의 크기가 사이즈 만큼 나오지 않음 -> touchableOpacity 말고 다른 것을 사용하는 것을 고려중 
   const [isSelected, setSelection] = React.useState(false);
   if (Platform.OS === 'web') {
     return (
@@ -70,11 +69,10 @@ function LoginScreen({navigation, route}) {
             <TextInput style={loginStyle.loginInputTextBox}>
               <Text>     비밀번호(Password)</Text>
             </TextInput>
-            <View style={loginStyle.loginContainer}>
-              <TouchableOpacity style={loginStyle.loginButton}>
-                <Text>로그인(Login)</Text>
-              </TouchableOpacity>
-            </View>
+            <TouchableOpacity style={loginStyle.loginButton}>
+              <Text>로그인(Login)</Text>
+            </TouchableOpacity>
+            
             <View style={loginStyle.loginAutoLogin}>
               <CheckBox
                 disabled={false}
@@ -83,11 +81,14 @@ function LoginScreen({navigation, route}) {
                 boxType='square'
                 style={loginStyle.loginCheckBox}
               />
-              <Text style={loginStyle.loginAutoLoginText}>  자동 로그인(Auto Login)</Text>
+              <Text style={loginStyle.loginAutoLoginText}>자동 로그인(Auto Login) / </Text>
+              <TouchableOpacity>
+                <Text style={loginStyle.loginNewAccButton}>회원가입(Sign Up)</Text>
+              </TouchableOpacity>
             </View>
+            
           </View>
           <View style={loginStyle.loginBot}>
-
           </View>
         </ImageBackground>
       </View>
@@ -122,58 +123,12 @@ function MainScreen({navigation, route}){
     </View>
   );
 }
-function CreatePostScreen({navigation, route}) {
-  const [postText, setPostText] = React.useState('');
-
-  return (
-    <>
-      <TextInput
-        multiline
-        placeholder="What's on your mind?"
-        style={{height: 200, padding: 10, backgroundColor: 'white'}}
-        value={postText}
-        onChangeText={setPostText}
-      />
-      <Button
-        title="Done"
-        onPress={() => {
-          // Pass params back to home screen
-          navigation.navigate('Login', {post: postText});
-        }}
-      />
-    </>
-  );
-}
-function DetailsScreen({route, navigation}) {
-  /* 2. Get the param */
-  const {itemId, otherParam} = route.params;
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Details Screen</Text>
-      <Text>itemId: {JSON.stringify(itemId)}</Text>
-      <Text>otherParam: {JSON.stringify(otherParam)}</Text>
-      <Button
-        title="Go to Details... again"
-        onPress={() =>
-          navigation.push('Details', {
-            itemId: Math.floor(Math.random() * 100),
-          })
-        }
-      />
-      <Button
-        title="Go to Login"
-        onPress={() => navigation.navigate('Login')}
-      />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-    </View>
-  );
-}
 const Stack = createStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="Main">
         <Stack.Screen
           name="Start"
           component={StartScreen}
@@ -195,20 +150,10 @@ function App() {
           name="Main"
           component={MainScreen}
           options={{
+            headerStyle: {
+              backgroundColor: colors.kuDarkGreen,
+            },
             title: '',
-            headerTitleAlign: 'center',
-          }}
-        />
-        <Stack.Screen
-          name="Details"
-          component={DetailsScreen}
-          initialParams={{itemId: 42}}
-        />
-        <Stack.Screen
-          name="CreatePost"
-          component={CreatePostScreen}
-          options={{
-            title: 'Post',
             headerTitleAlign: 'center',
           }}
         />
@@ -218,6 +163,7 @@ function App() {
 }
 
 const loginStyle = StyleSheet.create({
+  // 폰트 사이즈 정리해야함
   container: {
     flex: 1,
   },
@@ -227,7 +173,7 @@ const loginStyle = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   loginMid: {
-    alignItems: 'center',
+    //alignItems: 'center',
     justifyContent: 'center',
     flex: 5,
   },
@@ -239,6 +185,7 @@ const loginStyle = StyleSheet.create({
     fontSize: 42,
   },
   loginInputTextBox: {
+    alignSelf: 'center',
     backgroundColor: colors.kuLightGray,
     width: '70%',
     height: '15%',
@@ -248,21 +195,17 @@ const loginStyle = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.kuDarkGray,
   },
-  loginContainer:{
+  loginButton: {
+    alignSelf: 'center',
     alignItems: 'center',
-    justifyContent: 'center',
-    width: '70%',
-    height: '15%',
+    backgroundColor: colors.kuGreen,
     opacity: 0.8,
+    width: '70%',
+    padding: '3%',
     margin: '2%',
     borderRadius: 5,
     borderWidth: 1,
     borderColor: colors.kuGreen,
-    backgroundColor: colors.kuGreen,
-  },
-  loginButton: {
-    backgroundColor: colors.kuGreen,
-    margin: '2%',
   },
   loginAutoLogin: {
     flexDirection: 'row',
@@ -276,9 +219,13 @@ const loginStyle = StyleSheet.create({
     fontWeight: 'bold',
     flexDirection: 'row',
   },
+  loginNewAccButton: {
+    textDecorationLine: 'underline',
+  }
 });
 
 const startStyle = StyleSheet.create({
+  // 폰트 사이즈 정리해야함
   container: {
     flex: 1,
   },
@@ -306,6 +253,7 @@ const startStyle = StyleSheet.create({
 });
 
 const mainStyle = StyleSheet.create({
+  // 폰트 사이즈 정리해야함
   container: {
     flex: 1,
   }, 
@@ -326,12 +274,19 @@ const mainStyle = StyleSheet.create({
     fontSize: 42,
   },
   mainTouchBox: {
+    alignSelf: 'center',
+    fontWeight: 'bold',
     backgroundColor: colors.kuLightGray,
     alignItems: 'center',
     justifyContent: 'center',
     fontWeight: 'bold',
-    margin: '1%',
-    width: '80%',
+    opacity: 0.8,
+    margin: '2%',
+    width: '70%',
+    padding: '4%',
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: colors.kuDarkGreen,
   },
   mainSelectTitleText: {
     fontSize: 42,
