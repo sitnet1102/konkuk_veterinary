@@ -9,7 +9,7 @@ import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import {Table, Row, Rows} from 'react-native-table-component';
 import { colors } from './utils/Styles';
 
-import {IMG_BACKGROUND, IMG_KULOGO, IC_MENU, IC_HOME, IC_SETTING} from './utils/icons';
+import {IMG_BACKGROUND, IMG_KULOGO, IC_MENU, IC_HOME} from './utils/icons';
 
 //import background1 from '../assets/images/';
 //'https://www.notion.so/Test-fd9f7012616644019d0d2e4f007f6c70' -> 노션 예시 링크
@@ -39,14 +39,13 @@ function StartScreen({navigation, route}) {
           <Text style={startStyle.startTitleText}>강의실대여</Text>
         </View>
         <View style={startStyle.startBot}>
-
         </View>
       </ImageBackground>
     </View>
   );
 }
 
-function LoginScreen({navigation, route}) {
+function LoginScreen() {
   /**
    추가 수정해야할 사항
    /// 아이디, 비밀번호 입력 시에 화면이 잘 안보이는 현상이 있음 -> 수정이 필요
@@ -111,7 +110,7 @@ function LoginScreen({navigation, route}) {
     );
   }
 }
-function MainScreen({navigation, route}){
+function MainScreen(){
   /**
     추가 변경해야할 사항
     1. 각 옵션 선택 시 넘어가는 네비게이션 연결 
@@ -544,6 +543,34 @@ function App() {
   );
 }
 
+const startStyle = StyleSheet.create({
+  // 폰트 사이즈 정리해야함
+  container: {
+    flex: 1,
+  },
+  startTop: {
+    flex: 3,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  startMid: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 4,
+  },
+  startBot: {
+    flex: 3,
+  },
+  startLogoImage: {
+    aspectRatio: 0.2,
+    resizeMode: 'contain',
+  },
+  startTitleText: {
+    fontWeight: 'bold',
+    fontSize: 42,
+  }
+});
+
 const loginStyle = StyleSheet.create({
   // 폰트 사이즈 정리해야함
   container: {
@@ -603,34 +630,6 @@ const loginStyle = StyleSheet.create({
   },
   loginNewAccButton: {
     textDecorationLine: 'underline',
-  }
-});
-
-const startStyle = StyleSheet.create({
-  // 폰트 사이즈 정리해야함
-  container: {
-    flex: 1,
-  },
-  startTop: {
-    flex: 3,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  startMid: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 4,
-  },
-  startBot: {
-    flex: 3,
-  },
-  startLogoImage: {
-    aspectRatio: 0.2,
-    resizeMode: 'contain',
-  },
-  startTitleText: {
-    fontWeight: 'bold',
-    fontSize: 42,
   }
 });
 
