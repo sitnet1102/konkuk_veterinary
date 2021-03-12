@@ -56,7 +56,6 @@ function LoginScreen() {
     5. 체크 박스랑 자동 로그인 텍스트 클릭이랑 연결해주기   -> 20210311
    */
   const [isSelected, setSelection] = React.useState(false);
-  const checkBoxChangeValue = React.useState(false);
   const onPress = () => setSelection(()=>!isSelected);
 
   if (Platform.OS === 'web') {
