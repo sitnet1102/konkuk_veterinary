@@ -77,13 +77,13 @@ function LoginScreen() {
           </View>
           <View style={loginStyle.loginMid}>
             <TextInput style={loginStyle.loginInputTextBox}>
-              <Text>     아이디(ID)</Text>
+              <Text style={loginStyle.loginInputText}>     아이디(ID)</Text>
             </TextInput>
             <TextInput style={loginStyle.loginInputTextBox}>
-              <Text>     비밀번호(Password)</Text>
+              <Text style={loginStyle.loginInputText}>     비밀번호(Password)</Text>
             </TextInput>
             <TouchableOpacity style={loginStyle.loginButton}>
-              <Text>로그인(Login)</Text>
+              <Text style={loginStyle.loginButtonText}>로그인(Login)</Text>
             </TouchableOpacity>
             
             <View style={loginStyle.loginAutoLogin}>
@@ -604,6 +604,10 @@ const loginStyle = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.kuDarkGray,
   },
+  loginInputText: {
+    fontWeight: 'bold',
+    fontSize: 16
+  },
   loginButton: {
     alignSelf: 'center',
     alignItems: 'center',
@@ -615,6 +619,10 @@ const loginStyle = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 1,
     borderColor: colors.kuGreen,
+  },
+  loginButtonText: {
+    fontWeight: 'bold',
+    fontSize: 20,
   },
   loginAutoLogin: {
     flexDirection: 'row',
