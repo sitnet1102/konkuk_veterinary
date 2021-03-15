@@ -45,7 +45,7 @@ function StartScreen({navigation, route}) {
   );
 }
 
-function LoginScreen() {
+function LoginScreen({navigation}) {
   /**
    추가 수정해야할 사항
    /// 아이디, 비밀번호 입력 시에 화면이 잘 안보이는 현상이 있음 -> 수정이 필요
@@ -81,7 +81,10 @@ function LoginScreen() {
             <TextInput style={loginStyle.loginInputTextBox}>
               <Text style={loginStyle.loginInputText}>     비밀번호(Password)</Text>
             </TextInput>
-            <TouchableOpacity style={loginStyle.loginButton}>
+            <TouchableOpacity 
+              style={loginStyle.loginButton}
+              onPress={() => navigation.navigate('Main')}
+            >
               <Text style={loginStyle.loginButtonText}>로그인(Login)</Text>
             </TouchableOpacity>
             
@@ -92,11 +95,13 @@ function LoginScreen() {
                 onValueChange={setSelection}
                 boxType='square'
                 style={loginStyle.loginCheckBox}
-              />
+                />
               <TouchableOpacity onPress={onPress}>
                 <Text style={loginStyle.loginAutoLoginText}>자동 로그인(Auto Login) / </Text>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('SignUp')}
+              >
                 <Text style={loginStyle.loginNewAccButton}>회원가입(Sign Up)</Text>
               </TouchableOpacity>
             </View>
@@ -110,7 +115,7 @@ function LoginScreen() {
   }
 }
 
-function SignUpScreen(){
+function SignUpScreen({navigation}){
   /**
       1. 회원 가입 버튼 눌렀을 때 처리해야 하는 내요 
         1.1. 중복 확인이 된 아이디 인지 확인
@@ -167,7 +172,10 @@ function SignUpScreen(){
         </View>
       </View>
       <View style={signupStyle.signupBot}>
-        <TouchableOpacity style={signupStyle.signupButton}>
+        <TouchableOpacity 
+          style={signupStyle.signupButton}
+          onPress={() => navigation.navigate('Login')}
+        >
           <Text style={signupStyle.signupText}>회원가입</Text>
         </TouchableOpacity>
       </View>
@@ -175,7 +183,7 @@ function SignUpScreen(){
   );
 }
 
-function MainScreen(){
+function MainScreen({navigation}){
   /**
     추가 변경해야할 사항
     1. 각 옵션 선택 시 넘어가는 네비게이션 연결 
@@ -191,13 +199,22 @@ function MainScreen(){
           <Text style={mainStyle.mainTitleText}>강의실대여</Text>
         </View>
         <View style={mainStyle.mainMid}>
-          <TouchableOpacity style={mainStyle.mainTouchBox}>
+          <TouchableOpacity 
+            style={mainStyle.mainTouchBox}
+            onPress={() => navigation.navigate('DateLoca')}
+            >
             <Text style={mainStyle.mainSelectTitleText}>강의실예약</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={mainStyle.mainTouchBox}>
+          <TouchableOpacity 
+            style={mainStyle.mainTouchBox}
+            //onPress={() => navigation.navigate('')}
+            >
             <Text style={mainStyle.mainSelectTitleText}>예약확인</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={mainStyle.mainTouchBox}>
+          <TouchableOpacity 
+            style={mainStyle.mainTouchBox}
+            //onPress={() => navigation.navigate('')}
+          >
             <Text style={mainStyle.mainSelectTitleText}>강의실정보</Text>
           </TouchableOpacity>
         </View>
@@ -209,7 +226,7 @@ function MainScreen(){
   );
 }
 
-function DateLocaScreen(){
+function DateLocaScreen({navigation}){
   /**
     추가 및 변경해야 하는 내용
     1. 날짜, 구분, 장소 각각 선택창 UI
@@ -249,7 +266,10 @@ function DateLocaScreen(){
         </View>
       </View>
       <View style={DateLocaStyle.dateLocaBot}>
-        <TouchableOpacity style={DateLocaStyle.dateLocaNextButton}>
+        <TouchableOpacity 
+          style={DateLocaStyle.dateLocaNextButton}
+          onPress={() => navigation.navigate('TimeSelect')}
+        >
           <Text style={DateLocaStyle.dateLocaNextText}>다     음</Text>
         </TouchableOpacity>
       </View>
@@ -257,7 +277,7 @@ function DateLocaScreen(){
   );
 }
 
-function TimeSelectScreen(){
+function TimeSelectScreen({navigation}){
   /**
     추가로 넣어주어야 하는 부분
     1. 시간 선택 시 스타일 변경
@@ -343,14 +363,17 @@ function TimeSelectScreen(){
         </View>
       </View>
       <View style={timeSelectStyle.timeSelectBot}>
-        <TouchableOpacity style={timeSelectStyle.timeSelectNextButton}>
+        <TouchableOpacity 
+          style={timeSelectStyle.timeSelectNextButton}
+          onPress={() => navigation.navigate('Detail')}
+        >
           <Text style={timeSelectStyle.timeSelectNextText}>다     음</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 } 
-function DetailScreen(){
+function DetailScreen({navigation}){
   const __name = '홍길동'
   const __phone = '010-1234-5678'
   const __time = '1200 ~ 1400'
@@ -399,7 +422,10 @@ function DetailScreen(){
         </View>
       </View>
       <View style={detailStyle.detailBot}>
-        <TouchableOpacity style={detailStyle.detailNextButton}>
+        <TouchableOpacity 
+          style={detailStyle.detailNextButton}
+          onPress={() => navigation.navigate('Complete')}
+        >
           <Text style={detailStyle.detailNextText}>제출하기</Text>
         </TouchableOpacity>
       </View>
@@ -407,7 +433,7 @@ function DetailScreen(){
 
   );
 }
-function CompleteScreen(){
+function CompleteScreen({navigation}){
   /**
     추가 수정해야 하는 사항
     1. 완료 네비게이션 연결
@@ -452,7 +478,10 @@ function CompleteScreen(){
         </View>
       </View>
       <View style={completeStyle.completeBot}>
-        <TouchableOpacity style={completeStyle.completeNextButton}>
+        <TouchableOpacity 
+          style={completeStyle.completeNextButton}
+          onPress={() => navigation.navigate('Main')}
+        >
           <Text style={completeStyle.completeNextText}>완  료</Text>
         </TouchableOpacity>
       </View>
@@ -465,7 +494,7 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="SignUp">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
           name="Start"
           component={StartScreen}
@@ -478,9 +507,10 @@ function App() {
           name="Login"
           component={LoginScreen}
           options={{
-            title: 'Overview',
+            title: '로그인',
             headerTitleAlign: 'center',
             headerShown: false,
+            headerTintColor: colors.kuWhite,
           }}
         />
         <Stack.Screen
@@ -503,14 +533,17 @@ function App() {
               backgroundColor: colors.kuDarkGreen,
             },
             headerRight: () => (
-              <TouchableOpacity style={headerStyle.headerMenuTouchBox}>
+              <TouchableOpacity 
+                style={headerStyle.headerMenuTouchBox}
+                //onPress={() => navigation.navigate('Menu')}
+                >
                 <Image source={IC_MENU}/>
               </TouchableOpacity>
             ),
             title: '',
             headerTitleAlign: 'center',
           }}
-        />
+          />
         <Stack.Screen
           name="DateLoca"
           component={DateLocaScreen}
@@ -520,10 +553,16 @@ function App() {
             },
             headerRight: () => (
               <View style={headerStyle.headerContainer}>
-                <TouchableOpacity style={headerStyle.headerHomeTouchBox}>
+                <TouchableOpacity 
+                  style={headerStyle.headerHomeTouchBox}
+                  //onPress={() => navigate('Main')}
+                >
                   <Image source={IC_HOME}/>
                 </TouchableOpacity>
-                <TouchableOpacity style={headerStyle.headerMenuTouchBox}>
+                <TouchableOpacity 
+                  style={headerStyle.headerMenuTouchBox}
+                  //onPress={() => navigation.navigate('Menu')}
+                >
                   <Image source={IC_MENU}/>
                 </TouchableOpacity>
               </View>
@@ -664,11 +703,11 @@ const loginStyle = StyleSheet.create({
     flex: 5,
   },
   loginBot: {
-    flex: 2,
+    flex: 1.5,
   },
   loginTitleText: {
     fontWeight: 'bold',
-    fontSize: 42,
+    fontSize: 40,
   },
   loginInputTextBox: {
     alignSelf: 'center',
@@ -715,6 +754,7 @@ const loginStyle = StyleSheet.create({
   },
   loginNewAccButton: {
     textDecorationLine: 'underline',
+    fontWeight: 'bold',
   }
 });
 
@@ -914,10 +954,10 @@ const timeSelectStyle = StyleSheet.create({
     flex: 1,
   },
   timeSelectTop:{
-    flex: 1,
+    flex: 0.5,
   },
   timeSelectMid: {
-    flex: 12,
+    flex: 7.5,
   },
   timeSelectBot: {
     flex: 2,
@@ -1020,11 +1060,11 @@ const detailStyle = StyleSheet.create({
     flex: 1,
   },
   detailTop: {
-    flex: 3,
+    flex: 2,
     justifyContent: 'center',
   },
   detailMid: {
-    flex: 7,
+    flex: 6,
   },
   detailBot: {
     flex: 2,
@@ -1037,7 +1077,9 @@ const detailStyle = StyleSheet.create({
   },
   detailTableContainer: {
     flex: 1,
-    margin: '5%',
+    marginLeft: '5%',
+    marginRight: '5%',
+    height: '100%',
     borderRadius: 5,
     borderWidth: 1,
     borderColor: colors.kuDarkGray,
@@ -1099,16 +1141,17 @@ const completeStyle=StyleSheet.create({
     flex: 1,
   },
   completeTop: {
-    flex: 2,
+    flex: 1.5,
     alignItems: 'center',
     justifyContent: 'center',
   },
   completeMid: {
     alignItems: 'center',
-    flex: 8,
+    flex: 6.5,
   },
   completeBot: {
     flex: 2,
+    justifyContent: 'center',
   },
   completeTitleText: {
     fontSize: 44,
