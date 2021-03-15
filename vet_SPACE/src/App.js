@@ -5,8 +5,8 @@ import {View, StyleSheet, Image} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import { TouchableOpacity} from 'react-native-gesture-handler';
-import { colors } from './utils/Styles';
 
+import { colors } from './utils/Styles';
 import {IC_MENU, IC_HOME} from './utils/icons';
 
 import StartScreen from './components/screens/Screen01_00Start';
