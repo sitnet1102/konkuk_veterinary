@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, StyleSheet, Image} from 'react-native';
+import {Text, View, StyleSheet, Image} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import { TouchableOpacity} from 'react-native-gesture-handler';
@@ -17,30 +17,14 @@ import DateLocaScreen from './components/screens/Screen04_01DateLoca';
 import TimeSelectScreen from './components/screens/Screen04_02TimeSelect';
 import RoomReservDetailScreen from './components/screens/Screen04_03RoomReservDetail';
 import CompleteScreen from './components/screens/Screen04_04Complete';
-//import ReservCheckScreen from './components/screens/Screen05_00ReservCheck';
+import ReservCheckScreen from './components/screens/Screen05_00ReservCheck';
 
 const Stack = createStackNavigator();
-
-function ReservCheckScreen({navigation}){
-  return(
-    <View style={reservcheckStyle.container}>
-      <View style={reservcheckStyle.Top}>
-
-      </View>
-    </View>
-  )
-}
-
-const reservcheckStyle = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="ReservCheck">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
           name="Start"
           component={StartScreen}
