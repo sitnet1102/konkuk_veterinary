@@ -15,84 +15,84 @@ export default function CompleteScreen({navigation}){
   */
   return(
     <View style={completeStyle.container}>
-      <View style={completeStyle.completeTop}>
-        <Text style={completeStyle.completeTitleText}>예약신청 작성 완료</Text>
+      <View style={completeStyle.Top}>
+        <Text style={completeStyle.TitleText}>예약신청 작성 완료</Text>
       </View>
-      <View style={completeStyle.completeMid}>
-        <Text style={completeStyle.completeText}>
+      <View style={completeStyle.Mid}>
+        <Text style={completeStyle.Text}>
           아래 내용을 확인해주세요
         </Text>
-        <View style={completeStyle.completeLine}></View>
-        <Text style={completeStyle.completeText2}>
+        <View style={completeStyle.Line}></View>
+        <Text style={completeStyle.Text2}>
           ▣ 이용시간 30분 전까지
         </Text>
-        <Text style={completeStyle.completeText2}>
+        <Text style={completeStyle.Text2}>
           취소할 수 있습니다
         </Text>
-        <Text style={completeStyle.completeText3}>
+        <Text style={completeStyle.Text3}>
           + 주말 예약일 경우 
         </Text>
         <View>
-          <Text style={completeStyle.completeText4}>
+          <Text style={completeStyle.Text4}>
             ▣ 대관신청서 출력 및 작성
           </Text>
-          <Text style={completeStyle.completeText4}>
+          <Text style={completeStyle.Text4}>
             ▣ 주임교수님 확인 받기
           </Text>
-          <Text style={completeStyle.completeText4}>
+          <Text style={completeStyle.Text4}>
             ▣ 행정실에 제출하여 
           </Text>
-          <Text style={completeStyle.completeText5}>
+          <Text style={completeStyle.Text5}>
             총무 · 구매팀으로
           </Text>
-          <Text style={completeStyle.completeText5}>
+          <Text style={completeStyle.Text5}>
             공문 요청하기 
           </Text>
         </View>
       </View>
-      <View style={completeStyle.completeBot}>
+      <View style={completeStyle.Bot}>
         <TouchableOpacity 
-          style={completeStyle.completeNextButton}
+          style={completeStyle.NextButton}
           onPress={() => navigation.navigate('Main')}
         >
-          <Text style={completeStyle.completeNextText}>완  료</Text>
+          <Text style={completeStyle.NextText}>완  료</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
 
-const completeStyle=StyleSheet.create({
+const completeStyle = StyleSheet.create({
   container: {
     flex: 1,
   },
-  completeTop: {
+  Top: {
     flex: 1.5,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  completeMid: {
+  Mid: {
     alignItems: 'center',
     flex: 6.5,
   },
-  completeBot: {
+  Bot: {
     flex: 2,
     justifyContent: 'center',
   },
-  completeTitleText: {
+  TitleText: {
     fontSize: 44,
     fontWeight: 'bold',
   },
   
-  completeText: {
+  Text: {
     fontSize: 32,
     fontWeight: 'bold',
   },
-  completeText2: {
+  Text2: {
     fontSize: 28,
     fontWeight: 'bold',
   },
-  completeText3: {
+  Text3: {
     fontSize: 28,
     fontWeight: 'bold',
     alignSelf: 'flex-start',
@@ -100,23 +100,23 @@ const completeStyle=StyleSheet.create({
     marginBottom: '2%',
     marginTop: '5%',
   },
-  completeText4: {
+  Text4: {
     fontSize: 24,
     fontWeight: 'bold',
     marginTop: '2%',
   },
-  completeText5: {
+  Text5: {
     fontSize: 24,
     fontWeight: 'bold',
     marginLeft: '6%',
   },
-  completeLine: {
+  Line: {
     height: 1,
     width: '85%',
     backgroundColor: colors.kuBlack,
     margin: '2%',
   },
-  completeNextButton: {
+  NextButton: {
     alignSelf: 'center',
     justifyContent: 'center',
     backgroundColor: colors.kuDarkGreen,
@@ -126,7 +126,7 @@ const completeStyle=StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
   }, 
-  completeNextText: {
+  NextText: {
     alignSelf: 'center',
     fontSize: 20,
     fontWeight: 'bold',

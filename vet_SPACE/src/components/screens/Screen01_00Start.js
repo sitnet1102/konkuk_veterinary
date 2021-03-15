@@ -15,15 +15,15 @@ export default function StartScreen() {
       <ImageBackground
         source={IMG_BACKGROUND}
         style={{width: '100%', height: '100%'}}>
-        <View style={startStyle.startTop}>
-          <Image style={startStyle.startLogoImage} source={IMG_KULOGO}/>
+        <View style={startStyle.Top}>
+          <Image style={startStyle.LogoImage} source={IMG_KULOGO}/>
         </View>
-        <View style={startStyle.startMid}>
-          <Text style={startStyle.startTitleText}>건국대학교</Text>
-          <Text style={startStyle.startTitleText}>수의과대학</Text>
-          <Text style={startStyle.startTitleText}>강의실대여</Text>
+        <View style={startStyle.Mid}>
+          <Text style={startStyle.TitleText}>건국대학교</Text>
+          <Text style={startStyle.TitleText}>수의과대학</Text>
+          <Text style={startStyle.TitleText}>강의실대여</Text>
         </View>
-        <View style={startStyle.startBot}>
+        <View style={startStyle.Bot}>
         </View>
       </ImageBackground>
     </View>
@@ -35,24 +35,24 @@ const startStyle = StyleSheet.create({
   container: {
     flex: 1,
   },
-  startTop: {
+  Top: {
     flex: 3,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  startMid: {
+  Mid: {
     alignItems: 'center',
     justifyContent: 'center',
     flex: 4,
   },
-  startBot: {
+  Bot: {
     flex: 3,
   },
-  startLogoImage: {
+  LogoImage: {
     aspectRatio: 0.2,
     resizeMode: 'contain',
   },
-  startTitleText: {
+  TitleText: {
     fontWeight: 'bold',
     fontSize: 42,
   }

@@ -45,46 +45,46 @@ export default function TimeSelectScreen({navigation}){
   }
   return (
     <View style={timeSelectStyle.container}>
-      <View style={timeSelectStyle.timeSelectTop}>
+      <View style={timeSelectStyle.Top}>
       </View>
-      <View style={timeSelectStyle.timeSelectMid}>
-        <View style={timeSelectStyle.timeSelectTime}>
-          <View style={timeSelectStyle.timeSelectContainer}>
-            <View style={timeSelectStyle.timeSelectTextContainer}>
-              <Text style={timeSelectStyle.timeSelectText}>시간 :</Text>
+      <View style={timeSelectStyle.Mid}>
+        <View style={timeSelectStyle.Time}>
+          <View style={timeSelectStyle.Container}>
+            <View style={timeSelectStyle.TextContainer}>
+              <Text style={timeSelectStyle.Text}>시간 :</Text>
             </View>
-            <TouchableOpacity style={timeSelectStyle.timeSelectSelectBox}>
-              <Text style={timeSelectStyle.timeSelectInboxText}>선 택</Text>
+            <TouchableOpacity style={timeSelectStyle.SelectBox}>
+              <Text style={timeSelectStyle.InboxText}>선 택</Text>
             </TouchableOpacity>
-            <Text style={timeSelectStyle.timeSelectText2}>  부터</Text>
+            <Text style={timeSelectStyle.Text2}>  부터</Text>
           </View>
-          <View style={timeSelectStyle.timeSelectContainer}>
-            <View style={timeSelectStyle.timeSelectTextContainer}>
-              <Text style={timeSelectStyle.timeSelectText}>    </Text>
+          <View style={timeSelectStyle.Container}>
+            <View style={timeSelectStyle.TextContainer}>
+              <Text style={timeSelectStyle.Text}>    </Text>
             </View>
-            <TouchableOpacity style={timeSelectStyle.timeSelectSelectBox}>
-              <Text style={timeSelectStyle.timeSelectInboxText}>선 택</Text>
+            <TouchableOpacity style={timeSelectStyle.SelectBox}>
+              <Text style={timeSelectStyle.InboxText}>선 택</Text>
             </TouchableOpacity>
-            <Text style={timeSelectStyle.timeSelectText2}>  까지</Text>
+            <Text style={timeSelectStyle.Text2}>  까지</Text>
           </View>
         </View>
-        <View style={timeSelectStyle.timeSelectTimeSheet}>
-          <Table borderStyle={timeSelectStyle.timeSelectBorder}>
-            <Row data={state.tableTitle} widthArr={state.widthArr} style={timeSelectStyle.timeSelectSheetTitle} textStyle={timeSelectStyle.timeSelectSheetTitleText}/>
+        <View style={timeSelectStyle.TimeSheet}>
+          <Table borderStyle={timeSelectStyle.Border}>
+            <Row data={state.tableTitle} widthArr={state.widthArr} style={timeSelectStyle.SheetTitle} textStyle={timeSelectStyle.SheetTitleText}/>
           </Table>
-          <Table borderStyle={timeSelectStyle.timeSelectBorder}>
-            <Row data={state.divisionArr} widthArr={state.widthArr2} style={timeSelectStyle.timeSelectSheetDivision} textStyle={timeSelectStyle.timeSelectSheetTitleText}/>
+          <Table borderStyle={timeSelectStyle.Border}>
+            <Row data={state.divisionArr} widthArr={state.widthArr2} style={timeSelectStyle.SheetDivision} textStyle={timeSelectStyle.SheetTitleText}/>
           </Table>
-          <ScrollView style={timeSelectStyle.timeSelectWrapper}>
-            <Table borderStyle={timeSelectStyle.timeSelectBorder}>
+          <ScrollView style={timeSelectStyle.Wrapper}>
+            <Table borderStyle={timeSelectStyle.Border}>
               {
                 timeTableData.map((rowData, index) => (
                   <Row
                     key={index}
                     data={rowData}
                     widthArr={state.widthArr2}
-                    style={[timeSelectStyle.timeSelectScrollRow]}
-                    textStyle={timeSelectStyle.timeSelectSheetText}
+                    style={[timeSelectStyle.ScrollRow]}
+                    textStyle={timeSelectStyle.SheetText}
                   />
                 ))
               }
@@ -92,12 +92,12 @@ export default function TimeSelectScreen({navigation}){
           </ScrollView>
         </View>
       </View>
-      <View style={timeSelectStyle.timeSelectBot}>
+      <View style={timeSelectStyle.Bot}>
         <TouchableOpacity 
-          style={timeSelectStyle.timeSelectNextButton}
-          onPress={() => navigation.navigate('Detail')}
+          style={timeSelectStyle.NextButton}
+          onPress={() => navigation.navigate('RoomReservDetail')}
         >
-          <Text style={timeSelectStyle.timeSelectNextText}>다     음</Text>
+          <Text style={timeSelectStyle.NextText}>다     음</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -108,40 +108,40 @@ const timeSelectStyle = StyleSheet.create({
   container: {
     flex: 1,
   },
-  timeSelectTop:{
+  Top:{
     flex: 0.5,
   },
-  timeSelectMid: {
+  Mid: {
     flex: 7.5,
   },
-  timeSelectBot: {
+  Bot: {
     flex: 2,
     justifyContent: 'center',
   },
-  timeSelectTime: {
+  Time: {
     flex: 3,
   },
-  timeSelectTimeSheet: {
+  TimeSheet: {
     flex: 5,
     margin: '5%',
     //borderColor: colors.kuBlack,
     //borderWidth: 1,
   },
-  timeSelectContainer: {
+  Container: {
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
     marginLeft: '2%',
     marginTop: '5%',
   },
-  timeSelectTextContainer: {
+  TextContainer: {
     width: '30%',
   },
-  timeSelectText: {
+  Text: {
     fontSize: 40,
     fontWeight: 'bold',
   },
-  timeSelectSelectBox: {
+  SelectBox: {
     justifyContent: 'center',
     height: 40,
     width: 220,
@@ -150,49 +150,49 @@ const timeSelectStyle = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.kuDarkGray,
   },
-  timeSelectInboxText: {
+  InboxText: {
     alignSelf: 'center',
     fontSize: 32,
     fontWeight: 'bold',
     color: colors.kuDarkGray,
   },
-  timeSelectText2: {
+  Text2: {
     fontSize: 20,
     fontWeight: 'bold',
   },
-  timeSelectBorder: {
+  Border: {
     borderWidth: 1,
     borderColor: colors.kuBlack,
   },
-  timeSelectSheetTitle: {
+  SheetTitle: {
     justifyContent: 'center',
     height: 40,
     backgroundColor: colors.kuWarmGray,
   },
-  timeSelectSheetTitleText: {
+  SheetTitleText: {
     alignSelf: 'center',
     fontSize: 20,
     fontWeight: 'bold',
   },
-  timeSelectSheetDivision:  {
+  SheetDivision:  {
     backgroundColor: colors.kuLightGray,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  timeSelectWrapper: {
+  Wrapper: {
     //marginTop: -1,
   },
-  timeSelectScrollRow: {
+  ScrollRow: {
     height: 40,
     backgroundColor: colors.kuLightGray,
   },
-  timeSelectSheetText: {
+  SheetText: {
     alignSelf: 'center',
     fontWeight: 'bold',
     fontSize: 16,
   },
-  timeSelectNextButton: {
+  NextButton: {
     alignSelf: 'center',
     justifyContent: 'center',
     backgroundColor: colors.kuDarkGreen,
@@ -202,7 +202,7 @@ const timeSelectStyle = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
   }, 
-  timeSelectNextText: {
+  NextText: {
     alignSelf: 'center',
     fontSize: 20,
     fontWeight: 'bold',

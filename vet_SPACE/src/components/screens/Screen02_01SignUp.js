@@ -16,57 +16,57 @@ export default function SignUpScreen({navigation}){
    */
   return(
     <View style={signupStyle.container}>
-      <View style={signupStyle.signupTop}>
+      <View style={signupStyle.Top}>
 
       </View>
-      <View style={signupStyle.signupMid}>
-        <View style={signupStyle.signupIDContainer}>
-          <View style={signupStyle.signupInputBoxContainer2}>
-            <TextInput style={signupStyle.signupInputTextBox}>
+      <View style={signupStyle.Mid}>
+        <View style={signupStyle.IDContainer}>
+          <View style={signupStyle.InputBoxContainer2}>
+            <TextInput style={signupStyle.InputTextBox}>
               <Text >아이디</Text>
             </TextInput>
           </View>
-          <TouchableOpacity style={signupStyle.signupIDCheckContainer}>
-            <Text style={signupStyle.signupIDCheckText}>중복확인</Text>
+          <TouchableOpacity style={signupStyle.IDCheckContainer}>
+            <Text style={signupStyle.IDCheckText}>중복확인</Text>
           </TouchableOpacity>
         </View>
-        <View style={signupStyle.signupInputBoxContainer}>
-          <TextInput style={signupStyle.signupInputTextBox}>
+        <View style={signupStyle.InputBoxContainer}>
+          <TextInput style={signupStyle.InputTextBox}>
             <Text>비밀번호</Text>
           </TextInput>
         </View>
-        <View style={signupStyle.signupInputBoxContainer}>
-          <TextInput style={signupStyle.signupInputTextBox}>
+        <View style={signupStyle.InputBoxContainer}>
+          <TextInput style={signupStyle.InputTextBox}>
             <Text>비밀번호 확인</Text>
           </TextInput>
         </View>
-        <View style={signupStyle.signupInputBoxContainer}>
-          <TextInput style={signupStyle.signupInputTextBox}>
+        <View style={signupStyle.InputBoxContainer}>
+          <TextInput style={signupStyle.InputTextBox}>
             <Text>이름 (실명 입력)</Text>
           </TextInput>
         </View>
-        <View style={signupStyle.signupInputBoxContainer}>
-          <TextInput style={signupStyle.signupInputTextBox}>
+        <View style={signupStyle.InputBoxContainer}>
+          <TextInput style={signupStyle.InputTextBox}>
             <Text>휴대전화번호 ('-'제외)</Text>
           </TextInput>
         </View>
-        <View style={signupStyle.signupInputBoxContainer}>
-          <TextInput style={signupStyle.signupInputTextBox}>
+        <View style={signupStyle.InputBoxContainer}>
+          <TextInput style={signupStyle.InputTextBox}>
             <Text>학번, 연구원번호, 사번, 등</Text>
           </TextInput>
         </View>
-        <View style={signupStyle.signupInputBoxContainer}>
+        <View style={signupStyle.InputBoxContainer}>
           <TouchableOpacity>
-            <Text style={signupStyle.signupInputTextBox}>분류 - 선택 상자</Text>
+            <Text style={signupStyle.InputTextBox}>분류 - 선택 상자</Text>
           </TouchableOpacity>
         </View>
       </View>
-      <View style={signupStyle.signupBot}>
+      <View style={signupStyle.Bot}>
         <TouchableOpacity 
-          style={signupStyle.signupButton}
+          style={signupStyle.Button}
           onPress={() => navigation.navigate('Login')}
         >
-          <Text style={signupStyle.signupText}>회원가입</Text>
+          <Text style={signupStyle.Text}>회원가입</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -78,30 +78,30 @@ const signupStyle = StyleSheet.create({
   container: {
     flex: 1,
   },
-  signupTop: {
+  Top: {
     flex : 1,
   },
-  signupMid: {
+  Mid: {
     flex : 20,
   },
- signupBot: {
+  Bot: {
    flex : 4,
    justifyContent: 'center',
   },
-  signupIDContainer: {
+  IDContainer: {
     flex: 1,
     flexDirection: 'row',
     margin: '3%',
     marginLeft: '8%',
     marginRight: '8%',
   },
-  signupInputBoxContainer2: {
+  InputBoxContainer2: {
     flex: 1,
     justifyContent: 'center',
     borderBottomColor: colors.kuDarkGreen,
     borderBottomWidth: 1,
   },
-  signupIDCheckContainer: {
+  IDCheckContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.kuDarkGreen,
@@ -109,12 +109,12 @@ const signupStyle = StyleSheet.create({
     width: 100,
     height: '100%',
   },
-  signupIDCheckText: {
+  IDCheckText: {
     fontSize: 20,
     fontWeight: 'bold',
     color: colors.kuWhite,
   },
-  signupInputBoxContainer: {
+  InputBoxContainer: {
     flex: 1,
     margin: '3%',
     marginLeft: '8%',
@@ -123,14 +123,14 @@ const signupStyle = StyleSheet.create({
     borderBottomWidth: 1,
     justifyContent: 'center',
   },
-  signupInputTextBox: {
+  InputTextBox: {
     justifyContent: 'center',
     fontSize: 20,
     color: colors.kuCoolGray,
     //marginLeft: '5%',
     //marginRight: '5%',
   },
-  signupButton: {
+  Button: {
     alignSelf: 'center',
     justifyContent: 'center',
     backgroundColor: colors.kuDarkGreen,
@@ -139,7 +139,7 @@ const signupStyle = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
   }, 
-  signupText: {
+  Text: {
     alignSelf: 'center',
     fontSize: 20,
     fontWeight: 'bold',

@@ -32,45 +32,45 @@ export default function LoginScreen({navigation}) {
         <ImageBackground
           source={IMG_BACKGROUND}
           style={{width: '100%', height: '100%'}}>
-          <View style={loginStyle.loginTop}>
-            <Text style={loginStyle.loginTitleText} >건국대학교</Text>
-            <Text style={loginStyle.loginTitleText} >수의과대학</Text>
-            <Text style={loginStyle.loginTitleText} >강의실대여</Text>
+          <View style={loginStyle.Top}>
+            <Text style={loginStyle.TitleText} >건국대학교</Text>
+            <Text style={loginStyle.TitleText} >수의과대학</Text>
+            <Text style={loginStyle.TitleText} >강의실대여</Text>
           </View>
-          <View style={loginStyle.loginMid}>
-            <TextInput style={loginStyle.loginInputTextBox}>
-              <Text style={loginStyle.loginInputText}>     아이디(ID)</Text>
+          <View style={loginStyle.Mid}>
+            <TextInput style={loginStyle.InputTextBox}>
+              <Text style={loginStyle.InputText}>     아이디(ID)</Text>
             </TextInput>
-            <TextInput style={loginStyle.loginInputTextBox}>
-              <Text style={loginStyle.loginInputText}>     비밀번호(Password)</Text>
+            <TextInput style={loginStyle.InputTextBox}>
+              <Text style={loginStyle.InputText}>     비밀번호(Password)</Text>
             </TextInput>
             <TouchableOpacity 
-              style={loginStyle.loginButton}
+              style={loginStyle.Button}
               onPress={() => navigation.navigate('Main')}
             >
-              <Text style={loginStyle.loginButtonText}>로그인(Login)</Text>
+              <Text style={loginStyle.ButtonText}>로그인(Login)</Text>
             </TouchableOpacity>
             
-            <View style={loginStyle.loginAutoLogin}>
+            <View style={loginStyle.AutoLogin}>
               <CheckBox
                 disabled={false}
                 value={isSelected}
                 onValueChange={setSelection}
                 boxType='square'
-                style={loginStyle.loginCheckBox}
+                style={loginStyle.CheckBox}
                 />
               <TouchableOpacity onPress={onPress}>
-                <Text style={loginStyle.loginAutoLoginText}>자동 로그인(Auto Login) / </Text>
+                <Text style={loginStyle.AutoLoginText}>자동 로그인(Auto Login) / </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => navigation.navigate('SignUp')}
               >
-                <Text style={loginStyle.loginNewAccButton}>회원가입(Sign Up)</Text>
+                <Text style={loginStyle.NewAccButton}>회원가입(Sign Up)</Text>
               </TouchableOpacity>
             </View>
             
           </View>
-          <View style={loginStyle.loginBot}>
+          <View style={loginStyle.Bot}>
           </View>
         </ImageBackground>
       </View>
@@ -83,24 +83,24 @@ const loginStyle = StyleSheet.create({
   container: {
     flex: 1,
   },
-  loginTop: {
+  Top: {
     flex: 3,
     alignItems: 'center',
     justifyContent: 'flex-end',
   },
-  loginMid: {
+  Mid: {
     //alignItems: 'center',
     justifyContent: 'center',
     flex: 5,
   },
-  loginBot: {
+  Bot: {
     flex: 1.5,
   },
-  loginTitleText: {
+  TitleText: {
     fontWeight: 'bold',
     fontSize: 40,
   },
-  loginInputTextBox: {
+  InputTextBox: {
     alignSelf: 'center',
     backgroundColor: colors.kuLightGray,
     width: '70%',
@@ -111,11 +111,11 @@ const loginStyle = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.kuDarkGray,
   },
-  loginInputText: {
+  InputText: {
     fontWeight: 'bold',
     fontSize: 16
   },
-  loginButton: {
+  Button: {
     alignSelf: 'center',
     alignItems: 'center',
     backgroundColor: colors.kuGreen,
@@ -127,23 +127,23 @@ const loginStyle = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.kuGreen,
   },
-  loginButtonText: {
+  ButtonText: {
     fontWeight: 'bold',
     fontSize: 20,
   },
-  loginAutoLogin: {
+  AutoLogin: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  loginCheckBox: {
+  CheckBox: {
     transform: [{scaleX: 0.8}, {scaleY: 0.8}]
   },
-  loginAutoLoginText: {
+  AutoLoginText: {
     fontWeight: 'bold',
     flexDirection: 'row',
   },
-  loginNewAccButton: {
+  NewAccButton: {
     textDecorationLine: 'underline',
     fontWeight: 'bold',
   }

@@ -31,36 +31,36 @@ export default function DetailScreen({navigation}){
   }
   return (
     <View style={detailStyle.container}>
-      <View style={detailStyle.detailTop}>
-        <Text style={detailStyle.detailTitleText}>
+      <View style={detailStyle.Top}>
+        <Text style={detailStyle.TitleText}>
           세부사항입력
         </Text>
       </View>
-      <View style={detailStyle.detailMid}>
-        <View style={detailStyle.detailTableContainer}>
+      <View style={detailStyle.Mid}>
+        <View style={detailStyle.TableContainer}>
           <Table>
-            <Rows data={state.tableIndex} widthArr={state.widthArr} style={detailStyle.detailTable} textStyle={detailStyle.detailTableText}/>
+            <Rows data={state.tableIndex} widthArr={state.widthArr} style={detailStyle.Table} textStyle={detailStyle.TableText}/>
           </Table>
-          <View style={detailStyle.detailVerticleLine}></View>
-          <View style={detailStyle.detailTable}>
-            <Text style={detailStyle.detailTableText2}>{__name}</Text>
-            <Text style={detailStyle.detailTableText2}>{__phone}</Text>
-            <Text style={detailStyle.detailTableText2}>{__time}</Text>
+          <View style={detailStyle.VerticleLine}></View>
+          <View style={detailStyle.Table}>
+            <Text style={detailStyle.TableText2}>{__name}</Text>
+            <Text style={detailStyle.TableText2}>{__phone}</Text>
+            <Text style={detailStyle.TableText2}>{__time}</Text>
             <TouchableOpacity>
-              <Text style={detailStyle.detailTableText3}>{__purpose}</Text>
+              <Text style={detailStyle.TableText3}>{__purpose}</Text>
             </TouchableOpacity>
             <TouchableOpacity>
-              <Text style={detailStyle.detailTableText3}>{__prof}</Text>
+              <Text style={detailStyle.TableText3}>{__prof}</Text>
             </TouchableOpacity>
           </View>
         </View>
       </View>
-      <View style={detailStyle.detailBot}>
+      <View style={detailStyle.Bot}>
         <TouchableOpacity 
-          style={detailStyle.detailNextButton}
+          style={detailStyle.NextButton}
           onPress={() => navigation.navigate('Complete')}
         >
-          <Text style={detailStyle.detailNextText}>제출하기</Text>
+          <Text style={detailStyle.NextText}>제출하기</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -72,23 +72,23 @@ const detailStyle = StyleSheet.create({
   container: {
     flex: 1,
   },
-  detailTop: {
+  Top: {
     flex: 2,
     justifyContent: 'center',
   },
-  detailMid: {
+  Mid: {
     flex: 6,
   },
-  detailBot: {
+  Bot: {
     flex: 2,
     justifyContent: 'center',
   },
-  detailTitleText: {
+  TitleText: {
     alignSelf: 'center',
     fontSize: 48,
     fontWeight: 'bold',
   },
-  detailTableContainer: {
+  TableContainer: {
     flex: 1,
     marginLeft: '5%',
     marginRight: '5%',
@@ -100,22 +100,22 @@ const detailStyle = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
   },
-  detailTable: {
+  Table: {
     margin: '3%',
   },
-  detailTableText: {
+  TableText: {
     fontSize: 24,
     fontWeight: 'bold',
     alignSelf: 'flex-end',
     margin: '10%',
   },
-  detailTableText2: {
+  TableText2: {
     fontSize: 28,
     fontWeight: 'bold',
     alignSelf: 'flex-start',
     margin: '6%',
   },
-  detailTableText3: {
+  TableText3: {
     color: colors.kuDarkGray,
     fontSize: 28,
     fontWeight: 'bold',
@@ -123,7 +123,7 @@ const detailStyle = StyleSheet.create({
     margin: '6%',
     textDecorationLine: 'underline',
   },
-  detailVerticleLine: {
+  VerticleLine: {
     width: 1,
     height: '90%',
     backgroundColor: colors.kuBlack,
@@ -131,7 +131,7 @@ const detailStyle = StyleSheet.create({
   },
 
 
-  detailNextButton: {
+  NextButton: {
     alignSelf: 'center',
     justifyContent: 'center',
     backgroundColor: colors.kuDarkGreen,
@@ -141,7 +141,7 @@ const detailStyle = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
   }, 
-  detailNextText: {
+  NextText: {
     alignSelf: 'center',
     fontSize: 20,
     fontWeight: 'bold',

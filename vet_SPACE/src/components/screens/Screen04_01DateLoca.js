@@ -16,40 +16,40 @@ export default function DateLocaScreen({navigation}){
    */
   return (
     <View style={DateLocaStyle.container}>
-      <View style={DateLocaStyle.dateLocaTop}>
+      <View style={DateLocaStyle.Top}>
       </View>
-      <View style={DateLocaStyle.dateLocaMid}>
-        <View style={DateLocaStyle.dateLocaContainer}>
-          <View style={DateLocaStyle.dateLocaTextContainer}>
-            <Text style={DateLocaStyle.dateLocaText}>날짜 :</Text>
+      <View style={DateLocaStyle.Mid}>
+        <View style={DateLocaStyle.Container}>
+          <View style={DateLocaStyle.TextContainer}>
+            <Text style={DateLocaStyle.Text}>날짜 :</Text>
           </View>
-          <TouchableOpacity style={DateLocaStyle.dateLocaSelectBox}>
-            <Text style={DateLocaStyle.dateLocaInboxText}>선 택</Text>
+          <TouchableOpacity style={DateLocaStyle.SelectBox}>
+            <Text style={DateLocaStyle.InboxText}>선 택</Text>
           </TouchableOpacity>
         </View>
-        <View style={DateLocaStyle.dateLocaContainer}>
-          <View style={DateLocaStyle.dateLocaTextContainer}>
-            <Text style={DateLocaStyle.dateLocaText}>구분 :</Text>
+        <View style={DateLocaStyle.Container}>
+          <View style={DateLocaStyle.TextContainer}>
+            <Text style={DateLocaStyle.Text}>구분 :</Text>
           </View>
-          <TouchableOpacity style={DateLocaStyle.dateLocaSelectBox}>
-            <Text style={DateLocaStyle.dateLocaInboxText}>선 택</Text>
+          <TouchableOpacity style={DateLocaStyle.SelectBox}>
+            <Text style={DateLocaStyle.InboxText}>선 택</Text>
           </TouchableOpacity>
         </View>
-        <View style={DateLocaStyle.dateLocaContainer}>
-          <View style={DateLocaStyle.dateLocaTextContainer}>
-            <Text style={DateLocaStyle.dateLocaText}>장소 :</Text>
+        <View style={DateLocaStyle.Container}>
+          <View style={DateLocaStyle.TextContainer}>
+            <Text style={DateLocaStyle.Text}>장소 :</Text>
           </View>
-          <TouchableOpacity style={DateLocaStyle.dateLocaSelectBox}>
-            <Text style={DateLocaStyle.dateLocaInboxText}>선 택</Text>
+          <TouchableOpacity style={DateLocaStyle.SelectBox}>
+            <Text style={DateLocaStyle.InboxText}>선 택</Text>
           </TouchableOpacity>
         </View>
       </View>
-      <View style={DateLocaStyle.dateLocaBot}>
+      <View style={DateLocaStyle.Bot}>
         <TouchableOpacity 
-          style={DateLocaStyle.dateLocaNextButton}
+          style={DateLocaStyle.NextButton}
           onPress={() => navigation.navigate('TimeSelect')}
         >
-          <Text style={DateLocaStyle.dateLocaNextText}>다     음</Text>
+          <Text style={DateLocaStyle.NextText}>다     음</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -60,31 +60,31 @@ const DateLocaStyle = StyleSheet.create({
   container: {
     flex: 1,
   },
-  dateLocaTop:{
+  Top:{
     flex: 1,
   },
-  dateLocaMid: {
+  Mid: {
     flex: 7,
   },
-  dateLocaBot: {
+  Bot: {
     flex: 2,
     justifyContent: 'center',
   },
-  dateLocaContainer: {
+  Container: {
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
     marginLeft: '2%',
     marginTop: '5%',
   },
-  dateLocaTextContainer: {
+  TextContainer: {
     width: '30%',
   },
-  dateLocaText: {
+  Text: {
     fontSize: 40,
     fontWeight: 'bold',
   },
-  dateLocaSelectBox: {
+  SelectBox: {
     justifyContent: 'center',
     height: 40,
     width: 250,
@@ -93,13 +93,13 @@ const DateLocaStyle = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.kuDarkGray,
   },
-  dateLocaInboxText: {
+  InboxText: {
     alignSelf: 'center',
     fontSize: 32,
     fontWeight: 'bold',
     color: colors.kuDarkGray,
   },
-  dateLocaNextButton: {
+  NextButton: {
     alignSelf: 'center',
     justifyContent: 'center',
     backgroundColor: colors.kuDarkGreen,
@@ -109,7 +109,7 @@ const DateLocaStyle = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
   }, 
-  dateLocaNextText: {
+  NextText: {
     alignSelf: 'center',
     fontSize: 20,
     fontWeight: 'bold',

@@ -18,31 +18,31 @@ export default function MainScreen({navigation}){
       <ImageBackground
         source={IMG_BACKGROUND}
         style={{width: '100%', height: '100%'}}>
-        <View style={mainStyle.mainTop}>
-          <Text style={mainStyle.mainTitleText}>수의과대학</Text>
-          <Text style={mainStyle.mainTitleText}>강의실대여</Text>
+        <View style={mainStyle.Top}>
+          <Text style={mainStyle.TitleText}>수의과대학</Text>
+          <Text style={mainStyle.TitleText}>강의실대여</Text>
         </View>
-        <View style={mainStyle.mainMid}>
+        <View style={mainStyle.Mid}>
           <TouchableOpacity 
-            style={mainStyle.mainTouchBox}
+            style={mainStyle.TouchBox}
             onPress={() => navigation.navigate('DateLoca')}
             >
-            <Text style={mainStyle.mainSelectTitleText}>강의실예약</Text>
+            <Text style={mainStyle.SelectTitleText}>강의실예약</Text>
           </TouchableOpacity>
           <TouchableOpacity 
-            style={mainStyle.mainTouchBox}
-            //onPress={() => navigation.navigate('')}
+            style={mainStyle.TouchBox}
+            onPress={() => navigation.navigate('ReservCheck')}
             >
-            <Text style={mainStyle.mainSelectTitleText}>예약확인</Text>
+            <Text style={mainStyle.SelectTitleText}>예약확인</Text>
           </TouchableOpacity>
           <TouchableOpacity 
-            style={mainStyle.mainTouchBox}
+            style={mainStyle.TouchBox}
             //onPress={() => navigation.navigate('')}
           >
-            <Text style={mainStyle.mainSelectTitleText}>강의실정보</Text>
+            <Text style={mainStyle.SelectTitleText}>강의실정보</Text>
           </TouchableOpacity>
         </View>
-        <View style={mainStyle.mainBot}>
+        <View style={mainStyle.Bot}>
           
         </View>
       </ImageBackground>
@@ -55,23 +55,23 @@ const mainStyle = StyleSheet.create({
   container: {
     flex: 1,
   }, 
-  mainTop: {
+  Top: {
     flex: 2,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  mainMid: {
+  Mid: {
     justifyContent: 'center',
     flex: 4,
   },
-  mainBot: {
+  Bot: {
     flex: 2,
   },
-  mainTitleText: {
+  TitleText: {
     fontWeight: 'bold',
     fontSize: 42,
   },
-  mainTouchBox: {
+  TouchBox: {
     alignSelf: 'center',
     fontWeight: 'bold',
     backgroundColor: colors.kuLightGray,
@@ -86,7 +86,7 @@ const mainStyle = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.kuDarkGreen,
   },
-  mainSelectTitleText: {
+  SelectTitleText: {
     fontSize: 42,
   },
 });

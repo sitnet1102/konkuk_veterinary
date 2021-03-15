@@ -15,15 +15,32 @@ import SignUpScreen from './components/screens/Screen02_01SignUp';
 import MainScreen from './components/screens/Screen03_00Main';
 import DateLocaScreen from './components/screens/Screen04_01DateLoca';
 import TimeSelectScreen from './components/screens/Screen04_02TimeSelect';
-import DetailScreen from './components/screens/Screen04_03Detail';
+import RoomReservDetailScreen from './components/screens/Screen04_03RoomReservDetail';
 import CompleteScreen from './components/screens/Screen04_04Complete';
+//import ReservCheckScreen from './components/screens/Screen05_00ReservCheck';
 
 const Stack = createStackNavigator();
+
+function ReservCheckScreen({navigation}){
+  return(
+    <View style={reservcheckStyle.container}>
+      <View style={reservcheckStyle.Top}>
+
+      </View>
+    </View>
+  )
+}
+
+const reservcheckStyle = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="ReservCheck">
         <Stack.Screen
           name="Start"
           component={StartScreen}
@@ -132,8 +149,8 @@ function App() {
           }}
         />
         <Stack.Screen
-          name="Detail"
-          component={DetailScreen}
+          name="RoomReservDetail"
+          component={RoomReservDetailScreen}
           options={{
             headerStyle: {
               backgroundColor: colors.kuDarkGreen,
@@ -175,6 +192,32 @@ function App() {
               </View>
             ),
             title: '강의실 예약',
+            headerTintColor: colors.kuLightGray,
+            headerTitleAlign: 'center',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              fontSize: 24,
+            },
+          }}
+        />
+        <Stack.Screen
+          name="ReservCheck"
+          component={ReservCheckScreen}
+          options={{
+            headerStyle: {
+              backgroundColor: colors.kuDarkGreen,
+            },
+            headerRight: () => (
+              <View style={headerStyle.headerContainer}>
+                <TouchableOpacity style={headerStyle.headerHomeTouchBox}>
+                  <Image source={IC_HOME}/>
+                </TouchableOpacity>
+                <TouchableOpacity style={headerStyle.headerMenuTouchBox}>
+                  <Image source={IC_MENU}/>
+                </TouchableOpacity>
+              </View>
+            ),
+            title: '예약 확인',
             headerTintColor: colors.kuLightGray,
             headerTitleAlign: 'center',
             headerTitleStyle: {
