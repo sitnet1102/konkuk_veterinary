@@ -58,6 +58,8 @@ export default function LoginScreen({navigation}) {
                 onValueChange={setSelection}
                 boxType='square'
                 style={loginStyle.CheckBox}
+                onCheckColor={colors.kuDarkGreen}
+                onTintColor={colors.kuDarkGreen}
                 />
               <TouchableOpacity onPress={onPress}>
                 <Text style={loginStyle.AutoLoginText}>자동 로그인(Auto Login) / </Text>

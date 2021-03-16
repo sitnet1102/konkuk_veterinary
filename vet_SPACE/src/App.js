@@ -1,12 +1,12 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {Text, View, StyleSheet, Image} from 'react-native';
+import {View, StyleSheet, Image} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import { TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
-import { colors } from './utils/Styles';
+import {colors} from './utils/Styles';
 import {IC_MENU, IC_HOME} from './utils/icons';
 
 import StartScreen from './components/screens/Screen01_00Start';
@@ -18,6 +18,7 @@ import TimeSelectScreen from './components/screens/Screen04_02TimeSelect';
 import RoomReservDetailScreen from './components/screens/Screen04_03RoomReservDetail';
 import CompleteScreen from './components/screens/Screen04_04Complete';
 import ReservCheckScreen from './components/screens/Screen05_00ReservCheck';
+import ListScreen from './components/screens/Screen05_01List';
 
 const Stack = createStackNavigator();
 
@@ -202,6 +203,32 @@ function App() {
               </View>
             ),
             title: '예약 확인',
+            headerTintColor: colors.kuLightGray,
+            headerTitleAlign: 'center',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              fontSize: 24,
+            },
+          }}
+        />
+        <Stack.Screen
+          name="List"
+          component={ListScreen}
+          options={{
+            headerStyle: {
+              backgroundColor: colors.kuDarkGreen,
+            },
+            headerRight: () => (
+              <View style={headerStyle.headerContainer}>
+                <TouchableOpacity style={headerStyle.headerHomeTouchBox}>
+                  <Image source={IC_HOME}/>
+                </TouchableOpacity>
+                <TouchableOpacity style={headerStyle.headerMenuTouchBox}>
+                  <Image source={IC_MENU}/>
+                </TouchableOpacity>
+              </View>
+            ),
+            title: '나의 예약 확인',
             headerTintColor: colors.kuLightGray,
             headerTitleAlign: 'center',
             headerTitleStyle: {

@@ -14,7 +14,7 @@ export default function ReservCheckScreen({navigation}){
         <View style={reservCheckStyle.Mid}>
           <TouchableOpacity 
             style={reservCheckStyle.TouchBox}
-            //onPress={() => navigation.navigate('')}
+            onPress={() => navigation.navigate('List')}
             >
             <Text style={reservCheckStyle.SelectTitleText}>나의 예약확인</Text>
           </TouchableOpacity>
