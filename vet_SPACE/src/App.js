@@ -19,8 +19,36 @@ import RoomReservDetailScreen from './components/screens/Screen04_03RoomReservDe
 import CompleteScreen from './components/screens/Screen04_04Complete';
 import ReservCheckScreen from './components/screens/Screen05_00ReservCheck';
 import ListScreen from './components/screens/Screen05_01List';
+//import ReservDetailScreen from './components/screens/Screen05_01ReservDetail';
+
+function ReservDetailScreen() {
+  return(
+    <View>
+
+    </View>
+  );
+}
 
 const Stack = createStackNavigator();
+
+function Header() {
+  return(
+    <View style={headerStyle.headerContainer}>
+      <TouchableOpacity 
+        style={headerStyle.headerHomeTouchBox}
+        //onPress={() => navigate('Main')}
+      >
+        <Image source={IC_HOME}/>
+      </TouchableOpacity>
+      <TouchableOpacity 
+        style={headerStyle.headerMenuTouchBox}
+        //onPress={() => navigation.navigate('Menu')}
+      >
+        <Image source={IC_MENU}/>
+      </TouchableOpacity>
+    </View>
+  );
+}
 
 function App() {
   return (
@@ -83,20 +111,7 @@ function App() {
               backgroundColor: colors.kuDarkGreen,
             },
             headerRight: () => (
-              <View style={headerStyle.headerContainer}>
-                <TouchableOpacity 
-                  style={headerStyle.headerHomeTouchBox}
-                  //onPress={() => navigate('Main')}
-                >
-                  <Image source={IC_HOME}/>
-                </TouchableOpacity>
-                <TouchableOpacity 
-                  style={headerStyle.headerMenuTouchBox}
-                  //onPress={() => navigation.navigate('Menu')}
-                >
-                  <Image source={IC_MENU}/>
-                </TouchableOpacity>
-              </View>
+              Header()
             ),
             title: '강의실 예약',
             headerTintColor: colors.kuLightGray,
@@ -115,14 +130,7 @@ function App() {
               backgroundColor: colors.kuDarkGreen,
             },
             headerRight: () => (
-              <View style={headerStyle.headerContainer}>
-                <TouchableOpacity style={headerStyle.headerHomeTouchBox}>
-                  <Image source={IC_HOME}/>
-                </TouchableOpacity>
-                <TouchableOpacity style={headerStyle.headerMenuTouchBox}>
-                  <Image source={IC_MENU}/>
-                </TouchableOpacity>
-              </View>
+              Header()
             ),
             title: '강의실 예약',
             headerTintColor: colors.kuLightGray,
@@ -141,14 +149,7 @@ function App() {
               backgroundColor: colors.kuDarkGreen,
             },
             headerRight: () => (
-              <View style={headerStyle.headerContainer}>
-                <TouchableOpacity style={headerStyle.headerHomeTouchBox}>
-                  <Image source={IC_HOME}/>
-                </TouchableOpacity>
-                <TouchableOpacity style={headerStyle.headerMenuTouchBox}>
-                  <Image source={IC_MENU}/>
-                </TouchableOpacity>
-              </View>
+              Header()
             ),
             title: '강의실 예약',
             headerTintColor: colors.kuLightGray,
@@ -167,14 +168,7 @@ function App() {
               backgroundColor: colors.kuDarkGreen,
             },
             headerRight: () => (
-              <View style={headerStyle.headerContainer}>
-                <TouchableOpacity style={headerStyle.headerHomeTouchBox}>
-                  <Image source={IC_HOME}/>
-                </TouchableOpacity>
-                <TouchableOpacity style={headerStyle.headerMenuTouchBox}>
-                  <Image source={IC_MENU}/>
-                </TouchableOpacity>
-              </View>
+              Header()
             ),
             title: '강의실 예약',
             headerTintColor: colors.kuLightGray,
@@ -193,14 +187,7 @@ function App() {
               backgroundColor: colors.kuDarkGreen,
             },
             headerRight: () => (
-              <View style={headerStyle.headerContainer}>
-                <TouchableOpacity style={headerStyle.headerHomeTouchBox}>
-                  <Image source={IC_HOME}/>
-                </TouchableOpacity>
-                <TouchableOpacity style={headerStyle.headerMenuTouchBox}>
-                  <Image source={IC_MENU}/>
-                </TouchableOpacity>
-              </View>
+              Header()
             ),
             title: '예약 확인',
             headerTintColor: colors.kuLightGray,
@@ -219,14 +206,26 @@ function App() {
               backgroundColor: colors.kuDarkGreen,
             },
             headerRight: () => (
-              <View style={headerStyle.headerContainer}>
-                <TouchableOpacity style={headerStyle.headerHomeTouchBox}>
-                  <Image source={IC_HOME}/>
-                </TouchableOpacity>
-                <TouchableOpacity style={headerStyle.headerMenuTouchBox}>
-                  <Image source={IC_MENU}/>
-                </TouchableOpacity>
-              </View>
+              Header()
+            ),
+            title: '나의 예약 확인',
+            headerTintColor: colors.kuLightGray,
+            headerTitleAlign: 'center',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              fontSize: 24,
+            },
+          }}
+        />
+        <Stack.Screen
+          name="ReservDetail"
+          component={ReservDetailScreen}
+          options={{
+            headerStyle: {
+              backgroundColor: colors.kuDarkGreen,
+            },
+            headerRight: () => (
+              Header()
             ),
             title: '나의 예약 확인',
             headerTintColor: colors.kuLightGray,
