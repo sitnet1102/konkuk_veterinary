@@ -3,11 +3,12 @@ import * as React from 'react';
 
 import {View, Text, StyleSheet} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import {Table, Rows} from 'react-native-table-component';
+import {Table, Row} from 'react-native-table-component';
 import { colors } from '../../utils/Styles';
+import { RFPercentage } from 'react-native-responsive-fontsize';
 
 
-export default function DetailScreen({navigation}){
+export default function RoomReservDetailScreen({navigation}){
   const __name = '홍길동'
   const __phone = '010-1234-5678'
   const __time = '1200 ~ 1400'
@@ -23,10 +24,14 @@ export default function DetailScreen({navigation}){
       ['담당교수'],
     ],
     widthArr: [
-      140
+      '100%'
     ],
-    widthArr2: [
-      260
+    tabledata: [
+      [__name],
+      [__phone],
+      [__time],
+      [__purpose],
+      [__prof],
     ],
   }
   return (
@@ -37,20 +42,32 @@ export default function DetailScreen({navigation}){
         </Text>
       </View>
       <View style={detailStyle.Mid}>
-        <View style={detailStyle.TableContainer}>
-          <Table>
-            <Rows data={state.tableIndex} widthArr={state.widthArr} style={detailStyle.Table} textStyle={detailStyle.TableText}/>
-          </Table>
-          <View style={detailStyle.VerticleLine}></View>
-          <View style={detailStyle.Table}>
-            <Text style={detailStyle.TableText2}>{__name}</Text>
-            <Text style={detailStyle.TableText2}>{__phone}</Text>
-            <Text style={detailStyle.TableText2}>{__time}</Text>
+        <View style={detailStyle.midContainer}>
+          <View style={detailStyle.container1}>
+            <Table>
+              {
+                state.tableIndex.map((rowData, index) => (
+                  <Row
+                    key={index}
+                    data={rowData}
+                    widthArr={state.widthArr}
+                    style={[detailStyle.table1]}
+                    textStyle={detailStyle.text1}
+                  />
+                ))
+              }
+            </Table>
+          </View>
+          <View style={detailStyle.line}></View>
+          <View style={detailStyle.container2}>
+            <Text style={detailStyle.text2}>{__name}</Text>
+            <Text style={detailStyle.text2}>{__phone}</Text>
+            <Text style={detailStyle.text2}>{__time}</Text>
             <TouchableOpacity>
-              <Text style={detailStyle.TableText3}>{__purpose}</Text>
+              <Text style={detailStyle.text3}>{__purpose}</Text>
             </TouchableOpacity>
             <TouchableOpacity>
-              <Text style={detailStyle.TableText3}>{__prof}</Text>
+              <Text style={detailStyle.text3}>{__prof}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -88,48 +105,54 @@ const detailStyle = StyleSheet.create({
     fontSize: 48,
     fontWeight: 'bold',
   },
-  TableContainer: {
-    flex: 1,
-    marginLeft: '5%',
-    marginRight: '5%',
-    height: '100%',
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: colors.kuDarkGray,
-    alignItems: 'center',
-    justifyContent: 'center',
+  midContainer: {
+    height: 360,
     flexDirection: 'row',
+    marginHorizontal: 20,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: colors.kuDarkGray,
   },
-  Table: {
-    margin: '3%',
+  container1: {
+    flex: 3,
+    marginRight: 15,
   },
-  TableText: {
-    fontSize: 24,
+  container2: {
+    flex: 5,
+    marginLeft: 15,
+  },
+  line: {
+    width: 1,
+    marginVertical: 20,
+    backgroundColor: colors.kuDarkGray,
+  },
+  text1: {
+    fontSize: RFPercentage(3.2),
     fontWeight: 'bold',
     alignSelf: 'flex-end',
-    margin: '10%',
+    lineHeight: 70,
   },
-  TableText2: {
-    fontSize: 28,
+  text2: {
+    fontSize: RFPercentage(3),
     fontWeight: 'bold',
     alignSelf: 'flex-start',
-    margin: '6%',
+    lineHeight: 70,
   },
-  TableText3: {
+  text3: {
     color: colors.kuDarkGray,
-    fontSize: 28,
+    fontSize: RFPercentage(3),
     fontWeight: 'bold',
     alignSelf: 'flex-start',
-    margin: '6%',
     textDecorationLine: 'underline',
+    lineHeight: 70,
   },
-  VerticleLine: {
-    width: 1,
-    height: '90%',
-    backgroundColor: colors.kuBlack,
-    margin: '1%',
+  tableTouchBox: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    marginLeft: 20,
+    backgroundColor: colors.kuBlue,
   },
-
 
   NextButton: {
     alignSelf: 'center',
