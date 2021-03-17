@@ -67,7 +67,8 @@ const DateLocaStyle = StyleSheet.create({
     flex: 7,
   },
   Bot: {
-    flex: 2,
+    //flex: 2,
+    height: 130,
     justifyContent: 'center',
   },
   Container: {

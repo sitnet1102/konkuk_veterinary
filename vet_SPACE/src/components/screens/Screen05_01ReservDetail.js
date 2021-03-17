@@ -8,7 +8,7 @@ import { Table, Row} from 'react-native-table-component';
 
 import {colors} from '../../utils/Styles';
 
-export default function ReservDetailScreen({/*Data,*/navigation}) {
+export default function ReservDetailScreen({/*Data,*/}) {
   const t1 = '수의학관 216호\n';
   const t2 = '2021년 03월 02일\n';
   const t3 = '0900 ~ 1200';
@@ -32,7 +32,7 @@ export default function ReservDetailScreen({/*Data,*/navigation}) {
   const data2 = '홍길동';
   const data3 = '010-1234-5678';
   const data4 = '2021년 01월 15일';
-  const data5 = '이상월 교수님';
+  const data5 = '홍길동 교수님';
   const data6 = '0445';
   const tabledata = [
     [data1],

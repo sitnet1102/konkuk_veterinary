@@ -76,7 +76,8 @@ const completeStyle = StyleSheet.create({
     flex: 6.5,
   },
   Bot: {
-    flex: 2,
+    //flex: 2,
+    height: 130,
     justifyContent: 'center',
   },
   TitleText: {

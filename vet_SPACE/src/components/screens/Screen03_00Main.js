@@ -70,6 +70,7 @@ const mainStyle = StyleSheet.create({
   TitleText: {
     fontWeight: 'bold',
     fontSize: 42,
+    lineHeight: 50,
   },
   TouchBox: {
     alignSelf: 'center',
@@ -81,6 +82,7 @@ const mainStyle = StyleSheet.create({
     opacity: 0.8,
     margin: '2%',
     width: '70%',
+    height: 80,
     padding: '4%',
     borderRadius: 5,
     borderWidth: 1,

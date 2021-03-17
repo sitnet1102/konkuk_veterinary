@@ -20,7 +20,7 @@ export default function ReservCheckScreen({navigation}){
           </TouchableOpacity>
           <TouchableOpacity 
             style={reservCheckStyle.TouchBox}
-            //onPress={() => navigation.navigate('/')}
+            onPress={() => navigation.navigate('Status')}
             >
             <Text style={reservCheckStyle.SelectTitleText2}>강의실별 예약 현황</Text>
           </TouchableOpacity>
@@ -71,7 +71,7 @@ export default function ReservCheckScreen({navigation}){
     opacity: 0.8,
     marginVertical: '5%',
     width: '100%',
-    height: '50%',
+    height: 100,
     padding: '4%',
     borderRadius: 5,
     borderWidth: 1,

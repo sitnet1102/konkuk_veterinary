@@ -24,9 +24,10 @@ export default function TimeSelectScreen({navigation}){
    */
   const state = {
     tableTitle: ['2021년 03월 01일 // 207호 예약 내역'],
-    widthArr: [372],
+    widthArr: ['100%'],
     divisionArr: ['시간', '내용'],
-    widthArr2: [100,272],
+    widthArr2: [100,314],
+    widthArr3: [100,314],
   };
   const timeTableData = [];
   for(let i = 0;i<14; i+=1){
@@ -82,7 +83,7 @@ export default function TimeSelectScreen({navigation}){
                   <Row
                     key={index}
                     data={rowData}
-                    widthArr={state.widthArr2}
+                    widthArr={state.widthArr3}
                     style={[timeSelectStyle.ScrollRow]}
                     textStyle={timeSelectStyle.SheetText}
                   />
@@ -109,21 +110,27 @@ const timeSelectStyle = StyleSheet.create({
     flex: 1,
   },
   Top:{
-    flex: 0.5,
+    //flex: 0.5,
+    height: 20,
   },
   Mid: {
-    flex: 7.5,
+    //flex: 7.5,
+    //height: 450,
+    flex: 1,
+    //backgroundColor: colors.kuMagenta,
   },
   Bot: {
-    flex: 2,
+    //flex: 2,
+    height: 130,
     justifyContent: 'center',
   },
   Time: {
-    flex: 3,
+    //flex: 3,
+    marginBottom: 30,
   },
   TimeSheet: {
     flex: 5,
-    margin: '5%',
+    //margin: '5%',
     //borderColor: colors.kuBlack,
     //borderWidth: 1,
   },

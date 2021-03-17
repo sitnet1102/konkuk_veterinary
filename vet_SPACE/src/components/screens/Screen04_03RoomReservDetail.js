@@ -97,7 +97,8 @@ const detailStyle = StyleSheet.create({
     flex: 6,
   },
   Bot: {
-    flex: 2,
+    //flex: 2,
+    height: 130,
     justifyContent: 'center',
   },
   TitleText: {

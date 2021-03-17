@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {Text, View, StyleSheet, Image} from 'react-native';
+import {Text, View, StyleSheet, Image, ScrollView} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -22,6 +22,12 @@ import CompleteScreen from './components/screens/Screen04_04Complete';
 import ReservCheckScreen from './components/screens/Screen05_00ReservCheck';
 import ListScreen from './components/screens/Screen05_01List';
 import ReservDetailScreen from './components/screens/Screen05_01ReservDetail';
+import StatusScreen from './components/screens/Screen05_02Status';
+//import RoomInfoScreen from './components/screens/Screen06_00RoomInfo';
+
+function RoomInfoScreen({navigation}){
+
+}
 
 const Stack = createStackNavigator();
 
@@ -222,6 +228,44 @@ function App() {
               Header()
             ),
             title: '나의 예약 확인',
+            headerTintColor: colors.kuLightGray,
+            headerTitleAlign: 'center',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              fontSize: 24,
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Status"
+          component={StatusScreen}
+          options={{
+            headerStyle: {
+              backgroundColor: colors.kuDarkGreen,
+            },
+            headerRight: () => (
+              Header()
+            ),
+            title: '강의실별 예약 현황 확인',
+            headerTintColor: colors.kuLightGray,
+            headerTitleAlign: 'center',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              fontSize: 24,
+            },
+          }}
+        />
+        <Stack.Screen
+          name="RoomInfo"
+          component={RoomInfoScreen}
+          options={{
+            headerStyle: {
+              backgroundColor: colors.kuDarkGreen,
+            },
+            headerRight: () => (
+              Header()
+            ),
+            title: '강의실 정보',
             headerTintColor: colors.kuLightGray,
             headerTitleAlign: 'center',
             headerTitleStyle: {

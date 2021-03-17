@@ -12,7 +12,7 @@ export default function SignUpScreen({navigation}){
         1.2. 비밀번호, 비밀번호 확인 이 서로 같은지 확인
         1.3. 비밀번호가 올바른 형식인지 확인
         1.4. 모든 정보가 다 들어가 있는지 확인 
-      
+      2. 텍스트 입력 박스 선택시 화면 찌그러지는 현상 수정 필요 
    */
   return(
     <View style={signupStyle.container}>
