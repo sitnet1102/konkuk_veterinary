@@ -23,11 +23,7 @@ import ReservCheckScreen from './components/screens/Screen05_00ReservCheck';
 import ListScreen from './components/screens/Screen05_01List';
 import ReservDetailScreen from './components/screens/Screen05_01ReservDetail';
 import StatusScreen from './components/screens/Screen05_02Status';
-//import RoomInfoScreen from './components/screens/Screen06_00RoomInfo';
-
-function RoomInfoScreen({navigation}){
-
-}
+import RoomInfoScreen from './components/screens/Screen06_00RoomInfo';
 
 const Stack = createStackNavigator();
 

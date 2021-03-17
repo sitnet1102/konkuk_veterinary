@@ -37,7 +37,7 @@ export default function MainScreen({navigation}){
           </TouchableOpacity>
           <TouchableOpacity 
             style={mainStyle.TouchBox}
-            //onPress={() => navigation.navigate('')}
+            onPress={() => navigation.navigate('RoomInfo')}
           >
             <Text style={mainStyle.SelectTitleText}>강의실정보</Text>
           </TouchableOpacity>
