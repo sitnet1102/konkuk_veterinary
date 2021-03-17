@@ -1,10 +1,12 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, StyleSheet, Image} from 'react-native';
+import {Text, View, StyleSheet, Image} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { Table, Row, Rows } from 'react-native-table-component';
 
 import {colors} from './utils/Styles';
 import {IC_MENU, IC_HOME} from './utils/icons';
@@ -19,15 +21,7 @@ import RoomReservDetailScreen from './components/screens/Screen04_03RoomReservDe
 import CompleteScreen from './components/screens/Screen04_04Complete';
 import ReservCheckScreen from './components/screens/Screen05_00ReservCheck';
 import ListScreen from './components/screens/Screen05_01List';
-//import ReservDetailScreen from './components/screens/Screen05_01ReservDetail';
-
-function ReservDetailScreen() {
-  return(
-    <View>
-
-    </View>
-  );
-}
+import ReservDetailScreen from './components/screens/Screen05_01ReservDetail';
 
 const Stack = createStackNavigator();
 

@@ -12,7 +12,7 @@ import {colors} from '../../utils/Styles';
 export default function ListScreen({navigation}) {
   const [isSelected, setSelection] = React.useState(false);
   const onPressCheckBox = () => setSelection(()=>!isSelected);
-  const onPressRow = () => navigation.navigate('');
+  const onPressRow = () => navigation.navigate('ReservDetail');
   const radiobuttondata = [
     {label: '시간순'}, {label: '강의실순'}
   ];
