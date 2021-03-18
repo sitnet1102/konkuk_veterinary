@@ -43,7 +43,6 @@ export default function MainScreen({navigation}){
           </TouchableOpacity>
         </View>
         <View style={mainStyle.Bot}>
-          
         </View>
       </ImageBackground>
     </View>

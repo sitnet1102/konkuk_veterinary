@@ -13,25 +13,25 @@ export default function RoomInfoScreen({navigation}){
       <View style={roominfoStyle.container1}>
         <TouchableOpacity 
           style={roominfoStyle.touchBox}
-          onPress={() => navigation.navigate('')}
-        >
+          onPress={() => navigation.navigate('RoomInfoDetail')}
+          >
           <Text style={roominfoStyle.text1}>강의실</Text>
         </TouchableOpacity>
         <TouchableOpacity 
           style={roominfoStyle.touchBox}
-          onPress={() => navigation.navigate('')}
-        >
+          onPress={() => navigation.navigate('RoomInfoDetail')}
+          >
           <Text style={roominfoStyle.text1}>실습실 / 실험실</Text>
         </TouchableOpacity>
         <TouchableOpacity 
           style={roominfoStyle.touchBox}
-          onPress={() => navigation.navigate('')}
-        >
+          onPress={() => navigation.navigate('RoomInfoDetail')}
+          >
           <Text style={roominfoStyle.text1}>세미나실</Text>
         </TouchableOpacity>
         <TouchableOpacity 
           style={roominfoStyle.touchBox}
-          onPress={() => navigation.navigate('')}
+          onPress={() => navigation.navigate('RoomInfoDetail')}
         >
           <Text style={roominfoStyle.text1}>기타</Text>
         </TouchableOpacity>

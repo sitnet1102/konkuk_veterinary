@@ -7,6 +7,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { Table, Row, Rows } from 'react-native-table-component';
+import {SliderBox} from 'react-native-image-slider-box';
 
 import {colors} from './utils/Styles';
 import {IC_MENU, IC_HOME} from './utils/icons';
@@ -24,6 +25,8 @@ import ListScreen from './components/screens/Screen05_01List';
 import ReservDetailScreen from './components/screens/Screen05_01ReservDetail';
 import StatusScreen from './components/screens/Screen05_02Status';
 import RoomInfoScreen from './components/screens/Screen06_00RoomInfo';
+import RoomInfoDetailScreen from './components/screens/Screen06_01RoomInfoDetail';
+
 
 const Stack = createStackNavigator();
 
@@ -254,6 +257,25 @@ function App() {
         <Stack.Screen
           name="RoomInfo"
           component={RoomInfoScreen}
+          options={{
+            headerStyle: {
+              backgroundColor: colors.kuDarkGreen,
+            },
+            headerRight: () => (
+              Header()
+            ),
+            title: '강의실 정보',
+            headerTintColor: colors.kuLightGray,
+            headerTitleAlign: 'center',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              fontSize: 24,
+            },
+          }}
+        />
+        <Stack.Screen
+          name="RoomInfoDetail"
+          component={RoomInfoDetailScreen}
           options={{
             headerStyle: {
               backgroundColor: colors.kuDarkGreen,
