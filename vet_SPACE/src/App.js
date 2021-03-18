@@ -2,8 +2,9 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 
 import {Text, View, StyleSheet, Image, ScrollView} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+//import {createDrawerNavigator} from '@react-navigation/drawer';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { Table, Row, Rows } from 'react-native-table-component';
@@ -29,27 +30,73 @@ import RoomInfoDetailScreen from './components/screens/Screen06_01RoomInfoDetail
 
 
 const Stack = createStackNavigator();
+//const Drawer = createDrawerNavigator();
+
+function MainHeader() {
+  const navigation = useNavigation();
+  return(
+      <TouchableOpacity 
+        style={headerStyle.headerMenuTouchBox}
+        //onPress={() => navigation.navigate('menu')}
+      >
+        <Image source={IC_MENU}/>
+      </TouchableOpacity>
+  );
+}
 
 function Header() {
+  const navigation = useNavigation();
   return(
     <View style={headerStyle.headerContainer}>
       <TouchableOpacity 
         style={headerStyle.headerHomeTouchBox}
-        //onPress={() => navigate('Main')}
-      >
+        onPress={() => navigation.navigate('Main')}
+        >
         <Image source={IC_HOME}/>
       </TouchableOpacity>
       <TouchableOpacity 
         style={headerStyle.headerMenuTouchBox}
         //onPress={() => navigation.navigate('Menu')}
-      >
+        >
         <Image source={IC_MENU}/>
       </TouchableOpacity>
     </View>
   );
 }
+//headerRight: () => (
+//)
+/*
+function Menu() {
+  return(
+    <Drawer.Navigator>
+    <Drawer.Screen/>
+    </Drawer.Navigator>
+    );
+  }
+  */
+const navigationOptions = ({navigation}) => {
+  return {
+    headerRight: () => (
+      <View style={headerStyle.headerContainer}>
+        <TouchableOpacity 
+          style={headerStyle.headerHomeTouchBox}
+          onPress={() => navigation.navigate('Main')}
+          >
+          <Image source={IC_HOME}/>
+        </TouchableOpacity>
+        <TouchableOpacity 
+          style={headerStyle.headerMenuTouchBox}
+          //onPress={() => navigation.navigate('Menu')}
+          >
+          <Image source={IC_MENU}/>
+        </TouchableOpacity>
+      </View>
+    )
+  };
+};
 
 function App() {
+  const backTitle = 'back';
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
@@ -91,15 +138,12 @@ function App() {
               backgroundColor: colors.kuDarkGreen,
             },
             headerRight: () => (
-              <TouchableOpacity 
-                style={headerStyle.headerMenuTouchBox}
-                //onPress={() => navigation.navigate('Menu')}
-                >
-                <Image source={IC_MENU}/>
-              </TouchableOpacity>
+              MainHeader()
             ),
             title: '',
             headerTitleAlign: 'center',
+            headerBackTitle: 'hi',
+            headerBackTitleVisible: false,
           }}
           />
         <Stack.Screen
@@ -113,6 +157,7 @@ function App() {
               Header()
             ),
             title: '강의실 예약',
+            headerBackTitle: backTitle,
             headerTintColor: colors.kuLightGray,
             headerTitleAlign: 'center',
             headerTitleStyle: {
@@ -132,6 +177,7 @@ function App() {
               Header()
             ),
             title: '강의실 예약',
+            headerBackTitle: backTitle,
             headerTintColor: colors.kuLightGray,
             headerTitleAlign: 'center',
             headerTitleStyle: {
@@ -151,6 +197,7 @@ function App() {
               Header()
             ),
             title: '강의실 예약',
+            headerBackTitle: backTitle,
             headerTintColor: colors.kuLightGray,
             headerTitleAlign: 'center',
             headerTitleStyle: {
@@ -170,6 +217,7 @@ function App() {
               Header()
             ),
             title: '강의실 예약',
+            headerBackTitle: backTitle,
             headerTintColor: colors.kuLightGray,
             headerTitleAlign: 'center',
             headerTitleStyle: {
@@ -189,6 +237,7 @@ function App() {
               Header()
             ),
             title: '예약 확인',
+            headerBackTitle: backTitle,
             headerTintColor: colors.kuLightGray,
             headerTitleAlign: 'center',
             headerTitleStyle: {
@@ -208,6 +257,7 @@ function App() {
               Header()
             ),
             title: '나의 예약 확인',
+            headerBackTitle: backTitle,
             headerTintColor: colors.kuLightGray,
             headerTitleAlign: 'center',
             headerTitleStyle: {
@@ -227,6 +277,7 @@ function App() {
               Header()
             ),
             title: '나의 예약 확인',
+            headerBackTitle: backTitle,
             headerTintColor: colors.kuLightGray,
             headerTitleAlign: 'center',
             headerTitleStyle: {
@@ -246,6 +297,7 @@ function App() {
               Header()
             ),
             title: '강의실별 예약 현황 확인',
+            headerBackTitle: backTitle,
             headerTintColor: colors.kuLightGray,
             headerTitleAlign: 'center',
             headerTitleStyle: {
@@ -265,6 +317,7 @@ function App() {
               Header()
             ),
             title: '강의실 정보',
+            headerBackTitle: backTitle,
             headerTintColor: colors.kuLightGray,
             headerTitleAlign: 'center',
             headerTitleStyle: {
@@ -284,6 +337,7 @@ function App() {
               Header()
             ),
             title: '강의실 정보',
+            headerBackTitle: backTitle,
             headerTintColor: colors.kuLightGray,
             headerTitleAlign: 'center',
             headerTitleStyle: {
