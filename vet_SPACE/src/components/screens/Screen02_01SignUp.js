@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, Text, TextInput,StyleSheet} from 'react-native';
+import {View, Text, TextInput,StyleSheet, Alert} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { colors } from '../../utils/Styles';
 
@@ -26,7 +26,13 @@ export default function SignUpScreen({navigation}){
               <Text >아이디</Text>
             </TextInput>
           </View>
-          <TouchableOpacity style={signupStyle.IDCheckContainer}>
+          <TouchableOpacity 
+            style={signupStyle.IDCheckContainer}
+            onPress={() => Alert.alert(
+              title='중복확인',
+              message='사용가능한 아이디입니다.',
+            )}
+          >
             <Text style={signupStyle.IDCheckText}>중복확인</Text>
           </TouchableOpacity>
         </View>

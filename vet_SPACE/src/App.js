@@ -74,29 +74,9 @@ function Menu() {
     );
   }
   */
-const navigationOptions = ({navigation}) => {
-  return {
-    headerRight: () => (
-      <View style={headerStyle.headerContainer}>
-        <TouchableOpacity 
-          style={headerStyle.headerHomeTouchBox}
-          onPress={() => navigation.navigate('Main')}
-          >
-          <Image source={IC_HOME}/>
-        </TouchableOpacity>
-        <TouchableOpacity 
-          style={headerStyle.headerMenuTouchBox}
-          //onPress={() => navigation.navigate('Menu')}
-          >
-          <Image source={IC_MENU}/>
-        </TouchableOpacity>
-      </View>
-    )
-  };
-};
 
 function App() {
-  const backTitle = 'back';
+  const backTitle = '이전';
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
