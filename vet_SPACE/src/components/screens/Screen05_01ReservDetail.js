@@ -1,14 +1,14 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, Alert} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { Table, Row} from 'react-native-table-component';
 
 import {colors} from '../../utils/Styles';
 
-export default function ReservDetailScreen({/*Data,*/}) {
+export default function ReservDetailScreen({/*Data,*/navigation}) {
   const t1 = '수의학관 216호\n';
   const t2 = '2021년 03월 02일\n';
   const t3 = '0900 ~ 1200';
@@ -83,7 +83,14 @@ export default function ReservDetailScreen({/*Data,*/}) {
         </View>
       </View>
       <View style={reservdetailStyle.bot}>
-        <TouchableOpacity style={reservdetailStyle.button}>
+        <TouchableOpacity 
+          style={reservdetailStyle.button}
+          onPress={()=>Alert.alert(
+            title='예약 취소',
+            message='예약을 취소하시겠습니까?',
+            //navigation.navigate('List')
+          )}
+        >
           <Text style={reservdetailStyle.buttontext}>예약 취소</Text>
         </TouchableOpacity>
       </View>

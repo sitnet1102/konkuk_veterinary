@@ -7,8 +7,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 //import {createDrawerNavigator} from '@react-navigation/drawer';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-import { Table, Row, Rows } from 'react-native-table-component';
-import {SliderBox} from 'react-native-image-slider-box';
 
 import {colors} from './utils/Styles';
 import {IC_MENU, IC_HOME} from './utils/icons';

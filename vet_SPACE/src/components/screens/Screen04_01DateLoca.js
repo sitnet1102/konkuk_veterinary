@@ -5,6 +5,8 @@ import {View, Text, StyleSheet} from 'react-native';
 import { TouchableOpacity} from 'react-native-gesture-handler';
 import { colors } from '../../utils/Styles';
 
+import DateSelectModal from '../modal/DateSelectModal';
+
 export default function DateLocaScreen({navigation}){
   /**
     추가 및 변경해야 하는 내용
@@ -14,6 +16,8 @@ export default function DateLocaScreen({navigation}){
     4. 메뉴 연결
     5. 홈 버튼 연결
    */
+  //const onPressDate = () => ;
+
   return (
     <View style={DateLocaStyle.container}>
       <View style={DateLocaStyle.Top}>
@@ -23,7 +27,11 @@ export default function DateLocaScreen({navigation}){
           <View style={DateLocaStyle.TextContainer}>
             <Text style={DateLocaStyle.Text}>날짜 :</Text>
           </View>
-          <TouchableOpacity style={DateLocaStyle.SelectBox}>
+          <TouchableOpacity 
+            style={DateLocaStyle.SelectBox}
+            //onPress={() => this.toggle
+            //onPressDate()}
+          >
             <Text style={DateLocaStyle.InboxText}>선 택</Text>
           </TouchableOpacity>
         </View>
