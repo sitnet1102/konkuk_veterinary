@@ -30,7 +30,7 @@ export default function DateSelectModal(props) {
       />
       <View style={dateselectmodalStyle.modal}>
         <Text style={dateselectmodalStyle.titleText}>날짜 선택</Text>
-        <Text style={dateselectmodalStyle.dateText}>{selected + " " + selectedDay}</Text>
+        <Text style={dateselectmodalStyle.dataText}>{selected + " " + selectedDay}</Text>
         <View style={dateselectmodalStyle.line}></View>
         <Calendar
           current={Date()}
@@ -88,7 +88,7 @@ const dateselectmodalStyle = StyleSheet.create({
     marginTop: 20,
     marginBottom: 10,
   },
-  dateText:{
+  dataText:{
     fontSize: RFPercentage(3),
     fontWeight: 'bold',
     marginBottom: 10,

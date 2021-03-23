@@ -2,14 +2,13 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import {Picker} from '@react-native-community/picker';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
 
 import {colors} from '../../utils/Styles';
 
-export default function ClassificationSelectModal(props) {
-  const [selected, setSelected] = React.useState('강의실');
+export default function TimeSelectModal(props) {
+  const [selected, setSelected] = React.useState('08:00');
   return(
     <View style={classificationselectmodalStyle.container}>
       <TouchableOpacity 
@@ -18,22 +17,11 @@ export default function ClassificationSelectModal(props) {
         onPress={props.modalHandler}
       />
       <View style={classificationselectmodalStyle.modal}>
-        <Text style={classificationselectmodalStyle.titleText}>구분 선택</Text>
+        <Text style={classificationselectmodalStyle.titleText}>시간 선택</Text>
         <Text style={classificationselectmodalStyle.dataText}>{selected}</Text>
         <View style={classificationselectmodalStyle.line}></View>
         <View>
-          <Picker
-            style={classificationselectmodalStyle.picker}
-            selectedValue={selected}
-            onValueChange={(itemValue, itemIndex) => {
-              setSelected(itemValue)
-            }}
-            >
-            <Picker.Item label = "강의실" value = "강의실"/>
-            <Picker.Item label = "실습실" value = "실습실"/>
-            <Picker.Item label = "세미나실" value = "세미나실"/>
-            <Picker.Item label = "기타" value = "기타"/>
-          </Picker>
+          
         </View>
         <View style={classificationselectmodalStyle.line}></View>
         <TouchableOpacity
@@ -77,10 +65,6 @@ const classificationselectmodalStyle = StyleSheet.create({
     fontSize: RFPercentage(3),
     fontWeight: 'bold',
     marginBottom: 10,
-  },
-  picker: {
-    marginVertical: 10,
-    width: RFValue(280),
   },
   line: {
     height: 1,

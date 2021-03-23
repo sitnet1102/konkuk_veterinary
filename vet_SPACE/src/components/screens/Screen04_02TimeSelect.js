@@ -6,8 +6,10 @@ import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import {Table, Row} from 'react-native-table-component';
 import { colors } from '../../utils/Styles';
 
+import TimeSelectModal from '../modal/TimeSelectModal';
+//import { useNavigation } from '@react-navigation/native';
 
-export default function TimeSelectScreen({navigation}){
+export default function TimeSelectScreen(props,{navigation}){
   /**
     추가로 넣어주어야 하는 부분
     1. 시간 선택 시 스타일 변경
@@ -22,6 +24,41 @@ export default function TimeSelectScreen({navigation}){
     10. 메뉴 연결
     11. 홈 버튼 연결
    */
+  //const navigation = useNavigation();
+  
+  const [startTimeSelectModal, setStartTimeSelectModal] = React.useState(false);
+  const [startTimeData, setStartTimeData] = React.useState('선 택');
+  const [startTimeStyle, setStartTimeStyle] = React.useState(false);
+
+  const [endTimeSelectModal, setEndTimeSelectModal] = React.useState(false);
+  const [endTimeData, setEndTimeData] = React.useState('선 택');
+  const [endTimeStyle, setEndTimeStyle] = React.useState(false);
+
+  const toggleStartTimeSelectModal =  () => {
+    setStartTimeSelectModal(prev => (!prev));
+  };
+  const startTimeHandler = (data) => {
+    setStartTimeData(data);
+    toggleStartTimeSelectModal();
+    startTimeStyleChange();
+  };
+  const startTimeStyleChange = () => {
+    setStartTimeStyle(true);
+  };
+
+
+  const toggleEndTimeSelectModal =  () => {
+    setEndTimeSelectModal(prev => (!prev));
+  };
+  const endTimeHandler = (data) => {
+    setEndTimeData(data);
+    toggleEndTimeSelectModal();
+    endTimeStyleChange();
+  };
+  const endTimeStyleChange = () => {
+    setEndTimeStyle(true);
+  };
+
   const state = {
     tableTitle: ['2021년 03월 01일 // 207호 예약 내역'],
     widthArr: ['100%'],
@@ -54,8 +91,15 @@ export default function TimeSelectScreen({navigation}){
             <View style={timeSelectStyle.TextContainer}>
               <Text style={timeSelectStyle.Text}>시간 :</Text>
             </View>
-            <TouchableOpacity style={timeSelectStyle.SelectBox}>
-              <Text style={timeSelectStyle.InboxText}>선 택</Text>
+            <TouchableOpacity 
+              style={timeSelectStyle.SelectBox}
+              onPress={()=>toggleStartTimeSelectModal()}
+            >
+              <Text style={
+                startTimeStyle ?
+                timeSelectStyle.InboxSelectedText
+                : timeSelectStyle.InboxText
+              }>{startTimeData}</Text>
             </TouchableOpacity>
             <Text style={timeSelectStyle.Text2}>  부터</Text>
           </View>
@@ -63,8 +107,15 @@ export default function TimeSelectScreen({navigation}){
             <View style={timeSelectStyle.TextContainer}>
               <Text style={timeSelectStyle.Text}>    </Text>
             </View>
-            <TouchableOpacity style={timeSelectStyle.SelectBox}>
-              <Text style={timeSelectStyle.InboxText}>선 택</Text>
+            <TouchableOpacity 
+              style={timeSelectStyle.SelectBox}
+              onPress={()=>toggleEndTimeSelectModal()}
+            >
+              <Text style={
+                endTimeStyle ?
+                timeSelectStyle.InboxSelectedText
+                : timeSelectStyle.InboxText
+              }>{endTimeData}</Text>
             </TouchableOpacity>
             <Text style={timeSelectStyle.Text2}>  까지</Text>
           </View>
@@ -101,6 +152,20 @@ export default function TimeSelectScreen({navigation}){
           <Text style={timeSelectStyle.NextText}>다     음</Text>
         </TouchableOpacity>
       </View>
+      {startTimeSelectModal ? 
+        <TimeSelectModal 
+          modalHandler={()=>toggleStartTimeSelectModal()}
+          dataHandler={(data)=>startTimeHandler(data)}
+        /> 
+        : <></>
+      }
+      {endTimeSelectModal ? 
+        <TimeSelectModal 
+          modalHandler={()=>toggleEndTimeSelectModal()}
+          dataHandler={(data)=>endTimeHandler(data)}
+        /> 
+        : <></>
+      }
     </View>
   );
 } 
@@ -162,6 +227,12 @@ const timeSelectStyle = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
     color: colors.kuDarkGray,
+  },
+  InboxSelectedText: {
+    alignSelf: 'center',
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: colors.kuBlack,
   },
   Text2: {
     fontSize: 20,

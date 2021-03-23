@@ -20,7 +20,7 @@ export default function ClassificationSelectModal(props) {
       />
       <View style={locationselectmodalStyle.modal}>
         <Text style={locationselectmodalStyle.titleText}>장소 선택</Text>
-        <Text style={locationselectmodalStyle.dateText}>{selectedBuilding+"/"+selectedRoom}</Text>
+        <Text style={locationselectmodalStyle.dataText}>{selectedBuilding+"/"+selectedRoom}</Text>
         <View style={locationselectmodalStyle.line}></View>
         <View style={locationselectmodalStyle.pickerContainer}>
           <Picker
@@ -90,7 +90,7 @@ const locationselectmodalStyle = StyleSheet.create({
     marginTop: 20,
     marginBottom: 10,
   },
-  dateText:{
+  dataText:{
     fontSize: RFPercentage(3),
     fontWeight: 'bold',
     marginBottom: 10,

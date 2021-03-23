@@ -32,7 +32,6 @@ export default function DateLocaScreen({navigation}){
   const [locationStyle, setLocationStyle] = React.useState(false);
 
   const toggleDateSelectModal =  () => {
-    //state.dateSelectModal = !this.state.dateSelectModal;
     setDateSelectModal(prev => (!prev));
   };
   const dateHandler = (data) => {
@@ -122,7 +121,11 @@ export default function DateLocaScreen({navigation}){
       <View style={DateLocaStyle.Bot}>
         <TouchableOpacity 
           style={DateLocaStyle.NextButton}
-          onPress={() => navigation.navigate('TimeSelect')}
+          onPress={() => navigation.navigate('TimeSelect', {
+            dateData: dateData,
+            classData: classificationData,
+            locaData: locationData,
+          })}
         >
           <Text style={DateLocaStyle.NextText}>다     음</Text>
         </TouchableOpacity>
