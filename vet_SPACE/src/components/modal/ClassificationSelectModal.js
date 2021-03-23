@@ -1,26 +1,19 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import moment from 'moment';
-import 'moment/locale/ko';
 
 import {Text, View, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
-import {Calendar} from 'react-native-calendars';
+
 
 import {colors} from '../../utils/Styles';
 
-moment.locale('ko');
-
-export default function DateSelectModal(props) {
+export default function ClassificationSelectModal(props) {
   const [selected, setSelected] = React.useState(moment().utcOffset('+09:00').format('YYYY-MM-DD'));
-  const [selectedDay, setSelectedDay] = React.useState(moment().utcOffset('+09:00').format('(dd)'));
-  const endDate = new Date();
-  endDate.setMonth(endDate.getMonth() + 3);
   const onDayPress = day => {
+    //setSelected(day.dateString);
     setSelected(day.dateString);
-    setSelectedDay(moment(day.dateString).format('(dd)'));
   };
-
   return(
     <View style={dateselectmodalStyle.container}>
       <TouchableOpacity 
@@ -30,29 +23,12 @@ export default function DateSelectModal(props) {
       />
       <View style={dateselectmodalStyle.modal}>
         <Text style={dateselectmodalStyle.titleText}>날짜 선택</Text>
-        <Text style={dateselectmodalStyle.dateText}>{selected + " " + selectedDay}</Text>
+        <Text style={dateselectmodalStyle.dateText}>{selected}</Text>
         <View style={dateselectmodalStyle.line}></View>
-        <Calendar
-          current={Date()}
-          style={dateselectmodalStyle.calendar}
-          textStyle={dateselectmodalStyle.calendarText}
-          minDate={Date()}
-          maxDate={endDate}
-          onDayPress={onDayPress}
-          enableSwipeMonths={true}
-          monthFormat={'yyyy.MM'}
-          hideExtraDays={true}
-          disableAllTouchEventsForDisabledDay={true}
-          markedDates={{
-            [selected]: {
-              selected: true, 
-              selectedColor: colors.kuGreen
-            },
-          }}
-        />
+        
         <View style={dateselectmodalStyle.line}></View>
         <TouchableOpacity
-          onPress={()=>props.dateHandler(selected + " " + selectedDay)}
+          onPress={()=>props.dateHandler(selected)}
         >
           <Text style={dateselectmodalStyle.buttonText}>완료</Text>
         </TouchableOpacity>
@@ -85,6 +61,7 @@ const dateselectmodalStyle = StyleSheet.create({
     color: colors.kuDarkGreen,
     fontSize: RFPercentage(3),
     fontWeight: 'bold',
+    //fontSize: 18,
     marginTop: 20,
     marginBottom: 10,
   },
@@ -95,7 +72,11 @@ const dateselectmodalStyle = StyleSheet.create({
   },
   calendar: {
     marginVertical: 10,
+    //marginHorizontal: 10,
     width: RFValue(280),
+    //width: '100%',
+    //borderColor: colors.kuCoolGray,
+    //borderWidth: 1,
   },
   calendarText: {
     fontSize: RFPercentage(3),
@@ -109,6 +90,7 @@ const dateselectmodalStyle = StyleSheet.create({
     color: colors.kuDarkGreen,
     fontSize: RFPercentage(3),
     fontWeight: 'bold',
+    //fontSize: 15,
     margin: 20,
   },
 });

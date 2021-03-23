@@ -1,11 +1,11 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, Text, StyleSheet} from 'react-native';
-import { TouchableOpacity} from 'react-native-gesture-handler';
+import {View, Text, StyleSheet,TouchableOpacity} from 'react-native';
 import { colors } from '../../utils/Styles';
 
 import DateSelectModal from '../modal/DateSelectModal';
+import ClassificationSelectModal from '../modal/ClassificationSelectModal';
 
 export default function DateLocaScreen({navigation}){
   /**
@@ -18,6 +18,40 @@ export default function DateLocaScreen({navigation}){
    */
   //const onPressDate = () => ;
 
+  const [dateSelectModal, setDateSelectModal] = React.useState(false);
+  const [dayData, setDayData] = React.useState('선 택');
+  const [dateStyle, setDateStyle] = React.useState(false);
+  
+  const [classificationSelectModal, setClassificationSelectModal] = React.useState(false);
+  const [classificationData, setClassificationData] = React.useState('선 택');
+  const [classificationStyle, setClassificationStyle] = React.useState(false);
+
+  const toggleDateSelectModal =  () => {
+    //state.dateSelectModal = !this.state.dateSelectModal;
+    setDateSelectModal(prev => (!prev));
+  };
+  const dateHandler = (data) => {
+    setDayData(data);
+    toggleDateSelectModal();
+    dateStyleChange();
+  };
+  const dateStyleChange = () => {
+    setDateStyle(true);
+  };
+  
+  
+  const toggleClassificationSelectModal = () => {
+    setClassificationSelectModal(prev => (!prev));
+  };
+  const classificationHandler = (data) => {
+    setClassificationData(data);
+    toggleClassificationSelectModal();
+    classificationStyleChange();
+  };
+  const classificationStyleChange = () => {
+    setClassificationStyle(true);
+  };
+  
   return (
     <View style={DateLocaStyle.container}>
       <View style={DateLocaStyle.Top}>
@@ -29,18 +63,28 @@ export default function DateLocaScreen({navigation}){
           </View>
           <TouchableOpacity 
             style={DateLocaStyle.SelectBox}
-            //onPress={() => this.toggle
-            //onPressDate()}
+            onPress={() => toggleDateSelectModal()}
           >
-            <Text style={DateLocaStyle.InboxText}>선 택</Text>
+            <Text style={
+              dateStyle ?
+              DateLocaStyle.InboxSelectedText
+              : DateLocaStyle.InboxText
+            }>{dayData}</Text>
           </TouchableOpacity>
         </View>
         <View style={DateLocaStyle.Container}>
           <View style={DateLocaStyle.TextContainer}>
             <Text style={DateLocaStyle.Text}>구분 :</Text>
           </View>
-          <TouchableOpacity style={DateLocaStyle.SelectBox}>
-            <Text style={DateLocaStyle.InboxText}>선 택</Text>
+          <TouchableOpacity 
+            style={DateLocaStyle.SelectBox}
+            onPress={()=>toggleClassificationSelectModal()}
+          >
+            <Text style={
+              classificationStyle ?
+              DateLocaStyle.InboxSelectedText
+              : DateLocaStyle.InboxText
+            }>{classificationData}</Text>
           </TouchableOpacity>
         </View>
         <View style={DateLocaStyle.Container}>
@@ -60,6 +104,20 @@ export default function DateLocaScreen({navigation}){
           <Text style={DateLocaStyle.NextText}>다     음</Text>
         </TouchableOpacity>
       </View>
+      {dateSelectModal ? 
+        <DateSelectModal 
+          modalHandler={()=>toggleDateSelectModal()}
+          dateHandler={(data)=>dateHandler(data)}
+        /> 
+        : <></>
+      }
+      {classificationSelectModal ? 
+        <ClassificationSelectModal
+          modalHandler={()=>toggleClassificationSelectModal()}
+          dateHandler={(data)=>classificationHandler(data)}
+        /> 
+        : <></>
+      }
     </View>
   );
 }
@@ -107,6 +165,12 @@ const DateLocaStyle = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
     color: colors.kuDarkGray,
+  },
+  InboxSelectedText: {
+    alignSelf: 'center',
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: colors.kuBlack,
   },
   NextButton: {
     alignSelf: 'center',
