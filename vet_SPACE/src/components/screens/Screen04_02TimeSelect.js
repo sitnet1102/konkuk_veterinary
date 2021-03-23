@@ -9,7 +9,7 @@ import { colors } from '../../utils/Styles';
 import TimeSelectModal from '../modal/TimeSelectModal';
 //import { useNavigation } from '@react-navigation/native';
 
-export default function TimeSelectScreen(props,{navigation}){
+export default function TimeSelectScreen({navigation}){
   /**
     추가로 넣어주어야 하는 부분
     1. 시간 선택 시 스타일 변경
