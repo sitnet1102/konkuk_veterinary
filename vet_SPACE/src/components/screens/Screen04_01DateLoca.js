@@ -6,6 +6,7 @@ import { colors } from '../../utils/Styles';
 
 import DateSelectModal from '../modal/DateSelectModal';
 import ClassificationSelectModal from '../modal/ClassificationSelectModal';
+import LocationSelectModal from '../modal/LocationSelectModal';
 
 export default function DateLocaScreen({navigation}){
   /**
@@ -19,26 +20,29 @@ export default function DateLocaScreen({navigation}){
   //const onPressDate = () => ;
 
   const [dateSelectModal, setDateSelectModal] = React.useState(false);
-  const [dayData, setDayData] = React.useState('선 택');
+  const [dateData, setDateData] = React.useState('선 택');
   const [dateStyle, setDateStyle] = React.useState(false);
   
   const [classificationSelectModal, setClassificationSelectModal] = React.useState(false);
   const [classificationData, setClassificationData] = React.useState('선 택');
   const [classificationStyle, setClassificationStyle] = React.useState(false);
 
+  const [locationSelectModal, setLocationSelectModal] = React.useState(false);
+  const [locationData, setLocationData] = React.useState('선 택');
+  const [locationStyle, setLocationStyle] = React.useState(false);
+
   const toggleDateSelectModal =  () => {
     //state.dateSelectModal = !this.state.dateSelectModal;
     setDateSelectModal(prev => (!prev));
   };
   const dateHandler = (data) => {
-    setDayData(data);
+    setDateData(data);
     toggleDateSelectModal();
     dateStyleChange();
   };
   const dateStyleChange = () => {
     setDateStyle(true);
   };
-  
   
   const toggleClassificationSelectModal = () => {
     setClassificationSelectModal(prev => (!prev));
@@ -52,6 +56,18 @@ export default function DateLocaScreen({navigation}){
     setClassificationStyle(true);
   };
   
+  const toggleLocationSelectModal = () => {
+    setLocationSelectModal(prev => (!prev));
+  };
+  const locationHandler = (data) => {
+    setLocationData(data);
+    toggleLocationSelectModal();
+    locationStyleChange();
+  };
+  const locationStyleChange = () => {
+    setLocationStyle(true);
+  };
+
   return (
     <View style={DateLocaStyle.container}>
       <View style={DateLocaStyle.Top}>
@@ -69,7 +85,7 @@ export default function DateLocaScreen({navigation}){
               dateStyle ?
               DateLocaStyle.InboxSelectedText
               : DateLocaStyle.InboxText
-            }>{dayData}</Text>
+            }>{dateData}</Text>
           </TouchableOpacity>
         </View>
         <View style={DateLocaStyle.Container}>
@@ -82,7 +98,7 @@ export default function DateLocaScreen({navigation}){
           >
             <Text style={
               classificationStyle ?
-              DateLocaStyle.InboxSelectedText
+              DateLocaStyle.InboxSelectedText2
               : DateLocaStyle.InboxText
             }>{classificationData}</Text>
           </TouchableOpacity>
@@ -91,8 +107,15 @@ export default function DateLocaScreen({navigation}){
           <View style={DateLocaStyle.TextContainer}>
             <Text style={DateLocaStyle.Text}>장소 :</Text>
           </View>
-          <TouchableOpacity style={DateLocaStyle.SelectBox}>
-            <Text style={DateLocaStyle.InboxText}>선 택</Text>
+          <TouchableOpacity 
+            style={DateLocaStyle.SelectBox}
+            onPress={()=>toggleLocationSelectModal()}
+          >
+            <Text style={
+              locationStyle ? 
+              DateLocaStyle.InboxSelectedText3
+              : DateLocaStyle.InboxText
+            }>{locationData}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -107,14 +130,21 @@ export default function DateLocaScreen({navigation}){
       {dateSelectModal ? 
         <DateSelectModal 
           modalHandler={()=>toggleDateSelectModal()}
-          dateHandler={(data)=>dateHandler(data)}
+          dataHandler={(data)=>dateHandler(data)}
         /> 
         : <></>
       }
-      {classificationSelectModal ? 
+      {classificationSelectModal ?
         <ClassificationSelectModal
           modalHandler={()=>toggleClassificationSelectModal()}
-          dateHandler={(data)=>classificationHandler(data)}
+          dataHandler={(data)=>classificationHandler(data)}
+        /> 
+        : <></>
+      }
+      {locationSelectModal ?
+        <LocationSelectModal
+          modalHandler={()=>toggleLocationSelectModal()}
+          dataHandler={(data)=>locationHandler(data)}
         /> 
         : <></>
       }
@@ -172,12 +202,24 @@ const DateLocaStyle = StyleSheet.create({
     fontWeight: 'bold',
     color: colors.kuBlack,
   },
+  InboxSelectedText2: {
+    alignSelf: 'center',
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: colors.kuBlack,
+  },
+  InboxSelectedText3: {
+    alignSelf: 'center',
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: colors.kuBlack,
+  },
   NextButton: {
     alignSelf: 'center',
     justifyContent: 'center',
     backgroundColor: colors.kuDarkGreen,
     width: '70%',
-    height: '60%',
+    height: 50,
     opacity: 0.5,
     borderWidth: 1,
     borderRadius: 5,

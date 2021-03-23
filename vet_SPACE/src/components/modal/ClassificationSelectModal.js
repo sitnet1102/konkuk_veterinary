@@ -1,43 +1,54 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import moment from 'moment';
 
-import {Text, View, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {Picker} from '@react-native-community/picker';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
 
 import {colors} from '../../utils/Styles';
 
 export default function ClassificationSelectModal(props) {
-  const [selected, setSelected] = React.useState(moment().utcOffset('+09:00').format('YYYY-MM-DD'));
-  const onDayPress = day => {
-    //setSelected(day.dateString);
-    setSelected(day.dateString);
-  };
+  const [selected, setSelected] = React.useState('강의실');
+  const [selectedIndex, setSelectedIndex] = React.useState('0');
   return(
-    <View style={dateselectmodalStyle.container}>
+    <View style={classificationselectmodalStyle.container}>
       <TouchableOpacity 
-        style={dateselectmodalStyle.background}
+        style={classificationselectmodalStyle.background}
         activeOpacity={1} // 깜박이는 효과 없애기 
         onPress={props.modalHandler}
       />
-      <View style={dateselectmodalStyle.modal}>
-        <Text style={dateselectmodalStyle.titleText}>날짜 선택</Text>
-        <Text style={dateselectmodalStyle.dateText}>{selected}</Text>
-        <View style={dateselectmodalStyle.line}></View>
-        
-        <View style={dateselectmodalStyle.line}></View>
+      <View style={classificationselectmodalStyle.modal}>
+        <Text style={classificationselectmodalStyle.titleText}>구분 선택</Text>
+        <Text style={classificationselectmodalStyle.dateText}>{selected}</Text>
+        <View style={classificationselectmodalStyle.line}></View>
+        <View>
+          <Picker
+            style={classificationselectmodalStyle.picker}
+            selectedValue={selected}
+            onValueChange={(itemValue, itemIndex) => {
+              setSelected(itemValue)
+              setSelectedIndex(itemIndex)
+            }}
+            >
+            <Picker.Item label = "강의실" value = "강의실"/>
+            <Picker.Item label = "실습실" value = "실습실"/>
+            <Picker.Item label = "세미나실" value = "세미나실"/>
+            <Picker.Item label = "기타" value = "기타"/>
+          </Picker>
+        </View>
+        <View style={classificationselectmodalStyle.line}></View>
         <TouchableOpacity
-          onPress={()=>props.dateHandler(selected)}
+          onPress={()=>props.dataHandler(selected)}
         >
-          <Text style={dateselectmodalStyle.buttonText}>완료</Text>
+          <Text style={classificationselectmodalStyle.buttonText}>완료</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
 
-const dateselectmodalStyle = StyleSheet.create({
+const classificationselectmodalStyle = StyleSheet.create({
   container: { 
     position: 'absolute',
     height: '100%',
@@ -61,7 +72,6 @@ const dateselectmodalStyle = StyleSheet.create({
     color: colors.kuDarkGreen,
     fontSize: RFPercentage(3),
     fontWeight: 'bold',
-    //fontSize: 18,
     marginTop: 20,
     marginBottom: 10,
   },
@@ -70,16 +80,9 @@ const dateselectmodalStyle = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
   },
-  calendar: {
+  picker: {
     marginVertical: 10,
-    //marginHorizontal: 10,
     width: RFValue(280),
-    //width: '100%',
-    //borderColor: colors.kuCoolGray,
-    //borderWidth: 1,
-  },
-  calendarText: {
-    fontSize: RFPercentage(3),
   },
   line: {
     height: 1,
@@ -90,7 +93,6 @@ const dateselectmodalStyle = StyleSheet.create({
     color: colors.kuDarkGreen,
     fontSize: RFPercentage(3),
     fontWeight: 'bold',
-    //fontSize: 15,
     margin: 20,
   },
 });

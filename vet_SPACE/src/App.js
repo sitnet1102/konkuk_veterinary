@@ -77,7 +77,7 @@ function App() {
   const backTitle = '이전';
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="DateLoca">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
           name="Start"
           component={StartScreen}

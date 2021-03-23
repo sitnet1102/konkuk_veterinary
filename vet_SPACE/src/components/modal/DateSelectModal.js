@@ -3,7 +3,7 @@ import * as React from 'react';
 import moment from 'moment';
 import 'moment/locale/ko';
 
-import {Text, View, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import {Calendar} from 'react-native-calendars';
 
@@ -52,7 +52,7 @@ export default function DateSelectModal(props) {
         />
         <View style={dateselectmodalStyle.line}></View>
         <TouchableOpacity
-          onPress={()=>props.dateHandler(selected + " " + selectedDay)}
+          onPress={()=>props.dataHandler(selected + " " + selectedDay)}
         >
           <Text style={dateselectmodalStyle.buttonText}>완료</Text>
         </TouchableOpacity>
