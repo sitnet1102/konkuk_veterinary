@@ -8,28 +8,28 @@ import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
 import {colors} from '../../utils/Styles';
 
-export default function ClassificationSelectModal(props) {
+export default function PurposeSelectModal(props) {
   const [selected, setSelected] = React.useState('강의실');
   const ClassData = [
-    "강의실",
-    "실습실",
-    "세미나실",
-    "기타",
+    "강의",
+    "세미나",
+    "간담회",
+    "연구보고",
   ];
   return(
-    <View style={classificationselectmodalStyle.container}>
+    <View style={purposeselectmodalStyle.container}>
       <TouchableOpacity 
-        style={classificationselectmodalStyle.background}
+        style={purposeselectmodalStyle.background}
         activeOpacity={1} // 깜박이는 효과 없애기 
         onPress={props.modalHandler}
       />
-      <View style={classificationselectmodalStyle.modal}>
-        <Text style={classificationselectmodalStyle.titleText}>구분 선택</Text>
-        <Text style={classificationselectmodalStyle.dataText}>{selected}</Text>
-        <View style={classificationselectmodalStyle.line}></View>
+      <View style={purposeselectmodalStyle.modal}>
+        <Text style={purposeselectmodalStyle.titleText}>구분 선택</Text>
+        <Text style={purposeselectmodalStyle.dataText}>{selected}</Text>
+        <View style={purposeselectmodalStyle.line}></View>
         <View>
           <Picker
-            style={classificationselectmodalStyle.picker}
+            style={purposeselectmodalStyle.picker}
             selectedValue={selected}
             onValueChange={(itemValue) => {
               setSelected(itemValue)
@@ -44,20 +44,21 @@ export default function ClassificationSelectModal(props) {
                 />
               ))
             }
+            <Picker.Item label="기타" value="기타"/>
           </Picker>
         </View>
-        <View style={classificationselectmodalStyle.line}></View>
+        <View style={purposeselectmodalStyle.line}></View>
         <TouchableOpacity
           onPress={()=>props.dataHandler(selected)}
         >
-          <Text style={classificationselectmodalStyle.buttonText}>완료</Text>
+          <Text style={purposeselectmodalStyle.buttonText}>완료</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
 
-const classificationselectmodalStyle = StyleSheet.create({
+const purposeselectmodalStyle = StyleSheet.create({
   container: { 
     position: 'absolute',
     height: '100%',

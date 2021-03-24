@@ -7,29 +7,36 @@ import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
 
 import {colors} from '../../utils/Styles';
+import { TextInput } from 'react-native-gesture-handler';
 
-export default function ClassificationSelectModal(props) {
-  const [selected, setSelected] = React.useState('강의실');
+export default function ProfSelectModal(props) {
+  const [selected, setSelected] = React.useState('강영선');
   const ClassData = [
-    "강의실",
-    "실습실",
-    "세미나실",
-    "기타",
+    "강영선",
+    "이정익",
+    "이상원",
+    "윤헌영",
+    "윤경아",
   ];
   return(
-    <View style={classificationselectmodalStyle.container}>
+    <View style={profselectmodalStyle.container}>
       <TouchableOpacity 
-        style={classificationselectmodalStyle.background}
+        style={profselectmodalStyle.background}
         activeOpacity={1} // 깜박이는 효과 없애기 
         onPress={props.modalHandler}
       />
-      <View style={classificationselectmodalStyle.modal}>
-        <Text style={classificationselectmodalStyle.titleText}>구분 선택</Text>
-        <Text style={classificationselectmodalStyle.dataText}>{selected}</Text>
-        <View style={classificationselectmodalStyle.line}></View>
+      <View style={profselectmodalStyle.modal}>
+        <Text style={profselectmodalStyle.titleText}>담당 교수</Text>
+        <Text style={profselectmodalStyle.dataText}>{selected}</Text>
+        <View style={profselectmodalStyle.line}></View>
         <View>
+          {/**
+          <TextInput
+            style={profselectmodalStyle.inputText}
+          />
+           *   */}
           <Picker
-            style={classificationselectmodalStyle.picker}
+            style={profselectmodalStyle.picker}
             selectedValue={selected}
             onValueChange={(itemValue) => {
               setSelected(itemValue)
@@ -46,18 +53,18 @@ export default function ClassificationSelectModal(props) {
             }
           </Picker>
         </View>
-        <View style={classificationselectmodalStyle.line}></View>
+        <View style={profselectmodalStyle.line}></View>
         <TouchableOpacity
           onPress={()=>props.dataHandler(selected)}
         >
-          <Text style={classificationselectmodalStyle.buttonText}>완료</Text>
+          <Text style={profselectmodalStyle.buttonText}>완료</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
 
-const classificationselectmodalStyle = StyleSheet.create({
+const profselectmodalStyle = StyleSheet.create({
   container: { 
     position: 'absolute',
     height: '100%',
@@ -92,6 +99,10 @@ const classificationselectmodalStyle = StyleSheet.create({
   picker: {
     marginVertical: 10,
     width: RFValue(280),
+  },
+  inputText: {
+    fontSize: RFPercentage(4),
+    alignSelf: 'center',
   },
   line: {
     height: 1,

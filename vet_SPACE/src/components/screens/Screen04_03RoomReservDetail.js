@@ -7,13 +7,15 @@ import {Table, Row} from 'react-native-table-component';
 import { colors } from '../../utils/Styles';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 
+import PurposeSelectModal from '../modal/PurposeSelectModal';
+import ProfSelectModal from '../modal/ProfSelectModal';
 
 export default function RoomReservDetailScreen({navigation}){
   const __name = '홍길동'
   const __phone = '010-1234-5678'
   const __time = '1200 ~ 1400'
-  const __purpose = '선 택'
-  const __prof = '선 택'
+  //const __purpose = '선 택'
+  //const __prof = '선 택'
 
   const state = {
     tableIndex: [
@@ -30,10 +32,44 @@ export default function RoomReservDetailScreen({navigation}){
       [__name],
       [__phone],
       [__time],
-      [__purpose],
-      [__prof],
+      //[__purpose],
+      //[__prof],
     ],
   }
+
+  const [purposeSelectModal, setPurposeSelectModal] = React.useState(false);
+  const [purposeData, setPurposeData] = React.useState('선 택');
+  const [purposeStyle, setPurposeStyle] = React.useState(false);
+
+  const [profSelectModal, setProfSelectModal] = React.useState(false);
+  const [profData, setProfData] = React.useState('선 택');
+  const [profStyle, setProfStyle] = React.useState(false);
+
+  const togglePurposeSelectModal =  () => {
+    setPurposeSelectModal(prev => (!prev));
+  };
+  const purposeHandler = (data) => {
+    setPurposeData(data);
+    togglePurposeSelectModal();
+    purposeStyleChange();
+  };
+  const purposeStyleChange = () => {
+    setPurposeStyle(true);
+  };
+
+
+  const toggleProfSelectModal =  () => {
+    setProfSelectModal(prev => (!prev));
+  };
+  const profHandler = (data) => {
+    setProfData(data);
+    toggleProfSelectModal();
+    profStyleChange();
+  };
+  const profStyleChange = () => {
+    setProfStyle(true);
+  };
+
   return (
     <View style={detailStyle.container}>
       <View style={detailStyle.Top}>
@@ -63,11 +99,23 @@ export default function RoomReservDetailScreen({navigation}){
             <Text style={detailStyle.text2}>{__name}</Text>
             <Text style={detailStyle.text2}>{__phone}</Text>
             <Text style={detailStyle.text2}>{__time}</Text>
-            <TouchableOpacity>
-              <Text style={detailStyle.text3}>{__purpose}</Text>
+            <TouchableOpacity
+              onPress={()=>togglePurposeSelectModal()}
+              >
+              <Text style={
+                purposeStyle ?
+                detailStyle.selectedText3
+                : detailStyle.text3
+              }>{purposeData}</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Text style={detailStyle.text3}>{__prof}</Text>
+            <TouchableOpacity
+              onPress={()=>toggleProfSelectModal()}
+            >
+              <Text style={
+                profStyle ?
+                detailStyle.selectedText3
+                : detailStyle.text3
+              }>{profData}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -80,8 +128,21 @@ export default function RoomReservDetailScreen({navigation}){
           <Text style={detailStyle.NextText}>제출하기</Text>
         </TouchableOpacity>
       </View>
+      {purposeSelectModal ? 
+        <PurposeSelectModal 
+          modalHandler={()=>togglePurposeSelectModal()}
+          dataHandler={(data)=>purposeHandler(data)}
+        /> 
+        : <></>
+      }
+      {profSelectModal ? 
+        <ProfSelectModal 
+          modalHandler={()=>toggleProfSelectModal()}
+          dataHandler={(data)=>profHandler(data)}
+        /> 
+        : <></>
+      }
     </View>
-
   );
 }
 
@@ -141,6 +202,14 @@ const detailStyle = StyleSheet.create({
   },
   text3: {
     color: colors.kuDarkGray,
+    fontSize: RFPercentage(3),
+    fontWeight: 'bold',
+    alignSelf: 'flex-start',
+    textDecorationLine: 'underline',
+    lineHeight: 70,
+  },
+  selectedText3: {
+    color: colors.kuBlack,
     fontSize: RFPercentage(3),
     fontWeight: 'bold',
     alignSelf: 'flex-start',

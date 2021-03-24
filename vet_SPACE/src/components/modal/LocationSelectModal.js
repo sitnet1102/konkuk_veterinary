@@ -11,6 +11,42 @@ import {colors} from '../../utils/Styles';
 export default function ClassificationSelectModal(props) {
   const [selectedBuilding, setSelectedBuilding] = React.useState('수의학관');
   const [selectedRoom, setSelectedRoom] = React.useState('207');
+  const state = {
+    BuildingData: [
+      "수의학관",
+      "동물생명과학관",
+      "기타",
+    ],
+    /*
+    RoomData: {
+      b1: [
+        "207",
+        "306",
+        "307",
+        "409",
+        "410",
+        "510",
+      ],
+      b2: [
+        "710-3",
+        "710-4",
+      ],
+      b3: [
+        "",
+      ],
+    },
+    */
+   RoomData: [
+    "207",
+    "306",
+    "307",
+    "409",
+    "410",
+    "510",
+    "710-3",
+    "710-4",
+   ],
+  };
   return(
     <View style={locationselectmodalStyle.container}>
       <TouchableOpacity 
@@ -30,9 +66,15 @@ export default function ClassificationSelectModal(props) {
               setSelectedBuilding(itemValue)
             }}
             >
-            <Picker.Item label = "수의학관" value = "수의학관"/>
-            <Picker.Item label = "동물생명과학관" value = "동물생명과학관"/>
-            <Picker.Item label = "기타" value = "기타"/>
+            {
+              state.BuildingData.map((rowData, index) => (
+                <Picker.Item 
+                key ={index}
+                label = {rowData}
+                value = {rowData}
+                />
+              ))
+            }
           </Picker>
           <Picker
             style={locationselectmodalStyle.picker}
@@ -41,15 +83,20 @@ export default function ClassificationSelectModal(props) {
               setSelectedRoom(itemValue)
             }}
             >
-            <Picker.Item label = "207" value = "207"/>
-            <Picker.Item label = "306" value = "306"/>
-            <Picker.Item label = "307" value = "307"/>
-            <Picker.Item label = "409" value = "409"/>
-            <Picker.Item label = "410" value = "410"/>
-            <Picker.Item label = "510" value = "510"/>
-            <Picker.Item label = "511" value = "511"/>
-            <Picker.Item label = "710-3" value = "710-3"/>
-            <Picker.Item label = "710-4" value = "710-4"/>
+            {
+              /*
+              if(selectedBuilding == "수의학관"){
+
+              }
+              */
+              state.RoomData.map((rowData, index) => (
+                <Picker.Item 
+                key ={index}
+                label = {rowData}
+                value = {rowData}
+                />
+              ))
+            }
           </Picker>
         </View>
         <View style={locationselectmodalStyle.line}></View>

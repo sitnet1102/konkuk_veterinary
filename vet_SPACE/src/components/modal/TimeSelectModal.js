@@ -2,39 +2,96 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {Picker} from '@react-native-community/picker';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
 
 import {colors} from '../../utils/Styles';
 
 export default function TimeSelectModal(props) {
-  const [selected, setSelected] = React.useState('08:00');
+  const [selectedHour, setSelectedHour] = React.useState('08');
+  const [selectedMin, setSelectedMin] = React.useState('00');
+  const state = {
+    HourData: [],
+    MinData: [],
+  };
+  for(let i = 0;i<15; i+=1){
+    const tmp = i+8;
+    if(tmp<10){
+      tmp = "0"+tmp;
+    }else{
+      tmp = ""+tmp;
+    }
+    state.HourData.push(tmp);
+  }
+  for(let i = 0;i<4; i+=1){
+    const tmp = i*15;
+    if(tmp<10){
+      tmp = "0"+tmp;
+    }else{
+      tmp = ""+tmp;
+    }
+    state.MinData.push(tmp);
+  }
   return(
-    <View style={classificationselectmodalStyle.container}>
+    <View style={timeselectmodalStyle.container}>
       <TouchableOpacity 
-        style={classificationselectmodalStyle.background}
+        style={timeselectmodalStyle.background}
         activeOpacity={1} // 깜박이는 효과 없애기 
         onPress={props.modalHandler}
       />
-      <View style={classificationselectmodalStyle.modal}>
-        <Text style={classificationselectmodalStyle.titleText}>시간 선택</Text>
-        <Text style={classificationselectmodalStyle.dataText}>{selected}</Text>
-        <View style={classificationselectmodalStyle.line}></View>
-        <View>
-          
+      <View style={timeselectmodalStyle.modal}>
+        <Text style={timeselectmodalStyle.titleText}>장소 선택</Text>
+        <Text style={timeselectmodalStyle.dataText}>{selectedHour+":"+selectedMin}</Text>
+        <View style={timeselectmodalStyle.line}></View>
+        <View style={timeselectmodalStyle.pickerContainer}>
+          <Picker
+            style={timeselectmodalStyle.picker}
+            selectedValue={selectedHour}
+            onValueChange={(itemValue) => {
+              setSelectedHour(itemValue)
+            }}
+            >
+            {
+              state.HourData.map((rowData, index) => (
+                <Picker.Item 
+                key ={index}
+                label = {rowData}
+                value = {rowData}
+                />
+              ))
+            }
+          </Picker>
+          <Picker
+            style={timeselectmodalStyle.picker}
+            selectedValue={selectedMin}
+            onValueChange={(itemValue) => {
+              setSelectedMin(itemValue)
+            }}
+          >
+            {
+              state.MinData.map((rowData, index) => (
+                <Picker.Item 
+                key ={index}
+                label = {rowData}
+                value = {rowData}
+                />
+              ))
+            }
+          </Picker>
         </View>
-        <View style={classificationselectmodalStyle.line}></View>
+        <View style={timeselectmodalStyle.line}></View>
         <TouchableOpacity
-          onPress={()=>props.dataHandler(selected)}
+          onPress={()=>props.dataHandler(selectedHour+":"+selectedMin)}
         >
-          <Text style={classificationselectmodalStyle.buttonText}>완료</Text>
+          <Text style={timeselectmodalStyle.buttonText}>완료</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
 
-const classificationselectmodalStyle = StyleSheet.create({
+const timeselectmodalStyle = StyleSheet.create({
   container: { 
     position: 'absolute',
     height: '100%',
@@ -65,6 +122,13 @@ const classificationselectmodalStyle = StyleSheet.create({
     fontSize: RFPercentage(3),
     fontWeight: 'bold',
     marginBottom: 10,
+  },
+  pickerContainer: {
+    flexDirection: 'row',
+  },
+  picker: {
+    marginVertical: 10,
+    width: RFValue(150),
   },
   line: {
     height: 1,
