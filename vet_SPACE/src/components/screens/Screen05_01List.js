@@ -20,13 +20,8 @@ export default function ListScreen({navigation}) {
     widthArr: ['100%'],
   };
   const tableData = [
-    ['수의학관 216호\n2021년 03월 02일\n0900 ~ 1200'],
-    ['test1'],
-    ['test1'],
-    ['test1'],
-    ['test1'],
-    ['test1'],
-    ['test1'],
+    ['수의학관 216호\n\n2021년 03월 02일\n\n0900 ~ 1200'],
+    ['수의학관 216호\n\n2021년 03월 05일\n\n0900 ~ 1200'],
   ];
   const element = (data, index) => (
     <TouchableOpacity onPress={() => onPressRow()}>
