@@ -25,6 +25,7 @@ import ReservDetailScreen from './components/screens/Screen05_01ReservDetail';
 import StatusScreen from './components/screens/Screen05_02Status';
 import RoomInfoScreen from './components/screens/Screen06_00RoomInfo';
 import RoomInfoDetailScreen from './components/screens/Screen06_01RoomInfoDetail';
+import MyInfoScreen from './components/screens/Screen07_03MyInfo';
 
 
 const Stack = createStackNavigator();
@@ -315,6 +316,26 @@ function App() {
               Header()
             ),
             title: '강의실 정보',
+            headerBackTitle: backTitle,
+            headerTintColor: colors.kuLightGray,
+            headerTitleAlign: 'center',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              fontSize: 24,
+            },
+          }}
+        />
+        <Stack.Screen
+          name="MyInfo"
+          component={MyInfoScreen}
+          options={{
+            headerStyle: {
+              backgroundColor: colors.kuDarkGreen,
+            },
+            headerRight: () => (
+              Header()
+            ),
+            title: '나의 정보',
             headerBackTitle: backTitle,
             headerTintColor: colors.kuLightGray,
             headerTitleAlign: 'center',

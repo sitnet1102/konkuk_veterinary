@@ -5,6 +5,9 @@ import {View, Text, TextInput,StyleSheet, Alert} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { colors } from '../../utils/Styles';
 
+import SortingSelectModal from '../modal/SortingSelectModal';
+import { RFPercentage } from 'react-native-responsive-fontsize';
+
 export default function SignUpScreen({navigation}){
   /**
       1. 회원 가입 버튼 눌렀을 때 처리해야 하는 내요 
@@ -14,10 +17,25 @@ export default function SignUpScreen({navigation}){
         1.4. 모든 정보가 다 들어가 있는지 확인 
       2. 텍스트 입력 박스 선택시 화면 찌그러지는 현상 수정 필요 
    */
+  const [sortingSelectModal, setSortingSelectModal] = React.useState(false);
+  const [sortingData, setSortingData] = React.useState('분 류');
+  const [sortingStyle, setSortingStyle] = React.useState(false);
+
+  const toggleSortingSelectModal =  () => {
+    setSortingSelectModal(prev => (!prev));
+  };
+  const sortingHandler = (data) => {
+    setSortingData(data);
+    toggleSortingSelectModal();
+    sortingStyleChange();
+  };
+  const sortingStyleChange = () => {
+    setSortingStyle(true);
+  };
+
   return(
     <View style={signupStyle.container}>
       <View style={signupStyle.Top}>
-
       </View>
       <View style={signupStyle.Mid}>
         <View style={signupStyle.IDContainer}>
@@ -62,8 +80,15 @@ export default function SignUpScreen({navigation}){
           </TextInput>
         </View>
         <View style={signupStyle.InputBoxContainer}>
-          <TouchableOpacity>
-            <Text style={signupStyle.InputTextBox}>분류 - 선택 상자</Text>
+          <TouchableOpacity 
+            style={signupStyle.InputTextBox}
+            onPress={()=>toggleSortingSelectModal()}
+          >
+            <Text style={
+              sortingStyle ?
+              signupStyle.InboxSelectedText
+              : signupStyle.InboxText
+            }>{sortingData}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -75,6 +100,13 @@ export default function SignUpScreen({navigation}){
           <Text style={signupStyle.Text}>회원가입</Text>
         </TouchableOpacity>
       </View>
+      {sortingSelectModal ? 
+        <SortingSelectModal 
+          modalHandler={()=>toggleSortingSelectModal()}
+          dataHandler={(data)=>sortingHandler(data)}
+        /> 
+        : <></>
+      }
     </View>
   );
 }
@@ -95,7 +127,8 @@ const signupStyle = StyleSheet.create({
    justifyContent: 'center',
   },
   IDContainer: {
-    flex: 1,
+    //flex: 1,
+    height: RFPercentage(7),
     flexDirection: 'row',
     margin: '3%',
     marginLeft: '8%',
@@ -103,11 +136,13 @@ const signupStyle = StyleSheet.create({
   },
   InputBoxContainer2: {
     flex: 1,
+    //height: RFPercentage(10),
     justifyContent: 'center',
     borderBottomColor: colors.kuDarkGreen,
     borderBottomWidth: 1,
   },
   IDCheckContainer: {
+    height: RFPercentage(7),
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.kuDarkGreen,
@@ -121,7 +156,8 @@ const signupStyle = StyleSheet.create({
     color: colors.kuWhite,
   },
   InputBoxContainer: {
-    flex: 1,
+    //flex: 1,
+    height: RFPercentage(7),
     margin: '3%',
     marginLeft: '8%',
     marginRight: '8%',
@@ -135,6 +171,14 @@ const signupStyle = StyleSheet.create({
     color: colors.kuCoolGray,
     //marginLeft: '5%',
     //marginRight: '5%',
+  },
+  InboxText: {
+    fontSize: 20,
+    color: colors.kuCoolGray,
+  },
+  InboxSelectedText: {
+    fontSize: 20,
+    color: colors.kuBlack,
   },
   Button: {
     alignSelf: 'center',
