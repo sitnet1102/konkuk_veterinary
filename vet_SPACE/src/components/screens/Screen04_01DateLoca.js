@@ -11,11 +11,11 @@ import LocationSelectModal from '../modal/LocationSelectModal';
 export default function DateLocaScreen({navigation}){
   /**
     추가 및 변경해야 하는 내용
-    1. 날짜, 구분, 장소 각각 선택창 UI
+    //1. 날짜, 구분, 장소 각각 선택창 UI
     2. 다음 버튼 활성화 옵션
     3. 다믕 버튼 활성화 스타일 
     4. 메뉴 연결
-    5. 홈 버튼 연결
+    //5. 홈 버튼 연결
    */
   //const onPressDate = () => ;
 

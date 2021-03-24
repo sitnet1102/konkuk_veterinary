@@ -8,7 +8,59 @@ import { Table, Row} from 'react-native-table-component';
 
 import {colors} from '../../utils/Styles';
 
+import DateSelectModal from '../modal/DateSelectModal';
+import ClassificationSelectModal from '../modal/ClassificationSelectModal';
+import LocationSelectModal from '../modal/LocationSelectModal';
+
 export default function StatusScreen() {
+  const [dateSelectModal, setDateSelectModal] = React.useState(false);
+  const [dateData, setDateData] = React.useState('선 택');
+  const [dateStyle, setDateStyle] = React.useState(false);
+  
+  const [classificationSelectModal, setClassificationSelectModal] = React.useState(false);
+  const [classificationData, setClassificationData] = React.useState('선 택');
+  const [classificationStyle, setClassificationStyle] = React.useState(false);
+
+  const [locationSelectModal, setLocationSelectModal] = React.useState(false);
+  const [locationData, setLocationData] = React.useState('선 택');
+  const [locationStyle, setLocationStyle] = React.useState(false);
+
+  const toggleDateSelectModal =  () => {
+    setDateSelectModal(prev => (!prev));
+  };
+  const dateHandler = (data) => {
+    setDateData(data);
+    toggleDateSelectModal();
+    dateStyleChange();
+  };
+  const dateStyleChange = () => {
+    setDateStyle(true);
+  };
+  
+  const toggleClassificationSelectModal = () => {
+    setClassificationSelectModal(prev => (!prev));
+  };
+  const classificationHandler = (data) => {
+    setClassificationData(data);
+    toggleClassificationSelectModal();
+    classificationStyleChange();
+  };
+  const classificationStyleChange = () => {
+    setClassificationStyle(true);
+  };
+  
+  const toggleLocationSelectModal = () => {
+    setLocationSelectModal(prev => (!prev));
+  };
+  const locationHandler = (data) => {
+    setLocationData(data);
+    toggleLocationSelectModal();
+    locationStyleChange();
+  };
+  const locationStyleChange = () => {
+    setLocationStyle(true);
+  };
+
   const state = {
     tableTitle: ['2021년 03월 01일 // 207호 예약 내역'],
     widthArr: ['100%'],
@@ -40,27 +92,47 @@ export default function StatusScreen() {
           <View style={statusStyle.TextContainer}>
             <Text style={statusStyle.Text}>날짜 :</Text>
           </View>
-          <TouchableOpacity style={statusStyle.SelectBox}>
-            <Text style={statusStyle.InboxText}>선 택</Text>
+          <TouchableOpacity 
+            style={statusStyle.SelectBox}
+            onPress={() => toggleDateSelectModal()}
+          >
+            <Text style={
+              dateStyle ?
+              statusStyle.InboxSelectedText
+              : statusStyle.InboxText
+            }>{dateData}</Text>
           </TouchableOpacity>
         </View>
         <View style={statusStyle.rowContainer}>
           <View style={statusStyle.TextContainer}>
             <Text style={statusStyle.Text}>구분 :</Text>
           </View>
-          <TouchableOpacity style={statusStyle.SelectBox}>
-            <Text style={statusStyle.InboxText}>선 택</Text>
+          <TouchableOpacity 
+            style={statusStyle.SelectBox}
+            onPress={()=>toggleClassificationSelectModal()}
+          >
+            <Text style={
+              classificationStyle ?
+              statusStyle.InboxSelectedText2
+              : statusStyle.InboxText
+            }>{classificationData}</Text>
           </TouchableOpacity>
         </View>
         <View style={statusStyle.rowContainer}>
           <View style={statusStyle.TextContainer}>
             <Text style={statusStyle.Text}>장소 :</Text>
           </View>
-          <TouchableOpacity style={statusStyle.SelectBox}>
-            <Text style={statusStyle.InboxText}>선 택</Text>
+          <TouchableOpacity 
+            style={statusStyle.SelectBox}
+            onPress={()=>toggleLocationSelectModal()}
+          >
+            <Text style={
+              locationStyle ? 
+              statusStyle.InboxSelectedText3
+              : statusStyle.InboxText
+            }>{locationData}</Text>
           </TouchableOpacity>
         </View>
-
       </View>
       <View style={statusStyle.bot}>
         <View style={statusStyle.TimeSheet}>
@@ -87,6 +159,27 @@ export default function StatusScreen() {
           </ScrollView>
         </View>
       </View>
+      {dateSelectModal ? 
+        <DateSelectModal 
+          modalHandler={()=>toggleDateSelectModal()}
+          dataHandler={(data)=>dateHandler(data)}
+        /> 
+        : <></>
+      }
+      {classificationSelectModal ?
+        <ClassificationSelectModal
+          modalHandler={()=>toggleClassificationSelectModal()}
+          dataHandler={(data)=>classificationHandler(data)}
+        /> 
+        : <></>
+      }
+      {locationSelectModal ?
+        <LocationSelectModal
+          modalHandler={()=>toggleLocationSelectModal()}
+          dataHandler={(data)=>locationHandler(data)}
+        /> 
+        : <></>
+      }
     </View>
   );
 }
@@ -133,6 +226,24 @@ const statusStyle = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
     color: colors.kuDarkGray,
+  },
+  InboxSelectedText: {
+    alignSelf: 'center',
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: colors.kuBlack,
+  },
+  InboxSelectedText2: {
+    alignSelf: 'center',
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: colors.kuBlack,
+  },
+  InboxSelectedText3: {
+    alignSelf: 'center',
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: colors.kuBlack,
   },
 
   TimeSheet: {

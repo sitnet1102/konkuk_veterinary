@@ -8,7 +8,7 @@ import {SliderBox} from 'react-native-image-slider-box';
 
 import {colors} from '../../utils/Styles';
 
-
+import LocationSelectModal from '../modal/LocationSelectModal2';
 
 export default function RoomInfoDetailScreen() {
   /**
@@ -16,6 +16,22 @@ export default function RoomInfoDetailScreen() {
     2. 이미지 크기 고정이면 좋을것 같음 1024x768
     3. 강의실이 선택되지 않았을 때에 어떤식으로 할 것인지 고려해야함 
    */
+  const [locationSelectModal, setLocationSelectModal] = React.useState(false);
+  const [locationData, setLocationData] = React.useState('선 택');
+  const [locationStyle, setLocationStyle] = React.useState(false);
+
+  const toggleLocationSelectModal = () => {
+    setLocationSelectModal(prev => (!prev));
+  };
+  const locationHandler = (data) => {
+    setLocationData(data);
+    toggleLocationSelectModal();
+    locationStyleChange();
+  };
+  const locationStyleChange = () => {
+    setLocationStyle(true);
+  };
+
   const images = [
     "https://source.unsplash.com/1024x768/?nature",
     "https://source.unsplash.com/1024x768/?tree",
@@ -50,8 +66,15 @@ export default function RoomInfoDetailScreen() {
           <View style={roominfodetailStyle.TextContainer}>
             <Text style={roominfodetailStyle.Text}>강의실 :</Text>
           </View>
-          <TouchableOpacity style={roominfodetailStyle.SelectBox}>
-            <Text style={roominfodetailStyle.InboxText}>선 택</Text>
+          <TouchableOpacity 
+            style={roominfodetailStyle.SelectBox}
+            onPress={()=>toggleLocationSelectModal()}
+          >
+            <Text style={
+              locationStyle ? 
+              roominfodetailStyle.InboxSelectedText3
+              : roominfodetailStyle.InboxText
+            }>{locationData}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -132,6 +155,13 @@ export default function RoomInfoDetailScreen() {
           </View>
         </View>
       </View>
+      {locationSelectModal ?
+        <LocationSelectModal
+          modalHandler={()=>toggleLocationSelectModal()}
+          dataHandler={(data)=>locationHandler(data)}
+        /> 
+        : <></>
+      }
     </View>
   );
 }
@@ -176,6 +206,12 @@ const roominfodetailStyle = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
     color: colors.kuDarkGray,
+  },
+  InboxSelectedText3: {
+    alignSelf: 'center',
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: colors.kuBlack,
   },
   container1: {
     flex: 1,

@@ -41,7 +41,7 @@ export default function TimeSelectModal(props) {
         onPress={props.modalHandler}
       />
       <View style={timeselectmodalStyle.modal}>
-        <Text style={timeselectmodalStyle.titleText}>장소 선택</Text>
+        <Text style={timeselectmodalStyle.titleText}>시간 선택</Text>
         <Text style={timeselectmodalStyle.dataText}>{selectedHour+":"+selectedMin}</Text>
         <View style={timeselectmodalStyle.line}></View>
         <View style={timeselectmodalStyle.pickerContainer}>

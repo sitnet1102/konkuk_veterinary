@@ -24,7 +24,7 @@ export default function PurposeSelectModal(props) {
         onPress={props.modalHandler}
       />
       <View style={purposeselectmodalStyle.modal}>
-        <Text style={purposeselectmodalStyle.titleText}>구분 선택</Text>
+        <Text style={purposeselectmodalStyle.titleText}>목적 선택</Text>
         <Text style={purposeselectmodalStyle.dataText}>{selected}</Text>
         <View style={purposeselectmodalStyle.line}></View>
         <View>
