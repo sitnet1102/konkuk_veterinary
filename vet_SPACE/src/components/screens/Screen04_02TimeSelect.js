@@ -149,7 +149,12 @@ export default function TimeSelectScreen({route, navigation}){
       </View>
       <View style={timeSelectStyle.Bot}>
         <TouchableOpacity 
-          style={timeSelectStyle.NextButton}
+          disabled={!(startTimeStyle && endTimeStyle)}
+          style={
+            startTimeStyle && endTimeStyle ?
+            timeSelectStyle.ActivedNextButton
+            : timeSelectStyle.NextButton
+          }
           onPress={() => navigation.navigate('RoomReservDetail', {
             data: {
               dateData: route.params.data.dateData,
@@ -289,6 +294,15 @@ const timeSelectStyle = StyleSheet.create({
     //height: '60%',
     height: 50,
     opacity: 0.5,
+    borderWidth: 1,
+    borderRadius: 5,
+  }, 
+  ActivedNextButton: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.kuDarkGreen,
+    width: '70%',
+    height: 50,
     borderWidth: 1,
     borderRadius: 5,
   }, 

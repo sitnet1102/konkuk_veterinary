@@ -124,7 +124,12 @@ export default function RoomReservDetailScreen({route, navigation}){
       </View>
       <View style={detailStyle.Bot}>
         <TouchableOpacity 
-          style={detailStyle.NextButton}
+          disabled={!(purposeStyle && profStyle)}
+          style={
+            purposeStyle && profStyle ?
+            detailStyle.ActivedNextButton
+            : detailStyle.NextButton
+          }
           onPress={() => navigation.navigate('Complete', {
             data: {
               dateData: route.params.data.dateData,
@@ -244,6 +249,15 @@ const detailStyle = StyleSheet.create({
     //height: '60%',
     height: 50,
     opacity: 0.5,
+    borderWidth: 1,
+    borderRadius: 5,
+  }, 
+  ActivedNextButton: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.kuDarkGreen,
+    width: '70%',
+    height: 50,
     borderWidth: 1,
     borderRadius: 5,
   }, 

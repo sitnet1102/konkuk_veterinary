@@ -12,13 +12,11 @@ export default function DateLocaScreen({navigation}){
   /**
     추가 및 변경해야 하는 내용
     //1. 날짜, 구분, 장소 각각 선택창 UI
-    2. 다음 버튼 활성화 옵션
-    3. 다믕 버튼 활성화 스타일 
+    //2. 다음 버튼 활성화 옵션
+    //3. 다믕 버튼 활성화 스타일 
     4. 메뉴 연결
     //5. 홈 버튼 연결
    */
-  //const onPressDate = () => ;
-
   const [dateSelectModal, setDateSelectModal] = React.useState(false);
   const [dateData, setDateData] = React.useState('선 택');
   const [dateStyle, setDateStyle] = React.useState(false);
@@ -120,7 +118,12 @@ export default function DateLocaScreen({navigation}){
       </View>
       <View style={DateLocaStyle.Bot}>
         <TouchableOpacity 
-          style={DateLocaStyle.NextButton}
+          disabled={!(dateStyle && classificationStyle && locationStyle)}
+          style={
+            dateStyle && classificationStyle && locationStyle ?
+            DateLocaStyle.ActivedNextButton
+            : DateLocaStyle.NextButton
+          }
           onPress={() => navigation.navigate('TimeSelect', {
             data : {
               dateData: dateData,
@@ -226,6 +229,15 @@ const DateLocaStyle = StyleSheet.create({
     width: '70%',
     height: 50,
     opacity: 0.5,
+    borderWidth: 1,
+    borderRadius: 5,
+  }, 
+  ActivedNextButton: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.kuDarkGreen,
+    width: '70%',
+    height: 50,
     borderWidth: 1,
     borderRadius: 5,
   }, 
