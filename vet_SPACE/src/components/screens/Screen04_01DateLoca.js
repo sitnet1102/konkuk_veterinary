@@ -122,9 +122,11 @@ export default function DateLocaScreen({navigation}){
         <TouchableOpacity 
           style={DateLocaStyle.NextButton}
           onPress={() => navigation.navigate('TimeSelect', {
-            dateData: dateData,
-            classData: classificationData,
-            locaData: locationData,
+            data : {
+              dateData: dateData,
+              classData: classificationData,
+              locaData: locationData,
+            }
           })}
         >
           <Text style={DateLocaStyle.NextText}>다     음</Text>

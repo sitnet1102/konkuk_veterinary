@@ -25,7 +25,7 @@ export default function TimeSelectScreen({route, navigation}){
     //11. 홈 버튼 연결
    */
   //const navigation = useNavigation();
-  const {dateData, classData, locaData} = route.params;
+  //const {dateData, classData, locaData} = route.params;
   
   const [startTimeSelectModal, setStartTimeSelectModal] = React.useState(false);
   const [startTimeData, setStartTimeData] = React.useState('선 택');
@@ -85,7 +85,7 @@ export default function TimeSelectScreen({route, navigation}){
   return (
     <View style={timeSelectStyle.container}>
       <View style={timeSelectStyle.Top}>
-        {//<Text>{dateData + " " + classData + " " + locaData}</Text>
+        {//<Text>{route.params.data.dateData + " " + route.params.data.classData + " " + route.params.data.locaData}</Text>
         }
       </View>
       <View style={timeSelectStyle.Mid}>
@@ -151,11 +151,13 @@ export default function TimeSelectScreen({route, navigation}){
         <TouchableOpacity 
           style={timeSelectStyle.NextButton}
           onPress={() => navigation.navigate('RoomReservDetail', {
-            dateData: dateData,
-            classData: classData,
-            locaData: locaData,
-            startTimeData: startTimeData,
-            endTimeData: endTimeData,
+            data: {
+              dateData: route.params.data.dateData,
+              classData: route.params.data.classData,
+              locaData: route.params.data.locaData,
+              startTimeData: startTimeData,
+              endTimeData: endTimeData,
+            }
           })}
         >
           <Text style={timeSelectStyle.NextText}>다     음</Text>

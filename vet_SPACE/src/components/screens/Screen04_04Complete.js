@@ -13,6 +13,7 @@ export default function CompleteScreen({route, navigation}){
     //2. 홈버튼 연결하기
     3. 메뉴 연결하기 
   */
+  /*
   const {
     dateData, 
     classData, 
@@ -22,7 +23,7 @@ export default function CompleteScreen({route, navigation}){
     purposeData, 
     profData
   } = route.params;
-
+  */
   return(
     <View style={completeStyle.container}>
       <View style={completeStyle.Top}>
@@ -59,7 +60,15 @@ export default function CompleteScreen({route, navigation}){
             공문 요청하기 
           </Text>
         </View>
-        {//<Text>{dateData + classData + locaData + startTimeData + endTimeData + purposeData + profData}</Text>
+        {/*<Text>{
+        route.params.data.dateData + " " +
+        route.params.data.classData + " " +
+        route.params.data.locaData + " " +
+        route.params.data.startTimeData + " " +
+        route.params.data.endTimeData + " " +
+        route.params.data.purposeData + " " +
+        route.params.data.profData
+        }</Text>*/
         }
       </View>
       <View style={completeStyle.Bot}>

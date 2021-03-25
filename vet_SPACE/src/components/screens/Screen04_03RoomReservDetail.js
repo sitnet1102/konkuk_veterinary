@@ -11,13 +11,13 @@ import PurposeSelectModal from '../modal/PurposeSelectModal';
 import ProfSelectModal from '../modal/ProfSelectModal';
 
 export default function RoomReservDetailScreen({route, navigation}){
-  const {dateData, classData, locaData, startTimeData, endTimeData} = route.params;
+  //const {dateData, classData, locaData, startTimeData, endTimeData} = route.params;
   const __name = '홍길동'
   const __phone = '010-1234-5678'
   //const __time = '1200 ~ 1400'
   //const __purpose = '선 택'
   //const __prof = '선 택'
-  const __time = startTimeData + " ~ " + endTimeData;
+  const __time = route.params.data.startTimeData + " ~ " + route.params.data.endTimeData;
 
   const state = {
     tableIndex: [
@@ -126,13 +126,15 @@ export default function RoomReservDetailScreen({route, navigation}){
         <TouchableOpacity 
           style={detailStyle.NextButton}
           onPress={() => navigation.navigate('Complete', {
-            dateData: dateData,
-            classData: classData,
-            locaData: locaData,
-            startTimeData: startTimeData,
-            endTimeData: endTimeData,
-            purposeData: purposeData,
-            profData: profData,
+            data: {
+              dateData: route.params.data.dateData,
+              classData: route.params.data.classData,
+              locaData: route.params.data.locaData,
+              startTimeData: route.params.data.startTimeData,
+              endTimeData: route.params.data.endTimeData,
+              purposeData: purposeData,
+              profData: profData,
+            }
           })}
         >
           <Text style={detailStyle.NextText}>제출하기</Text>
