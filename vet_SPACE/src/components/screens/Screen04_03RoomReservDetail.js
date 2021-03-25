@@ -10,12 +10,14 @@ import { RFPercentage } from 'react-native-responsive-fontsize';
 import PurposeSelectModal from '../modal/PurposeSelectModal';
 import ProfSelectModal from '../modal/ProfSelectModal';
 
-export default function RoomReservDetailScreen({navigation}){
+export default function RoomReservDetailScreen({route, navigation}){
+  const {dateData, classData, locaData, startTimeData, endTimeData} = route.params;
   const __name = '홍길동'
   const __phone = '010-1234-5678'
-  const __time = '1200 ~ 1400'
+  //const __time = '1200 ~ 1400'
   //const __purpose = '선 택'
   //const __prof = '선 택'
+  const __time = startTimeData + " ~ " + endTimeData;
 
   const state = {
     tableIndex: [
@@ -123,7 +125,15 @@ export default function RoomReservDetailScreen({navigation}){
       <View style={detailStyle.Bot}>
         <TouchableOpacity 
           style={detailStyle.NextButton}
-          onPress={() => navigation.navigate('Complete')}
+          onPress={() => navigation.navigate('Complete', {
+            dateData: dateData,
+            classData: classData,
+            locaData: locaData,
+            startTimeData: startTimeData,
+            endTimeData: endTimeData,
+            purposeData: purposeData,
+            profData: profData,
+          })}
         >
           <Text style={detailStyle.NextText}>제출하기</Text>
         </TouchableOpacity>

@@ -8,8 +8,19 @@ import RadioButtonRN from 'radio-buttons-react-native';
 import {TouchableOpacity, ScrollView} from 'react-native-gesture-handler';
 
 import {colors} from '../../utils/Styles';
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
 export default function ListScreen({navigation}) {
+  /**
+    수정할 사항
+    1. 데이터 베이스 연결 
+    2. 데이터 베이스에서 가져와서 시간 순서대로 보여주기
+    3. 이전 예약 데이터는 하단에 다른 스타일로 넣어주기
+    4. 상단에 정렬 텝 연결 / 시간순, 강의실순 
+    5. 예약이 하나도 없을 경우에 UI 생각하기 -> 예약이 없습니다 
+    6. 이전 예약을 체크 하지 않았을 때에도 없습니다로 넣어주기   
+   */
+
   const [isSelected, setSelection] = React.useState(false);
   const onPressCheckBox = () => setSelection(()=>!isSelected);
   const onPressRow = () => navigation.navigate('ReservDetail');
@@ -104,7 +115,7 @@ const listStyle = StyleSheet.create({
     backgroundColor: colors.kuWhite,
   },
   top: {
-    flex: 1,
+    height: RFPercentage(8),
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -115,7 +126,7 @@ const listStyle = StyleSheet.create({
     borderRadius: 5,
   },
   bot: {
-    flex: 9,
+    flex: 1,
     marginHorizontal: '3%',
     marginBottom: '5%',
     marginTop: '2%',
@@ -155,7 +166,7 @@ const listStyle = StyleSheet.create({
 
   },
   scrollRow: {
-    height: 200,
+    height: RFPercentage(25),
     backgroundColor: colors.kuLightGray,
     borderWidth: 1,
     borderRadius: 5,
@@ -176,6 +187,7 @@ const listStyle = StyleSheet.create({
   },
   text3: {
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: RFValue(20),
+    lineHeight: RFValue(25),
   },
 });

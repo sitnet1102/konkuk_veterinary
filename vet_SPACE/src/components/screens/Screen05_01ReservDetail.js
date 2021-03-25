@@ -8,7 +8,12 @@ import { Table, Row} from 'react-native-table-component';
 
 import {colors} from '../../utils/Styles';
 
-export default function ReservDetailScreen({/*Data,*/navigation}) {
+export default function ReservDetailScreen({route, navigation}) {
+  /**
+    수정할 사항
+    1. 이전 페이지에서 데이터로 넣어주는 내용에서 데이터베이스 주요키를 넘겨주는 형식으로 하기
+    2. 데이터 베이스 연결해서 넘어온 주요키를 사용해서 데이터 베이스 쿼리 사용 
+   */
   const t1 = '수의학관 216호\n';
   const t2 = '2021년 03월 02일\n';
   const t3 = '0900 ~ 1200';

@@ -9,12 +9,12 @@ import { colors } from '../../utils/Styles';
 import TimeSelectModal from '../modal/TimeSelectModal';
 //import { useNavigation } from '@react-navigation/native';
 
-export default function TimeSelectScreen({navigation}){
+export default function TimeSelectScreen({route, navigation}){
   /**
     추가로 넣어주어야 하는 부분
-    1. 시간 선택 시 스타일 변경
-    2. 시간 선택 시 선택된 시간으로 선택 박스 변경
-    3. 선택 박스 선택 시 넘어가는 UI
+    //1. 시간 선택 시 스타일 변경
+    //2. 시간 선택 시 선택된 시간으로 선택 박스 변경
+    //3. 선택 박스 선택 시 넘어가는 UI
     4. 시간 시작 종료 모두 선택 시 다음 버튼 활성화
     5. 다음 버튼 활성화 시 스타일 변화 
     6. 테이블 모양 가다듬기
@@ -22,9 +22,10 @@ export default function TimeSelectScreen({navigation}){
     8. 테이블에서 이미 선택된 시간 스타일 변화
     9. 테이블 데이터베이스 연동 
     10. 메뉴 연결
-    11. 홈 버튼 연결
+    //11. 홈 버튼 연결
    */
   //const navigation = useNavigation();
+  const {dateData, classData, locaData} = route.params;
   
   const [startTimeSelectModal, setStartTimeSelectModal] = React.useState(false);
   const [startTimeData, setStartTimeData] = React.useState('선 택');
@@ -84,6 +85,8 @@ export default function TimeSelectScreen({navigation}){
   return (
     <View style={timeSelectStyle.container}>
       <View style={timeSelectStyle.Top}>
+        {//<Text>{dateData + " " + classData + " " + locaData}</Text>
+        }
       </View>
       <View style={timeSelectStyle.Mid}>
         <View style={timeSelectStyle.Time}>
@@ -147,7 +150,13 @@ export default function TimeSelectScreen({navigation}){
       <View style={timeSelectStyle.Bot}>
         <TouchableOpacity 
           style={timeSelectStyle.NextButton}
-          onPress={() => navigation.navigate('RoomReservDetail')}
+          onPress={() => navigation.navigate('RoomReservDetail', {
+            dateData: dateData,
+            classData: classData,
+            locaData: locaData,
+            startTimeData: startTimeData,
+            endTimeData: endTimeData,
+          })}
         >
           <Text style={timeSelectStyle.NextText}>다     음</Text>
         </TouchableOpacity>
