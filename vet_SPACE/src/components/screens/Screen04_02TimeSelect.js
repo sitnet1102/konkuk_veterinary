@@ -130,7 +130,10 @@ export default function TimeSelectScreen({route, navigation}){
           <Table borderStyle={timeSelectStyle.Border}>
             <Row data={state.divisionArr} widthArr={state.widthArr2} style={timeSelectStyle.SheetDivision} textStyle={timeSelectStyle.SheetTitleText}/>
           </Table>
-          <ScrollView style={timeSelectStyle.Wrapper}>
+          <ScrollView 
+            style={timeSelectStyle.Wrapper}
+            persistentScrollbar={true}  // 안드로이드 스크롤바 보이기
+          >
             <Table borderStyle={timeSelectStyle.Border}>
               {
                 timeTableData.map((rowData, index) => (
