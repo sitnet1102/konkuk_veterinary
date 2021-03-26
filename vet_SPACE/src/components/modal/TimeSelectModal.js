@@ -82,7 +82,7 @@ export default function TimeSelectModal(props) {
         </View>
         <View style={timeselectmodalStyle.line}></View>
         <TouchableOpacity
-          onPress={()=>props.dataHandler(selectedHour+":"+selectedMin)}
+          onPress={()=>props.dataHandler(selectedHour,selectedMin)}
         >
           <Text style={timeselectmodalStyle.buttonText}>완료</Text>
         </TouchableOpacity>

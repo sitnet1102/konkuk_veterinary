@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Alert} from 'react-native';
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import {Table, Row} from 'react-native-table-component';
 import { colors } from '../../utils/Styles';
@@ -35,8 +35,12 @@ export default function TimeSelectScreen({route, navigation}){
   const toggleStartTimeSelectModal =  () => {
     setStartTimeSelectModal(prev => (!prev));
   };
-  const startTimeHandler = (data) => {
-    setStartTimeData(data);
+  const startTimeHandler = (selectedHour,selectedMin) => {
+    if(endTimeStyle){
+      setEndTimeData('선 택');
+      setEndTimeStyle(false);
+    }
+    setStartTimeData(selectedHour+":"+selectedMin);
     toggleStartTimeSelectModal();
     startTimeStyleChange();
   };
@@ -46,19 +50,27 @@ export default function TimeSelectScreen({route, navigation}){
 
 
   const toggleEndTimeSelectModal =  () => {
-    setEndTimeSelectModal(prev => (!prev));
+    if(!startTimeStyle){
+      Alert.alert("경고","시작시간을 먼저 선택해주세요");
+    }else{
+      setEndTimeSelectModal(prev => (!prev));
+    }
   };
-  const endTimeHandler = (data) => {
-    setEndTimeData(data);
-    toggleEndTimeSelectModal();
-    endTimeStyleChange();
+  const endTimeHandler = (selectedHour,selectedMin) => {
+    const startTimetmp = Number(startTimeData.substr(0,2)+startTimeData.substr(3));
+    if(startTimetmp/* + 100 > */ >= Number(selectedHour+""+selectedMin)){
+      Alert.alert("경고", "시작시간보다 종료시간이 같거나 빠릅니다");
+    }else{
+      setEndTimeData(selectedHour+":"+selectedMin);
+      toggleEndTimeSelectModal();
+      endTimeStyleChange();
+    }
   };
   const endTimeStyleChange = () => {
     setEndTimeStyle(true);
   };
 
   const state = {
-    //tableTitle: ['2021년 03월 01일 // 207호 예약 내역'],
     tableTitle: [route.params.data.dateData + "\n" + route.params.data.locaData + "호 예약 내역"],
     widthArr: [370],
     divisionArr: ['시간', '내용'],
@@ -178,14 +190,14 @@ export default function TimeSelectScreen({route, navigation}){
       {startTimeSelectModal ? 
         <TimeSelectModal 
           modalHandler={()=>toggleStartTimeSelectModal()}
-          dataHandler={(data)=>startTimeHandler(data)}
+          dataHandler={(selectedHour,selectedMin)=>startTimeHandler(selectedHour, selectedMin)}
         /> 
         : <></>
       }
       {endTimeSelectModal ? 
         <TimeSelectModal 
           modalHandler={()=>toggleEndTimeSelectModal()}
-          dataHandler={(data)=>endTimeHandler(data)}
+          dataHandler={(selectedHour,selectedMin)=>endTimeHandler(selectedHour,selectedMin)}
         /> 
         : <></>
       }
