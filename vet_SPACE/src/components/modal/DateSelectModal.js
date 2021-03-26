@@ -12,8 +12,10 @@ import {colors} from '../../utils/Styles';
 moment.locale('ko');
 
 export default function DateSelectModal(props) {
-  const [selected, setSelected] = React.useState(moment().utcOffset('+09:00').format('YYYY-MM-DD'));
-  const [selectedDay, setSelectedDay] = React.useState(moment().utcOffset('+09:00').format('(dd)'));
+  const [selected, setSelected] = React.useState(moment().utcOffset('+09:00').add(1,'days').format('YYYY-MM-DD'));
+  const [selectedDay, setSelectedDay] = React.useState(moment().utcOffset('+09:00').add(1,'days').format('(dd)'));
+  const startDate = new Date();
+  startDate.setDate(startDate.getDate() + 1);
   const endDate = new Date();
   endDate.setMonth(endDate.getMonth() + 3);
   const onDayPress = day => {
@@ -33,10 +35,10 @@ export default function DateSelectModal(props) {
         <Text style={dateselectmodalStyle.dataText}>{selected + " " + selectedDay}</Text>
         <View style={dateselectmodalStyle.line}></View>
         <Calendar
-          current={Date()}
+          current={startDate}
           style={dateselectmodalStyle.calendar}
           textStyle={dateselectmodalStyle.calendarText}
-          minDate={Date()}
+          minDate={startDate}
           maxDate={endDate}
           onDayPress={onDayPress}
           enableSwipeMonths={true}
