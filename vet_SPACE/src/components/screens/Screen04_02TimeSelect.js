@@ -7,7 +7,6 @@ import {Table, Row} from 'react-native-table-component';
 import { colors } from '../../utils/Styles';
 
 import TimeSelectModal from '../modal/TimeSelectModal';
-//import { useNavigation } from '@react-navigation/native';
 
 export default function TimeSelectScreen({route, navigation}){
   /**
@@ -15,8 +14,8 @@ export default function TimeSelectScreen({route, navigation}){
     //1. 시간 선택 시 스타일 변경
     //2. 시간 선택 시 선택된 시간으로 선택 박스 변경
     //3. 선택 박스 선택 시 넘어가는 UI
-    4. 시간 시작 종료 모두 선택 시 다음 버튼 활성화
-    5. 다음 버튼 활성화 시 스타일 변화 
+    //4. 시간 시작 종료 모두 선택 시 다음 버튼 활성화
+    //5. 다음 버튼 활성화 시 스타일 변화 
     6. 테이블 모양 가다듬기
     7. 테이블에서 선택된 시간 스타일 변화
     8. 테이블에서 이미 선택된 시간 스타일 변화
@@ -24,8 +23,6 @@ export default function TimeSelectScreen({route, navigation}){
     10. 메뉴 연결
     //11. 홈 버튼 연결
    */
-  //const navigation = useNavigation();
-  //const {dateData, classData, locaData} = route.params;
   
   const [startTimeSelectModal, setStartTimeSelectModal] = React.useState(false);
   const [startTimeData, setStartTimeData] = React.useState('선 택');
@@ -61,11 +58,12 @@ export default function TimeSelectScreen({route, navigation}){
   };
 
   const state = {
-    tableTitle: ['2021년 03월 01일 // 207호 예약 내역'],
-    widthArr: ['100%'],
+    //tableTitle: ['2021년 03월 01일 // 207호 예약 내역'],
+    tableTitle: [route.params.data.dateData + "\n" + route.params.data.locaData + "호 예약 내역"],
+    widthArr: [370],
     divisionArr: ['시간', '내용'],
-    widthArr2: [100,314],
-    widthArr3: [100,314],
+    widthArr2: [100,270],
+    widthArr3: [100,270],
   };
   const timeTableData = [];
   for(let i = 0;i<14; i+=1){
@@ -125,7 +123,13 @@ export default function TimeSelectScreen({route, navigation}){
         </View>
         <View style={timeSelectStyle.TimeSheet}>
           <Table borderStyle={timeSelectStyle.Border}>
-            <Row data={state.tableTitle} widthArr={state.widthArr} style={timeSelectStyle.SheetTitle} textStyle={timeSelectStyle.SheetTitleText}/>
+            <Row 
+              data={state.tableTitle} 
+              //data={route.params.data.dateData}
+              widthArr={state.widthArr} 
+              style={timeSelectStyle.SheetTitle} 
+              textStyle={timeSelectStyle.SheetTitleText}
+            />
           </Table>
           <Table borderStyle={timeSelectStyle.Border}>
             <Row data={state.divisionArr} widthArr={state.widthArr2} style={timeSelectStyle.SheetDivision} textStyle={timeSelectStyle.SheetTitleText}/>
@@ -214,6 +218,7 @@ const timeSelectStyle = StyleSheet.create({
   },
   TimeSheet: {
     flex: 5,
+    marginHorizontal: 20,
     //margin: '5%',
     //borderColor: colors.kuBlack,
     //borderWidth: 1,
@@ -258,12 +263,13 @@ const timeSelectStyle = StyleSheet.create({
     fontWeight: 'bold',
   },
   Border: {
+    //width: '100%',
     borderWidth: 1,
     borderColor: colors.kuBlack,
   },
   SheetTitle: {
     justifyContent: 'center',
-    height: 40,
+    height: 55,
     backgroundColor: colors.kuWarmGray,
   },
   SheetTitleText: {
