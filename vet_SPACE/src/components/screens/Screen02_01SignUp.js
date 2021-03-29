@@ -17,20 +17,60 @@ export default function SignUpScreen({navigation}){
         1.4. 모든 정보가 다 들어가 있는지 확인 
       2. 텍스트 입력 박스 선택시 화면 찌그러지는 현상 수정 필요 
    */
+  const [__id, setId] = React.useState("");
+  const [__password, setPassword] = React.useState("");
+  const [__password2, setPassword2] = React.useState("");
+  const [__name, setName] = React.useState("");
+  const [__phone, setPhone] = React.useState("");
+  const [__number, setNumber] = React.useState("");
+  const [__sort, setSort] = React.useState("");
+
   const [sortingSelectModal, setSortingSelectModal] = React.useState(false);
   const [sortingData, setSortingData] = React.useState('분 류');
   const [sortingStyle, setSortingStyle] = React.useState(false);
+
+  const [idDuplication, setIdDuplication] = React.useState(false);
 
   const toggleSortingSelectModal =  () => {
     setSortingSelectModal(prev => (!prev));
   };
   const sortingHandler = (data) => {
     setSortingData(data);
+    setSort(data);
     toggleSortingSelectModal();
     sortingStyleChange();
   };
   const sortingStyleChange = () => {
     setSortingStyle(true);
+  };
+
+  const idChange = (data) => {
+    setId(data);
+    setIdDuplication(false);
+  };
+
+  const idDuplicateCheck = () => {
+    setIdDuplication(true);
+    Alert.alert(title='중복확인',message='사용가능한 아이디입니다.');
+  };
+
+  const signUpOnPress = () => {
+    if(idDuplication == false){
+      Alert.alert("아이디 오류", "아이디 중복 체크를 해주세요.");
+    }else if(!(__password != "" && __password == __password2)){
+      Alert.alert("패스워드 오류","비밀번호가 다릅니다.");
+    }else if(__name == ""){
+      Alert.alert("이름 오류","이름을 입력해주세요.");
+    }else if(__phone == ""){
+      Alert.alert("전화번호 오류","전화번호를 입력해주세요.");
+    }else if(__number == ""){
+      Alert.alert("번호 오류","학번 또는 연구원번호 또는 사번을 입력해주세요.");
+    }else if(__sort == ""){
+      Alert.alert("분류 오류","분류를 선택해주세요.");
+    }else{
+      Alert.alert("회원가입 완료","회원가입이 정상적으로 되었습니다.");
+      navigation.navigate('Login');
+    }
   };
 
   return(
@@ -40,48 +80,64 @@ export default function SignUpScreen({navigation}){
       <View style={signupStyle.Mid}>
         <View style={signupStyle.IDContainer}>
           <View style={signupStyle.InputBoxContainer2}>
-            <TextInput style={signupStyle.InputTextBox}>
-              <Text >아이디</Text>
-            </TextInput>
+            <TextInput 
+              style={signupStyle.InputTextBox}
+              placeholder="아이디"
+              value={__id}
+              onChangeText={(value) => idChange(value)}
+            />
           </View>
           <TouchableOpacity 
             style={signupStyle.IDCheckContainer}
-            onPress={() => Alert.alert(
-              title='중복확인',
-              message='사용가능한 아이디입니다.',
-            )}
+            onPress={() => idDuplicateCheck()}
           >
             <Text style={signupStyle.IDCheckText}>중복확인</Text>
           </TouchableOpacity>
         </View>
         <View style={signupStyle.InputBoxContainer}>
-          <TextInput style={signupStyle.InputTextBox}>
-            <Text>비밀번호</Text>
-          </TextInput>
+          <TextInput 
+            style={signupStyle.InputTextBox}
+            placeholder="비밀번호"
+            value={__password}
+            onChangeText={setPassword}
+          />
         </View>
         <View style={signupStyle.InputBoxContainer}>
-          <TextInput style={signupStyle.InputTextBox}>
-            <Text>비밀번호 확인</Text>
-          </TextInput>
+          <TextInput 
+            style={signupStyle.InputTextBox}
+            placeholder="비밀번호 확인"
+            value={__password2}
+            onChangeText={setPassword2}
+          />
         </View>
         <View style={signupStyle.InputBoxContainer}>
-          <TextInput style={signupStyle.InputTextBox}>
-            <Text>이름 (실명 입력)</Text>
-          </TextInput>
+          <TextInput 
+            style={signupStyle.InputTextBox}
+            placeholder="이름 (실명 입력)"
+            value={__name}
+            onChangeText={setName}
+            />
         </View>
         <View style={signupStyle.InputBoxContainer}>
-          <TextInput style={signupStyle.InputTextBox}>
-            <Text>휴대전화번호 ('-'제외)</Text>
-          </TextInput>
+          <TextInput 
+            style={signupStyle.InputTextBox}
+            placeholder="휴대전화번호 ('-'제외)"
+            value={__phone}
+            onChangeText={setPhone}
+            />
         </View>
         <View style={signupStyle.InputBoxContainer}>
-          <TextInput style={signupStyle.InputTextBox}>
-            <Text>학번, 연구원번호, 사번, 등</Text>
-          </TextInput>
+          <TextInput 
+            style={signupStyle.InputTextBox}
+            placeholder="학번, 연구원번호, 사번, 등"
+            value={__number}
+            onChangeText={setNumber}
+          />
         </View>
         <View style={signupStyle.InputBoxContainer}>
           <TouchableOpacity 
             style={signupStyle.InputTextBox}
+            value={__sort}
             onPress={()=>toggleSortingSelectModal()}
           >
             <Text style={
@@ -95,7 +151,7 @@ export default function SignUpScreen({navigation}){
       <View style={signupStyle.Bot}>
         <TouchableOpacity 
           style={signupStyle.Button}
-          onPress={() => navigation.navigate('Login')}
+          onPress={() => signUpOnPress()}
         >
           <Text style={signupStyle.Text}>회원가입</Text>
         </TouchableOpacity>
@@ -168,16 +224,19 @@ const signupStyle = StyleSheet.create({
   InputTextBox: {
     justifyContent: 'center',
     fontSize: 20,
-    color: colors.kuCoolGray,
+    fontWeight: 'bold',
+    //color: colors.kuCoolGray,
     //marginLeft: '5%',
     //marginRight: '5%',
   },
   InboxText: {
     fontSize: 20,
+    fontWeight:'bold',
     color: colors.kuCoolGray,
   },
   InboxSelectedText: {
     fontSize: 20,
+    fontWeight:'bold',
     color: colors.kuBlack,
   },
   Button: {
