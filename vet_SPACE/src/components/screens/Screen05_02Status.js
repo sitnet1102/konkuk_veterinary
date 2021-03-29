@@ -63,10 +63,10 @@ export default function StatusScreen() {
 
   const state = {
     tableTitle: ['2021년 03월 01일 // 207호 예약 내역'],
-    widthArr: ['100%'],
+    widthArr: [370],
     divisionArr: ['시간', '내용'],
-    widthArr2: [100,314],
-    widthArr3: [100,314],
+    widthArr2: [100,270],
+    widthArr3: [100,270],
   };
   const timeTableData = [];
   for(let i = 0;i<14; i+=1){
@@ -142,7 +142,7 @@ export default function StatusScreen() {
           <Table borderStyle={statusStyle.Border}>
             <Row data={state.divisionArr} widthArr={state.widthArr2} style={statusStyle.SheetDivision} textStyle={statusStyle.SheetTitleText}/>
           </Table>
-          <ScrollView style={statusStyle.Wrapper}>
+          <ScrollView style={statusStyle.Wrapper} persistentScrollbar={true}>
             <Table borderStyle={statusStyle.Border}>
               {
                 timeTableData.map((rowData, index) => (
@@ -248,6 +248,8 @@ const statusStyle = StyleSheet.create({
 
   TimeSheet: {
     flex: 5,
+    marginHorizontal: 20,
+    marginBottom: 20,
   },
   Border: {
     borderWidth: 1,
