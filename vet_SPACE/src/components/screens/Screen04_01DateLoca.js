@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, Text, StyleSheet,TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet,TouchableOpacity, Alert} from 'react-native';
 import { colors } from '../../utils/Styles';
 
 import DateSelectModal from '../modal/DateSelectModal';
@@ -33,6 +33,14 @@ export default function DateLocaScreen({navigation}){
     setDateSelectModal(prev => (!prev));
   };
   const dateHandler = (data) => {
+    if(classificationStyle){
+      setClassificationStyle(false);
+      setClassificationData('선 택');
+    }
+    if(locationStyle){
+      setLocationStyle(false);
+      setLocationData('선 택');
+    }
     setDateData(data);
     toggleDateSelectModal();
     dateStyleChange();
@@ -42,19 +50,34 @@ export default function DateLocaScreen({navigation}){
   };
   
   const toggleClassificationSelectModal = () => {
-    setClassificationSelectModal(prev => (!prev));
+    if(!dateStyle){
+      Alert.alert("날짜 오류","날짜를 먼저 선택해주세요");
+    }else{
+      setClassificationSelectModal(prev => (!prev));
+    }
   };
   const classificationHandler = (data) => {
+    if(locationStyle){
+      setLocationStyle(false);
+      setLocationData('선 택');
+    }
     setClassificationData(data);
     toggleClassificationSelectModal();
     classificationStyleChange();
+    
   };
   const classificationStyleChange = () => {
     setClassificationStyle(true);
   };
   
   const toggleLocationSelectModal = () => {
-    setLocationSelectModal(prev => (!prev));
+    if(!dateStyle){
+      Alert.alert("날짜 오류","날짜를 먼저 선택해주세요");
+    }else if(!classificationStyle){
+      Alert.alert("구분 오류","구분을 먼저 선택해주세요");
+    }else{
+      setLocationSelectModal(prev => (!prev));
+    }
   };
   const locationHandler = (data) => {
     setLocationData(data);
