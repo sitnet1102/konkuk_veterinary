@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, Text, TextInput, ImageBackground, Platform, StyleSheet} from 'react-native';
+import {View, Text, TextInput, ImageBackground, Platform, StyleSheet, Alert} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import { colors } from '../../utils/Styles';
@@ -21,63 +21,94 @@ export default function LoginScreen({navigation}) {
    */
   const [isSelected, setSelection] = React.useState(false);
   const onPress = () => setSelection(()=>!isSelected);
+  const [__userID, setUserID] = React.useState("");
+  const [__userPassword, setUserPassword] = React.useState("");
 
+  const loginOnPress = () => {
+    if(__userID == "User1234" && __userPassword == "1234"){
+      navigation.navigate('Main',{
+        data: {
+          userID : {__userID},
+          password : {__userPassword}
+        }
+      })
+    }else{
+      Alert.alert("로그인 오류","아이디와 패스워드가 다릅니다")
+    }
+  };
+
+  /*
   if (Platform.OS === 'web') {
     return (
       <View></View>
     );
   }
   else{
-    return (
-      <View style={loginStyle.container}>
-        <ImageBackground
-          source={IMG_BACKGROUND}
-          style={{width: '100%', height: '100%'}}>
-          <View style={loginStyle.Top}>
-            <Text style={loginStyle.TitleText} >건국대학교</Text>
-            <Text style={loginStyle.TitleText} >수의과대학</Text>
-            <Text style={loginStyle.TitleText} >강의실대여</Text>
-          </View>
-          <View style={loginStyle.Mid}>
-            <TextInput style={loginStyle.InputTextBox}>
-              <Text style={loginStyle.InputText}>    아이디(ID)</Text>
-            </TextInput>
-            <TextInput style={loginStyle.InputTextBox}>
-              <Text style={loginStyle.InputText}>    비밀번호(Password)</Text>
-            </TextInput>
-            <TouchableOpacity 
-              style={loginStyle.Button}
-              onPress={() => navigation.navigate('Main')}
-            >
-              <Text style={loginStyle.ButtonText}>로그인(Login)</Text>
-            </TouchableOpacity>
-            
-            <View style={loginStyle.AutoLogin}>
-              <CheckBox
-                disabled={false}
-                value={isSelected}
-                onValueChange={setSelection}
-                boxType='square'
-                style={loginStyle.CheckBox}
-                onCheckColor={colors.kuDarkGreen}
-                onTintColor={colors.kuDarkGreen}
-                />
-              <TouchableOpacity onPress={onPress}>
-                <Text style={loginStyle.AutoLoginText}>자동 로그인(Auto Login) / </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('SignUp')}
-              >
-                <Text style={loginStyle.NewAccButton}>회원가입(Sign Up)</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={loginStyle.Bot}>
-          </View>
-        </ImageBackground>
-      </View>
-    );
   }
+    */
+  return (
+    <View style={loginStyle.container}>
+      <ImageBackground
+        source={IMG_BACKGROUND}
+        style={{width: '100%', height: '100%'}}>
+        <View style={loginStyle.Top}>
+          <Text style={loginStyle.TitleText} >건국대학교</Text>
+          <Text style={loginStyle.TitleText} >수의과대학</Text>
+          <Text style={loginStyle.TitleText} >강의실대여</Text>
+        </View>
+        <View style={loginStyle.Mid}>
+          <View style={loginStyle.InputTextBox}>
+            <TextInput
+              style={loginStyle.InputText}
+              placeholder="아이디(ID)"
+              value={__userID}
+              onChangeText={setUserID}
+            >
+            </TextInput>
+          </View>
+          <View style={loginStyle.InputTextBox}>
+            <TextInput 
+              style={loginStyle.InputText}
+              placeholder="비밀번호(Password)"
+              value={__userPassword}
+              onChangeText={setUserPassword}
+            >
+            </TextInput>
+          </View>
+          <TouchableOpacity 
+            style={loginStyle.Button}
+            //onPress={() => navigation.navigate('Main')}
+            onPress={() => loginOnPress()}
+          >
+            <Text style={loginStyle.ButtonText}>로그인(Login)</Text>
+          </TouchableOpacity>
+          
+          <View style={loginStyle.AutoLogin}>
+            <CheckBox
+              disabled={false}
+              value={isSelected}
+              onValueChange={setSelection}
+              boxType='square'
+              style={loginStyle.CheckBox}
+              onCheckColor={colors.kuDarkGreen}
+              onTintColor={colors.kuDarkGreen}
+              />
+            <TouchableOpacity onPress={onPress}>
+              <Text style={loginStyle.AutoLoginText}>자동 로그인(Auto Login) / </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              //onPress={loginOnPress()}
+              onPress={() => navigation.navigate('SignUp')}
+            >
+              <Text style={loginStyle.NewAccButton}>회원가입(Sign Up)</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={loginStyle.Bot}>
+        </View>
+      </ImageBackground>
+    </View>
+  );
 }
 
 const loginStyle = StyleSheet.create({
@@ -105,6 +136,7 @@ const loginStyle = StyleSheet.create({
   },
   InputTextBox: {
     alignSelf: 'center',
+    justifyContent: 'center',
     backgroundColor: colors.kuLightGray,
     width: 300,
     height: 65,
@@ -118,6 +150,7 @@ const loginStyle = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: RFPercentage(2),
     marginLeft: 20,
+    marginRight: 20,
   },
   Button: {
     alignSelf: 'center',
