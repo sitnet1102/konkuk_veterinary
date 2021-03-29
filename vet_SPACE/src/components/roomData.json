@@ -1,0 +1,82 @@
+{
+    "106" : {
+        "room" : "106",
+        "sorting" : "실습실",
+        "building" : "수의학관"
+    },
+    "107" : {
+        "room" : "107",
+        "sorting" : "실습실",
+        "building" : "수의학관"
+    },
+    "207" : {
+        "room" : "207",
+        "sorting" : "강의실",
+        "building" : "수의학관"
+    },
+    "216" : {
+        "room" : "216",
+        "sorting" : "실습실",
+        "building" : "수의학관"
+    },
+    "306" : {
+        "room" : "306",
+        "sorting" : "강의실",
+        "building" : "수의학관"
+    },
+    "307" : {
+        "room" : "307",
+        "sorting" : "강의실",
+        "building" : "수의학관"
+    },
+    "408" : {
+        "room" : "408",
+        "sorting" : "실습실",
+        "building" : "수의학관"
+    },
+    "409" : {
+        "room" : "409",
+        "sorting" : "강의실",
+        "building" : "수의학관"
+    },
+    "410" : {
+        "room" : "410",
+        "sorting" : "실습실",
+        "building" : "수의학관"
+    },
+    "432" : {
+        "room" : "432",
+        "sorting" : "세미나실",
+        "building" : "수의학관"
+    },
+    "509" : {
+        "room" : "509",
+        "sorting" : "실습실",
+        "building" : "수의학관"
+    },
+    "510" : {
+        "room" : "510",
+        "sorting" : "강의실",
+        "building" : "수의학관"
+    },
+    "511" : {
+        "room" : "511",
+        "sorting" : "강의실",
+        "building" : "수의학관"
+    },
+    "523" : {
+        "room" : "523",
+        "sorting" : "세미나실",
+        "building" : "수의학관"
+    },
+    "710-3" : {
+        "room" : "710-3",
+        "sorting" : "강의실",
+        "building" : "동물생명과학관"
+    },
+    "710-4" : {
+        "room" : "710-4",
+        "sorting" : "강의실",
+        "building" : "동물생명과학관"
+    }
+}
