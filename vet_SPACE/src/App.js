@@ -116,6 +116,7 @@ function App() {
             headerStyle: {
               backgroundColor: colors.kuDarkGreen,
             },
+            headerLeft: null,
             headerRight: () => (
               MainHeader()
             ),
