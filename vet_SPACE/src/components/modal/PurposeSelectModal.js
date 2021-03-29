@@ -15,6 +15,7 @@ export default function PurposeSelectModal(props) {
     "세미나",
     "간담회",
     "연구보고",
+    "행사",
   ];
   return(
     <View style={purposeselectmodalStyle.container}>
