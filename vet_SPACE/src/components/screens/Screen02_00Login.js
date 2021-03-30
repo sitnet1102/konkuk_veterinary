@@ -4,10 +4,11 @@ import * as React from 'react';
 import {View, Text, TextInput, ImageBackground, Platform, StyleSheet, Alert} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
-import { colors } from '../../utils/Styles';
-
-import {IMG_BACKGROUND} from '../../utils/icons';
 import { RFPercentage } from 'react-native-responsive-fontsize';
+
+import { colors } from '../../utils/Styles';
+import {IMG_BACKGROUND} from '../../utils/icons';
+//import userData from '../../data/userData';
 
 export default function LoginScreen({navigation}) {
   /**
@@ -32,20 +33,15 @@ export default function LoginScreen({navigation}) {
           password : {__userPassword}
         }
       })
+    }else if(__userID.trim() == ""){
+      Alert.alert("로그인 오류","아이디를 입력해주세요");
+    }else if(__userPassword.trim() == ""){
+      Alert.alert("로그인 오류","패스워드를 입력해주세요");
     }else{
-      Alert.alert("로그인 오류","아이디와 패스워드가 다릅니다")
+      Alert.alert("로그인 오류","아이디와 패스워드가 다릅니다");
     }
   };
 
-  /*
-  if (Platform.OS === 'web') {
-    return (
-      <View></View>
-    );
-  }
-  else{
-  }
-    */
   return (
     <View style={loginStyle.container}>
       <ImageBackground
@@ -77,7 +73,6 @@ export default function LoginScreen({navigation}) {
           </View>
           <TouchableOpacity 
             style={loginStyle.Button}
-            //onPress={() => navigation.navigate('Main')}
             onPress={() => loginOnPress()}
           >
             <Text style={loginStyle.ButtonText}>로그인(Login)</Text>
@@ -97,7 +92,6 @@ export default function LoginScreen({navigation}) {
               <Text style={loginStyle.AutoLoginText}>자동 로그인(Auto Login) / </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              //onPress={loginOnPress()}
               onPress={() => navigation.navigate('SignUp')}
             >
               <Text style={loginStyle.NewAccButton}>회원가입(Sign Up)</Text>
