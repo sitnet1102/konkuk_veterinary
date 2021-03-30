@@ -10,13 +10,13 @@ import { RFPercentage } from 'react-native-responsive-fontsize';
 
 export default function SignUpScreen({navigation}){
   /**
-      1. 회원 가입 버튼 눌렀을 때 처리해야 하는 내요 
-        1.1. 중복 확인이 된 아이디 인지 확인
-        1.2. 비밀번호, 비밀번호 확인 이 서로 같은지 확인
-        1.3. 비밀번호가 올바른 형식인지 확인
-        1.4. 모든 정보가 다 들어가 있는지 확인 
-      2. 텍스트 입력 박스 선택시 화면 찌그러지는 현상 수정 필요 
-   */
+    1. 회원 가입 버튼 눌렀을 때 처리해야 하는 내요 
+      1.1. 중복 확인이 된 아이디 인지 확인
+      //1.2. 비밀번호, 비밀번호 확인 이 서로 같은지 확인
+      1.3. 비밀번호가 올바른 형식인지 확인
+      //1.4. 모든 정보가 다 들어가 있는지 확인 
+    2. 텍스트 입력 박스 선택시 화면 찌그러지는 현상 수정 필요 
+  */
   const [__id, setId] = React.useState("");
   const [__password, setPassword] = React.useState("");
   const [__password2, setPassword2] = React.useState("");
@@ -55,15 +55,17 @@ export default function SignUpScreen({navigation}){
   };
 
   const signUpOnPress = () => {
-    if(idDuplication == false){
+    if(__id.trim() == ""){
+      Alert.alert("아이디 오류", "아이디를 입력해주세요.");
+    }else if(idDuplication == false){
       Alert.alert("아이디 오류", "아이디 중복 체크를 해주세요.");
-    }else if(!(__password != "" && __password == __password2)){
+    }else if(!(__password.trim() != "" && __password == __password2)){
       Alert.alert("패스워드 오류","비밀번호가 다릅니다.");
-    }else if(__name == ""){
+    }else if(__name.trim() == ""){
       Alert.alert("이름 오류","이름을 입력해주세요.");
-    }else if(__phone == ""){
+    }else if(__phone.trim() == ""){
       Alert.alert("전화번호 오류","전화번호를 입력해주세요.");
-    }else if(__number == ""){
+    }else if(__number.trim() == ""){
       Alert.alert("번호 오류","학번 또는 연구원번호 또는 사번을 입력해주세요.");
     }else if(__sort == ""){
       Alert.alert("분류 오류","분류를 선택해주세요.");
