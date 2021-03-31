@@ -1,6 +1,8 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
+import {createStackNavigator} from '@react-navigation/stack';
+
 import {colors} from '../../utils/Styles';
 
 import StartScreen from '../screens/Screen01_00Start';
