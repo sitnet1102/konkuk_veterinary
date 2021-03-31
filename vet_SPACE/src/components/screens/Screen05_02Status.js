@@ -8,7 +8,7 @@ import { Table, Row} from 'react-native-table-component';
 
 import {colors} from '../../utils/Styles';
 
-import DateSelectModal from '../modal/DateSelectModal';
+import DateSelectModal from '../modal/DateSelectModal2';
 import ClassificationSelectModal from '../modal/ClassificationSelectModal';
 import LocationSelectModal from '../modal/LocationSelectModal';
 
