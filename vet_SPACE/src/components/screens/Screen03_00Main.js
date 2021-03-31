@@ -25,19 +25,28 @@ export default function MainScreen({navigation}){
         <View style={mainStyle.Mid}>
           <TouchableOpacity 
             style={mainStyle.TouchBox}
-            onPress={() => navigation.navigate('DateLoca')}
+            onPress={() => navigation.navigate('RoomReservNavigator', {
+                screen: 'DateLoca',
+              }
+            )}
             >
             <Text style={mainStyle.SelectTitleText}>강의실예약</Text>
           </TouchableOpacity>
           <TouchableOpacity 
             style={mainStyle.TouchBox}
-            onPress={() => navigation.navigate('ReservCheck')}
+            onPress={() => navigation.navigate('ReservCheckNavigator', {
+                screen: 'ReservCheck',
+              }
+            )}
             >
             <Text style={mainStyle.SelectTitleText}>예약확인</Text>
           </TouchableOpacity>
           <TouchableOpacity 
             style={mainStyle.TouchBox}
-            onPress={() => navigation.navigate('RoomInfo')}
+            onPress={() => navigation.navigate('RoomInfoNavigator', {
+                screen: 'RoomInfo', 
+              }
+            )}
           >
             <Text style={mainStyle.SelectTitleText}>강의실정보</Text>
           </TouchableOpacity>

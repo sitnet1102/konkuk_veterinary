@@ -27,10 +27,16 @@ export default function LoginScreen({navigation}) {
 
   const loginOnPress = () => {
     if(__userID == "User1234" && __userPassword == "1234"){
-      navigation.navigate('Main',{
-        data: {
-          userID : {__userID},
-          password : {__userPassword}
+      navigation.navigate('Drawer',{
+        screen: 'MainNavigator', 
+        params: {
+          screen: "Main",
+          params: {
+            data: {
+              userID : {__userID},
+              password : {__userPassword}
+            }
+          }
         }
       })
     }else if(__userID.trim() == ""){
