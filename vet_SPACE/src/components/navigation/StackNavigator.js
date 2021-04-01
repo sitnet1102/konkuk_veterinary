@@ -15,7 +15,10 @@ const Stack = createStackNavigator();
 
 export default function StackNavigator(){
   return (
-  <Stack.Navigator initialRouteName="Login">
+  <Stack.Navigator 
+    initialRouteName="Login"
+    screenOptions={{gestureEnabled: false}}
+  >
       <Stack.Screen
         name="Start"
         component={StartScreen}
