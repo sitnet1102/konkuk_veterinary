@@ -14,6 +14,6 @@ export const colors = {
     kuBeige: 'rgb(240,244,218)',
     kuBlack: 'rgb(0,0,0)',
     kuWhite: 'rgb(255,255,255)',
+    lightGray: 'rgb(220,220,220)',
+    gray: 'rgb(200,200,200)',
 };
-
-// import { colors } from '../../utils/Styles';

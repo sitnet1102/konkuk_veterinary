@@ -12,15 +12,21 @@ import { RFPercentage } from 'react-native-responsive-fontsize';
 
 const Drawer = createDrawerNavigator();
 
-function MenuDrawer(props, {navigation}) {
+function MenuDrawer(props) {
   const footerText = {
     address1: "서울특별시 광진구 능동로 120",
     address2: "건국대학교 수의학관 201호 행정실",
     tel1: "Tel : 02-450-3039",
     tel2: "Fax : 02-450-3037",
     version: "Version. 1.0.0",
-    copyright1: "COPYRIGHT ALL RIGHT RESERVED.",
+    copyright1: "COPYRIGHT ⓒALL RIGHT RESERVED.",
     copyright2: "COLLEGE OF VETERINARY, KONKUK UNIVERSITY",
+  };
+  const data = {
+    id: "User1234",
+    name: "홍길동",
+    password: "1234",
+
   };
 
   return (
@@ -37,14 +43,26 @@ function MenuDrawer(props, {navigation}) {
             <Image source={IC_BACK}/>
           </TouchableOpacity>
         </View>
-        <View style={menudrawerStyle.idBox}>
+        <View style={menudrawerStyle.mid}>
+          <View style={menudrawerStyle.idBox}>
+            <Text style={menudrawerStyle.idText}>{data.name} 님</Text>
+            <View style={menudrawerStyle.box2}></View>
+            <TouchableOpacity 
+              style={menudrawerStyle.logOut}
+              onPress={() => props.navigation.navigate('Login')}
+            >
+              <Text style={menudrawerStyle.logOutText}>로그아웃</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={menudrawerStyle.line}></View>
         </View>
         <View style={menudrawerStyle.box}>
         </View>
         <DrawerItem
-          label="내 정보"
           style={menudrawerStyle.item}
-          textStyle={menudrawerStyle.itemText}
+          label="내 정보"
+          labelStyle={menudrawerStyle.label}
+          //icon=
           onPress={() => props.navigation.navigate('MainNavigator', {
             screen: "MyInfo",
           })}
@@ -52,6 +70,7 @@ function MenuDrawer(props, {navigation}) {
         <DrawerItem
           style={menudrawerStyle.item}
           label="나의 강의실 예약"
+          labelStyle={menudrawerStyle.label}
           onPress={() => props.navigation.navigate("MainNavigator", {
             screen: "ReservCheckNavigator",
             params: {
@@ -59,11 +78,28 @@ function MenuDrawer(props, {navigation}) {
             }
           })}
         />
+        <DrawerItem
+          style={menudrawerStyle.item}
+          label="공지사항"
+          labelStyle={menudrawerStyle.label}
           //onPress={() => }
-          />
+        />
         <DrawerItem
           style={menudrawerStyle.item}
           label="이용 방법"
+          labelStyle={menudrawerStyle.label}
+          //onPress={() => }
+        />
+        <DrawerItem
+          style={menudrawerStyle.item}
+          label="자주 묻는 질문"
+          labelStyle={menudrawerStyle.label}
+          //onPress={() => }
+        />
+        <DrawerItem
+          style={menudrawerStyle.item}
+          label="도움말"
+          labelStyle={menudrawerStyle.label}
           //onPress={() => }
         />
       </DrawerContentScrollView>
@@ -84,32 +120,62 @@ function MenuDrawer(props, {navigation}) {
 const menudrawerStyle = StyleSheet.create({
   safearea: {
     flex: 1,
+    backgroundColor: colors.gray,
   },
   container: {
-    //backgroundColor: colors.kuDarkGray,
   },
   top: {
     height: 50,
     backgroundColor: colors.kuDarkGreen,
   },
-  idBox: {
+  mid: {
     height: 100,
-    backgroundColor: colors.kuLightGray,
+    backgroundColor: colors.lightGray,
+  },
+  idBox: {
+    marginTop: 30,
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  line: {
+    height: 2,
+    backgroundColor: colors.kuBlack,
+    marginHorizontal: 12,
+    marginTop: 10,
+  },
+  idText:{
+    fontSize: RFPercentage(3),
+    fontWeight: 'bold',
+    marginLeft: 20,
+  },
+  box2: {
+    flex: 1,
+  },
+  logOut: {
+    marginRight: 15,
+  },
+  logOutText: {
+    color: colors.kuDarkGreen,
+    fontSize: RFPercentage(2),
+    fontWeight: '400',
   },
   bot: {
     alignSelf: 'stretch',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    //height: RFPercentage(18),
     height: 130,
-    backgroundColor: colors.kuOrange,
-    //marginBottom: 10,
+    backgroundColor: colors.kuCoolGray,
   },
   box: {
     height: 10,
   },
   item: {
-    backgroundColor: colors.kuCoolGray,
+    backgroundColor: colors.lightGray,
+  },
+  label: {
+    color: colors.kuBlack,
+    fontSize: RFPercentage(3),
+    fontWeight: '500',
   },
   text: {
     fontSize: RFPercentage(1.3),
