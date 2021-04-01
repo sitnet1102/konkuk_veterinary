@@ -32,7 +32,7 @@ function MenuDrawer(props, {navigation}) {
         <View style={menudrawerStyle.top}>
           <TouchableOpacity 
             style={menudrawerStyle.touchBox}
-            //onPress={() => navigation.toggleDrawer()}
+            onPress={() => props.navigation.toggleDrawer()}
           >
             <Image source={IC_BACK}/>
           </TouchableOpacity>
@@ -45,11 +45,20 @@ function MenuDrawer(props, {navigation}) {
           label="내 정보"
           style={menudrawerStyle.item}
           textStyle={menudrawerStyle.itemText}
-          //onPress={() => }
-          />
+          onPress={() => props.navigation.navigate('MainNavigator', {
+            screen: "MyInfo",
+          })}
+        />
         <DrawerItem
           style={menudrawerStyle.item}
           label="나의 강의실 예약"
+          onPress={() => props.navigation.navigate("MainNavigator", {
+            screen: "ReservCheckNavigator",
+            params: {
+              screen: "List",
+            }
+          })}
+        />
           //onPress={() => }
           />
         <DrawerItem
