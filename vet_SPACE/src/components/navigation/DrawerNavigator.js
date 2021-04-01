@@ -9,6 +9,7 @@ import MainNavigator from './MainNavigator';
 import { colors } from '../../utils/Styles';
 import {IC_BACK} from '../../utils/icons';
 import { RFPercentage } from 'react-native-responsive-fontsize';
+import packageJson from '../../../package.json';
 
 const Drawer = createDrawerNavigator();
 
@@ -18,7 +19,7 @@ function MenuDrawer(props) {
     address2: "건국대학교 수의학관 201호 행정실",
     tel1: "Tel : 02-450-3039",
     tel2: "Fax : 02-450-3037",
-    version: "Version. 1.0.0",
+    version: "Version. ",
     copyright1: "COPYRIGHT ⓒALL RIGHT RESERVED.",
     copyright2: "COLLEGE OF VETERINARY, KONKUK UNIVERSITY",
   };
@@ -96,19 +97,13 @@ function MenuDrawer(props) {
           labelStyle={menudrawerStyle.label}
           //onPress={() => }
         />
-        <DrawerItem
-          style={menudrawerStyle.item}
-          label="도움말"
-          labelStyle={menudrawerStyle.label}
-          //onPress={() => }
-        />
       </DrawerContentScrollView>
       <View style={menudrawerStyle.bot}>
         <Text style={menudrawerStyle.text1}>{footerText.address1}</Text>
         <Text style={menudrawerStyle.text1}>{footerText.address2}</Text>
         <Text style={menudrawerStyle.text1}>{footerText.tel1}</Text>
         <Text style={menudrawerStyle.text1}>{footerText.tel2}</Text>
-        <Text style={menudrawerStyle.text}>{footerText.version}</Text>
+        <Text style={menudrawerStyle.text}>{footerText.version+packageJson.version}</Text>
         <Text style={menudrawerStyle.text}>{footerText.copyright1}</Text>
         <Text style={menudrawerStyle.text}>{footerText.copyright2}</Text>
         <Text></Text>

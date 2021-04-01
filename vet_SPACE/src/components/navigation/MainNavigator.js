@@ -29,7 +29,6 @@ export default function MainNavigator({navigation}) {
         name="Main"
         component={MainScreen}
         options={{
-          //drawerIcon: null,
           headerShown: true,
           headerStyle: {
             backgroundColor: colors.kuDarkGreen,
