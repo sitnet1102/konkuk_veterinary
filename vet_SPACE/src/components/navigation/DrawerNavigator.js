@@ -7,7 +7,7 @@ import {createDrawerNavigator, DrawerContentScrollView, DrawerItem} from '@react
 
 import MainNavigator from './MainNavigator';
 import { colors } from '../../utils/Styles';
-import {IC_BACK} from '../../utils/icons';
+import {IC_BACK, IC_FAQ, IC_HELP, IC_LOUDSPEAKER, IC_NOTEBOOK, IC_PROFILE} from '../../utils/icons';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import packageJson from '../../../package.json';
 
@@ -63,7 +63,13 @@ function MenuDrawer(props) {
           style={menudrawerStyle.item}
           label="내 정보"
           labelStyle={menudrawerStyle.label}
-          //icon=
+          icon={({ focused, color, size }) => (
+            <Image
+              source={IC_PROFILE}
+              style={{height: size, width: size}}
+              resizeMode="contain"
+            />
+          )}
           onPress={() => props.navigation.navigate('MainNavigator', {
             screen: "MyInfo",
           })}
@@ -72,6 +78,13 @@ function MenuDrawer(props) {
           style={menudrawerStyle.item}
           label="나의 강의실 예약"
           labelStyle={menudrawerStyle.label}
+          icon={({ focused, color, size }) => (
+            <Image
+              source={IC_NOTEBOOK}
+              style={{height: size, width: size}}
+              resizeMode="contain"
+            />
+          )}
           onPress={() => props.navigation.navigate("MainNavigator", {
             screen: "ReservCheckNavigator",
             params: {
@@ -83,18 +96,39 @@ function MenuDrawer(props) {
           style={menudrawerStyle.item}
           label="공지사항"
           labelStyle={menudrawerStyle.label}
-          //onPress={() => }
-        />
-        <DrawerItem
-          style={menudrawerStyle.item}
-          label="이용 방법"
-          labelStyle={menudrawerStyle.label}
+          icon={({ focused, color, size }) => (
+            <Image
+              source={IC_LOUDSPEAKER}
+              style={{height: size, width: size}}
+              resizeMode="contain"
+            />
+          )}
           //onPress={() => }
         />
         <DrawerItem
           style={menudrawerStyle.item}
           label="자주 묻는 질문"
           labelStyle={menudrawerStyle.label}
+          icon={({ focused, color, size }) => (
+            <Image
+              source={IC_FAQ}
+              style={{height: size, width: size}}
+              resizeMode="contain"
+            />
+          )}
+          //onPress={() => }
+        />
+        <DrawerItem
+          style={menudrawerStyle.item}
+          label="도움말"
+          labelStyle={menudrawerStyle.label}
+          icon={({ focused, color, size }) => (
+            <Image
+              source={IC_HELP}
+              style={{height: size, width: size}}
+              resizeMode="contain"
+            />
+          )}
           //onPress={() => }
         />
       </DrawerContentScrollView>
@@ -169,7 +203,7 @@ const menudrawerStyle = StyleSheet.create({
   },
   label: {
     color: colors.kuBlack,
-    fontSize: RFPercentage(3),
+    fontSize: RFPercentage(2.9),
     fontWeight: '500',
   },
   text: {
