@@ -2,14 +2,15 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 
 import {View, Text, StyleSheet,SafeAreaView, TouchableOpacity, Image} from 'react-native';
-
 import {createDrawerNavigator, DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
+import { RFPercentage } from 'react-native-responsive-fontsize';
 
 import MainNavigator from './MainNavigator';
+
+import packageJson from '../../../package.json';
 import { colors } from '../../utils/Styles';
 import {IC_BACK, IC_FAQ, IC_HELP, IC_LOUDSPEAKER, IC_NOTEBOOK, IC_PROFILE} from '../../utils/icons';
-import { RFPercentage } from 'react-native-responsive-fontsize';
-import packageJson from '../../../package.json';
+import {IMG_KULOGO, IC_SETTING} from '../../utils/icons';
 
 const Drawer = createDrawerNavigator();
 
@@ -39,25 +40,27 @@ function MenuDrawer(props) {
           <Image source={IC_BACK}/>
         </TouchableOpacity>
       </View>
+      <View style={menudrawerStyle.mid}>
+        <View style={menudrawerStyle.idBox}>
+          <Image 
+            style={menudrawerStyle.image}
+            source={IMG_KULOGO}
+          />
+          <Text style={menudrawerStyle.idText}>{data.name} 님</Text>
+          <View style={menudrawerStyle.box2}></View>
+          <TouchableOpacity 
+            style={menudrawerStyle.logOut}
+            onPress={() => props.navigation.navigate('Login')}
+          >
+            <Text style={menudrawerStyle.logOutText}>로그아웃</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={menudrawerStyle.line}></View>
+      </View>
       <DrawerContentScrollView {...props}
         style={menudrawerStyle.container}
         //scrollEnabled={false}
       >
-        <View style={menudrawerStyle.mid}>
-          <View style={menudrawerStyle.idBox}>
-            <Text style={menudrawerStyle.idText}>{data.name} 님</Text>
-            <View style={menudrawerStyle.box2}></View>
-            <TouchableOpacity 
-              style={menudrawerStyle.logOut}
-              onPress={() => props.navigation.navigate('Login')}
-            >
-              <Text style={menudrawerStyle.logOutText}>로그아웃</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={menudrawerStyle.line}></View>
-        </View>
-        <View style={menudrawerStyle.box}>
-        </View>
         <DrawerItem
           style={menudrawerStyle.item}
           label="내 정보"
@@ -165,6 +168,12 @@ const menudrawerStyle = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
+  image: {
+    marginLeft: 15,
+    width: 50,
+    height: 50,
+    resizeMode: 'stretch',
+  },
   line: {
     height: 2,
     backgroundColor: colors.kuBlack,
@@ -174,7 +183,7 @@ const menudrawerStyle = StyleSheet.create({
   idText:{
     fontSize: RFPercentage(3),
     fontWeight: 'bold',
-    marginLeft: 20,
+    marginLeft: 10,
   },
   box2: {
     flex: 1,
@@ -193,9 +202,6 @@ const menudrawerStyle = StyleSheet.create({
     justifyContent: 'flex-end',
     height: 130,
     backgroundColor: colors.kuCoolGray,
-  },
-  box: {
-    height: 10,
   },
   item: {
     backgroundColor: colors.lightGray,
