@@ -131,8 +131,9 @@ const loginStyle = StyleSheet.create({
   },
   TitleText: {
     fontWeight: 'bold',
-    fontSize: 40,
-    lineHeight: 48,
+    fontSize: RFPercentage(6),
+    lineHeight: RFPercentage(8),
+    fontFamily: 'Biggrae-Bold',
   },
   InputTextBox: {
     alignSelf: 'center',

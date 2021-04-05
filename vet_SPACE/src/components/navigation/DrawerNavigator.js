@@ -27,23 +27,22 @@ function MenuDrawer(props) {
     id: "User1234",
     name: "홍길동",
     password: "1234",
-
   };
 
   return (
     <SafeAreaView style={menudrawerStyle.safearea}>
+      <View style={menudrawerStyle.top}>
+        <TouchableOpacity 
+          style={menudrawerStyle.touchBox}
+          onPress={() => props.navigation.toggleDrawer()}
+        >
+          <Image source={IC_BACK}/>
+        </TouchableOpacity>
+      </View>
       <DrawerContentScrollView {...props}
         style={menudrawerStyle.container}
-        scrollEnabled={false}
+        //scrollEnabled={false}
       >
-        <View style={menudrawerStyle.top}>
-          <TouchableOpacity 
-            style={menudrawerStyle.touchBox}
-            onPress={() => props.navigation.toggleDrawer()}
-          >
-            <Image source={IC_BACK}/>
-          </TouchableOpacity>
-        </View>
         <View style={menudrawerStyle.mid}>
           <View style={menudrawerStyle.idBox}>
             <Text style={menudrawerStyle.idText}>{data.name} 님</Text>
