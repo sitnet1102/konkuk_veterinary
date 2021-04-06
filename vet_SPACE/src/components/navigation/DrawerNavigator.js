@@ -10,7 +10,7 @@ import MainNavigator from './MainNavigator';
 import packageJson from '../../../package.json';
 import { colors } from '../../utils/Styles';
 import {IC_BACK, IC_FAQ, IC_HELP, IC_LOUDSPEAKER, IC_NOTEBOOK, IC_PROFILE} from '../../utils/icons';
-import {IMG_KULOGO, IC_SETTING} from '../../utils/icons';
+import {IMG_KULOGO} from '../../utils/icons';
 
 const Drawer = createDrawerNavigator();
 
