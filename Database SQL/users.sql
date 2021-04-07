@@ -11,12 +11,19 @@ create table users(
 	id varchar(20) primary key,
     password varchar(20) not null,
     student_id varchar(20) not null,
-    user_type int not null
+    user_type int not null,
+    phone_number varchar(50) not null,
+    name varchar(20) not null
 );
+
+alter table users add phone_number varchar(50);
+alter table users add name varchar(20);
+alter table users modify column phone_number varchar(50) not null;
+alter table users modify name varchar(20) not null;
 
 show tables;
 
-drop table users; 
+-- drop table users; 
 
 desc users;	-- 테이블 정보 확인 
 
