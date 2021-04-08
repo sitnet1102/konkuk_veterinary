@@ -22,7 +22,7 @@ export default function TimeSelectScreen({route, navigation}){
     9. 테이블 데이터베이스 연동 
     10. 메뉴 연결
     //11. 홈 버튼 연결
-   */
+  */
   
   const [startTimeSelectModal, setStartTimeSelectModal] = React.useState(false);
   const [startTimeData, setStartTimeData] = React.useState('선 택');
