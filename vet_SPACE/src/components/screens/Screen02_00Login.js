@@ -70,6 +70,7 @@ export default function LoginScreen({navigation}) {
           </View>
           <View style={loginStyle.InputTextBox}>
             <TextInput 
+              secureTextEntry={true}
               style={loginStyle.InputText}
               placeholder="비밀번호(Password)"
               value={__userPassword}
