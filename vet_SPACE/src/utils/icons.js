@@ -9,7 +9,10 @@ export const IC_HELP = require('../../assets/icons/help.png');
 export const IC_LOUDSPEAKER = require('../../assets/icons/loudSpeaker.png');
 export const IC_NOTEBOOK = require('../../assets/icons/notebook.png');
 export const IC_PROFILE = require('../../assets/icons/profile.png');
+export const IC_PREVIOUS = require('../../assets/icons/previous.png');
 /*
+export const IC_LOGOUT = require('../../assets/icons/undo.png');
+export const IC_LOGOUT = require('../../assets/icons/logout.png');
 export const IC_HOME1 = require('../../assets/icons/home1.png');
 export const IC_MENU1 = require('../../assets/icons/menu1.png');
 export const IC_HOME2 = require('../../assets/icons/home2.png');

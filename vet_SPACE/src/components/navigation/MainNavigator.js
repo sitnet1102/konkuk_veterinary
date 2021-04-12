@@ -6,7 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {colors} from '../../utils/Styles';
 
 import MainScreen from '../screens/Screen03_00Main';
-import MyInfoScreen from '../screens/Screen07_03MyInfo';
+import MyInfoScreen from '../screens/Screen07_01MyInfo';
 
 import RoomReservNavigator from './RoomReservNavigator';
 import ReservCheckNavigator from './ReservCheckNavigator';
