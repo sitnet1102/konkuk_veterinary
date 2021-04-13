@@ -74,12 +74,17 @@ export default function TimeSelectScreen({route, navigation}){
     tableTitle: [route.params.data.dateData + "\n" + route.params.data.locaData + "호 예약 내역"],
     widthArr: [370],
     divisionArr: ['시간', '내용'],
-    widthArr2: [100,270],
-    widthArr3: [100,270],
+    widthArr2: [115,255],
+    widthArr3: [115,255],
   };
   const timeTableData = [];
+  const tablestyle = [];
+  let num = 0;
   for(let i = 0;i<14; i+=1){
-    const rowData = [];
+    const rowData1 = [];
+    const rowData2 = [];
+    const rowData3 = [];
+    const rowData4 = [];
     const tmp = i+8;
     const tmp2 = i+9;
     if(tmp<10){
@@ -88,15 +93,42 @@ export default function TimeSelectScreen({route, navigation}){
     if(tmp2<10){
       tmp2 = '0'+tmp2;
     }
-    rowData.push(tmp+'00~'+tmp2+'00');
-    rowData.push(i);
-    timeTableData.push(rowData);
+
+    rowData1.push(tmp+':00~'+tmp+':15');
+    rowData1.push(num);
+    timeTableData.push(rowData1);
+    tablestyle.push(0);
+    num ++;
+    rowData2.push(tmp+':15~'+tmp+':30');
+    rowData2.push(num);
+    timeTableData.push(rowData2);
+    tablestyle.push(0);
+    num ++;
+    rowData3.push(tmp+':30~'+tmp+':45');
+    rowData3.push(num);
+    timeTableData.push(rowData3);
+    tablestyle.push(0);
+    num ++;
+    rowData4.push(tmp+':45~'+tmp2+':00');
+    rowData4.push(num);
+    timeTableData.push(rowData4);
+    tablestyle.push(0);
+    num ++;
   }
+  tablestyle[10] = 1;
+  tablestyle[4] = 2;
+  tablestyle[5] = 2;
+  tablestyle[6] = 2;
+  tablestyle[7] = 2;
+  //  timeTableData[4][1] = "hi"
+  timeTableData[4][1] = "홍길동/0900~1100\n세미나/이상원 교수님";
+  timeTableData[5][1] = "홍길동/0900~1100\n세미나/이상원 교수님";
+  timeTableData[6][1] = "홍길동/0900~1100\n세미나/이상원 교수님";
+  timeTableData[7][1] = "홍길동/0900~1100\n세미나/이상원 교수님";
+  timeTableData[10][1] = "예약 희망";
   return (
     <View style={timeSelectStyle.container}>
       <View style={timeSelectStyle.Top}>
-        {//<Text>{route.params.data.dateData + " " + route.params.data.classData + " " + route.params.data.locaData}</Text>
-        }
       </View>
       <View style={timeSelectStyle.Mid}>
         <View style={timeSelectStyle.Time}>
@@ -157,7 +189,13 @@ export default function TimeSelectScreen({route, navigation}){
                     key={index}
                     data={rowData}
                     widthArr={state.widthArr3}
-                    style={[timeSelectStyle.ScrollRow]}
+                    style={
+                      tablestyle[index] ? 
+                      tablestyle[index] === 1 ?
+                      [timeSelectStyle.SelectedRow]
+                      : [timeSelectStyle.ReservedRow]
+                      : [timeSelectStyle.ScrollRow]
+                    }
                     textStyle={timeSelectStyle.SheetText}
                   />
                 ))
@@ -301,6 +339,14 @@ const timeSelectStyle = StyleSheet.create({
   ScrollRow: {
     height: 40,
     backgroundColor: colors.kuLightGray,
+  },
+  SelectedRow: {
+    height: 40,
+    backgroundColor: colors.kuMagenta,
+  },
+  ReservedRow: {
+    height: 40,
+    backgroundColor: colors.kuYellow,
   },
   SheetText: {
     alignSelf: 'center',
