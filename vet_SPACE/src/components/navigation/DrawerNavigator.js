@@ -4,13 +4,17 @@ import * as React from 'react';
 import {View, Text, StyleSheet,SafeAreaView, TouchableOpacity, Image} from 'react-native';
 import {createDrawerNavigator, DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import { RFPercentage } from 'react-native-responsive-fontsize';
+import {WebView} from 'react-native-webview';
 
 import MainNavigator from './MainNavigator';
+import Notice_Link from '../screens/Screen07_03Notice';
+import Question_Link from '../screens/Screen07_04Questions';
+import Help_Link from '../screens/Screen07_05Help';
 
 import packageJson from '../../../package.json';
 import { colors } from '../../utils/Styles';
-import {IC_BACK, IC_FAQ, IC_HELP, IC_LOUDSPEAKER, IC_NOTEBOOK, IC_PROFILE} from '../../utils/icons';
-import {IMG_KULOGO} from '../../utils/icons';
+import {IMG_KULOGO, IC_BACK, IC_FAQ, IC_HELP, IC_LOUDSPEAKER, IC_NOTEBOOK, IC_PROFILE} from '../../utils/icons';
+
 
 const Drawer = createDrawerNavigator();
 
@@ -29,6 +33,13 @@ function MenuDrawer(props) {
     name: "홍길동",
     password: "1234",
   };
+  /*
+  const url_link = {
+    notice: 'https://www.notion.so/9d5cafd0076843f792fc332ee4a6853c?v=cc61cf79e919472ea3b674635e9be97f',
+    question: "https://www.notion.so/a894d3c16211427383c035ae9c3a2796?v=1ba256da5eda4603b10ba793a3916caa",
+    help: "https://www.notion.so/d3abc320cc704c5893d498f4175128e6?v=2b56c4eb9e7a4a72a9f90986748695a2",
+  };
+  */
 
   return (
     <SafeAreaView style={menudrawerStyle.safearea}>
@@ -105,7 +116,7 @@ function MenuDrawer(props) {
               resizeMode="contain"
             />
           )}
-          //onPress={() => }
+          onPress={() => props.navigation.navigate("Notice")}
         />
         <DrawerItem
           style={menudrawerStyle.item}
@@ -118,7 +129,7 @@ function MenuDrawer(props) {
               resizeMode="contain"
             />
           )}
-          //onPress={() => }
+          onPress={() => props.navigation.navigate("Question")}
         />
         <DrawerItem
           style={menudrawerStyle.item}
@@ -131,7 +142,7 @@ function MenuDrawer(props) {
               resizeMode="contain"
             />
           )}
-          //onPress={() => }
+          onPress={() => props.navigation.navigate("Help")}
         />
       </DrawerContentScrollView>
       <View style={menudrawerStyle.bot}>
@@ -237,6 +248,18 @@ export default function DrawerNavigator({navigation}) {
       <Drawer.Screen
         name="MainNavigator"
         component={MainNavigator}
+      />
+      <Drawer.Screen
+        name="Notice"
+        component={Notice_Link}
+      />
+      <Drawer.Screen
+        name="Question"
+        component={Question_Link}
+      />
+      <Drawer.Screen
+        name="Help"
+        component={Help_Link}
       />
     </Drawer.Navigator>
   );

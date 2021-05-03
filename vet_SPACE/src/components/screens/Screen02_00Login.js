@@ -70,6 +70,7 @@ export default function LoginScreen({navigation}) {
           </View>
           <View style={loginStyle.InputTextBox}>
             <TextInput 
+              secureTextEntry={true}
               style={loginStyle.InputText}
               placeholder="비밀번호(Password)"
               value={__userPassword}
@@ -97,13 +98,12 @@ export default function LoginScreen({navigation}) {
             <TouchableOpacity onPress={onPress}>
               <Text style={loginStyle.AutoLoginText}>자동 로그인(Auto Login)</Text>
             </TouchableOpacity>
-            {/**
+            <Text> / </Text>
             <TouchableOpacity
               onPress={() => navigation.navigate('SignUp')}
             >
               <Text style={loginStyle.NewAccButton}>회원가입(Sign Up)</Text>
             </TouchableOpacity>
-             */}
           </View>
         </View>
         <View style={loginStyle.Bot}>

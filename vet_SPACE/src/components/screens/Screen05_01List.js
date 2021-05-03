@@ -81,7 +81,10 @@ export default function ListScreen({navigation}) {
         </View>
       </View>
       <View style={listStyle.bot}>
-        <ScrollView style={listStyle.scroll}>
+        <ScrollView 
+          style={listStyle.scroll}
+          persistentScrollbar={true}
+        >
           <Table>
             {
               tableData.map((rowData, index) => (
