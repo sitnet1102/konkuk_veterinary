@@ -31,12 +31,23 @@ export default function RoomInfoDetailScreen() {
   const locationStyleChange = () => {
     setLocationStyle(true);
   };
-
+/**
+  <a href="https://ibb.co/Y7qC2wh">
+  <img src="https://i.ibb.co/7J6fvLK/Kakao-Talk-Photo-2021-04-01-16-40-29.jpg" 
+  alt="Kakao-Talk-Photo-2021-04-01-16-40-29" border="0"></a>
+  <a href="https://ibb.co/s1PhGYq">
+  <img src="https://i.ibb.co/GMJXLSR/Kakao-Talk-Photo-2021-04-01-16-40-42.jpg" 
+  alt="Kakao-Talk-Photo-2021-04-01-16-40-42" border="0"></a>
+ */
   const images = [
-    "https://source.unsplash.com/1024x768/?nature",
-    "https://source.unsplash.com/1024x768/?tree",
-    "https://source.unsplash.com/1024x768/?water",
-    "https://source.unsplash.com/1024x768/?girl",
+    //"https://source.unsplash.com/1024x768/?nature",
+    //"https://source.unsplash.com/1024x768/?tree",
+    //"https://source.unsplash.com/1024x768/?water",
+    //"https://source.unsplash.com/1024x768/?girl",
+    //"https://ifh.cc/g/vxZzuu.jpg",
+    //"https://ifh.cc/g/iL9x8G.jpg",
+    "https://i.ibb.co/7J6fvLK/Kakao-Talk-Photo-2021-04-01-16-40-29.jpg",
+    "https://i.ibb.co/GMJXLSR/Kakao-Talk-Photo-2021-04-01-16-40-42.jpg",
   ];
   const data1 = {
     title: ['호실정보'],

@@ -1,0 +1,219 @@
+[
+    {
+        "prof_name" : "장병준",
+        "prof_rank" : "교수",
+        "prof_major" : "수의해부학,조직학",
+        "office_num" : "3711",
+        "email" : "bjchang@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "김휘율",
+        "prof_rank" : "교수",
+        "prof_major" : "수의외과학",
+        "office_num" : "3710",
+        "email" : "hykim@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "류영수",
+        "prof_rank" : "교수",
+        "prof_major" : "수의병리학",
+        "office_num" : "3719",
+        "email" : "lyoo@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "나승열",
+        "prof_rank" : "교수",
+        "prof_major" : "수의생리학",
+        "office_num" : "4154",
+        "email" : "synah@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "이중복",
+        "prof_rank" : "교수",
+        "prof_major" : "수의전염병학",
+        "office_num" : "3714",
+        "email" : "virus@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "박승용",
+        "prof_rank" : "교수",
+        "prof_major" : "수의면역학",
+        "office_num" : "3713",
+        "email" : "paseyo@konkuk.ac."
+    },
+    {
+        "prof_name" : "정순욱",
+        "prof_rank" : "교수",
+        "prof_major" : "수의외과학",
+        "office_num" : "3670",
+        "email" : "swjeong@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "송창선",
+        "prof_rank" : "교수",
+        "prof_major" : "조류질병학",
+        "office_num" : "3712",
+        "email" : "songcs@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "박희명",
+        "prof_rank" : "교수",
+        "prof_major" : "수의내과학",
+        "office_num" : "4140",
+        "email" : "parkhee@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "서정향",
+        "prof_rank" : "교수",
+        "prof_major" : "수의병리학",
+        "office_num" : "4153",
+        "email" : "jsur@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "최농훈",
+        "prof_rank" : "교수",
+        "prof_major" : "수의공중보건학",
+        "office_num" : "3709",
+        "email" : "nojamaji@hanmail.net"
+    },
+    {
+        "prof_name" : "최인수",
+        "prof_rank" : "교수",
+        "prof_major" : "수의전염병학",
+        "office_num" : "6055",
+        "email" : "ischoi@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "신호철",
+        "prof_rank" : "교수",
+        "prof_major" : "수의약리학",
+        "office_num" : "4056",
+        "email" : "hshin@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "한진수",
+        "prof_rank" : "교수",
+        "prof_major" : "실험동물의학",
+        "office_num" : "6114",
+        "email" : "labvet@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "최양규",
+        "prof_rank" : "교수",
+        "prof_major" : "실험동물의학",
+        "office_num" : "6113",
+        "email" : "yangkyuc@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "엄기동",
+        "prof_rank" : "교수",
+        "prof_major" : "수의방사선 및 영상진단학",
+        "office_num" : "4165",
+        "email" : "eomkd@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "김수현",
+        "prof_rank" : "교수",
+        "prof_major" : "분자면역학",
+        "office_num" : "4086",
+        "email" : "soohyun@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "임현정",
+        "prof_rank" : "교수",
+        "prof_major" : "발생내분비학",
+        "office_num" : "4087",
+        "email" : "hlim@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "서건호",
+        "prof_rank" : "교수",
+        "prof_major" : "수의공중보건학",
+        "office_num" : "4121",
+        "email" : "bracstu3@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "남상섭",
+        "prof_rank" : "교수",
+        "prof_major" : "수의해부학",
+        "office_num" : "3705",
+        "email" : "ssnahm@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "도선희",
+        "prof_rank" : "교수",
+        "prof_major" : "수의임상병리학",
+        "office_num" : "3706",
+        "email" : "shdo@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "강영선",
+        "prof_rank" : "교수",
+        "prof_major" : "선천성면역학",
+        "office_num" : "6023",
+        "email" : "kangyo67@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "이정익",
+        "prof_rank" : "교수",
+        "prof_major" : "재생의학",
+        "office_num" : "6234",
+        "email" : "jeongik@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "이상원",
+        "prof_rank" : "부교수",
+        "prof_major" : "수의미생물학",
+        "office_num" : "0445",
+        "email" : "odssey@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "윤헌영",
+        "prof_rank" : "부교수",
+        "prof_major" : "수의외과학",
+        "office_num" : "0494",
+        "email" : "yoonh@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "윤경아",
+        "prof_rank" : "부교수",
+        "prof_major" : "수의생화학",
+        "office_num" : "3789",
+        "email" : "kayoon@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "김정현",
+        "prof_rank" : "조교수",
+        "prof_major" : "수의내과학",
+        "office_num" : "3715",
+        "email" : "junghyun@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "김준영",
+        "prof_rank" : "부교수",
+        "prof_major" : "수의안과학",
+        "office_num" : "3720",
+        "email" : "canvet@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "김재환",
+        "prof_rank" : "조교수",
+        "prof_major" : "수의영상진단의학",
+        "office_num" : "3718",
+        "email" : "jaehwan@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "김시윤",
+        "prof_rank" : "조교수",
+        "prof_major" : "수의생리학",
+        "office_num" : "4254",
+        "email" : "vivavet@konkuk.ac.kr"
+    },
+    {
+        "prof_name" : "김우석",
+        "prof_rank" : "조교수",
+        "prof_major" : "수의해부학",
+        "office_num" : "4253",
+        "email" : "wskim0503@konkuk.ac.kr"
+    }
+]

@@ -14,10 +14,12 @@ export default function MainScreen({navigation}){
     2. 메뉴 연결 
    */
   return (
-    <View>
+    <View style={mainStyle.container}>
+      {/*
       <ImageBackground
         source={IMG_BACKGROUND}
         style={{width: '100%', height: '100%'}}>
+      */}
         <View style={mainStyle.Top}>
           <Text style={mainStyle.TitleText}>수의과대학</Text>
           <Text style={mainStyle.TitleText}>강의실대여</Text>
@@ -53,7 +55,9 @@ export default function MainScreen({navigation}){
         </View>
         <View style={mainStyle.Bot}>
         </View>
+      {/**
       </ImageBackground>
+       */}
     </View>
   );
 }

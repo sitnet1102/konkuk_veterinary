@@ -70,6 +70,7 @@ export default function LoginScreen({navigation}) {
           </View>
           <View style={loginStyle.InputTextBox}>
             <TextInput 
+              secureTextEntry={true}
               style={loginStyle.InputText}
               placeholder="비밀번호(Password)"
               value={__userPassword}
@@ -95,8 +96,9 @@ export default function LoginScreen({navigation}) {
               onTintColor={colors.kuDarkGreen}
               />
             <TouchableOpacity onPress={onPress}>
-              <Text style={loginStyle.AutoLoginText}>자동 로그인(Auto Login) / </Text>
+              <Text style={loginStyle.AutoLoginText}>자동 로그인(Auto Login)</Text>
             </TouchableOpacity>
+            <Text> / </Text>
             <TouchableOpacity
               onPress={() => navigation.navigate('SignUp')}
             >
@@ -117,22 +119,26 @@ const loginStyle = StyleSheet.create({
     flex: 1,
   },
   Top: {
-    flex: 3,
+    //flex: 3,
+    height: RFPercentage(20),
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    marginTop: RFPercentage(10),
+    //justifyContent: 'flex-end',
   },
   Mid: {
     //alignItems: 'center',
     justifyContent: 'center',
+    //marginTop: RFPercentage(8),
     flex: 6,
   },
   Bot: {
-    flex: 2,
+    flex: 3,
   },
   TitleText: {
     fontWeight: 'bold',
-    fontSize: 40,
-    lineHeight: 48,
+    fontSize: RFPercentage(5.5),
+    lineHeight: RFPercentage(6.5),
+    //fontFamily: 'Binggrae-Bold',
   },
   InputTextBox: {
     alignSelf: 'center',

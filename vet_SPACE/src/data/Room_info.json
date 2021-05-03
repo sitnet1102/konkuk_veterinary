@@ -1,0 +1,146 @@
+{
+    "15_106" : {
+        "room_id" : "15_106",
+        "building" : "수의학관",
+        "room_type" : "실습실",
+        "room_num" : "106",
+        "area" : 0,
+        "capacity" : 0,
+        "equipment_info" : ""
+    },
+    "15_107" : {
+        "room_id" : "15_107",
+        "building" : "수의학관",
+        "room_type" : "실습실",
+        "room_num" : "107",
+        "area" : 0,
+        "capacity" : 0,
+        "equipment_info" : ""
+    },
+    "15_207" : {
+        "room_id" : "15_207",
+        "building" : "수의학관",
+        "room_type" : "강의실",
+        "room_num" : "207",
+        "area" : 0,
+        "capacity" : 0,
+        "equipment_info" : ""
+    },
+    "15_216" : {
+        "room_id" : "15_216",
+        "building" : "수의학관",
+        "room_type" : "실습실",
+        "room_num" : "216",
+        "area" : 0,
+        "capacity" : 0,
+        "equipment_info" : ""
+    },
+    "15_306" : {
+        "room_id" : "15_306",
+        "building" : "수의학관",
+        "room_type" : "강의실",
+        "room_num" : "306",
+        "area" : 0,
+        "capacity" : 0,
+        "equipment_info" : ""
+    },
+    "15_307" : {
+        "room_id" : "15_307",
+        "building" : "수의학관",
+        "room_type" : "강의실",
+        "room_num" : "307",
+        "area" : 0,
+        "capacity" : 0,
+        "equipment_info" : ""
+    },
+    "15_408" : {
+        "room_id" : "15_408",
+        "building" : "수의학관",
+        "room_type" : "실습실",
+        "room_num" : "408",
+        "area" : 0,
+        "capacity" : 0,
+        "equipment_info" : ""
+    },
+    "15_409" : {
+        "room_id" : "15_409",
+        "building" : "수의학관",
+        "room_type" : "강의실",
+        "room_num" : "409",
+        "area" : 0,
+        "capacity" : 0,
+        "equipment_info" : ""
+    },
+    "15_410" : {
+        "room_id" : "15_410",
+        "building" : "수의학관",
+        "room_type" : "실습실",
+        "room_num" : "410",
+        "area" : 0,
+        "capacity" : 0,
+        "equipment_info" : ""
+    },
+    "15_432" : {
+        "room_id" : "15_432",
+        "building" : "수의학관",
+        "room_type" : "세미나실",
+        "room_num" : "432",
+        "area" : 0,
+        "capacity" : 0,
+        "equipment_info" : ""
+    },
+    "15_509" : {
+        "room_id" : "15_509",
+        "building" : "수의학관",
+        "room_type" : "실습실",
+        "room_num" : "509",
+        "area" : 0,
+        "capacity" : 0,
+        "equipment_info" : ""
+    },
+    "15_510" : {
+        "room_id" : "15_510",
+        "building" : "수의학관",
+        "room_type" : "강의실",
+        "room_num" : "510",
+        "area" : 0,
+        "capacity" : 0,
+        "equipment_info" : ""
+    },
+    "15_511" : {
+        "room_id" : "15_511",
+        "building" : "수의학관",
+        "room_type" : "강의실",
+        "room_num" : "511",
+        "area" : 0,
+        "capacity" : 0,
+        "equipment_info" : ""
+    },
+    "15_523" : {
+        "room_id" : "15_523",
+        "building" : "수의학관",
+        "room_type" : "세미나실",
+        "room_num" : "523",
+        "area" : 0,
+        "capacity" : 0,
+        "equipment_info" : ""
+    },
+    "12_710-3" : {
+        "room_id" : "12_710-3",
+        "building" : "동물생명과학관",
+        "room_type" : "강의실",
+        "room_num" : "710-3",
+        "area" : 0,
+        "capacity" : 0,
+        "equipment_info" : ""
+    },
+    "12_710-4" : {
+        "room_id" : "12_710-4",
+        "building" : "동물생명과학관",
+        "room_type" : "강의실",
+        "room_num" : "710-4",
+        "area" : 0,
+        "capacity" : 0,
+        "equipment_info" : ""
+    }
+}
