@@ -20,6 +20,7 @@
 		77B5AA62E923BB144002F312 /* libPods-vet_SPACE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9550E89983A44684D1600C34 /* libPods-vet_SPACE.a */; };
 		7DB1E22F42332F33EF43814D /* libPods-vet_SPACE-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AC87EFB9A62CBD089344AC2 /* libPods-vet_SPACE-tvOSTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		B8A4B53C263FC54E001EC389 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8A4B53B263FC54E001EC389 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +61,7 @@
 		9550E89983A44684D1600C34 /* libPods-vet_SPACE.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-vet_SPACE.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C17903A647B84D1440073C3 /* Pods-vet_SPACE-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vet_SPACE-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-vet_SPACE-tvOSTests/Pods-vet_SPACE-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B735F39A2BBA953EF97C54F6 /* Pods-vet_SPACE-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vet_SPACE-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-vet_SPACE-tvOS/Pods-vet_SPACE-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		B8A4B53A263FBD0C001EC389 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B8A4B53B263FC54E001EC389 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BDE4541EA32D74D0A34F3E4E /* Pods-vet_SPACE-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vet_SPACE-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-vet_SPACE-tvOSTests/Pods-vet_SPACE-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		E865B5C8FD873B35A173AFFF /* Pods-vet_SPACE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vet_SPACE.debug.xcconfig"; path = "Target Support Files/Pods-vet_SPACE/Pods-vet_SPACE.debug.xcconfig"; sourceTree = "<group>"; };
 		E86FB6B08930667A95D04FA5 /* Pods-vet_SPACE-vet_SPACETests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vet_SPACE-vet_SPACETests.release.xcconfig"; path = "Target Support Files/Pods-vet_SPACE-vet_SPACETests/Pods-vet_SPACE-vet_SPACETests.release.xcconfig"; sourceTree = "<group>"; };
@@ -126,7 +127,7 @@
 		13B07FAE1A68108700A75B9A /* vet_SPACE */ = {
 			isa = PBXGroup;
 			children = (
-				B8A4B53A263FBD0C001EC389 /* GoogleService-Info.plist */,
+				B8A4B53B263FC54E001EC389 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -344,6 +345,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				B8A4B53C263FC54E001EC389 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
