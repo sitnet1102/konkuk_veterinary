@@ -1,7 +1,7 @@
 # konkuk_veterinary
 
  
-## Tech Stack
+## 버전
 
 버전:	12.4 (12D4e)
 
