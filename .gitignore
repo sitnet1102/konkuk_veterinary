@@ -9,3 +9,5 @@
 vet_SPACE/android/app/google-services.json
 
 Database SQL/
+
+vet_SPACE/ios/GoogleService-Info.plist
