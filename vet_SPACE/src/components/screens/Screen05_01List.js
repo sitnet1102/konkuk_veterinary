@@ -34,6 +34,32 @@ export default function ListScreen({navigation}) {
     ['수의학관 216호\n\n2021년 03월 02일\n\n0900 ~ 1200'],
     ['수의학관 216호\n\n2021년 03월 05일\n\n0900 ~ 1200'],
   ];
+  const tData = [
+    [
+      loca = "수의학관 216호",
+      date = "20210302",
+      start_time = "0900",
+      end_time = "1200",
+    ],
+    [
+      loca = "수의학관 216호",
+      date = "20210302",
+      start_time = "1300",
+      end_time = "1500",
+    ],
+    [
+      loca = "수의학관 217호",
+      date = "20210305",
+      start_time = "0900",
+      end_time = "1200",
+    ],
+    [
+      loca = "수의학관 217호",
+      date = "20210302",
+      start_time = "0900",
+      end_time = "1200",
+    ],
+  ];
   const element = (data, index) => (
     <TouchableOpacity onPress={() => onPressRow()}>
       <View style={listStyle.tableTouchBox}>
