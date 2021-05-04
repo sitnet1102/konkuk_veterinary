@@ -1,8 +1,8 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, Text, StyleSheet, Alert} from 'react-native';
-import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
+import {View, Text, StyleSheet,  TouchableOpacity,Alert} from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import {Table, Row} from 'react-native-table-component';
 import { colors } from '../../utils/Styles';
 
