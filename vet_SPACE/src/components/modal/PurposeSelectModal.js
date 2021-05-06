@@ -9,7 +9,7 @@ import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import {colors} from '../../utils/Styles';
 
 export default function PurposeSelectModal(props) {
-  const [selected, setSelected] = React.useState('강의실');
+  const [selected, setSelected] = React.useState('강의');
   const ClassData = [
     "강의",
     "세미나",
