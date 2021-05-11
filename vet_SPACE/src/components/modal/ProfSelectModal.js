@@ -26,7 +26,7 @@ export default function ProfSelectModal(props) {
     }
   };
   React.useEffect(() => {
-    return () => setClassData([]);
+    return () => setClassData(false);
   }, []);
   
   return(
