@@ -27,7 +27,7 @@ export default function Question_Link({navigation}) {
         </TouchableOpacity>
       </View>
       <WebView 
-        source={{uri: 'https://www.notion.so/a894d3c16211427383c035ae9c3a2796?v=1ba256da5eda4603b10ba793a3916caa'}}
+        source={{uri: 'https://www.notion.so/41c4725e9f3c459a9a338ae1ac594b66?v=3b3e6dfddd7c409a8b7068b8adf7cb18'}}
       />
     </SafeAreaView>
   );
