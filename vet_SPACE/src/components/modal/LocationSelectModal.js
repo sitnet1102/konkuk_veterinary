@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import {Picker} from '@react-native-community/picker';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
@@ -11,6 +11,8 @@ import database from '@react-native-firebase/database';
 import {colors} from '../../utils/Styles';
 
 export default function LocationSelectModal(props) {
+  const [selectedBuilding, setSelectedBuilding] = React.useState('건물 선택');
+  const [selectedRoom, setSelectedRoom] = React.useState('호실 선택');
   const testData = {
     aa : [],
   };
@@ -25,6 +27,7 @@ export default function LocationSelectModal(props) {
 
   const state = {
     BuildingData: [
+      "건물 선택",
       "수의학관",
       "동물생명과학관",
       "기타",
@@ -49,6 +52,7 @@ export default function LocationSelectModal(props) {
     },
     */
    RoomData: [
+    "호실 선택",
     "207",
     "306",
     "307",
@@ -58,6 +62,13 @@ export default function LocationSelectModal(props) {
     "710-3",
     "710-4",
    ],
+  };
+  const complete = () => {
+    if(selectedBuilding === "건물 선택" || selectedRoom === "호실 선택"){
+      Alert.alert("건물 또는 호실을 선택해주세요");
+    }else{
+      props.dataHandler(selectedBuilding+"/"+selectedRoom);
+    }
   };
   return(
     <View style={locationselectmodalStyle.container}>
@@ -114,7 +125,8 @@ export default function LocationSelectModal(props) {
         </View>
         <View style={locationselectmodalStyle.line}></View>
         <TouchableOpacity
-          onPress={()=>props.dataHandler(selectedBuilding+"/"+selectedRoom)}
+          //onPress={()=>props.dataHandler(selectedBuilding+"/"+selectedRoom)}
+          onPress={complete}
         >
           <Text style={locationselectmodalStyle.buttonText}>완료</Text>
         </TouchableOpacity>
