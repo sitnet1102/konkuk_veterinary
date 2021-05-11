@@ -5,26 +5,13 @@ import {Text, View, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import {Picker} from '@react-native-community/picker';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
-//import dataReader from '../databaseAccess/dataReader';
-import database from '@react-native-firebase/database';
 
 import {colors} from '../../utils/Styles';
 
 export default function LocationSelectModal(props) {
   const [selectedBuilding, setSelectedBuilding] = React.useState('건물 선택');
   const [selectedRoom, setSelectedRoom] = React.useState('호실 선택');
-  const testData = {
-    aa : [],
-  };
-  //let test_data = dataGetter();
-  const test_data = database()
-  .ref('/Room_info/12_710-5')
-  .once('value')
-  .then(snapshot => {
-    testData.aa = snapshot.val();
-    //console.log('Data : ', snapshot.val());
-  });
-
+  
   const state = {
     BuildingData: [
       "건물 선택",
@@ -32,25 +19,6 @@ export default function LocationSelectModal(props) {
       "동물생명과학관",
       "기타",
     ],
-    /*
-    RoomData: {
-      b1: [
-        "207",
-        "306",
-        "307",
-        "409",
-        "410",
-        "510",
-      ],
-      b2: [
-        "710-3",
-        "710-4",
-      ],
-      b3: [
-        "",
-      ],
-    },
-    */
    RoomData: [
     "호실 선택",
     "207",
@@ -78,7 +46,6 @@ export default function LocationSelectModal(props) {
         onPress={props.modalHandler}
       />
       <View style={locationselectmodalStyle.modal}>
-        <Text>{testData.aa.building}</Text>
         <Text style={locationselectmodalStyle.titleText}>장소 선택</Text>
         <Text style={locationselectmodalStyle.dataText}>{selectedBuilding+"/"+selectedRoom}</Text>
         <View style={locationselectmodalStyle.line}></View>
@@ -108,11 +75,6 @@ export default function LocationSelectModal(props) {
             }}
             >
             {
-              /*
-              if(selectedBuilding == "수의학관"){
-
-              }
-              */
               state.RoomData.map((rowData, index) => (
                 <Picker.Item 
                 key ={index}
