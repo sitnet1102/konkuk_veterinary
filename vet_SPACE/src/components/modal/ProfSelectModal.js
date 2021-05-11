@@ -1,23 +1,34 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import {Picker} from '@react-native-community/picker';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
+import database from '@react-native-firebase/database';
 
 import {colors} from '../../utils/Styles';
-import { TextInput } from 'react-native-gesture-handler';
 
 export default function ProfSelectModal(props) {
-  const [selected, setSelected] = React.useState('강영선');
-  const ClassData = [
-    "강영선",
-    "이정익",
-    "이상원",
-    "윤헌영",
-    "윤경아",
-  ];
+  const [selected, setSelected] = React.useState('선택');
+  const [classData, setClassData] = React.useState([]);
+  
+  database().ref('/Prof_info/Prof_name_list').on('value', snapshot => {
+    setClassData(snapshot.val());
+  });
+
+  const complete = () => {
+    if(selected === '선택'){
+      Alert.alert('선택해주세요');
+    }else{
+      setClassData(false);
+      props.dataHandler(selected);
+    }
+  };
+  React.useEffect(() => {
+    return () => setClassData([]);
+  }, []);
+  
   return(
     <View style={profselectmodalStyle.container}>
       <TouchableOpacity 
@@ -30,11 +41,6 @@ export default function ProfSelectModal(props) {
         <Text style={profselectmodalStyle.dataText}>{selected}</Text>
         <View style={profselectmodalStyle.line}></View>
         <View>
-          {/**
-          <TextInput
-            style={profselectmodalStyle.inputText}
-          />
-           *   */}
           <Picker
             style={profselectmodalStyle.picker}
             selectedValue={selected}
@@ -43,7 +49,7 @@ export default function ProfSelectModal(props) {
             }}
             >
             {
-              ClassData.map((rowData, index) => (
+              classData.map((rowData, index) => (
                 <Picker.Item 
                 key ={index}
                 label = {rowData}
@@ -55,7 +61,8 @@ export default function ProfSelectModal(props) {
         </View>
         <View style={profselectmodalStyle.line}></View>
         <TouchableOpacity
-          onPress={()=>props.dataHandler(selected)}
+          //onPress={()=>props.dataHandler(selected)}
+          onPress={() => complete()}
         >
           <Text style={profselectmodalStyle.buttonText}>완료</Text>
         </TouchableOpacity>
