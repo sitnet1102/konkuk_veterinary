@@ -1,9 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, Text, TextInput, ImageBackground, Platform, StyleSheet, Alert} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
-import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 
 import { colors } from '../../utils/Styles';
