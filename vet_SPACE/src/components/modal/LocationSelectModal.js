@@ -5,12 +5,24 @@ import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {Picker} from '@react-native-community/picker';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
+//import dataReader from '../databaseAccess/dataReader';
+import database from '@react-native-firebase/database';
 
 import {colors} from '../../utils/Styles';
 
 export default function LocationSelectModal(props) {
-  const [selectedBuilding, setSelectedBuilding] = React.useState('수의학관');
-  const [selectedRoom, setSelectedRoom] = React.useState('207');
+  const testData = {
+    aa : [],
+  };
+  //let test_data = dataGetter();
+  const test_data = database()
+  .ref('/Room_info/12_710-5')
+  .once('value')
+  .then(snapshot => {
+    testData.aa = snapshot.val();
+    //console.log('Data : ', snapshot.val());
+  });
+
   const state = {
     BuildingData: [
       "수의학관",
@@ -55,6 +67,7 @@ export default function LocationSelectModal(props) {
         onPress={props.modalHandler}
       />
       <View style={locationselectmodalStyle.modal}>
+        <Text>{testData.aa.building}</Text>
         <Text style={locationselectmodalStyle.titleText}>장소 선택</Text>
         <Text style={locationselectmodalStyle.dataText}>{selectedBuilding+"/"+selectedRoom}</Text>
         <View style={locationselectmodalStyle.line}></View>
