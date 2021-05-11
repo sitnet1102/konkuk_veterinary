@@ -176,6 +176,7 @@ export default function DateLocaScreen({navigation}){
         <LocationSelectModal
           modalHandler={()=>toggleLocationSelectModal()}
           dataHandler={(data)=>locationHandler(data)}
+          classificationdata={classificationData}
         /> 
         : <></>
       }

@@ -5,13 +5,18 @@ import {Text, View, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import {Picker} from '@react-native-community/picker';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
+import database from '@react-native-firebase/database';
 
 import {colors} from '../../utils/Styles';
 
 export default function LocationSelectModal(props) {
   const [selectedBuilding, setSelectedBuilding] = React.useState('건물 선택');
   const [selectedRoom, setSelectedRoom] = React.useState('호실 선택');
+
+  const [roomData, setRoomData] = React.useState([]);
   
+  let onRoomData = '';
+
   const state = {
     BuildingData: [
       "건물 선택",
@@ -19,20 +24,24 @@ export default function LocationSelectModal(props) {
       "동물생명과학관",
       "기타",
     ],
-   RoomData: [
-    "호실 선택",
-    "207",
-    "306",
-    "307",
-    "409",
-    "410",
-    "510",
-    "710-3",
-    "710-4",
-   ],
   };
+
+  const buildingDataChanged = (itemValue) => {
+    setSelectedBuilding(itemValue);
+    setSelectedRoom('호실 선택');
+    onRoomData = database()
+    .ref('/Room_info/Room_info_list/'+props.classificationdata+'/'+itemValue)
+    .on('value', snapshot => {
+      if(!snapshot.val()){
+        setRoomData(["없음"]);
+      }else{
+        setRoomData(snapshot.val());
+      }
+    });
+  };
+
   const complete = () => {
-    if(selectedBuilding === "건물 선택" || selectedRoom === "호실 선택"){
+    if(selectedBuilding === "건물 선택" || selectedRoom === "호실 선택" || selectedRoom === "없음"){
       Alert.alert("건물 또는 호실을 선택해주세요");
     }else{
       props.dataHandler(selectedBuilding+"/"+selectedRoom);
@@ -54,7 +63,7 @@ export default function LocationSelectModal(props) {
             style={locationselectmodalStyle.picker}
             selectedValue={selectedBuilding}
             onValueChange={(itemValue) => {
-              setSelectedBuilding(itemValue)
+              buildingDataChanged(itemValue)
             }}
             >
             {
@@ -75,7 +84,7 @@ export default function LocationSelectModal(props) {
             }}
             >
             {
-              state.RoomData.map((rowData, index) => (
+              roomData.map((rowData, index) => (
                 <Picker.Item 
                 key ={index}
                 label = {rowData}
@@ -87,7 +96,6 @@ export default function LocationSelectModal(props) {
         </View>
         <View style={locationselectmodalStyle.line}></View>
         <TouchableOpacity
-          //onPress={()=>props.dataHandler(selectedBuilding+"/"+selectedRoom)}
           onPress={complete}
         >
           <Text style={locationselectmodalStyle.buttonText}>완료</Text>
