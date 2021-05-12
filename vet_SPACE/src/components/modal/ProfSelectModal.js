@@ -34,7 +34,7 @@ export default function ProfSelectModal(props) {
     }
     return () => isMountedRef.current = false;
     */
-   return () => database().ref('/Prof_info/Prof_info_list').off('value', onData);
+    return () => database().ref('/Prof_info/Prof_info_list').off('value', onData);
   }, []);
   
   return(
