@@ -8,9 +8,9 @@ import {SliderBox} from 'react-native-image-slider-box';
 
 import {colors} from '../../utils/Styles';
 
-import LocationSelectModal from '../modal/LocationSelectModal2';
+import LocationSelectModal from '../modal/LocationSelectModal';
 
-export default function RoomInfoDetailScreen() {
+export default function RoomInfoDetailScreen({route}) {
   /**
     1. 이미지 선택시 오류가 생길 수도 있음 -> 추후 수정 
     2. 이미지 크기 고정이면 좋을것 같음 1024x768
@@ -170,6 +170,7 @@ export default function RoomInfoDetailScreen() {
         <LocationSelectModal
           modalHandler={()=>toggleLocationSelectModal()}
           dataHandler={(data)=>locationHandler(data)}
+          classificationdata={route.params.data}
         /> 
         : <></>
       }
