@@ -177,6 +177,7 @@ export default function StatusScreen() {
         <LocationSelectModal
           modalHandler={()=>toggleLocationSelectModal()}
           dataHandler={(data)=>locationHandler(data)}
+          classificationdata={classificationData}
         /> 
         : <></>
       }
