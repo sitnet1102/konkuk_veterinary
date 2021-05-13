@@ -46,8 +46,10 @@ export default function RoomInfoDetailScreen({route}) {
     //"https://source.unsplash.com/1024x768/?girl",
     //"https://ifh.cc/g/vxZzuu.jpg",
     //"https://ifh.cc/g/iL9x8G.jpg",
-    "https://i.ibb.co/7J6fvLK/Kakao-Talk-Photo-2021-04-01-16-40-29.jpg",
-    "https://i.ibb.co/GMJXLSR/Kakao-Talk-Photo-2021-04-01-16-40-42.jpg",
+    //"https://i.ibb.co/7J6fvLK/Kakao-Talk-Photo-2021-04-01-16-40-29.jpg",
+    //"https://i.ibb.co/GMJXLSR/Kakao-Talk-Photo-2021-04-01-16-40-42.jpg",
+    "https://firebasestorage.googleapis.com/v0/b/konkuk-vet-space.appspot.com/o/place01.jpeg?alt=media&token=5c4022a1-590a-4d8a-acda-c4b5a00f2a09",
+    "https://firebasestorage.googleapis.com/v0/b/konkuk-vet-space.appspot.com/o/place02.jpeg?alt=media&token=d2a772f1-4e9b-4865-86ef-bd0da5bd2484",
   ];
   const data1 = {
     title: ['호실정보'],
