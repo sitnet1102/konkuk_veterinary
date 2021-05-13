@@ -75,7 +75,7 @@ export default function RoomInfoDetailScreen({route}) {
       <View style={roominfodetailStyle.top}>
         <View style={roominfodetailStyle.topContainer}>
           <View style={roominfodetailStyle.TextContainer}>
-            <Text style={roominfodetailStyle.Text}>강의실 :</Text>
+            <Text style={roominfodetailStyle.Text}>{route.params.data + " : "}</Text>
           </View>
           <TouchableOpacity 
             style={roominfodetailStyle.SelectBox}
