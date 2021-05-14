@@ -13,7 +13,7 @@ import LocationSelectModal from '../modal/LocationSelectModal';
 export default function RoomInfoDetailScreen({route}) {
   /**
     1. 이미지 선택시 오류가 생길 수도 있음 -> 추후 수정 
-    2. 이미지 크기 고정이면 좋을것 같음 1024x768
+    2. 이미지 크기 고정이면 좋을것 같음 1024x768 -> 상관없음 
     3. 강의실이 선택되지 않았을 때에 어떤식으로 할 것인지 고려해야함 
    */
   const [locationSelectModal, setLocationSelectModal] = React.useState(false);
