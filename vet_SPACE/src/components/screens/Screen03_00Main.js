@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, Text, ImageBackground, StyleSheet} from 'react-native';
+import {View, Text, ImageBackground, StyleSheet, BackHandler, Alert} from 'react-native';
 import { TouchableOpacity} from 'react-native-gesture-handler';
 import { colors } from '../../utils/Styles';
 
@@ -10,9 +10,30 @@ import {IMG_BACKGROUND} from '../../utils/icons';
 export default function MainScreen({navigation}){
   /**
     추가 변경해야할 사항
-    1. 각 옵션 선택 시 넘어가는 네비게이션 연결 
-    2. 메뉴 연결 
+    //1. 각 옵션 선택 시 넘어가는 네비게이션 연결 
+    //2. 메뉴 연결 
    */
+
+  React.useEffect(() => {
+    const backAction = () => {
+      Alert.alert("종료", "앱을 종료하시겠습니까?", [
+        {
+          text: "취소",
+          onPress: () => null,
+        },
+        { text: "확인", onPress: () => BackHandler.exitApp() }
+      ]);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
   return (
     <View style={mainStyle.container}>
       {/*

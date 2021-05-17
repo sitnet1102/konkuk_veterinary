@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
+import {View, Text, TextInput, ImageBackground, StyleSheet, Alert, TouchableOpacity, BackHandler} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 
@@ -22,6 +23,25 @@ export default function LoginScreen({navigation}) {
   const onPress = () => setSelection(()=>!isSelected);
   const [__userID, setUserID] = React.useState("");
   const [__userPassword, setUserPassword] = React.useState("");
+  React.useEffect(() => {
+    const backAction = () => {
+      Alert.alert("종료", "앱을 종료하시겠습니까?", [
+        {
+          text: "취소",
+          onPress: () => null,
+        },
+        { text: "확인", onPress: () => BackHandler.exitApp() }
+      ]);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
+  }, []);
 
   const loginOnPress = () => {
     if(__userID == "User1234" && __userPassword == "1234"){
