@@ -14,7 +14,7 @@ export default function DateLocaScreen({navigation}){
     //1. 날짜, 구분, 장소 각각 선택창 UI
     //2. 다음 버튼 활성화 옵션
     //3. 다믕 버튼 활성화 스타일 
-    4. 메뉴 연결
+    //4. 메뉴 연결
     //5. 홈 버튼 연결
    */
   const [dateSelectModal, setDateSelectModal] = React.useState(false);
@@ -224,19 +224,19 @@ const DateLocaStyle = StyleSheet.create({
   },
   InboxText: {
     alignSelf: 'center',
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
     color: colors.kuDarkGray,
   },
   InboxSelectedText: {
     alignSelf: 'center',
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: 'bold',
     color: colors.kuBlack,
   },
   InboxSelectedText2: {
     alignSelf: 'center',
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
     color: colors.kuBlack,
   },

@@ -224,19 +224,19 @@ const statusStyle = StyleSheet.create({
   },
   InboxText: {
     alignSelf: 'center',
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
     color: colors.kuDarkGray,
   },
   InboxSelectedText: {
     alignSelf: 'center',
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: 'bold',
     color: colors.kuBlack,
   },
   InboxSelectedText2: {
     alignSelf: 'center',
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
     color: colors.kuBlack,
   },
