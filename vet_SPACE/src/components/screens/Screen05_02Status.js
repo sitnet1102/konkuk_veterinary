@@ -1,8 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {Text, View, StyleSheet, ScrollView} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {Text, View, StyleSheet, ScrollView, Alert, TouchableOpacity} from 'react-native';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { Table, Row} from 'react-native-table-component';
 
@@ -24,11 +23,21 @@ export default function StatusScreen() {
   const [locationSelectModal, setLocationSelectModal] = React.useState(false);
   const [locationData, setLocationData] = React.useState('선 택');
   const [locationStyle, setLocationStyle] = React.useState(false);
+  const [buildingData, setBuildingData] = React.useState('');
+  const [roomData, setRoomData] = React.useState('');
 
   const toggleDateSelectModal =  () => {
     setDateSelectModal(prev => (!prev));
   };
   const dateHandler = (data) => {
+    if(classificationStyle){
+      setClassificationStyle(false);
+      setClassificationData('선 택');
+    }
+    if(locationStyle){
+      setLocationStyle(false);
+      setLocationData('선 택');
+    }
     setDateData(data);
     toggleDateSelectModal();
     dateStyleChange();
@@ -38,22 +47,39 @@ export default function StatusScreen() {
   };
   
   const toggleClassificationSelectModal = () => {
-    setClassificationSelectModal(prev => (!prev));
+    if(!dateStyle){
+      Alert.alert("날짜 오류","날짜를 먼저 선택해주세요");
+    }else{
+      setClassificationSelectModal(prev => (!prev));
+    }
   };
   const classificationHandler = (data) => {
+    if(locationStyle){
+      setLocationStyle(false);
+      setLocationData('선 택');
+    }
     setClassificationData(data);
     toggleClassificationSelectModal();
     classificationStyleChange();
+    
   };
   const classificationStyleChange = () => {
     setClassificationStyle(true);
   };
   
   const toggleLocationSelectModal = () => {
-    setLocationSelectModal(prev => (!prev));
+    if(!dateStyle){
+      Alert.alert("날짜 오류","날짜를 먼저 선택해주세요");
+    }else if(!classificationStyle){
+      Alert.alert("구분 오류","구분을 먼저 선택해주세요");
+    }else{
+      setLocationSelectModal(prev => (!prev));
+    }
   };
-  const locationHandler = (data) => {
-    setLocationData(data);
+  const locationHandler = (building, room) => {
+    setLocationData(building + '/' + room);
+    setBuildingData(building);
+    setRoomData(room);
     toggleLocationSelectModal();
     locationStyleChange();
   };
@@ -176,7 +202,7 @@ export default function StatusScreen() {
       {locationSelectModal ?
         <LocationSelectModal
           modalHandler={()=>toggleLocationSelectModal()}
-          dataHandler={(data)=>locationHandler(data)}
+          dataHandler={(building, room)=>locationHandler(building, room)}
           classificationdata={classificationData}
         /> 
         : <></>
