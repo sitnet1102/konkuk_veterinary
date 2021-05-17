@@ -16,11 +16,11 @@ export default function TimeSelectScreen({route, navigation}){
     //3. 선택 박스 선택 시 넘어가는 UI
     //4. 시간 시작 종료 모두 선택 시 다음 버튼 활성화
     //5. 다음 버튼 활성화 시 스타일 변화 
-    6. 테이블 모양 가다듬기
+    //6. 테이블 모양 가다듬기
     7. 테이블에서 선택된 시간 스타일 변화
     8. 테이블에서 이미 선택된 시간 스타일 변화
     9. 테이블 데이터베이스 연동 
-    10. 메뉴 연결
+    //10. 메뉴 연결
     //11. 홈 버튼 연결
   */
   
@@ -71,7 +71,7 @@ export default function TimeSelectScreen({route, navigation}){
   };
 
   const state = {
-    tableTitle: [route.params.data.dateData + "\n" + route.params.data.locaData + "호 예약 내역"],
+    tableTitle: [route.params.data.dateData + "\n" + route.params.data.buildingData + "/" + route.params.data.roomData + "호 예약 내역"],
     widthArr: [370],
     divisionArr: ['시간', '내용'],
     widthArr2: [100,270],
@@ -178,7 +178,9 @@ export default function TimeSelectScreen({route, navigation}){
             data: {
               dateData: route.params.data.dateData,
               classData: route.params.data.classData,
-              locaData: route.params.data.locaData,
+              //locaData: route.params.data.locaData,
+              buildingData: route.params.data.buildingData,
+              roomData: route.params.data.roomData,
               startTimeData: startTimeData,
               endTimeData: endTimeData,
             }

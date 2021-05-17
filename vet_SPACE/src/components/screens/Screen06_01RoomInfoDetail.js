@@ -19,12 +19,16 @@ export default function RoomInfoDetailScreen({route}) {
   const [locationSelectModal, setLocationSelectModal] = React.useState(false);
   const [locationData, setLocationData] = React.useState('선 택');
   const [locationStyle, setLocationStyle] = React.useState(false);
+  const [buildingData, setBuildingData] = React.useState('');
+  const [roomData, setRoomData] = React.useState('');
 
   const toggleLocationSelectModal = () => {
     setLocationSelectModal(prev => (!prev));
   };
-  const locationHandler = (data) => {
-    setLocationData(data);
+  const locationHandler = (building, room) => {
+    setLocationData(building + '/' + room);
+    setBuildingData(building);
+    setRoomData(room);
     toggleLocationSelectModal();
     locationStyleChange();
   };
@@ -171,7 +175,7 @@ export default function RoomInfoDetailScreen({route}) {
       {locationSelectModal ?
         <LocationSelectModal
           modalHandler={()=>toggleLocationSelectModal()}
-          dataHandler={(data)=>locationHandler(data)}
+          dataHandler={(building, room)=>locationHandler(building, room)}
           classificationdata={route.params.data}
         /> 
         : <></>

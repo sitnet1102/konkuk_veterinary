@@ -131,9 +131,15 @@ export default function RoomReservDetailScreen({route, navigation}){
           }
           onPress={() => navigation.navigate('Complete', {
             data: {
+              /**
+                데이터 더 안넘기고 여기서 저장 처리해주기 
+                저장 처리 시에 alert로 저장 확인 한번 더 해주기 
+               */
               dateData: route.params.data.dateData,
               classData: route.params.data.classData,
-              locaData: route.params.data.locaData,
+              //locaData: route.params.data.locaData,
+              buildingData: route.params.data.buildingData,
+              roomData: route.params.data.roomData,
               startTimeData: route.params.data.startTimeData,
               endTimeData: route.params.data.endTimeData,
               purposeData: purposeData,

@@ -44,7 +44,8 @@ export default function LocationSelectModal(props) {
     if(selectedBuilding === "건물 선택" || selectedRoom === "호실 선택" || selectedRoom === "없음"){
       Alert.alert("건물 또는 호실을 선택해주세요");
     }else{
-      props.dataHandler(selectedBuilding+"/"+selectedRoom);
+      //props.dataHandler(selectedBuilding+"/"+selectedRoom);
+      props.dataHandler(selectedBuilding, selectedRoom);
     }
   };
   return(

@@ -28,6 +28,8 @@ export default function DateLocaScreen({navigation}){
   const [locationSelectModal, setLocationSelectModal] = React.useState(false);
   const [locationData, setLocationData] = React.useState('선 택');
   const [locationStyle, setLocationStyle] = React.useState(false);
+  const [buildingData, setBuildingData] = React.useState('');
+  const [roomData, setRoomData] = React.useState('');
 
   const toggleDateSelectModal =  () => {
     setDateSelectModal(prev => (!prev));
@@ -79,8 +81,10 @@ export default function DateLocaScreen({navigation}){
       setLocationSelectModal(prev => (!prev));
     }
   };
-  const locationHandler = (data) => {
-    setLocationData(data);
+  const locationHandler = (building, room) => {
+    setLocationData(building + '/' + room);
+    setBuildingData(building);
+    setRoomData(room);
     toggleLocationSelectModal();
     locationStyleChange();
   };
@@ -151,7 +155,9 @@ export default function DateLocaScreen({navigation}){
             data : {
               dateData: dateData,
               classData: classificationData,
-              locaData: locationData,
+              //locaData: locationData,
+              buildingData: buildingData,
+              roomData: roomData,
             }
           })}
         >
@@ -175,7 +181,7 @@ export default function DateLocaScreen({navigation}){
       {locationSelectModal ?
         <LocationSelectModal
           modalHandler={()=>toggleLocationSelectModal()}
-          dataHandler={(data)=>locationHandler(data)}
+          dataHandler={(building, room)=>locationHandler(building, room)}
           classificationdata={classificationData}
         /> 
         : <></>

@@ -16,7 +16,9 @@ export default function CompleteScreen({route, navigation}){
   const {
     dateData, 
     classData, 
-    locaData, 
+    //locaData, 
+    buildingData,
+    roomData,
     startTimeData, 
     endTimeData, 
     purposeData, 
@@ -59,15 +61,22 @@ export default function CompleteScreen({route, navigation}){
             공문 요청하기 
           </Text>
         </View>
-        {/*<Text>{
+        {
+        /*
+
+        <Text>{
         route.params.data.dateData + " " +
         route.params.data.classData + " " +
-        route.params.data.locaData + " " +
+        //route.params.data.locaData + " " +
+        route.params.data.buildingData + " " +
+        route.params.data.roomData + " " +
         route.params.data.startTimeData + " " +
         route.params.data.endTimeData + " " +
         route.params.data.purposeData + " " +
         route.params.data.profData
-        }</Text>*/
+        }</Text>
+
+        */
         }
       </View>
       <View style={completeStyle.Bot}>
