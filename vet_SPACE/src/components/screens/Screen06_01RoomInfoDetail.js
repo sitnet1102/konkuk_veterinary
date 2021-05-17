@@ -8,6 +8,8 @@ import {SliderBox} from 'react-native-image-slider-box';
 
 import {colors} from '../../utils/Styles';
 
+import database from '@react-native-firebase/database';
+
 import LocationSelectModal from '../modal/LocationSelectModal';
 
 export default function RoomInfoDetailScreen({route}) {
@@ -21,6 +23,9 @@ export default function RoomInfoDetailScreen({route}) {
   const [locationStyle, setLocationStyle] = React.useState(false);
   const [buildingData, setBuildingData] = React.useState('');
   const [roomData, setRoomData] = React.useState('');
+  const [images, setImages] = React.useState([
+    "https://firebasestorage.googleapis.com/v0/b/konkuk-vet-space.appspot.com/o/%E1%84%80%E1%85%A5%E1%86%AB%E1%84%80%E1%85%AE%E1%86%A8%E1%84%83%E1%85%A2%E1%84%92%E1%85%A1%E1%86%A8%E1%84%80%E1%85%AD%20%E1%84%85%E1%85%A9%E1%84%80%E1%85%A9.png?alt=media&token=c376dfbf-5b5f-48db-866f-74e614c5a3b9",
+  ]);
 
   const toggleLocationSelectModal = () => {
     setLocationSelectModal(prev => (!prev));
@@ -31,10 +36,28 @@ export default function RoomInfoDetailScreen({route}) {
     setRoomData(room);
     toggleLocationSelectModal();
     locationStyleChange();
+    imageData(room);
   };
   const locationStyleChange = () => {
     setLocationStyle(true);
   };
+
+  let imageData = (room) => {
+    database().ref('/Pic_link/'+route.params.data+'/'+room).on('value', snapshot => {
+    if(snapshot.val() === null){
+      setImages([
+        "https://firebasestorage.googleapis.com/v0/b/konkuk-vet-space.appspot.com/o/%E1%84%80%E1%85%A5%E1%86%AB%E1%84%80%E1%85%AE%E1%86%A8%E1%84%83%E1%85%A2%E1%84%92%E1%85%A1%E1%86%A8%E1%84%80%E1%85%AD%20%E1%84%85%E1%85%A9%E1%84%80%E1%85%A9.png?alt=media&token=c376dfbf-5b5f-48db-866f-74e614c5a3b9",
+      ])
+    }else{
+      setImages(snapshot.val());
+      //console.log(snapshot.val());
+    }
+  })};
+
+  React.useEffect(() => {
+    return () => database().ref().off('value', imageData);
+  }, []);
+
 /**
   <a href="https://ibb.co/Y7qC2wh">
   <img src="https://i.ibb.co/7J6fvLK/Kakao-Talk-Photo-2021-04-01-16-40-29.jpg" 
@@ -43,6 +66,7 @@ export default function RoomInfoDetailScreen({route}) {
   <img src="https://i.ibb.co/GMJXLSR/Kakao-Talk-Photo-2021-04-01-16-40-42.jpg" 
   alt="Kakao-Talk-Photo-2021-04-01-16-40-42" border="0"></a>
  */
+  /*
   const images = [
     //"https://source.unsplash.com/1024x768/?nature",
     //"https://source.unsplash.com/1024x768/?tree",
@@ -54,7 +78,16 @@ export default function RoomInfoDetailScreen({route}) {
     //"https://i.ibb.co/GMJXLSR/Kakao-Talk-Photo-2021-04-01-16-40-42.jpg",
     "https://firebasestorage.googleapis.com/v0/b/konkuk-vet-space.appspot.com/o/place01.jpeg?alt=media&token=5c4022a1-590a-4d8a-acda-c4b5a00f2a09",
     "https://firebasestorage.googleapis.com/v0/b/konkuk-vet-space.appspot.com/o/place02.jpeg?alt=media&token=d2a772f1-4e9b-4865-86ef-bd0da5bd2484",
+    "https://firebasestorage.googleapis.com/v0/b/konkuk-vet-space.appspot.com/o/%E1%84%80%E1%85%A1%E1%86%BC%E1%84%8B%E1%85%B4%E1%84%89%E1%85%B5%E1%86%AF%20207%E1%84%92%E1%85%A9%20(1).jpg?alt=media&token=3d8ce242-588c-4d31-8882-fc5af2f3c58d",
+    //"https://firebasestorage.googleapis.com/v0/b/konkuk-vet-space.appspot.com/o/%E1%84%80%E1%85%A1%E1%86%BC%E1%84%8B%E1%85%B4%E1%84%89%E1%85%B5%E1%86%AF%20207%E1%84%92%E1%85%A9%20(1).jpg?alt=media&token=3d8ce242-588c-4d31-8882-fc5af2f3c58d",
+    "https://firebasestorage.googleapis.com/v0/b/konkuk-vet-space.appspot.com/o/%E1%84%80%E1%85%A1%E1%86%BC%E1%84%8B%E1%85%B4%E1%84%89%E1%85%B5%E1%86%AF%20207%E1%84%92%E1%85%A9%20(2).jpg?alt=media&token=3382e933-177b-4c4c-822d-7b110ff385ef",
+    "https://firebasestorage.googleapis.com/v0/b/konkuk-vet-space.appspot.com/o/%E1%84%80%E1%85%A1%E1%86%BC%E1%84%8B%E1%85%B4%E1%84%89%E1%85%B5%E1%86%AF%20207%E1%84%92%E1%85%A9%20(3).jpg?alt=media&token=53fcc659-274c-421c-bc8c-630007961424",
+    "https://firebasestorage.googleapis.com/v0/b/konkuk-vet-space.appspot.com/o/%E1%84%80%E1%85%A1%E1%86%BC%E1%84%8B%E1%85%B4%E1%84%89%E1%85%B5%E1%86%AF%20207%E1%84%92%E1%85%A9%20(4).jpg?alt=media&token=9ab0b35c-d1f7-4737-b48e-ed856a045769",
+    "https://firebasestorage.googleapis.com/v0/b/konkuk-vet-space.appspot.com/o/dfsoeul_20160617_192932.jpeg?alt=media&token=bdbc893e-75fe-48c3-992f-25c5e44287f1",
+    "https://firebasestorage.googleapis.com/v0/b/konkuk-vet-space.appspot.com/o/%E1%84%80%E1%85%A5%E1%86%AB%E1%84%80%E1%85%AE%E1%86%A8%E1%84%83%E1%85%A2%E1%84%92%E1%85%A1%E1%86%A8%E1%84%80%E1%85%AD%20%E1%84%85%E1%85%A9%E1%84%80%E1%85%A9.png?alt=media&token=c376dfbf-5b5f-48db-866f-74e614c5a3b9",
+
   ];
+  */
   const data1 = {
     title: ['호실정보'],
     d1: ['* 분류: '],
