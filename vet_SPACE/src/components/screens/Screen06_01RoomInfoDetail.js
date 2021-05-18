@@ -24,7 +24,7 @@ export default function RoomInfoDetailScreen({route}) {
   const [buildingData, setBuildingData] = React.useState('');
   const [roomData, setRoomData] = React.useState('');
   const [images, setImages] = React.useState([
-    "https://firebasestorage.googleapis.com/v0/b/konkuk-vet-space.appspot.com/o/%E1%84%80%E1%85%A5%E1%86%AB%E1%84%80%E1%85%AE%E1%86%A8%E1%84%83%E1%85%A2%E1%84%92%E1%85%A1%E1%86%A8%E1%84%80%E1%85%AD%20%E1%84%85%E1%85%A9%E1%84%80%E1%85%A9.png?alt=media&token=c376dfbf-5b5f-48db-866f-74e614c5a3b9",
+    "http://drive.google.com/uc?export=view&id=1fyr8wFS-UQNVT_tOCv_SoF7gDDYbdtue"
   ]);
 
   const toggleLocationSelectModal = () => {
@@ -46,7 +46,7 @@ export default function RoomInfoDetailScreen({route}) {
     database().ref('/Pic_link/'+route.params.data+'/'+room).on('value', snapshot => {
     if(snapshot.val() === null){
       setImages([
-        "https://firebasestorage.googleapis.com/v0/b/konkuk-vet-space.appspot.com/o/%E1%84%80%E1%85%A5%E1%86%AB%E1%84%80%E1%85%AE%E1%86%A8%E1%84%83%E1%85%A2%E1%84%92%E1%85%A1%E1%86%A8%E1%84%80%E1%85%AD%20%E1%84%85%E1%85%A9%E1%84%80%E1%85%A9.png?alt=media&token=c376dfbf-5b5f-48db-866f-74e614c5a3b9",
+        "http://drive.google.com/uc?export=view&id=1fyr8wFS-UQNVT_tOCv_SoF7gDDYbdtue"
       ])
     }else{
       setImages(snapshot.val());
