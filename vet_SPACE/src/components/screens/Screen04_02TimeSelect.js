@@ -101,6 +101,7 @@ export default function TimeSelectScreen({route, navigation}){
       setEndTimeData(selectedHour+":"+selectedMin);
       toggleEndTimeSelectModal();
       endTimeStyleChange();
+      
     }
   };
   const endTimeStyleChange = () => {
@@ -111,8 +112,8 @@ export default function TimeSelectScreen({route, navigation}){
     tableTitle: [route.params.data.dateData + "\n" + route.params.data.buildingData + "/" + route.params.data.roomData + "호 예약 내역"],
     widthArr: [370],
     divisionArr: ['시간', '내용'],
-    widthArr2: [110,260],
-    widthArr3: [110,260],
+    widthArr2: [115,255],
+    widthArr3: [115,255],
   };
   /*
   const timeTableData = [];
