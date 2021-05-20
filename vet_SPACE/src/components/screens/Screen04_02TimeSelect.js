@@ -32,7 +32,7 @@ export default function TimeSelectScreen({route, navigation}){
   const [endTimeData, setEndTimeData] = React.useState('선 택');
   const [endTimeStyle, setEndTimeStyle] = React.useState(false);
 
-  const [time, setTime] = React.useState([
+  let [time, setTime] = React.useState([
     ['08:00 ~ 08:30', 0],
     ['08:30 ~ 09:00', 1],
     ['09:00 ~ 09:30', 2],
@@ -63,10 +63,55 @@ export default function TimeSelectScreen({route, navigation}){
     ['21:30 ~ 22:00', 27],
   ]);
 
+  let [timeStyle, setTimeStyle] = React.useState([
+    0,
+    0,
+    0,
+    0,
+    0,
+
+    0,
+    0,
+    0,
+    0,
+    0,
+
+    0,
+    0,
+    0,
+    0,
+    0,
+
+    0,
+    0,
+    0,
+    0,
+    0,
+
+    0,
+    0,
+    0,
+    0,
+    0,
+
+    0,
+    0,
+    0,
+  ]);
+
+  const onTimeChange = e => {
+    const { selectedTime, value } = e.target;
+    setTime({
+      ...time,
+      [selectedTime] : value,
+    });
+  };
+
   const toggleStartTimeSelectModal =  () => {
     setStartTimeSelectModal(prev => (!prev));
   };
   const startTimeHandler = (selectedHour,selectedMin) => {
+    // 리셋 필요 
     if(endTimeStyle){
       setEndTimeData('선 택');
       setEndTimeStyle(false);
@@ -92,7 +137,10 @@ export default function TimeSelectScreen({route, navigation}){
     }
   };
   const endTimeHandler = (selectedHour,selectedMin) => {
+    // 선택 할때마다 reset 해주어야함 
     const startTimetmp = Number(startTimeData.substr(0,2)+startTimeData.substr(3));
+    let startnum = (Number(startTimeData.substr(0,2)) - 8 ) * 2 + (Number(startTimeData.substr(3)/30));
+    let endnum = (Number(selectedHour) - 8) * 2 + (Number(selectedMin)/30);
     if(startTimetmp/* + 100 > */ >= Number(selectedHour+""+selectedMin)){
       Alert.alert("경고", "시작시간보다 종료시간이 같거나 빠릅니다");
     }else if(selectedHour === '22' && selectedMin === '30'){
@@ -101,7 +149,10 @@ export default function TimeSelectScreen({route, navigation}){
       setEndTimeData(selectedHour+":"+selectedMin);
       toggleEndTimeSelectModal();
       endTimeStyleChange();
-      
+      for(let i=startnum;i<endnum;i++){
+        time[i][1] = "예약 희망";
+        timeStyle[i] = 1;
+      }
     }
   };
   const endTimeStyleChange = () => {
@@ -199,6 +250,12 @@ export default function TimeSelectScreen({route, navigation}){
                     data={rowData}
                     widthArr={state.widthArr3}
                     style={[timeSelectStyle.ScrollRow]}
+                    style={timeStyle[index] !== 0 ? 
+                      timeStyle[index] !== 1 ?
+                      [timeSelectStyle.ScrollRowReserved]
+                      : [timeSelectStyle.ScrollRowSelected]
+                      : [timeSelectStyle.ScrollRow]
+                    }
                     textStyle={timeSelectStyle.SheetText}
                   />
                 ))
@@ -344,6 +401,14 @@ const timeSelectStyle = StyleSheet.create({
   ScrollRow: {
     height: 40,
     backgroundColor: colors.kuLightGray,
+  },
+  ScrollRowSelected: {
+    height: 40,
+    backgroundColor: colors.kuYellow,
+  },
+  ScrollRowReserved: {
+    height: 40,
+    backgroundColor: colors.kuMagenta,
   },
   SheetText: {
     alignSelf: 'center',
