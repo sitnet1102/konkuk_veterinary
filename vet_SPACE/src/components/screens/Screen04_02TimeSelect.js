@@ -249,7 +249,6 @@ export default function TimeSelectScreen({route, navigation}){
                     key={index}
                     data={rowData}
                     widthArr={state.widthArr3}
-                    style={[timeSelectStyle.ScrollRow]}
                     style={timeStyle[index] !== 0 ? 
                       timeStyle[index] !== 1 ?
                       [timeSelectStyle.ScrollRowReserved]
