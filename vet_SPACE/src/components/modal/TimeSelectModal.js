@@ -24,8 +24,8 @@ export default function TimeSelectModal(props) {
     }
     state.HourData.push(tmp);
   }
-  for(let i = 0;i<4; i+=1){
-    const tmp = i*15;
+  for(let i = 0;i<2; i+=1){
+    const tmp = i*30;
     if(tmp<10){
       tmp = "0"+tmp;
     }else{
