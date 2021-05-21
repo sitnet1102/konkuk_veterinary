@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, BackHandler, Alert} from 'react-native';
 import { colors } from '../../utils/Styles';
 
 
@@ -25,6 +25,27 @@ export default function CompleteScreen({route, navigation}){
     profData
   } = route.params;
   */
+
+  React.useEffect(() => {
+    const backAction = () => {
+      Alert.alert("종료", "앱을 종료하시겠습니까?", [
+        {
+          text: "취소",
+          onPress: () => null,
+        },
+        { text: "확인", onPress: () => BackHandler.exitApp() }
+      ]);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
   return(
     <View style={completeStyle.container}>
       <View style={completeStyle.Top}>
@@ -84,7 +105,7 @@ export default function CompleteScreen({route, navigation}){
           style={completeStyle.NextButton}
           onPress={() => navigation.navigate('Main')}
         >
-          <Text style={completeStyle.NextText}>완  료</Text>
+          <Text style={completeStyle.NextText}>메인으로</Text>
         </TouchableOpacity>
       </View>
     </View>
