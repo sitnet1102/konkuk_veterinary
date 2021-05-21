@@ -15,7 +15,7 @@ export default function SortingSelectModal(props) {
     "교수",
     "교직원",
     "대학원생",
-    "기타",
+    //"기타",
   ];
   return(
     <View style={sortingselectmodalStyle.container}>
