@@ -89,9 +89,11 @@ export default function RoomReservNavigator({navigation}) {
           headerStyle: {
             backgroundColor: colors.kuDarkGreen,
           },
+          headerLeft: null,
           headerRight: () => (
             Header()
           ),
+          gestureEnabled: false,
           title: '강의실 예약',
           headerBackTitle: backTitle,
           headerTintColor: colors.kuLightGray,
