@@ -99,14 +99,6 @@ export default function TimeSelectScreen({route, navigation}){
     0,
   ]);
 
-  const onTimeChange = e => {
-    const { selectedTime, value } = e.target;
-    setTime({
-      ...time,
-      [selectedTime] : value,
-    });
-  };
-
   const toggleStartTimeSelectModal =  () => {
     setStartTimeSelectModal(prev => (!prev));
   };
@@ -182,13 +174,10 @@ export default function TimeSelectScreen({route, navigation}){
     rowData.push(i);
     timeTableData.push(rowData);
   }
-  //setTime(timeTableData);
   */
   return (
     <View style={timeSelectStyle.container}>
       <View style={timeSelectStyle.Top}>
-        {//<Text>{route.params.data.dateData + " " + route.params.data.classData + " " + route.params.data.locaData}</Text>
-        }
       </View>
       <View style={timeSelectStyle.Mid}>
         <View style={timeSelectStyle.Time}>
@@ -229,7 +218,6 @@ export default function TimeSelectScreen({route, navigation}){
           <Table borderStyle={timeSelectStyle.Border}>
             <Row 
               data={state.tableTitle} 
-              //data={route.params.data.dateData}
               widthArr={state.widthArr} 
               style={timeSelectStyle.SheetTitle} 
               textStyle={timeSelectStyle.SheetTitleText}
