@@ -78,6 +78,8 @@ export default function SignUpScreen({navigation}){
       Alert.alert("이름 오류","이름을 입력해주세요.");
     }else if(__phone.trim() === ""){
       Alert.alert("전화번호 오류","전화번호를 입력해주세요.");
+    }else if(__phone.indexOf('-') !== -1){
+      Alert.alert("전화번호 오류","- 를 제거해주세요");
     }else if(__number.trim() === ""){
       Alert.alert("번호 오류","학번 또는 연구원번호 또는 사번을 입력해주세요.");
     }else if(__sort === ""){
