@@ -6,16 +6,18 @@ import {Table, Row} from 'react-native-table-component';
 import { colors } from '../../utils/Styles';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+
 import PurposeSelectModal from '../modal/PurposeSelectModal';
 import ProfSelectModal from '../modal/ProfSelectModal';
 
 export default function RoomReservDetailScreen({route, navigation}){
-  //const {dateData, classData, locaData, startTimeData, endTimeData} = route.params;
-  const __name = '홍길동'
-  const __phone = '010-1234-5678'
-  //const __time = '1200 ~ 1400'
-  //const __purpose = '선 택'
-  //const __prof = '선 택'
+  const __name = auth().currentUser.displayName;
+  const [__phone, setPhone] = React.useState(' ');
+  firestore().collection('User_info').doc(auth().currentUser.uid).get().then(querySnapshot => {
+    setPhone(querySnapshot.data().phone_number);
+  })
   const __time = route.params.data.startTimeData + " ~ " + route.params.data.endTimeData;
 
   const state = {
@@ -70,6 +72,8 @@ export default function RoomReservDetailScreen({route, navigation}){
   const profStyleChange = () => {
     setProfStyle(true);
   };
+
+
 
   return (
     <View style={detailStyle.container}>
