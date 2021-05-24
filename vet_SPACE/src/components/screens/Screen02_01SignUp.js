@@ -132,6 +132,7 @@ export default function SignUpScreen({navigation}){
           <View style={signupStyle.InputBoxContainer2}>
             <TextInput 
               style={signupStyle.InputTextBox}
+              autoCapitalize="none"
               placeholder="이메일"
               value={__id}
               onChangeText={(value) => idChange(value)}
@@ -149,6 +150,7 @@ export default function SignUpScreen({navigation}){
         <View style={signupStyle.InputBoxContainer}>
           <TextInput 
             style={signupStyle.InputTextBox}
+            autoCapitalize="none"
             secureTextEntry={true}
             placeholder="비밀번호"
             value={__password}
@@ -158,6 +160,7 @@ export default function SignUpScreen({navigation}){
         <View style={signupStyle.InputBoxContainer}>
           <TextInput 
             style={signupStyle.InputTextBox}
+            autoCapitalize="none"
             secureTextEntry={true}
             placeholder="비밀번호 확인"
             value={__password2}
@@ -167,6 +170,7 @@ export default function SignUpScreen({navigation}){
         <View style={signupStyle.InputBoxContainer}>
           <TextInput 
             style={signupStyle.InputTextBox}
+            autoCapitalize="none"
             placeholder="이름 (실명 입력)"
             value={__name}
             onChangeText={setName}

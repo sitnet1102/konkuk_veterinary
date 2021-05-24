@@ -81,6 +81,7 @@ export default function LoginScreen({navigation}) {
             <TextInput
               style={loginStyle.InputText}
               placeholder="아이디(ID)"
+              autoCapitalize="none"
               value={__userID}
               onChangeText={setUserID}
             >
@@ -90,6 +91,7 @@ export default function LoginScreen({navigation}) {
             <TextInput 
               secureTextEntry={true}
               style={loginStyle.InputText}
+              autoCapitalize="none"
               placeholder="비밀번호(Password)"
               value={__userPassword}
               onChangeText={setUserPassword}
