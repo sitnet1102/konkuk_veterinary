@@ -13,7 +13,10 @@ export default function TimeSelectModal(props) {
   const [selectedMin, setSelectedMin] = React.useState('00');
   const state = {
     HourData: [],
-    MinData: [],
+    MinData: [
+      "00",
+      "30",
+    ],
   };
   for(let i = 0;i<15; i+=1){
     const tmp = i+8;
@@ -24,6 +27,7 @@ export default function TimeSelectModal(props) {
     }
     state.HourData.push(tmp);
   }
+  /*
   for(let i = 0;i<2; i+=1){
     const tmp = i*30;
     if(tmp<10){
@@ -33,6 +37,7 @@ export default function TimeSelectModal(props) {
     }
     state.MinData.push(tmp);
   }
+  */
   return(
     <View style={timeselectmodalStyle.container}>
       <TouchableOpacity 
