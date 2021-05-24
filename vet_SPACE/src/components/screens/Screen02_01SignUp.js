@@ -51,23 +51,28 @@ export default function SignUpScreen({navigation}){
 
   const idDuplicateCheck = () => {
     setIdDuplication(true);
-    Alert.alert(title='중복확인',message='사용가능한 아이디입니다.');
+    Alert.alert('중복확인','사용가능한 아이디입니다.');
   };
 
   const signUpOnPress = () => {
-    if(__id.trim() == ""){
+    let dot = __id.indexOf('@');
+    if(__id.trim() === ""){
       Alert.alert("아이디 오류", "아이디를 입력해주세요.");
-    }else if(idDuplication == false){
+    }else if(dot === 0){
+      Alert.alert("아이디 오류", "올바른 이메일 형식을 입력하세요");
+    }else if(__id.substr(dot+1, 12) !== "konkuk.ac.kr"){
+      Alert.alert("아이디 오류", "건국 메일을 사용해주세요");
+    }else if(idDuplication === false){
       Alert.alert("아이디 오류", "아이디 중복 체크를 해주세요.");
-    }else if(!(__password.trim() != "" && __password == __password2)){
+    }else if(!(__password.trim() !== "" && __password === __password2)){
       Alert.alert("패스워드 오류","비밀번호가 다릅니다.");
-    }else if(__name.trim() == ""){
+    }else if(__name.trim() === ""){
       Alert.alert("이름 오류","이름을 입력해주세요.");
-    }else if(__phone.trim() == ""){
+    }else if(__phone.trim() === ""){
       Alert.alert("전화번호 오류","전화번호를 입력해주세요.");
-    }else if(__number.trim() == ""){
+    }else if(__number.trim() === ""){
       Alert.alert("번호 오류","학번 또는 연구원번호 또는 사번을 입력해주세요.");
-    }else if(__sort == ""){
+    }else if(__sort === ""){
       Alert.alert("분류 오류","분류를 선택해주세요.");
     }else{
       Alert.alert("회원가입 완료","회원가입이 정상적으로 되었습니다.");
