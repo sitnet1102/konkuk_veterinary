@@ -4,7 +4,8 @@ import * as React from 'react';
 import {View, Text, StyleSheet,SafeAreaView, TouchableOpacity, Image} from 'react-native';
 import {createDrawerNavigator, DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import { RFPercentage } from 'react-native-responsive-fontsize';
-import {WebView} from 'react-native-webview';
+
+import auth from '@react-native-firebase/auth';
 
 import MainNavigator from './MainNavigator';
 import Notice_Link from '../screens/Screen07_03Notice';
@@ -28,11 +29,14 @@ function MenuDrawer(props) {
     copyright1: "COPYRIGHT ⓒALL RIGHT RESERVED.",
     copyright2: "COLLEGE OF VETERINARY, KONKUK UNIVERSITY",
   };
+  /*
   const data = {
     id: "User1234",
     name: "홍길동",
     password: "1234",
   };
+  */
+  const name = auth().currentUser.displayName;
   /*
   const url_link = {
     notice: 'https://www.notion.so/9d5cafd0076843f792fc332ee4a6853c?v=cc61cf79e919472ea3b674635e9be97f',
@@ -57,7 +61,7 @@ function MenuDrawer(props) {
             style={menudrawerStyle.image}
             source={IMG_KULOGO}
           />
-          <Text style={menudrawerStyle.idText}>{data.name} 님</Text>
+          <Text style={menudrawerStyle.idText}>{name} 님</Text>
           <View style={menudrawerStyle.box2}></View>
           <TouchableOpacity 
             style={menudrawerStyle.logOut}
