@@ -104,12 +104,21 @@ export default function SignUpScreen({navigation}){
           user_type: __sort,
           phone_number: __phone,
         }).then(() => {
-          console.log('User Data in firestore added!');
+          //console.log('User Data in firestore added!');
+          auth().currentUser.sendEmailVerification().then(() => {
+            Alert.alert("회원가입 완료","회원가입이 정상적으로 되었습니다.\n이메일 인증 후 이용이 가능합니다.\n이메일을 확인해주세요.");
+            navigation.navigate('Login');
+          }).catch(e => {
+            if(e.code === 'auth/too-many-request'){
+              Alert.alert('이메일 인증 오류', '인증 이메일을 확인해주세요');
+              navigation.navigate('Login');
+            }else{
+              Alert.alert('error', e.code + '\n안증 이메일이 전송되지 않았습니다.');
+            }
+          });
         }).catch(error => {
           Alert.alert('error 213',error.code);
         });
-        Alert.alert("회원가입 완료","회원가입이 정상적으로 되었습니다.");
-        navigation.navigate('Login');
       })
       .catch(error => {
         if(error.code === 'auth/email-already-in-use'){
