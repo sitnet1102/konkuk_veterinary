@@ -82,6 +82,8 @@ export default function LoginScreen({navigation}) {
               style={loginStyle.InputText}
               placeholder="아이디(ID)"
               autoCapitalize="none"
+              placeholder="이메일(Email address)"
+              keyboardType="email-address"
               value={__userID}
               onChangeText={setUserID}
             >
