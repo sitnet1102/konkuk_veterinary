@@ -5,6 +5,8 @@ import {View, Text, TextInput, ImageBackground, StyleSheet, Alert, TouchableOpac
 import CheckBox from '@react-native-community/checkbox';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 
+import auth from '@react-native-firebase/auth';
+
 import { colors } from '../../utils/Styles';
 import {IMG_BACKGROUND} from '../../utils/icons';
 //import userData from '../../data/userData';
@@ -18,7 +20,8 @@ export default function LoginScreen({navigation}) {
     //3. 회원가입 연결 
     //4. 네비게이션 옵션 연결 
     //5. 체크 박스랑 자동 로그인 텍스트 클릭이랑 연결해주기   -> 20210311
-   */
+    6. 비밀번호 잊었을 때, 비밀번호 찾기 링크 보내주기 화면 만들기 
+  */
   const [isSelected, setSelection] = React.useState(false);
   const onPress = () => setSelection(()=>!isSelected);
   const [__userID, setUserID] = React.useState("");
@@ -44,25 +47,31 @@ export default function LoginScreen({navigation}) {
   }, []);
 
   const loginOnPress = () => {
-    if(__userID == "User1234" && __userPassword == "1234"){
-      navigation.navigate('Drawer',{
-        screen: 'MainNavigator', 
-        params: {
-          screen: "Main",
-          params: {
-            data: {
-              userID : {__userID},
-              password : {__userPassword}
-            }
-          }
-        }
-      })
-    }else if(__userID.trim() == ""){
+    if(__userID.trim() == ""){
       Alert.alert("로그인 오류","아이디를 입력해주세요");
     }else if(__userPassword.trim() == ""){
       Alert.alert("로그인 오류","패스워드를 입력해주세요");
     }else{
-      Alert.alert("로그인 오류","아이디와 패스워드가 다릅니다");
+      auth().signInWithEmailAndPassword(__userID, __userPassword).then(() =>{
+        if(auth().currentUser.emailVerified){
+          // => 메인으로
+          navigation.navigate('Drawer',{
+            screen: 'MainNavigator', 
+            params: {
+              screen: "Main",
+            }
+          })
+        }else{
+          // => 이메일 인증 화면으로 넘어감 => 다시 로그인 화면 
+          Alert.alert("로그인 오류","이메일 인증이 필요합니다");
+        }
+      }).catch(e => {
+        if(e.code === 'auth/invalid-email'){
+          Alert.alert("로그인 오류","아이디와 패스워드가 다릅니다");
+        }else{
+          Alert.alert("error",e.code);
+        }
+      });
     }
   };
 
@@ -80,7 +89,6 @@ export default function LoginScreen({navigation}) {
           <View style={loginStyle.InputTextBox}>
             <TextInput
               style={loginStyle.InputText}
-              placeholder="아이디(ID)"
               autoCapitalize="none"
               placeholder="이메일(Email address)"
               keyboardType="email-address"
