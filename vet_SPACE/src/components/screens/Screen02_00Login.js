@@ -9,7 +9,8 @@ import auth from '@react-native-firebase/auth';
 
 import { colors } from '../../utils/Styles';
 import {IMG_BACKGROUND} from '../../utils/icons';
-//import userData from '../../data/userData';
+
+import PasswordResetModal from '../modal/PasswordResetModal';
 
 export default function LoginScreen({navigation}) {
   /**
@@ -23,9 +24,14 @@ export default function LoginScreen({navigation}) {
     6. 비밀번호 잊었을 때, 비밀번호 찾기 링크 보내주기 화면 만들기 
   */
   const [isSelected, setSelection] = React.useState(false);
-  const onPress = () => setSelection(()=>!isSelected);
+  const onPressAutoLogin = () => setSelection(()=>!isSelected);
   const [__userID, setUserID] = React.useState("");
   const [__userPassword, setUserPassword] = React.useState("");
+  const [passwordResetModal, setPasswordResetModal] = React.useState(false);
+  const togglePasswordReset = () => {
+    setPasswordResetModal(prev => (!prev));
+  };
+
   React.useEffect(() => {
     const backAction = () => {
       Alert.alert("종료", "앱을 종료하시겠습니까?", [
@@ -125,7 +131,7 @@ export default function LoginScreen({navigation}) {
               onCheckColor={colors.kuDarkGreen}
               onTintColor={colors.kuDarkGreen}
               />
-            <TouchableOpacity onPress={onPress}>
+            <TouchableOpacity onPress={onPressAutoLogin}>
               <Text style={loginStyle.AutoLoginText}>자동 로그인(Auto Login)</Text>
             </TouchableOpacity>
             <Text> / </Text>
@@ -135,10 +141,22 @@ export default function LoginScreen({navigation}) {
               <Text style={loginStyle.NewAccButton}>회원가입(Sign Up)</Text>
             </TouchableOpacity>
           </View>
+          <TouchableOpacity 
+            style={loginStyle.PasswordReset}
+            onPress={togglePasswordReset}
+          >
+            <Text style={loginStyle.PasswordResetText}>비밀번호 재설정</Text>
+          </TouchableOpacity>
         </View>
         <View style={loginStyle.Bot}>
         </View>
       </ImageBackground>
+      {passwordResetModal ?
+        <PasswordResetModal
+          modalHandler={()=>togglePasswordReset()}
+        />
+        : <></>
+      }
     </View>
   );
 }
@@ -219,6 +237,16 @@ const loginStyle = StyleSheet.create({
   NewAccButton: {
     textDecorationLine: 'underline',
     fontWeight: 'bold',
-  }
+  },
+  PasswordReset: {
+    marginTop: 10,
+    //alignContent: 'center',
+    //justifyContent: 'center',
+    alignItems: 'center',
+  },
+  PasswordResetText: {
+    textDecorationLine: 'underline',
+    fontWeight: 'bold',
+  },
 });
 
