@@ -60,7 +60,6 @@ export default function LoginScreen({navigation}) {
     }else{
       auth().signInWithEmailAndPassword(__userID, __userPassword).then(() =>{
         if(auth().currentUser.emailVerified){
-          // => 메인으로
           navigation.navigate('Drawer',{
             screen: 'MainNavigator', 
             params: {
@@ -68,8 +67,16 @@ export default function LoginScreen({navigation}) {
             }
           })
         }else{
-          // => 이메일 인증 화면으로 넘어감 => 다시 로그인 화면 
-          Alert.alert("로그인 오류","이메일 인증이 필요합니다");
+          // => 이메일 인증 화면으로 넘어감 => 다시 로그인 화면
+          auth().currentUser.sendEmailVerification().then(() => {
+            Alert.alert('이메일 인증', '이메일로 인증링크가 전송되었습니다.\n인증 후 다시 로그인 해주세요');
+          }).catch(e => {
+            if(e.code === 'auth/too-many-requests'){
+              Alert.alert('인증 오류', '인증 이메일을 확인해주세요.');
+            }else{
+              Alert.alert('error', e.code + '\n안증 이메일이 전송되지 않았습니다.');
+            }
+          });
         }
       }).catch(e => {
         if(e.code === 'auth/invalid-email'){
