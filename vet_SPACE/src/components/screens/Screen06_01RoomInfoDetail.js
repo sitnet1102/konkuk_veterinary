@@ -77,7 +77,6 @@ export default function RoomInfoDetailScreen({route}) {
 
   let detailData = (building, room) => {
     database().ref('/Room_info/Detail/'+route.params.data+'/'+building+'/'+room).on('value', snapshot => {
-      console.log(snapshot.child('classification'));
       if(snapshot.val() === null){
         setArea(' ');
         setRoomsort(' ');
