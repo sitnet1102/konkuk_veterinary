@@ -13,5 +13,7 @@ Database SQL/
 vet_SPACE/ios/GoogleService-Info.plist
 
 vet_SPACE/src/data/
+
 *.json
+
 vet_SPACE/src/data/Room_info3.json
