@@ -168,11 +168,11 @@ export default function RoomInfoDetailScreen({route}) {
             </View>
             <View style={roominfodetailStyle.container3}>
               <Text style={roominfodetailStyle.text2}>{data1.d2}</Text>
-              <Text style={roominfodetailStyle.text2}>{opacity}</Text>
+              <Text style={roominfodetailStyle.text2}>{opacity+' 명'}</Text>
             </View>
             <View style={roominfodetailStyle.container3}>
               <Text style={roominfodetailStyle.text2}>{data1.d3}</Text>
-              <Text style={roominfodetailStyle.text2}>{area}</Text>
+              <Text style={roominfodetailStyle.text2}>{area+' ㎡'}</Text>
             </View>
           </View>
           <View style={roominfodetailStyle.container2}>
@@ -181,19 +181,19 @@ export default function RoomInfoDetailScreen({route}) {
             </Text>
             <View style={roominfodetailStyle.container3}>
               <Text style={roominfodetailStyle.text2}>{data2.d1}</Text>
-              <Text style={roominfodetailStyle.text2}>{equip1}</Text>
+              <Text style={roominfodetailStyle.text2}>{equip1+' 대'}</Text>
             </View>
             <View style={roominfodetailStyle.container3}>
               <Text style={roominfodetailStyle.text2}>{data2.d2}</Text>
-              <Text style={roominfodetailStyle.text2}>{equip2}</Text>
+              <Text style={roominfodetailStyle.text2}>{equip2+' 대'}</Text>
             </View>
             <View style={roominfodetailStyle.container3}>
               <Text style={roominfodetailStyle.text2}>{data2.d3}</Text>
-              <Text style={roominfodetailStyle.text2}>{equip3}</Text>
+              <Text style={roominfodetailStyle.text2}>{equip3+' 대'}</Text>
             </View>
             <View style={roominfodetailStyle.container3}>
               <Text style={roominfodetailStyle.text2}>{data2.d4}</Text>
-              <Text style={roominfodetailStyle.text2}>{equip4}</Text>
+              <Text style={roominfodetailStyle.text2}>{equip4+' 대'}</Text>
             </View>
           </View>
         </View>
