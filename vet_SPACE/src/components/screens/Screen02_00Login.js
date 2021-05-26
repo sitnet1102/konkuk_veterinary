@@ -1,14 +1,16 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, Text, TextInput, ImageBackground, Platform, StyleSheet, Alert} from 'react-native';
+import {View, Text, TextInput, ImageBackground, StyleSheet, Alert, TouchableOpacity, BackHandler} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
-import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import { RFPercentage } from 'react-native-responsive-fontsize';
+
+import auth from '@react-native-firebase/auth';
 
 import { colors } from '../../utils/Styles';
 import {IMG_BACKGROUND} from '../../utils/icons';
-//import userData from '../../data/userData';
+
+import PasswordResetModal from '../modal/PasswordResetModal';
 
 export default function LoginScreen({navigation}) {
   /**
@@ -19,32 +21,70 @@ export default function LoginScreen({navigation}) {
     //3. 회원가입 연결 
     //4. 네비게이션 옵션 연결 
     //5. 체크 박스랑 자동 로그인 텍스트 클릭이랑 연결해주기   -> 20210311
-   */
+    6. 비밀번호 잊었을 때, 비밀번호 찾기 링크 보내주기 화면 만들기 
+  */
   const [isSelected, setSelection] = React.useState(false);
-  const onPress = () => setSelection(()=>!isSelected);
+  const onPressAutoLogin = () => setSelection(()=>!isSelected);
   const [__userID, setUserID] = React.useState("");
   const [__userPassword, setUserPassword] = React.useState("");
+  const [passwordResetModal, setPasswordResetModal] = React.useState(false);
+  const togglePasswordReset = () => {
+    setPasswordResetModal(prev => (!prev));
+  };
+
+  React.useEffect(() => {
+    const backAction = () => {
+      Alert.alert("종료", "앱을 종료하시겠습니까?", [
+        {
+          text: "취소",
+          onPress: () => null,
+        },
+        { text: "확인", onPress: () => BackHandler.exitApp() }
+      ]);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
+  }, []);
 
   const loginOnPress = () => {
-    if(__userID == "User1234" && __userPassword == "1234"){
-      navigation.navigate('Drawer',{
-        screen: 'MainNavigator', 
-        params: {
-          screen: "Main",
-          params: {
-            data: {
-              userID : {__userID},
-              password : {__userPassword}
-            }
-          }
-        }
-      })
-    }else if(__userID.trim() == ""){
+    if(__userID.trim() == ""){
       Alert.alert("로그인 오류","아이디를 입력해주세요");
     }else if(__userPassword.trim() == ""){
       Alert.alert("로그인 오류","패스워드를 입력해주세요");
     }else{
-      Alert.alert("로그인 오류","아이디와 패스워드가 다릅니다");
+      auth().signInWithEmailAndPassword(__userID, __userPassword).then(() =>{
+        if(auth().currentUser.emailVerified){
+          navigation.navigate('Drawer',{
+            screen: 'MainNavigator', 
+            params: {
+              screen: "Main",
+            }
+          })
+        }else{
+          // => 이메일 인증 화면으로 넘어감 => 다시 로그인 화면
+          auth().currentUser.sendEmailVerification().then(() => {
+            Alert.alert('이메일 인증', '이메일로 인증링크가 전송되었습니다.\n인증 후 다시 로그인 해주세요');
+          }).catch(e => {
+            if(e.code === 'auth/too-many-requests'){
+              Alert.alert('인증 오류', '인증 이메일을 확인해주세요.');
+            }else{
+              Alert.alert('error', e.code + '\n안증 이메일이 전송되지 않았습니다.');
+            }
+          });
+        }
+      }).catch(e => {
+        if(e.code === 'auth/invalid-email'){
+          Alert.alert("로그인 오류","아이디와 패스워드가 다릅니다");
+        }else{
+          Alert.alert("error",e.code);
+        }
+      });
     }
   };
 
@@ -62,7 +102,9 @@ export default function LoginScreen({navigation}) {
           <View style={loginStyle.InputTextBox}>
             <TextInput
               style={loginStyle.InputText}
-              placeholder="아이디(ID)"
+              autoCapitalize="none"
+              placeholder="이메일(Email address)"
+              keyboardType="email-address"
               value={__userID}
               onChangeText={setUserID}
             >
@@ -72,6 +114,7 @@ export default function LoginScreen({navigation}) {
             <TextInput 
               secureTextEntry={true}
               style={loginStyle.InputText}
+              autoCapitalize="none"
               placeholder="비밀번호(Password)"
               value={__userPassword}
               onChangeText={setUserPassword}
@@ -95,7 +138,7 @@ export default function LoginScreen({navigation}) {
               onCheckColor={colors.kuDarkGreen}
               onTintColor={colors.kuDarkGreen}
               />
-            <TouchableOpacity onPress={onPress}>
+            <TouchableOpacity onPress={onPressAutoLogin}>
               <Text style={loginStyle.AutoLoginText}>자동 로그인(Auto Login)</Text>
             </TouchableOpacity>
             <Text> / </Text>
@@ -105,10 +148,22 @@ export default function LoginScreen({navigation}) {
               <Text style={loginStyle.NewAccButton}>회원가입(Sign Up)</Text>
             </TouchableOpacity>
           </View>
+          <TouchableOpacity 
+            style={loginStyle.PasswordReset}
+            onPress={togglePasswordReset}
+          >
+            <Text style={loginStyle.PasswordResetText}>비밀번호 재설정</Text>
+          </TouchableOpacity>
         </View>
         <View style={loginStyle.Bot}>
         </View>
       </ImageBackground>
+      {passwordResetModal ?
+        <PasswordResetModal
+          modalHandler={()=>togglePasswordReset()}
+        />
+        : <></>
+      }
     </View>
   );
 }
@@ -189,6 +244,16 @@ const loginStyle = StyleSheet.create({
   NewAccButton: {
     textDecorationLine: 'underline',
     fontWeight: 'bold',
-  }
+  },
+  PasswordReset: {
+    marginTop: 10,
+    //alignContent: 'center',
+    //justifyContent: 'center',
+    alignItems: 'center',
+  },
+  PasswordResetText: {
+    textDecorationLine: 'underline',
+    fontWeight: 'bold',
+  },
 });
 

@@ -1,9 +1,11 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, Text, TextInput,StyleSheet, Alert} from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {View, Text, TextInput,StyleSheet, Alert, TouchableOpacity} from 'react-native';
 import { colors } from '../../utils/Styles';
+
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 import SortingSelectModal from '../modal/SortingSelectModal';
 import { RFPercentage } from 'react-native-responsive-fontsize';
@@ -29,7 +31,7 @@ export default function SignUpScreen({navigation}){
   const [sortingData, setSortingData] = React.useState('분 류');
   const [sortingStyle, setSortingStyle] = React.useState(false);
 
-  const [idDuplication, setIdDuplication] = React.useState(false);
+  //const [idDuplication, setIdDuplication] = React.useState(false);
 
   const toggleSortingSelectModal =  () => {
     setSortingSelectModal(prev => (!prev));
@@ -46,32 +48,89 @@ export default function SignUpScreen({navigation}){
 
   const idChange = (data) => {
     setId(data);
-    setIdDuplication(false);
+    //setIdDuplication(false);
   };
 
+  /*
   const idDuplicateCheck = () => {
     setIdDuplication(true);
-    Alert.alert(title='중복확인',message='사용가능한 아이디입니다.');
+    Alert.alert('중복확인','사용가능한 아이디입니다.');
   };
+  */
 
   const signUpOnPress = () => {
-    if(__id.trim() == ""){
+    let dot = __id.indexOf('@');
+    if(__id.trim() === ""){
       Alert.alert("아이디 오류", "아이디를 입력해주세요.");
-    }else if(idDuplication == false){
+    }else if(dot === 0){
+      Alert.alert("아이디 오류", "올바른 이메일 형식을 입력하세요");
+    }else if(__id.substr(dot+1, 12) !== "konkuk.ac.kr"){
+      Alert.alert("아이디 오류", "건국 메일을 사용해주세요");
+    /*
+    }else if(idDuplication === false){
       Alert.alert("아이디 오류", "아이디 중복 체크를 해주세요.");
-    }else if(!(__password.trim() != "" && __password == __password2)){
+    */
+    }else if(__password.length < 8 || __password.length > 16){
+      Alert.alert("패스워드 오류", "비밀번호는 8자리 이상 16자리 이하 입니다.");
+    }else if(!(__password.trim() !== "" && __password === __password2)){
       Alert.alert("패스워드 오류","비밀번호가 다릅니다.");
-    }else if(__name.trim() == ""){
+    }else if(__name.trim() === ""){
       Alert.alert("이름 오류","이름을 입력해주세요.");
-    }else if(__phone.trim() == ""){
+    }else if(__phone.trim() === ""){
       Alert.alert("전화번호 오류","전화번호를 입력해주세요.");
-    }else if(__number.trim() == ""){
+    }else if(__phone.indexOf('-') !== -1){
+      Alert.alert("전화번호 오류","- 를 제거해주세요");
+    }else if(__number.trim() === ""){
       Alert.alert("번호 오류","학번 또는 연구원번호 또는 사번을 입력해주세요.");
-    }else if(__sort == ""){
+    }else if(__sort === ""){
       Alert.alert("분류 오류","분류를 선택해주세요.");
     }else{
-      Alert.alert("회원가입 완료","회원가입이 정상적으로 되었습니다.");
-      navigation.navigate('Login');
+      auth().createUserWithEmailAndPassword(__id, __password)
+      .then(() => {
+        /**
+          회원가입이 되고, 각 개인 정보를 저장해야함 
+        */
+        const update = {
+          displayName : __name,
+          photoURL: '',
+        };
+        auth().currentUser.updateProfile(update)
+        .catch(error => {
+          Alert.alert('error 212', error.code);
+        });
+        //auth().currentUser.updatePhoneNumber();
+        firestore().collection('User_info').doc(auth().currentUser.uid).set({
+          ku_id: __number,
+          user_type: __sort,
+          phone_number: __phone,
+        }).then(() => {
+          //console.log('User Data in firestore added!');
+          auth().currentUser.sendEmailVerification().then(() => {
+            Alert.alert("회원가입 완료","회원가입이 정상적으로 되었습니다.\n이메일 인증 후 이용이 가능합니다.\n이메일을 확인해주세요.");
+            navigation.navigate('Login');
+          }).catch(e => {
+            if(e.code === 'auth/too-many-request'){
+              Alert.alert('이메일 인증 오류', '인증 이메일을 확인해주세요');
+              navigation.navigate('Login');
+            }else{
+              Alert.alert('error', e.code + '\n안증 이메일이 전송되지 않았습니다.');
+            }
+          });
+        }).catch(error => {
+          Alert.alert('error 213',error.code);
+        });
+      })
+      .catch(error => {
+        if(error.code === 'auth/email-already-in-use'){
+          Alert.alert('이메일 오류', '이미 사용 중인 이메일 입니다.');
+        }else if(error.code === 'auth/invalid-email'){
+          Alert.alert('이메일 오류', '올바르지 않은 이메일 형식입니다.');
+        }else if(error.code === 'auth/weak-password'){
+          Alert.alert('비밀번호 오류', '약한 비밀번호 입니다.');
+        }else{
+          Alert.alert('error 211', error.code);
+        }
+      });
     }
   };
 
@@ -84,21 +143,26 @@ export default function SignUpScreen({navigation}){
           <View style={signupStyle.InputBoxContainer2}>
             <TextInput 
               style={signupStyle.InputTextBox}
-              placeholder="아이디"
+              autoCapitalize="none"
+              placeholder="이메일"
               value={__id}
               onChangeText={(value) => idChange(value)}
             />
           </View>
+          {/*
           <TouchableOpacity 
             style={signupStyle.IDCheckContainer}
             onPress={() => idDuplicateCheck()}
           >
             <Text style={signupStyle.IDCheckText}>중복확인</Text>
           </TouchableOpacity>
+          */}
         </View>
         <View style={signupStyle.InputBoxContainer}>
           <TextInput 
             style={signupStyle.InputTextBox}
+            autoCapitalize="none"
+            secureTextEntry={true}
             placeholder="비밀번호"
             value={__password}
             onChangeText={setPassword}
@@ -107,6 +171,8 @@ export default function SignUpScreen({navigation}){
         <View style={signupStyle.InputBoxContainer}>
           <TextInput 
             style={signupStyle.InputTextBox}
+            autoCapitalize="none"
+            secureTextEntry={true}
             placeholder="비밀번호 확인"
             value={__password2}
             onChangeText={setPassword2}
@@ -115,6 +181,7 @@ export default function SignUpScreen({navigation}){
         <View style={signupStyle.InputBoxContainer}>
           <TextInput 
             style={signupStyle.InputTextBox}
+            autoCapitalize="none"
             placeholder="이름 (실명 입력)"
             value={__name}
             onChangeText={setName}

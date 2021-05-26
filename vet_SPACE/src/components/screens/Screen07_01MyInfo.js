@@ -4,17 +4,23 @@ import * as React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import { RFPercentage} from "react-native-responsive-fontsize";
 
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+
 import {colors} from '../../utils/Styles';
 
 
 export default function MyInfoScreen() {
-  const data = {
-    name: ['홍길동'],
-    id: ['ID12345'],
-    phoneNumber: ['010-1234-5678'],
-    num: ['202012345'],
-    sort: ['학부생'],
-  };
+  const __name = auth().currentUser.displayName;
+  const __id = auth().currentUser.email;
+  const [__phoneNumber, setPhoneNumber] = React.useState(' '); 
+  const [__num, setNum] = React.useState(' ');
+  const [__sort, setSort] = React.useState(' ');
+  firestore().collection('User_info').doc(auth().currentUser.uid).get().then(Snapshot => {
+    setPhoneNumber(Snapshot.data().phone_number);
+    setNum(Snapshot.data().ku_id);
+    setSort(Snapshot.data().user_type);
+  });
 
   return(
     <View style={myinfoStyle.container}>
@@ -22,27 +28,27 @@ export default function MyInfoScreen() {
       <View style={myinfoStyle.line}></View>
       <View style={myinfoStyle.dataContainer}>
         <Text style={myinfoStyle.text}>이름</Text>
-        <Text style={myinfoStyle.text2}>{data.name}</Text>
+        <Text style={myinfoStyle.text2}>{__name}</Text>
       </View>
       <View style={myinfoStyle.line2}></View>
       <View style={myinfoStyle.dataContainer}>
         <Text style={myinfoStyle.text}>아이디</Text>
-        <Text style={myinfoStyle.text2}>{data.id}</Text>
+        <Text style={myinfoStyle.text2}>{__id}</Text>
       </View>
       <View style={myinfoStyle.line2}></View>
       <View style={myinfoStyle.dataContainer}>
         <Text style={myinfoStyle.text}>전화번호</Text>
-        <Text style={myinfoStyle.text2}>{data.phoneNumber}</Text>
+        <Text style={myinfoStyle.text2}>{__phoneNumber}</Text>
       </View>
       <View style={myinfoStyle.line2}></View>
       <View style={myinfoStyle.dataContainer}>
         <Text style={myinfoStyle.text}>학번/사번/연구원번호</Text>
-        <Text style={myinfoStyle.text2}>{data.num}</Text>
+        <Text style={myinfoStyle.text2}>{__num}</Text>
       </View>
       <View style={myinfoStyle.line2}></View>
       <View style={myinfoStyle.dataContainer}>
         <Text style={myinfoStyle.text}>분류</Text>
-        <Text style={myinfoStyle.text2}>{data.sort}</Text>
+        <Text style={myinfoStyle.text2}>{__sort}</Text>
       </View>
       <View style={myinfoStyle.line2}></View>
     </View>

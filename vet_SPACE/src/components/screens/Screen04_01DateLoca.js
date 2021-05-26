@@ -14,7 +14,7 @@ export default function DateLocaScreen({navigation}){
     //1. 날짜, 구분, 장소 각각 선택창 UI
     //2. 다음 버튼 활성화 옵션
     //3. 다믕 버튼 활성화 스타일 
-    4. 메뉴 연결
+    //4. 메뉴 연결
     //5. 홈 버튼 연결
    */
   const [dateSelectModal, setDateSelectModal] = React.useState(false);
@@ -28,6 +28,8 @@ export default function DateLocaScreen({navigation}){
   const [locationSelectModal, setLocationSelectModal] = React.useState(false);
   const [locationData, setLocationData] = React.useState('선 택');
   const [locationStyle, setLocationStyle] = React.useState(false);
+  const [buildingData, setBuildingData] = React.useState('');
+  const [roomData, setRoomData] = React.useState('');
 
   const toggleDateSelectModal =  () => {
     setDateSelectModal(prev => (!prev));
@@ -79,8 +81,10 @@ export default function DateLocaScreen({navigation}){
       setLocationSelectModal(prev => (!prev));
     }
   };
-  const locationHandler = (data) => {
-    setLocationData(data);
+  const locationHandler = (building, room) => {
+    setLocationData(building + '/' + room);
+    setBuildingData(building);
+    setRoomData(room);
     toggleLocationSelectModal();
     locationStyleChange();
   };
@@ -151,7 +155,9 @@ export default function DateLocaScreen({navigation}){
             data : {
               dateData: dateData,
               classData: classificationData,
-              locaData: locationData,
+              //locaData: locationData,
+              buildingData: buildingData,
+              roomData: roomData,
             }
           })}
         >
@@ -175,7 +181,8 @@ export default function DateLocaScreen({navigation}){
       {locationSelectModal ?
         <LocationSelectModal
           modalHandler={()=>toggleLocationSelectModal()}
-          dataHandler={(data)=>locationHandler(data)}
+          dataHandler={(building, room)=>locationHandler(building, room)}
+          classificationdata={classificationData}
         /> 
         : <></>
       }
@@ -223,19 +230,19 @@ const DateLocaStyle = StyleSheet.create({
   },
   InboxText: {
     alignSelf: 'center',
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
     color: colors.kuDarkGray,
   },
   InboxSelectedText: {
     alignSelf: 'center',
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: 'bold',
     color: colors.kuBlack,
   },
   InboxSelectedText2: {
     alignSelf: 'center',
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
     color: colors.kuBlack,
   },

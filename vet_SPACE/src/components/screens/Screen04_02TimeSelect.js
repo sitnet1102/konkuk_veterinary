@@ -1,8 +1,8 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, Text, StyleSheet, Alert} from 'react-native';
-import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
+import {View, Text, StyleSheet,  TouchableOpacity,Alert} from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import {Table, Row} from 'react-native-table-component';
 import { colors } from '../../utils/Styles';
 
@@ -16,11 +16,11 @@ export default function TimeSelectScreen({route, navigation}){
     //3. 선택 박스 선택 시 넘어가는 UI
     //4. 시간 시작 종료 모두 선택 시 다음 버튼 활성화
     //5. 다음 버튼 활성화 시 스타일 변화 
-    6. 테이블 모양 가다듬기
-    7. 테이블에서 선택된 시간 스타일 변화
-    8. 테이블에서 이미 선택된 시간 스타일 변화
+    //6. 테이블 모양 가다듬기
+    //7. 테이블에서 선택된 시간 스타일 변화
+    //8. 테이블에서 이미 선택된 시간 스타일 변화
     9. 테이블 데이터베이스 연동 
-    10. 메뉴 연결
+    //10. 메뉴 연결
     //11. 홈 버튼 연결
   */
   
@@ -32,17 +32,89 @@ export default function TimeSelectScreen({route, navigation}){
   const [endTimeData, setEndTimeData] = React.useState('선 택');
   const [endTimeStyle, setEndTimeStyle] = React.useState(false);
 
+  let [time, setTime] = React.useState([
+    ['08:00 ~ 08:30', 0],
+    ['08:30 ~ 09:00', 1],
+    ['09:00 ~ 09:30', 2],
+    ['09:30 ~ 10:00', 3],
+    ['10:00 ~ 10:30', 4],
+    ['10:30 ~ 11:00', 5],
+    ['11:00 ~ 11:30', 6],
+    ['11:30 ~ 12:00', 7],
+    ['12:00 ~ 12:30', 8],
+    ['12:30 ~ 13:00', 9],
+    ['13:00 ~ 13:30', 10],
+    ['13:30 ~ 14:00', 11],
+    ['14:00 ~ 14:30', 12],
+    ['14:30 ~ 15:00', 13],
+    ['15:00 ~ 15:30', 14],
+    ['15:30 ~ 16:00', 15],
+    ['16:00 ~ 16:30', 16],
+    ['16:30 ~ 17:00', 17],
+    ['17:00 ~ 17:30', 18],
+    ['17:30 ~ 18:00', 19],
+    ['18:00 ~ 18:30', 20],
+    ['18:30 ~ 19:00', 21],
+    ['19:00 ~ 19:30', 22],
+    ['19:30 ~ 20:00', 23],
+    ['20:00 ~ 20:30', 24],
+    ['20:30 ~ 21:00', 25],
+    ['21:00 ~ 21:30', 26],
+    ['21:30 ~ 22:00', 27],
+  ]);
+
+  let [timeStyle, setTimeStyle] = React.useState([
+    0,
+    0,
+    0,
+    0,
+    0,
+
+    0,
+    0,
+    0,
+    0,
+    0,
+
+    0,
+    0,
+    0,
+    0,
+    0,
+
+    0,
+    0,
+    0,
+    0,
+    0,
+
+    0,
+    0,
+    0,
+    0,
+    0,
+
+    0,
+    0,
+    0,
+  ]);
+
   const toggleStartTimeSelectModal =  () => {
     setStartTimeSelectModal(prev => (!prev));
   };
   const startTimeHandler = (selectedHour,selectedMin) => {
+    // 리셋 필요 
     if(endTimeStyle){
       setEndTimeData('선 택');
       setEndTimeStyle(false);
     }
-    setStartTimeData(selectedHour+":"+selectedMin);
-    toggleStartTimeSelectModal();
-    startTimeStyleChange();
+    if(selectedHour === '22'){
+      Alert.alert("경고", "시작시간은 22시보다 빨라야합니다");
+    }else{
+      setStartTimeData(selectedHour+":"+selectedMin);
+      toggleStartTimeSelectModal();
+      startTimeStyleChange();
+    }
   };
   const startTimeStyleChange = () => {
     setStartTimeStyle(true);
@@ -57,13 +129,22 @@ export default function TimeSelectScreen({route, navigation}){
     }
   };
   const endTimeHandler = (selectedHour,selectedMin) => {
+    // 선택 할때마다 reset 해주어야함 
     const startTimetmp = Number(startTimeData.substr(0,2)+startTimeData.substr(3));
+    let startnum = (Number(startTimeData.substr(0,2)) - 8 ) * 2 + (Number(startTimeData.substr(3)/30));
+    let endnum = (Number(selectedHour) - 8) * 2 + (Number(selectedMin)/30);
     if(startTimetmp/* + 100 > */ >= Number(selectedHour+""+selectedMin)){
       Alert.alert("경고", "시작시간보다 종료시간이 같거나 빠릅니다");
+    }else if(selectedHour === '22' && selectedMin === '30'){
+      Alert.alert("경고", "종료시간은 22시보다 빠르거나 같아야합니다");
     }else{
       setEndTimeData(selectedHour+":"+selectedMin);
       toggleEndTimeSelectModal();
       endTimeStyleChange();
+      for(let i=startnum;i<endnum;i++){
+        time[i][1] = "예약 희망";
+        timeStyle[i] = 1;
+      }
     }
   };
   const endTimeStyleChange = () => {
@@ -71,12 +152,13 @@ export default function TimeSelectScreen({route, navigation}){
   };
 
   const state = {
-    tableTitle: [route.params.data.dateData + "\n" + route.params.data.locaData + "호 예약 내역"],
+    tableTitle: [route.params.data.dateData + "\n" + route.params.data.buildingData + "/" + route.params.data.roomData + "호 예약 내역"],
     widthArr: [370],
     divisionArr: ['시간', '내용'],
-    widthArr2: [100,270],
-    widthArr3: [100,270],
+    widthArr2: [115,255],
+    widthArr3: [115,255],
   };
+  /*
   const timeTableData = [];
   for(let i = 0;i<14; i+=1){
     const rowData = [];
@@ -92,11 +174,10 @@ export default function TimeSelectScreen({route, navigation}){
     rowData.push(i);
     timeTableData.push(rowData);
   }
+  */
   return (
     <View style={timeSelectStyle.container}>
       <View style={timeSelectStyle.Top}>
-        {//<Text>{route.params.data.dateData + " " + route.params.data.classData + " " + route.params.data.locaData}</Text>
-        }
       </View>
       <View style={timeSelectStyle.Mid}>
         <View style={timeSelectStyle.Time}>
@@ -137,7 +218,6 @@ export default function TimeSelectScreen({route, navigation}){
           <Table borderStyle={timeSelectStyle.Border}>
             <Row 
               data={state.tableTitle} 
-              //data={route.params.data.dateData}
               widthArr={state.widthArr} 
               style={timeSelectStyle.SheetTitle} 
               textStyle={timeSelectStyle.SheetTitleText}
@@ -152,12 +232,17 @@ export default function TimeSelectScreen({route, navigation}){
           >
             <Table borderStyle={timeSelectStyle.Border}>
               {
-                timeTableData.map((rowData, index) => (
+                time.map((rowData, index) => (
                   <Row
                     key={index}
                     data={rowData}
                     widthArr={state.widthArr3}
-                    style={[timeSelectStyle.ScrollRow]}
+                    style={timeStyle[index] !== 0 ? 
+                      timeStyle[index] !== 1 ?
+                      [timeSelectStyle.ScrollRowReserved]
+                      : [timeSelectStyle.ScrollRowSelected]
+                      : [timeSelectStyle.ScrollRow]
+                    }
                     textStyle={timeSelectStyle.SheetText}
                   />
                 ))
@@ -178,7 +263,9 @@ export default function TimeSelectScreen({route, navigation}){
             data: {
               dateData: route.params.data.dateData,
               classData: route.params.data.classData,
-              locaData: route.params.data.locaData,
+              //locaData: route.params.data.locaData,
+              buildingData: route.params.data.buildingData,
+              roomData: route.params.data.roomData,
               startTimeData: startTimeData,
               endTimeData: endTimeData,
             }
@@ -301,6 +388,14 @@ const timeSelectStyle = StyleSheet.create({
   ScrollRow: {
     height: 40,
     backgroundColor: colors.kuLightGray,
+  },
+  ScrollRowSelected: {
+    height: 40,
+    backgroundColor: colors.kuYellow,
+  },
+  ScrollRowReserved: {
+    height: 40,
+    backgroundColor: colors.kuMagenta,
   },
   SheetText: {
     alignSelf: 'center',

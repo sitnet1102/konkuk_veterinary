@@ -4,7 +4,8 @@ import * as React from 'react';
 import {View, Text, StyleSheet,SafeAreaView, TouchableOpacity, Image} from 'react-native';
 import {createDrawerNavigator, DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import { RFPercentage } from 'react-native-responsive-fontsize';
-import {WebView} from 'react-native-webview';
+
+import auth from '@react-native-firebase/auth';
 
 import MainNavigator from './MainNavigator';
 import Notice_Link from '../screens/Screen07_03Notice';
@@ -28,18 +29,7 @@ function MenuDrawer(props) {
     copyright1: "COPYRIGHT ⓒALL RIGHT RESERVED.",
     copyright2: "COLLEGE OF VETERINARY, KONKUK UNIVERSITY",
   };
-  const data = {
-    id: "User1234",
-    name: "홍길동",
-    password: "1234",
-  };
-  /*
-  const url_link = {
-    notice: 'https://www.notion.so/9d5cafd0076843f792fc332ee4a6853c?v=cc61cf79e919472ea3b674635e9be97f',
-    question: "https://www.notion.so/a894d3c16211427383c035ae9c3a2796?v=1ba256da5eda4603b10ba793a3916caa",
-    help: "https://www.notion.so/d3abc320cc704c5893d498f4175128e6?v=2b56c4eb9e7a4a72a9f90986748695a2",
-  };
-  */
+  const name = auth().currentUser.displayName;
 
   return (
     <SafeAreaView style={menudrawerStyle.safearea}>
@@ -57,7 +47,7 @@ function MenuDrawer(props) {
             style={menudrawerStyle.image}
             source={IMG_KULOGO}
           />
-          <Text style={menudrawerStyle.idText}>{data.name} 님</Text>
+          <Text style={menudrawerStyle.idText}>{name} 님</Text>
           <View style={menudrawerStyle.box2}></View>
           <TouchableOpacity 
             style={menudrawerStyle.logOut}

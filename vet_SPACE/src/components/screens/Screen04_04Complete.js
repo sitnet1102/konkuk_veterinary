@@ -1,8 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, Text, StyleSheet} from 'react-native';
-import { TouchableOpacity} from 'react-native-gesture-handler';
+import {View, Text, StyleSheet, TouchableOpacity, BackHandler, Alert} from 'react-native';
 import { colors } from '../../utils/Styles';
 
 
@@ -17,13 +16,36 @@ export default function CompleteScreen({route, navigation}){
   const {
     dateData, 
     classData, 
-    locaData, 
+    //locaData, 
+    buildingData,
+    roomData,
     startTimeData, 
     endTimeData, 
     purposeData, 
     profData
   } = route.params;
   */
+
+  React.useEffect(() => {
+    const backAction = () => {
+      Alert.alert("종료", "앱을 종료하시겠습니까?", [
+        {
+          text: "취소",
+          onPress: () => null,
+        },
+        { text: "확인", onPress: () => BackHandler.exitApp() }
+      ]);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
   return(
     <View style={completeStyle.container}>
       <View style={completeStyle.Top}>
@@ -60,15 +82,22 @@ export default function CompleteScreen({route, navigation}){
             공문 요청하기 
           </Text>
         </View>
-        {/*<Text>{
+        {
+        /*
+
+        <Text>{
         route.params.data.dateData + " " +
         route.params.data.classData + " " +
-        route.params.data.locaData + " " +
+        //route.params.data.locaData + " " +
+        route.params.data.buildingData + " " +
+        route.params.data.roomData + " " +
         route.params.data.startTimeData + " " +
         route.params.data.endTimeData + " " +
         route.params.data.purposeData + " " +
         route.params.data.profData
-        }</Text>*/
+        }</Text>
+
+        */
         }
       </View>
       <View style={completeStyle.Bot}>
@@ -76,7 +105,7 @@ export default function CompleteScreen({route, navigation}){
           style={completeStyle.NextButton}
           onPress={() => navigation.navigate('Main')}
         >
-          <Text style={completeStyle.NextText}>완  료</Text>
+          <Text style={completeStyle.NextText}>메인으로</Text>
         </TouchableOpacity>
       </View>
     </View>

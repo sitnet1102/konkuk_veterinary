@@ -9,13 +9,13 @@ import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import {colors} from '../../utils/Styles';
 
 export default function SortingSelectModal(props) {
-  const [selected, setSelected] = React.useState('강의실');
+  const [selected, setSelected] = React.useState('학부생');
   const ClassData = [
     "학부생",
     "교수",
     "교직원",
     "대학원생",
-    "기타",
+    //"기타",
   ];
   return(
     <View style={sortingselectmodalStyle.container}>

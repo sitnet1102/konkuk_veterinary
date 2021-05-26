@@ -8,74 +8,107 @@ import {SliderBox} from 'react-native-image-slider-box';
 
 import {colors} from '../../utils/Styles';
 
-import LocationSelectModal from '../modal/LocationSelectModal2';
+import database from '@react-native-firebase/database';
 
-export default function RoomInfoDetailScreen() {
+import LocationSelectModal from '../modal/LocationSelectModal';
+
+export default function RoomInfoDetailScreen({route}) {
   /**
-    1. 이미지 선택시 오류가 생길 수도 있음 -> 추후 수정 
-    2. 이미지 크기 고정이면 좋을것 같음 1024x768
-    3. 강의실이 선택되지 않았을 때에 어떤식으로 할 것인지 고려해야함 
+    //1. 이미지 선택시 오류가 생길 수도 있음 -> 추후 수정 
+    //2. 이미지 크기 고정이면 좋을것 같음 1024x768 -> 상관없음 
+    //3. 강의실이 선택되지 않았을 때에 어떤식으로 할 것인지 고려해야함 
    */
   const [locationSelectModal, setLocationSelectModal] = React.useState(false);
   const [locationData, setLocationData] = React.useState('선 택');
   const [locationStyle, setLocationStyle] = React.useState(false);
+  const [buildingData, setBuildingData] = React.useState('');
+  const [roomData, setRoomData] = React.useState('');
+  const [images, setImages] = React.useState([
+    "http://drive.google.com/uc?export=view&id=1fyr8wFS-UQNVT_tOCv_SoF7gDDYbdtue"
+  ]);
+  const data1 = {
+    title: '호실정보',
+    d1: '* 분류: ',
+    d2: '* 수용인원: ',
+    d3: '* 전용면적: ',
+  };
+  const data2 = {
+    title: '기자재 현황',
+    d1: '* 빔프로젝터: ',
+    d2: '* 컴퓨터/전자교탁: ',
+    d3: '* 강의용 TV: ',
+    d4: '* 에어컨: ',
+  };
+  const [roomsort, setRoomsort] = React.useState(' ');
+  const [opacity, setOpacity] = React.useState(' ');
+  const [area, setArea] = React.useState(' ');
+
+  const [equip1, setEquip1] = React.useState(' ');
+  const [equip2, setEquip2] = React.useState(' ');
+  const [equip3, setEquip3] = React.useState(' ');
+  const [equip4, setEquip4] = React.useState(' ');
 
   const toggleLocationSelectModal = () => {
     setLocationSelectModal(prev => (!prev));
   };
-  const locationHandler = (data) => {
-    setLocationData(data);
+  const locationHandler = (building, room) => {
+    setLocationData(building + '/' + room);
+    setBuildingData(building);
+    setRoomData(room);
     toggleLocationSelectModal();
     locationStyleChange();
+    imageData(room);
+    detailData(building, room);
   };
   const locationStyleChange = () => {
     setLocationStyle(true);
   };
-/**
-  <a href="https://ibb.co/Y7qC2wh">
-  <img src="https://i.ibb.co/7J6fvLK/Kakao-Talk-Photo-2021-04-01-16-40-29.jpg" 
-  alt="Kakao-Talk-Photo-2021-04-01-16-40-29" border="0"></a>
-  <a href="https://ibb.co/s1PhGYq">
-  <img src="https://i.ibb.co/GMJXLSR/Kakao-Talk-Photo-2021-04-01-16-40-42.jpg" 
-  alt="Kakao-Talk-Photo-2021-04-01-16-40-42" border="0"></a>
- */
-  const images = [
-    //"https://source.unsplash.com/1024x768/?nature",
-    //"https://source.unsplash.com/1024x768/?tree",
-    //"https://source.unsplash.com/1024x768/?water",
-    //"https://source.unsplash.com/1024x768/?girl",
-    //"https://ifh.cc/g/vxZzuu.jpg",
-    //"https://ifh.cc/g/iL9x8G.jpg",
-    "https://i.ibb.co/7J6fvLK/Kakao-Talk-Photo-2021-04-01-16-40-29.jpg",
-    "https://i.ibb.co/GMJXLSR/Kakao-Talk-Photo-2021-04-01-16-40-42.jpg",
-  ];
-  const data1 = {
-    title: ['호실정보'],
-    d1: ['* 분류: '],
-    d2: ['* 수용인원: '],
-    d3: ['* 전용면적: '],
-    d1_roomsort: ['강의실'],
-    d2_opacity: ['80명'],
-    d3_area: ['120m^2'],
+
+  let imageData = (room) => {
+    database().ref('/Pic_link/'+route.params.data+'/'+room).on('value', snapshot => {
+    if(snapshot.val() === null){
+      setImages([
+        "http://drive.google.com/uc?export=view&id=1fyr8wFS-UQNVT_tOCv_SoF7gDDYbdtue"
+      ])
+    }else{
+      setImages(snapshot.val());
+    }
+  })};
+
+  let detailData = (building, room) => {
+    database().ref('/Room_info/Detail/'+route.params.data+'/'+building+'/'+room).on('value', snapshot => {
+      if(snapshot.val() === null){
+        setArea(' ');
+        setRoomsort(' ');
+        setOpacity(' ');
+        setEquip1(' ');
+        setEquip2(' ');
+        setEquip3(' ');
+        setEquip4(' ');
+      }else{
+        setArea(snapshot.child('area').val());
+        setRoomsort(snapshot.child('classification').val());
+        setOpacity(snapshot.child('capacity').val());
+        setEquip1(snapshot.child('equip1').val());
+        setEquip2(snapshot.child('equip2').val());
+        setEquip3(snapshot.child('equip3').val());
+        setEquip4(snapshot.child('equip4').val());
+      }
+    })
   };
-  const data2 = {
-    title: ['기자재 현황'],
-    d1: ['* 빔프로젝터: '],
-    d2: ['* 컴퓨터/전자교탁: '],
-    d3: ['* 강의용 TV: '],
-    d4: ['* 에어컨: '],
-    d1_: ['1대'],
-    d2_: ['1대'],
-    d3_: ['4대'],
-    d4_: ['천장형 2대'],
-  };
+
+  React.useEffect(() => {
+    return () => database().ref().off('value', imageData);
+  }, []);
+
+  
 
   return(
     <View style={roominfodetailStyle.container}>
       <View style={roominfodetailStyle.top}>
         <View style={roominfodetailStyle.topContainer}>
           <View style={roominfodetailStyle.TextContainer}>
-            <Text style={roominfodetailStyle.Text}>강의실 :</Text>
+            <Text style={roominfodetailStyle.Text}>{route.params.data + " : "}</Text>
           </View>
           <TouchableOpacity 
             style={roominfodetailStyle.SelectBox}
@@ -94,7 +127,6 @@ export default function RoomInfoDetailScreen() {
           //ImageComponent={FastImage}
           images={images}
           sliderBoxHeight={RFPercentage(30)}
-          //onCurrentImagePressed={index => console.warn(`image ${index} pressed`)}
           dotColor={colors.kuLightGreen}
           inactiveDotColor={colors.kuCoolGray}
           paginationBoxVerticalPadding={20}
@@ -132,15 +164,15 @@ export default function RoomInfoDetailScreen() {
             </Text>
             <View style={roominfodetailStyle.container3}>
               <Text style={roominfodetailStyle.text2}>{data1.d1}</Text>
-              <Text style={roominfodetailStyle.text2}>{data1.d1_roomsort}</Text>
+              <Text style={roominfodetailStyle.text2}>{roomsort}</Text>
             </View>
             <View style={roominfodetailStyle.container3}>
               <Text style={roominfodetailStyle.text2}>{data1.d2}</Text>
-              <Text style={roominfodetailStyle.text2}>{data1.d2_opacity}</Text>
+              <Text style={roominfodetailStyle.text2}>{opacity}</Text>
             </View>
             <View style={roominfodetailStyle.container3}>
               <Text style={roominfodetailStyle.text2}>{data1.d3}</Text>
-              <Text style={roominfodetailStyle.text2}>{data1.d3_area}</Text>
+              <Text style={roominfodetailStyle.text2}>{area}</Text>
             </View>
           </View>
           <View style={roominfodetailStyle.container2}>
@@ -149,19 +181,19 @@ export default function RoomInfoDetailScreen() {
             </Text>
             <View style={roominfodetailStyle.container3}>
               <Text style={roominfodetailStyle.text2}>{data2.d1}</Text>
-              <Text style={roominfodetailStyle.text2}>{data2.d1_}</Text>
+              <Text style={roominfodetailStyle.text2}>{equip1}</Text>
             </View>
             <View style={roominfodetailStyle.container3}>
               <Text style={roominfodetailStyle.text2}>{data2.d2}</Text>
-              <Text style={roominfodetailStyle.text2}>{data2.d2_}</Text>
+              <Text style={roominfodetailStyle.text2}>{equip2}</Text>
             </View>
             <View style={roominfodetailStyle.container3}>
               <Text style={roominfodetailStyle.text2}>{data2.d3}</Text>
-              <Text style={roominfodetailStyle.text2}>{data2.d3_}</Text>
+              <Text style={roominfodetailStyle.text2}>{equip3}</Text>
             </View>
             <View style={roominfodetailStyle.container3}>
               <Text style={roominfodetailStyle.text2}>{data2.d4}</Text>
-              <Text style={roominfodetailStyle.text2}>{data2.d4_}</Text>
+              <Text style={roominfodetailStyle.text2}>{equip4}</Text>
             </View>
           </View>
         </View>
@@ -169,7 +201,8 @@ export default function RoomInfoDetailScreen() {
       {locationSelectModal ?
         <LocationSelectModal
           modalHandler={()=>toggleLocationSelectModal()}
-          dataHandler={(data)=>locationHandler(data)}
+          dataHandler={(building, room)=>locationHandler(building, room)}
+          classificationdata={route.params.data}
         /> 
         : <></>
       }
@@ -200,7 +233,8 @@ const roominfodetailStyle = StyleSheet.create({
     width: '30%',
   },
   Text: {
-    fontSize: 30,
+    //fontSize: RFPercentage(3.5),
+    fontSize: 28,
     fontWeight: 'bold',
   },
   SelectBox: {

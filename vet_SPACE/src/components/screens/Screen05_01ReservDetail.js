@@ -47,6 +47,12 @@ export default function ReservDetailScreen({route, navigation}) {
     [data5],
     [data6],
   ];
+
+  const deleteFunc = () => {
+    // 삭제에 필요한 내용 
+    navigation.navigate('List');
+  };
+
   return(
     <View style={reservdetailStyle.container}>
       <View style={reservdetailStyle.top}>
@@ -92,7 +98,16 @@ export default function ReservDetailScreen({route, navigation}) {
           style={reservdetailStyle.button}
           onPress={()=>Alert.alert(
             title='예약 취소',
-            message='예약을 취소하시겠습니까?',
+            message='예약을 취소하시겠습니까?',[
+              {
+                text: "예",
+                onPress: () => deleteFunc(),
+              },
+              {
+                text: "아니오",
+                onPress: () => null,
+              }
+            ]
             //navigation.navigate('List')
           )}
         >
