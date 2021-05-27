@@ -1,9 +1,10 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import {Table, Row} from 'react-native-table-component';
 import { colors } from '../../utils/Styles';
+import { FIRESTORE_DATA1 } from '../../utils/firebaseData';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 
 import auth from '@react-native-firebase/auth';
@@ -73,6 +74,45 @@ export default function RoomReservDetailScreen({route, navigation}){
     setProfStyle(true);
   };
 
+  const onPressComplete = () => {
+    /**
+      //데이터 더 안넘기고 여기서 저장 처리해주기 
+      //저장 처리 시에 alert로 저장 확인 한번 더 해주기 
+      
+      dateData: route.params.data.dateData,
+      classData: route.params.data.classData,
+      //locaData: route.params.data.locaData,
+      buildingData: route.params.data.buildingData,
+      roomData: route.params.data.roomData,
+        startTimeData: route.params.data.startTimeData,
+        endTimeData: route.params.data.endTimeData,
+        purposeData: purposeData,
+        profData: profData,
+    */
+    /*
+      데이터 확인 필요 -> 해당 시간에 데이터가 있다면 저장이 안되게 해야함 
+    */
+
+    
+    firestore().collection(FIRESTORE_DATA1).doc(route.params.data.dateData).collection('Data').add({
+      apply_date: firestore.Timestamp.fromDate(new Date()),
+      start_time: route.params.data.startTimeData,
+      end_time: route.params.data.endTimeData,
+      prof_name: profData,
+      purpose: purposeData,
+      reserv_confirm: false,
+      use_check: true,
+      room_id: "/"+route.params.data.classData+"/"+route.params.data.buildingData+"/"+route.params.data.roomData,
+      stored_from: 0,
+      user_id: auth().currentUser.uid,
+      user_name: auth().currentUser.displayName,
+    }).then(() => {
+
+    }).catch(e => {
+
+    });
+    navigation.navigate('Complete');
+  };
 
 
   return (
@@ -133,23 +173,7 @@ export default function RoomReservDetailScreen({route, navigation}){
             detailStyle.ActivedNextButton
             : detailStyle.NextButton
           }
-          onPress={() => navigation.navigate('Complete', {
-            data: {
-              /**
-                데이터 더 안넘기고 여기서 저장 처리해주기 
-                저장 처리 시에 alert로 저장 확인 한번 더 해주기 
-               */
-              dateData: route.params.data.dateData,
-              classData: route.params.data.classData,
-              //locaData: route.params.data.locaData,
-              buildingData: route.params.data.buildingData,
-              roomData: route.params.data.roomData,
-              startTimeData: route.params.data.startTimeData,
-              endTimeData: route.params.data.endTimeData,
-              purposeData: purposeData,
-              profData: profData,
-            }
-          })}
+          onPress={() => onPressComplete()}
         >
           <Text style={detailStyle.NextText}>제출하기</Text>
         </TouchableOpacity>
