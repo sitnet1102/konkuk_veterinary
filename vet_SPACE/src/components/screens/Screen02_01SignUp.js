@@ -163,7 +163,7 @@ export default function SignUpScreen({navigation}){
             style={signupStyle.InputTextBox}
             autoCapitalize="none"
             secureTextEntry={true}
-            placeholder="비밀번호"
+            placeholder="비밀번호 (8 ~ 16자리)"
             value={__password}
             onChangeText={setPassword}
           />
