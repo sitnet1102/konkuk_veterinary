@@ -12,11 +12,8 @@ import {colors} from '../../utils/Styles';
 export default function ProfSelectModal(props) {
   const [selected, setSelected] = React.useState('선택');
   const [classData, setClassData] = React.useState([]);
-  const isMountedRef = React.useRef(null);
   
-  let onData =  database().ref('/Prof_info/Prof_info_list').on('value', snapshot => {
-    setClassData(snapshot.val());
-  });
+  let onData;
 
   const complete = () => {
     if(selected === '선택'){
@@ -27,13 +24,10 @@ export default function ProfSelectModal(props) {
     }
   };
   React.useEffect(() => {
-    /*
-    isMountedRef.current = true;
-    if(isMountedRef.current){
-      () => setClassData(false);
-    }
-    return () => isMountedRef.current = false;
-    */
+    onData =  database().ref('/Prof_info/Prof_info_list').on('value', snapshot => {
+      setClassData(snapshot.val());
+    });
+
     return () => database().ref('/Prof_info/Prof_info_list').off('value', onData);
   }, []);
   
