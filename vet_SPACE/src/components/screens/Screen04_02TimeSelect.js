@@ -5,6 +5,8 @@ import {View, Text, StyleSheet, TouchableOpacity, Alert, ScrollView } from 'reac
 import {Table, Row} from 'react-native-table-component';
 import { colors } from '../../utils/Styles';
 
+import firestore from '@react-native-firebase/firestore';
+
 import TimeSelectModal from '../modal/TimeSelectModal';
 
 export default function TimeSelectScreen({route, navigation}){
@@ -31,72 +33,72 @@ export default function TimeSelectScreen({route, navigation}){
   const [endTimeData, setEndTimeData] = React.useState('선 택');
   const [endTimeStyle, setEndTimeStyle] = React.useState(false);
 
-  let [time, setTime] = React.useState([
-    ['08:00 ~ 08:30', ' '],
-    ['08:30 ~ 09:00', ' '],
-    ['09:00 ~ 09:30', ' '],
-    ['09:30 ~ 10:00', ' '],
-    ['10:00 ~ 10:30', ' '],
-    ['10:30 ~ 11:00', ' '],
-    ['11:00 ~ 11:30', ' '],
-    ['11:30 ~ 12:00', ' '],
-    ['12:00 ~ 12:30', ' '],
-    ['12:30 ~ 13:00', ' '],
-    ['13:00 ~ 13:30', ' '],
-    ['13:30 ~ 14:00', ' '],
-    ['14:00 ~ 14:30', ' '],
-    ['14:30 ~ 15:00', ' '],
-    ['15:00 ~ 15:30', ' '],
-    ['15:30 ~ 16:00', ' '],
-    ['16:00 ~ 16:30', ' '],
-    ['16:30 ~ 17:00', ' '],
-    ['17:00 ~ 17:30', ' '],
-    ['17:30 ~ 18:00', ' '],
-    ['18:00 ~ 18:30', ' '],
-    ['18:30 ~ 19:00', ' '],
-    ['19:00 ~ 19:30', ' '],
-    ['19:30 ~ 20:00', ' '],
-    ['20:00 ~ 20:30', ' '],
-    ['20:30 ~ 21:00', ' '],
-    ['21:00 ~ 21:30', ' '],
-    ['21:30 ~ 22:00', ' '],
-  ]);
+  let [time, setTime] = React.useState([]);
+  let [timeStyle, setTimeStyle] = React.useState([]);
 
-  let [timeStyle, setTimeStyle] = React.useState([
-    0,
-    0,
-    0,
-    0,
-    0,
-
-    0,
-    0,
-    0,
-    0,
-    0,
-
-    0,
-    0,
-    0,
-    0,
-    0,
-
-    0,
-    0,
-    0,
-    0,
-    0,
-
-    0,
-    0,
-    0,
-    0,
-    0,
-
-    0,
-    0,
-    0,
-  ]);
+  React.useEffect(() => {
+    let time_tmp = [
+      ['08:00 ~ 08:30', ' '],
+      ['08:30 ~ 09:00', ' '],
+      ['09:00 ~ 09:30', ' '],
+      ['09:30 ~ 10:00', ' '],
+      ['10:00 ~ 10:30', ' '],
+      ['10:30 ~ 11:00', ' '],
+      ['11:00 ~ 11:30', ' '],
+      ['11:30 ~ 12:00', ' '],
+      ['12:00 ~ 12:30', ' '],
+      ['12:30 ~ 13:00', ' '],
+      ['13:00 ~ 13:30', ' '],
+      ['13:30 ~ 14:00', ' '],
+      ['14:00 ~ 14:30', ' '],
+      ['14:30 ~ 15:00', ' '],
+      ['15:00 ~ 15:30', ' '],
+      ['15:30 ~ 16:00', ' '],
+      ['16:00 ~ 16:30', ' '],
+      ['16:30 ~ 17:00', ' '],
+      ['17:00 ~ 17:30', ' '],
+      ['17:30 ~ 18:00', ' '],
+      ['18:00 ~ 18:30', ' '],
+      ['18:30 ~ 19:00', ' '],
+      ['19:00 ~ 19:30', ' '],
+      ['19:30 ~ 20:00', ' '],
+      ['20:00 ~ 20:30', ' '],
+      ['20:30 ~ 21:00', ' '],
+      ['21:00 ~ 21:30', ' '],
+      ['21:30 ~ 22:00', ' '],
+    ];
+    let timeStyle_tmp = [
+      0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,
+    ];
+    firestore().collection('Booking_info_test').doc(route.params.data.dateData).collection('Data')
+    .where("room_id", "==", "/"+route.params.data.classData+"/"+route.params.data.buildingData+"/"+route.params.data.roomData).where("use_check", "==", true).get()
+    .then(querySnapshot => {
+      if(querySnapshot.empty){
+        console.log('empty');
+      }else{
+        querySnapshot.forEach(doc => {
+          const s_time = doc.get('start_time');
+          const e_time = doc.get('end_time');
+          let startnum = (Number(s_time.substr(0,2)) - 8 ) * 2 + (Number(s_time.substr(2)/30));
+          let endnum = (Number(e_time.substr(0,2)) - 8 ) * 2 + (Number(e_time.substr(2)/30));
+          const user_name = doc.get('user_name');
+          const prof_name = doc.get('prof_name');
+          const purpose = doc.get('purpose');
+          for(let i=startnum;i<endnum;i++){
+            time_tmp[i][1] = user_name+"/"+s_time+" ~ "+e_time+"\n"+purpose+"/담당 교수: "+prof_name;
+            timeStyle_tmp[i] = 2;
+          }
+        })
+      }
+      setTime(time_tmp);
+      setTimeStyle(timeStyle_tmp);
+    });
+    
+    return () => {
+      setTime([]);
+      setTimeStyle([]);
+    };
+  }, []);
 
   const toggleStartTimeSelectModal =  () => {
     setStartTimeSelectModal(prev => (!prev));
@@ -138,13 +140,24 @@ export default function TimeSelectScreen({route, navigation}){
     }else if(selectedHour === '22' && selectedMin === '30'){
       Alert.alert("경고", "종료시간은 22시보다 빠르거나 같아야합니다");
     }else{
+      let check = true;
       resetTable();
-      setEndTimeData(selectedHour+":"+selectedMin);
-      toggleEndTimeSelectModal();
-      endTimeStyleChange();
       for(let i=startnum;i<endnum;i++){
-        time[i][1] = "예약 희망";
-        timeStyle[i] = 1;
+        if(timeStyle[i] !== 0){
+          check = false;
+          break;
+        } 
+      }
+      if(check){
+        setEndTimeData(selectedHour+":"+selectedMin);
+        toggleEndTimeSelectModal();
+        endTimeStyleChange();
+        for(let i=startnum;i<endnum;i++){
+          time[i][1] = "예약 희망";
+          timeStyle[i] = 1;
+        }
+      }else{
+        Alert.alert("경고", "예약이 불가능한 시간입니다.");
       }
     }
   };
@@ -405,7 +418,7 @@ const timeSelectStyle = StyleSheet.create({
   },
   ScrollRowReserved: {
     height: 40,
-    backgroundColor: colors.kuMagenta,
+    backgroundColor: colors.kuBlue,
   },
   SheetText: {
     alignSelf: 'center',
