@@ -3,7 +3,7 @@ import * as React from 'react';
 import moment from 'moment';
 import 'moment/locale/ko';
 
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import {Calendar} from 'react-native-calendars';
 
@@ -19,6 +19,9 @@ export default function DateSelectModal(props) {
   const endDate = new Date();
   endDate.setMonth(endDate.getMonth() + 3);
   const onDayPress = day => {
+    if(moment(day.dateString).format('dd') === '토' || moment(day.dateString).format('dd') === '일'){
+      Alert.alert('경고','주말 예약입니다.');
+    }
     setSelected(day.dateString);
     setSelectedDay(moment(day.dateString).format('(dd)'));
   };
