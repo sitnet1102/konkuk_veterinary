@@ -1,8 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, Text, StyleSheet,  TouchableOpacity,Alert} from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import {View, Text, StyleSheet, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import {Table, Row} from 'react-native-table-component';
 import { colors } from '../../utils/Styles';
 
@@ -33,34 +32,34 @@ export default function TimeSelectScreen({route, navigation}){
   const [endTimeStyle, setEndTimeStyle] = React.useState(false);
 
   let [time, setTime] = React.useState([
-    ['08:00 ~ 08:30', 0],
-    ['08:30 ~ 09:00', 1],
-    ['09:00 ~ 09:30', 2],
-    ['09:30 ~ 10:00', 3],
-    ['10:00 ~ 10:30', 4],
-    ['10:30 ~ 11:00', 5],
-    ['11:00 ~ 11:30', 6],
-    ['11:30 ~ 12:00', 7],
-    ['12:00 ~ 12:30', 8],
-    ['12:30 ~ 13:00', 9],
-    ['13:00 ~ 13:30', 10],
-    ['13:30 ~ 14:00', 11],
-    ['14:00 ~ 14:30', 12],
-    ['14:30 ~ 15:00', 13],
-    ['15:00 ~ 15:30', 14],
-    ['15:30 ~ 16:00', 15],
-    ['16:00 ~ 16:30', 16],
-    ['16:30 ~ 17:00', 17],
-    ['17:00 ~ 17:30', 18],
-    ['17:30 ~ 18:00', 19],
-    ['18:00 ~ 18:30', 20],
-    ['18:30 ~ 19:00', 21],
-    ['19:00 ~ 19:30', 22],
-    ['19:30 ~ 20:00', 23],
-    ['20:00 ~ 20:30', 24],
-    ['20:30 ~ 21:00', 25],
-    ['21:00 ~ 21:30', 26],
-    ['21:30 ~ 22:00', 27],
+    ['08:00 ~ 08:30', ' '],
+    ['08:30 ~ 09:00', ' '],
+    ['09:00 ~ 09:30', ' '],
+    ['09:30 ~ 10:00', ' '],
+    ['10:00 ~ 10:30', ' '],
+    ['10:30 ~ 11:00', ' '],
+    ['11:00 ~ 11:30', ' '],
+    ['11:30 ~ 12:00', ' '],
+    ['12:00 ~ 12:30', ' '],
+    ['12:30 ~ 13:00', ' '],
+    ['13:00 ~ 13:30', ' '],
+    ['13:30 ~ 14:00', ' '],
+    ['14:00 ~ 14:30', ' '],
+    ['14:30 ~ 15:00', ' '],
+    ['15:00 ~ 15:30', ' '],
+    ['15:30 ~ 16:00', ' '],
+    ['16:00 ~ 16:30', ' '],
+    ['16:30 ~ 17:00', ' '],
+    ['17:00 ~ 17:30', ' '],
+    ['17:30 ~ 18:00', ' '],
+    ['18:00 ~ 18:30', ' '],
+    ['18:30 ~ 19:00', ' '],
+    ['19:00 ~ 19:30', ' '],
+    ['19:30 ~ 20:00', ' '],
+    ['20:00 ~ 20:30', ' '],
+    ['20:30 ~ 21:00', ' '],
+    ['21:00 ~ 21:30', ' '],
+    ['21:30 ~ 22:00', ' '],
   ]);
 
   let [timeStyle, setTimeStyle] = React.useState([
@@ -105,6 +104,7 @@ export default function TimeSelectScreen({route, navigation}){
   const startTimeHandler = (selectedHour,selectedMin) => {
     // 리셋 필요 
     if(endTimeStyle){
+      resetTable();
       setEndTimeData('선 택');
       setEndTimeStyle(false);
     }
@@ -138,6 +138,7 @@ export default function TimeSelectScreen({route, navigation}){
     }else if(selectedHour === '22' && selectedMin === '30'){
       Alert.alert("경고", "종료시간은 22시보다 빠르거나 같아야합니다");
     }else{
+      resetTable();
       setEndTimeData(selectedHour+":"+selectedMin);
       toggleEndTimeSelectModal();
       endTimeStyleChange();
@@ -149,6 +150,15 @@ export default function TimeSelectScreen({route, navigation}){
   };
   const endTimeStyleChange = () => {
     setEndTimeStyle(true);
+  };
+
+  const resetTable = () => {
+    let startnum = (Number(startTimeData.substr(0,2)) - 8 ) * 2 + (Number(startTimeData.substr(3)/30));
+    let endnum  = (Number(endTimeData.substr(0,2)) - 8 ) * 2 + (Number(endTimeData.substr(3)/30));
+    for(let i=startnum;i<endnum;i++){
+      time[i][1] = " ";
+      timeStyle[i] = 0;
+    }
   };
 
   const state = {
