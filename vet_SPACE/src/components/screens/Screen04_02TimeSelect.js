@@ -4,6 +4,7 @@ import * as React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import {Table, Row} from 'react-native-table-component';
 import { colors } from '../../utils/Styles';
+import { FIRESTORE_DATA1 } from '../../utils/firebaseData';
 
 import firestore from '@react-native-firebase/firestore';
 
@@ -70,17 +71,18 @@ export default function TimeSelectScreen({route, navigation}){
     let timeStyle_tmp = [
       0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,
     ];
-    firestore().collection('Booking_info_test').doc(route.params.data.dateData).collection('Data')
+    firestore().collection(FIRESTORE_DATA1).doc(route.params.data.dateData).collection('Data')
     .where("room_id", "==", "/"+route.params.data.classData+"/"+route.params.data.buildingData+"/"+route.params.data.roomData).where("use_check", "==", true).get()
     .then(querySnapshot => {
       if(querySnapshot.empty){
-        console.log('empty');
+        //console.log('empty');
+        Alert.alert('예약','예약이 없습니다.');
       }else{
         querySnapshot.forEach(doc => {
           const s_time = doc.get('start_time');
           const e_time = doc.get('end_time');
-          let startnum = (Number(s_time.substr(0,2)) - 8 ) * 2 + (Number(s_time.substr(2)/30));
-          let endnum = (Number(e_time.substr(0,2)) - 8 ) * 2 + (Number(e_time.substr(2)/30));
+          let startnum = (Number(s_time.substr(0,2)) - 8 ) * 2 + (Number(s_time.substr(3)/30));
+          let endnum = (Number(e_time.substr(0,2)) - 8 ) * 2 + (Number(e_time.substr(3)/30));
           const user_name = doc.get('user_name');
           const prof_name = doc.get('prof_name');
           const purpose = doc.get('purpose');
@@ -92,6 +94,8 @@ export default function TimeSelectScreen({route, navigation}){
       }
       setTime(time_tmp);
       setTimeStyle(timeStyle_tmp);
+    }).catch(e => {
+      Alert('error', e.code);
     });
     
     return () => {
