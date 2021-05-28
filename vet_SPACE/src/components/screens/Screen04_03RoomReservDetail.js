@@ -36,8 +36,6 @@ export default function RoomReservDetailScreen({route, navigation}){
       [__name],
       [__phone],
       [__time],
-      //[__purpose],
-      //[__prof],
     ],
   }
 
@@ -75,43 +73,58 @@ export default function RoomReservDetailScreen({route, navigation}){
   };
 
   const onPressComplete = () => {
-    /**
-      //데이터 더 안넘기고 여기서 저장 처리해주기 
-      //저장 처리 시에 alert로 저장 확인 한번 더 해주기 
-      
-      dateData: route.params.data.dateData,
-      classData: route.params.data.classData,
-      //locaData: route.params.data.locaData,
-      buildingData: route.params.data.buildingData,
-      roomData: route.params.data.roomData,
-        startTimeData: route.params.data.startTimeData,
-        endTimeData: route.params.data.endTimeData,
-        purposeData: purposeData,
-        profData: profData,
-    */
-    /*
-      데이터 확인 필요 -> 해당 시간에 데이터가 있다면 저장이 안되게 해야함 
-    */
-
-    
-    firestore().collection(FIRESTORE_DATA1).doc(route.params.data.dateData).collection('Data').add({
-      apply_date: firestore.Timestamp.fromDate(new Date()),
-      start_time: route.params.data.startTimeData,
-      end_time: route.params.data.endTimeData,
-      prof_name: profData,
-      purpose: purposeData,
-      reserv_confirm: false,
-      use_check: true,
-      room_id: "/"+route.params.data.classData+"/"+route.params.data.buildingData+"/"+route.params.data.roomData,
-      stored_from: 0,
-      user_id: auth().currentUser.uid,
-      user_name: auth().currentUser.displayName,
-    }).then(() => {
-
-    }).catch(e => {
-
-    });
-    navigation.navigate('Complete');
+    const check = true;
+    const sNum = (Number(route.params.data.startTimeData.substr(0,2)) - 8 ) * 2 + (Number(route.params.data.startTimeData.substr(3)/30));
+    const eNum = (Number(route.params.data.endTimeData.substr(0,2)) - 8 ) * 2 + (Number(route.params.data.endTimeData.substr(3)/30)) - 1;
+    firestore().collection(FIRESTORE_DATA1).doc(route.params.data.dateData).collection('Data')
+    .where("room_id", "==", "/"+route.params.data.classData+"/"+route.params.data.buildingData+"/"+route.params.data.roomData).where("use_check", "==", true).get()
+    .then(querySnapshot => {
+      if(!querySnapshot.empty){
+        querySnapshot.forEach(doc => {
+          const s_time = doc.get('start_time');
+          const e_time = doc.get('end_time');
+          const startnum = (Number(s_time.substr(0,2)) - 8 ) * 2 + (Number(s_time.substr(3)/30));
+          const endnum = (Number(e_time.substr(0,2)) - 8 ) * 2 + (Number(e_time.substr(3)/30)) - 1;
+          if((startnum <= sNum && endnum >= sNum) || (startnum <= eNum && endnum >= eNum)){
+            check = false;
+          }
+        })
+      }
+      if(check){
+        firestore().collection(FIRESTORE_DATA1).doc(route.params.data.dateData).collection('Data').add({
+          apply_date: firestore.Timestamp.fromDate(new Date()),
+          start_time: route.params.data.startTimeData,
+          end_time: route.params.data.endTimeData,
+          prof_name: profData,
+          purpose: purposeData,
+          reserv_confirm: false,
+          use_check: true,
+          room_id: "/"+route.params.data.classData+"/"+route.params.data.buildingData+"/"+route.params.data.roomData,
+          stored_from: 0,
+          user_id: auth().currentUser.uid,
+          user_name: auth().currentUser.displayName,
+        }).then(() => {
+          navigation.navigate('Complete');
+        }).catch(e => {
+          //console.log(e.code);
+          Alert.alert('error 432',e.code);
+        });
+      }else{
+        Alert.alert('예약 오류 431','예약이 불가능합니다.다시 예약해주세요',[
+          {
+            text: '확인',
+            onPress: () => navigation.navigate('Main')
+          }
+        ]);
+      }
+    }).catch(error => {
+      Alert.alert('예약 오류 430', error.code + '\n예약이 불가능합니다.다시 예약해주세요',[
+        {
+          text: '확인',
+          onPress: () => navigation.navigate('Main')
+        }
+      ]);
+    })
   };
 
 
