@@ -81,8 +81,8 @@ export default function TimeSelectScreen({route, navigation}){
         querySnapshot.forEach(doc => {
           const s_time = doc.get('start_time');
           const e_time = doc.get('end_time');
-          let startnum = (Number(s_time.substr(0,2)) - 8 ) * 2 + (Number(s_time.substr(3)/30));
-          let endnum = (Number(e_time.substr(0,2)) - 8 ) * 2 + (Number(e_time.substr(3)/30));
+          const startnum = (Number(s_time.substr(0,2)) - 8 ) * 2 + (Number(s_time.substr(3)/30));
+          const endnum = (Number(e_time.substr(0,2)) - 8 ) * 2 + (Number(e_time.substr(3)/30));
           const user_name = doc.get('user_name');
           const prof_name = doc.get('prof_name');
           const purpose = doc.get('purpose');
@@ -95,7 +95,7 @@ export default function TimeSelectScreen({route, navigation}){
       setTime(time_tmp);
       setTimeStyle(timeStyle_tmp);
     }).catch(e => {
-      Alert('error', e.code);
+      Alert.alert('error 420', e.code);
     });
     
     return () => {
