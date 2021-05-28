@@ -79,10 +79,12 @@ export default function LoginScreen({navigation}) {
           });
         }
       }).catch(e => {
-        if(e.code === 'auth/invalid-email'){
+        if(e.code === 'auth/invalid-email' || e.code === 'auth/wrong-password'){
           Alert.alert("로그인 오류","아이디와 패스워드가 다릅니다");
+        }else if(e.code === 'auth/user-not-found'){
+          Alert.alert("로그인 오류","아이디와 비밀번호를 확인해주세요");
         }else{
-          Alert.alert("error",e.code);
+          Alert.alert("error201",e.code);
         }
       });
     }
