@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, Text, StyleSheet,SafeAreaView, TouchableOpacity, Image} from 'react-native';
+import {View, Text, StyleSheet,SafeAreaView, TouchableOpacity, Image, Alert} from 'react-native';
 import {createDrawerNavigator, DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 
@@ -31,6 +31,14 @@ function MenuDrawer(props) {
   };
   const name = auth().currentUser.displayName;
 
+  const onPressLogOut = () => {
+    auth().signOut().then(() => {
+      props.navigation.navigate('Login');
+    }).catch( e => {
+      Alert.alert('error Log Out',e.code);
+    });
+  };
+
   return (
     <SafeAreaView style={menudrawerStyle.safearea}>
       <View style={menudrawerStyle.top}>
@@ -51,7 +59,7 @@ function MenuDrawer(props) {
           <View style={menudrawerStyle.box2}></View>
           <TouchableOpacity 
             style={menudrawerStyle.logOut}
-            onPress={() => props.navigation.navigate('Login')}
+            onPress={() => onPressLogOut()}
           >
             <Text style={menudrawerStyle.logOutText}>로그아웃</Text>
           </TouchableOpacity>
