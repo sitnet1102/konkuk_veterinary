@@ -6,6 +6,9 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { Table, Row} from 'react-native-table-component';
 
 import {colors} from '../../utils/Styles';
+import { FIRESTORE_DATA1 } from '../../utils/firebaseData';
+
+import firestore from '@react-native-firebase/firestore';
 
 import DateSelectModal from '../modal/DateSelectModal2';
 import ClassificationSelectModal from '../modal/ClassificationSelectModal';
@@ -26,6 +29,43 @@ export default function StatusScreen() {
   const [buildingData, setBuildingData] = React.useState('');
   const [roomData, setRoomData] = React.useState('');
 
+  let [time, setTime] = React.useState([]);
+  let [timeStyle, setTimeStyle] = React.useState([]);
+
+  const time_first = [
+    ['08:00 ~ 08:30', ' '],
+    ['08:30 ~ 09:00', ' '],
+    ['09:00 ~ 09:30', ' '],
+    ['09:30 ~ 10:00', ' '],
+    ['10:00 ~ 10:30', ' '],
+    ['10:30 ~ 11:00', ' '],
+    ['11:00 ~ 11:30', ' '],
+    ['11:30 ~ 12:00', ' '],
+    ['12:00 ~ 12:30', ' '],
+    ['12:30 ~ 13:00', ' '],
+    ['13:00 ~ 13:30', ' '],
+    ['13:30 ~ 14:00', ' '],
+    ['14:00 ~ 14:30', ' '],
+    ['14:30 ~ 15:00', ' '],
+    ['15:00 ~ 15:30', ' '],
+    ['15:30 ~ 16:00', ' '],
+    ['16:00 ~ 16:30', ' '],
+    ['16:30 ~ 17:00', ' '],
+    ['17:00 ~ 17:30', ' '],
+    ['17:30 ~ 18:00', ' '],
+    ['18:00 ~ 18:30', ' '],
+    ['18:30 ~ 19:00', ' '],
+    ['19:00 ~ 19:30', ' '],
+    ['19:30 ~ 20:00', ' '],
+    ['20:00 ~ 20:30', ' '],
+    ['20:30 ~ 21:00', ' '],
+    ['21:00 ~ 21:30', ' '],
+    ['21:30 ~ 22:00', ' '],
+  ];
+  const timeStyle_first = [
+    0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,
+  ];
+
   const toggleDateSelectModal =  () => {
     setDateSelectModal(prev => (!prev));
   };
@@ -37,6 +77,7 @@ export default function StatusScreen() {
     if(locationStyle){
       setLocationStyle(false);
       setLocationData('선 택');
+      resetTable();
     }
     setDateData(data);
     toggleDateSelectModal();
@@ -57,6 +98,7 @@ export default function StatusScreen() {
     if(locationStyle){
       setLocationStyle(false);
       setLocationData('선 택');
+      resetTable();
     }
     setClassificationData(data);
     toggleClassificationSelectModal();
@@ -82,33 +124,59 @@ export default function StatusScreen() {
     setRoomData(room);
     toggleLocationSelectModal();
     locationStyleChange();
+    changeTable(building,room);
   };
   const locationStyleChange = () => {
     setLocationStyle(true);
   };
 
+  const changeTable = (building, room) => {
+    let time_tmp = time_first;
+    let timeStyle_tmp = timeStyle_first;
+    firestore().collection(FIRESTORE_DATA1).doc(dateData).collection('Data')
+    .where("room_id", "==", "/"+classificationData+"/"+building+"/"+room).where("use_check", "==", true).get()
+    .then(querySnapshot => {
+      if(querySnapshot.empty){
+        Alert.alert('예약','예약이 없습니다.');
+      }else{
+        querySnapshot.forEach(doc => {
+          const s_time = doc.get('start_time');
+          const e_time = doc.get('end_time');
+          const startnum = (Number(s_time.substr(0,2)) - 8 ) * 2 + (Number(s_time.substr(3)/30));
+          const endnum = (Number(e_time.substr(0,2)) - 8 ) * 2 + (Number(e_time.substr(3)/30));
+          const user_name = doc.get('user_name');
+          const prof_name = doc.get('prof_name');
+          const purpose = doc.get('purpose');
+          for(let i=startnum;i<endnum;i++){
+            time_tmp[i][1] = user_name+"/"+s_time+" ~ "+e_time+"\n"+purpose+"/담당 교수: "+prof_name;
+            timeStyle_tmp[i] = 2;
+          }
+        })
+      }
+      setTime(time_tmp);
+      setTimeStyle(timeStyle_tmp);
+    }).catch(e => {
+      Alert.alert('error 520', e.code);
+    });
+  };
+
+  const resetTable = () => {
+    setTime(time_first);
+    setTimeStyle(timeStyle_first);
+  };
+
   const state = {
-    tableTitle: ['2021년 03월 01일 // 207호 예약 내역'],
+    tableTitle: ['예약 내역'],
     widthArr: [370],
     divisionArr: ['시간', '내용'],
-    widthArr2: [100,270],
-    widthArr3: [100,270],
+    widthArr2: [115,255],
+    widthArr3: [115,255],
   };
-  const timeTableData = [];
-  for(let i = 0;i<14; i+=1){
-    const rowData = [];
-    const tmp = i+8;
-    const tmp2 = i+9;
-    if(tmp<10){
-      tmp = '0'+tmp;
-    }
-    if(tmp2<10){
-      tmp2 = '0'+tmp2;
-    }
-    rowData.push(tmp+'00~'+tmp2+'00');
-    rowData.push(i);
-    timeTableData.push(rowData);
-  }
+  
+  React.useEffect(() => {
+    resetTable();
+  }, []);
+
   return(
     <View style={statusStyle.container}>
       <View style={statusStyle.top}>
@@ -171,12 +239,15 @@ export default function StatusScreen() {
           <ScrollView style={statusStyle.Wrapper} persistentScrollbar={true}>
             <Table borderStyle={statusStyle.Border}>
               {
-                timeTableData.map((rowData, index) => (
+                time.map((rowData, index) => (
                   <Row
                     key={index}
                     data={rowData}
                     widthArr={state.widthArr3}
-                    style={[statusStyle.ScrollRow]}
+                    style={timeStyle[index] === 0 ? 
+                      [statusStyle.ScrollRow]
+                      : [statusStyle.ScrollRowReserved]
+                    }
                     textStyle={statusStyle.SheetText}
                   />
                 ))
@@ -304,6 +375,10 @@ const statusStyle = StyleSheet.create({
   ScrollRow: {
     height: 40,
     backgroundColor: colors.kuLightGray,
+  },
+  ScrollRowReserved: {
+    height: 40,
+    backgroundColor: colors.kuBlue,
   },
   SheetText: {
     alignSelf: 'center',
