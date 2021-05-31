@@ -103,7 +103,6 @@ export default function RoomReservDetailScreen({route, navigation}){
           user_id: auth().currentUser.uid,
           user_name: auth().currentUser.displayName,
         }).then(DocumentReference => {
-          console.log(DocumentReference.id);
           firestore().collection('User_info').doc(auth().currentUser.uid).update({
             reservation : firestore.FieldValue.arrayUnion(DocumentReference.id),
           }).then(() => {
