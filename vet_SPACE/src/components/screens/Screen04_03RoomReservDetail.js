@@ -103,9 +103,19 @@ export default function RoomReservDetailScreen({route, navigation}){
           stored_from: 0,
           user_id: auth().currentUser.uid,
           user_name: auth().currentUser.displayName,
-        }).then(() => {
-          navigation.navigate('Complete');
+        }).then(DocumentReference => {
+          console.log(DocumentReference.id);
+          firestore().collection('User_info').doc(auth().currentUser.uid).update({
+            reservation : firestore.FieldValue.arrayUnion(DocumentReference.id),
+          }).then(() => {
+            navigation.navigate('Complete');
+          }).catch(e => {
+            Alert.alert('error 433',e.code);
+          });
         }).catch(e => {
+          /*
+            예약 데이터는 저장되었는데 사용자 정보에 저장이 되지 않는경우 처리 고려해봐야 함 ?
+          */
           //console.log(e.code);
           Alert.alert('error 432',e.code);
         });
