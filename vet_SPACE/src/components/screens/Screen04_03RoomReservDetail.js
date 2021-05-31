@@ -103,8 +103,9 @@ export default function RoomReservDetailScreen({route, navigation}){
           user_id: auth().currentUser.uid,
           user_name: auth().currentUser.displayName,
         }).then(DocumentReference => {
-          firestore().collection('User_info').doc(auth().currentUser.uid).update({
-            reservation : firestore.FieldValue.arrayUnion(DocumentReference.id),
+          firestore().collection('User_info').doc(auth().currentUser.uid).collection('reservation').doc(DocumentReference.id).set({
+            id : DocumentReference.id,
+            date : route.params.data.dateData,
           }).then(() => {
             navigation.navigate('Complete');
           }).catch(e => {
