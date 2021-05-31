@@ -59,7 +59,6 @@ export default function RoomReservDetailScreen({route, navigation}){
     setPurposeStyle(true);
   };
 
-
   const toggleProfSelectModal =  () => {
     setProfSelectModal(prev => (!prev));
   };
@@ -110,13 +109,17 @@ export default function RoomReservDetailScreen({route, navigation}){
           }).then(() => {
             navigation.navigate('Complete');
           }).catch(e => {
-            Alert.alert('error 433',e.code);
+            /*
+              예약 데이터는 저장되었는데 사용자 정보에 저장이 되지 않는경우 처리 고려해봐야 함 ?
+            */
+            firestore().collection(FIRESTORE_DATA1).doc(route.params.data.dateData).collection('Data').doc(DocumentReference.id).delete()
+            .then(() => {
+              Alert.alert('예약 오류','예약이 실패하였습니다.\n다시 예약해주세요.');
+            }).catch(e => {
+              Alert.alert('error 433',e.code);
+            });
           });
         }).catch(e => {
-          /*
-            예약 데이터는 저장되었는데 사용자 정보에 저장이 되지 않는경우 처리 고려해봐야 함 ?
-          */
-          //console.log(e.code);
           Alert.alert('error 432',e.code);
         });
       }else{
