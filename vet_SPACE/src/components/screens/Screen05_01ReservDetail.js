@@ -7,6 +7,7 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { Table, Row} from 'react-native-table-component';
 
 import {colors} from '../../utils/Styles';
+import {FIRESTORE_DATA1} from '../../utils/firebaseData';
 
 import firestore from '@react-native-firebase/firestore';
 import database from '@react-native-firebase/database';
@@ -39,8 +40,27 @@ export default function ReservDetailScreen({route, navigation}) {
   
   const deleteFunc = () => {
     // 삭제에 필요한 내용 
-    navigation.navigate('List');
+    firestore().collection(FIRESTORE_DATA1).doc(route.params.data.date).collection('Data').doc(route.params.data.id).update({
+      use_check: false,
+    }).then(() => {
+      navigation.navigate('ReservCheck');
+    }).catch(e => {
+      Alert.alert('error',e.code+'\n예약 취소가 불가합니다.');
+    });
   };
+  const onPressDeleteFunc = () => Alert.alert(
+    '예약 취소',
+    '예약을 취소하시겠습니까?',[
+      {
+        text: "예",
+        onPress: () => deleteFunc(),
+      },
+      {
+        text: "아니오",
+        onPress: () => null,
+      }
+    ]
+  )
 
   React.useEffect(() => {
     const timestamp_tmp = route.params.data.detailData.apply_date._seconds * 1000;
@@ -56,15 +76,12 @@ export default function ReservDetailScreen({route, navigation}) {
 
     setData1(route.params.data.detailData.purpose);
     setData2(route.params.data.detailData.user_name);
-    firestore().collection('User_info').doc(route.params.data.detailData.user_id).get()
-    .then(Snapshot => {
-      setData3(Snapshot.get('phone_number'));
-    });
+    setData3(route.params.data.detailData.phone_number);
     setData4(apply_date_tmp);
     setData5(route.params.data.detailData.prof_name);
     database().ref('/Prof_info/Detail/'+route.params.data.detailData.prof_name+'/office_num').on('value', snapshot =>{
       if(!snapshot.val()){
-        setData6('');
+        setData6('없음');
       }else{
         setData6(snapshot.val());
       }
@@ -126,20 +143,7 @@ export default function ReservDetailScreen({route, navigation}) {
       <View style={reservdetailStyle.bot}>
         <TouchableOpacity 
           style={reservdetailStyle.button}
-          onPress={()=>Alert.alert(
-            title='예약 취소',
-            message='예약을 취소하시겠습니까?',[
-              {
-                text: "예",
-                onPress: () => deleteFunc(),
-              },
-              {
-                text: "아니오",
-                onPress: () => null,
-              }
-            ]
-            //navigation.navigate('List')
-          )}
+          onPress={() => onPressDeleteFunc()}
         >
           <Text style={reservdetailStyle.buttontext}>예약 취소</Text>
         </TouchableOpacity>
