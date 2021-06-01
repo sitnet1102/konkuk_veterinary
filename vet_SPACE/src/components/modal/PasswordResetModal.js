@@ -44,7 +44,8 @@ export default function PasswordResetModal(props) {
 					autoCapitalize="none"
 					keyboardType="email-address"
 					value={email}
-					onChangeText={setEmail}
+          onChangeText={setEmail}
+          style={passwordresetmodalStyle.text}
         />
 				<View style={passwordresetmodalStyle.line}/>
         <TouchableOpacity
@@ -95,4 +96,8 @@ const passwordresetmodalStyle = StyleSheet.create({
     fontWeight: 'bold',
     margin: 20,
   },
+  text: {
+    fontSize: RFPercentage(3),
+    marginVertical: RFPercentage(2),
+  }, 
 });
