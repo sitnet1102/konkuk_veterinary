@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 
 import {View, Text, TextInput, ImageBackground, StyleSheet, Alert, TouchableOpacity, BackHandler} from 'react-native';
-import CheckBox from '@react-native-community/checkbox';
+//import CheckBox from '@react-native-community/checkbox';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 
 import auth from '@react-native-firebase/auth';
@@ -17,13 +17,13 @@ export default function LoginScreen({navigation}) {
    추가 수정해야할 사항
    /// 아이디, 비밀번호 입력 시에 화면이 잘 안보이는 현상이 있음 -> 수정이 필요
     //1. 아이디 비밀번호 입력 시에 위로 눌러지면서 화면이 잘 보이지 않는 현상 
-    2. 자동 로그인 옵션 확인
+    //2. 자동 로그인 옵션 확인
     //3. 회원가입 연결 
     //4. 네비게이션 옵션 연결 
     //5. 체크 박스랑 자동 로그인 텍스트 클릭이랑 연결해주기   -> 20210311
-    6. 비밀번호 잊었을 때, 비밀번호 찾기 링크 보내주기 화면 만들기 
+    //6. 비밀번호 잊었을 때, 비밀번호 찾기 링크 보내주기 화면 만들기 
   */
-  const [isSelected, setSelection] = React.useState(false);
+  const [isSelected, setSelection] = React.useState(true);
   const onPressAutoLogin = () => setSelection(()=>!isSelected);
   const [__userID, setUserID] = React.useState("");
   const [__userPassword, setUserPassword] = React.useState("");
@@ -48,7 +48,14 @@ export default function LoginScreen({navigation}) {
       "hardwareBackPress",
       backAction
     );
-
+    if(auth().currentUser && isSelected){
+      navigation.navigate('Drawer',{
+        screen: 'MainNavigator', 
+        params: {
+          screen: "Main",
+        }
+      });
+    }
     return () => backHandler.remove();
   }, []);
 
@@ -65,7 +72,7 @@ export default function LoginScreen({navigation}) {
             params: {
               screen: "Main",
             }
-          })
+          });
         }else{
           // => 이메일 인증 화면으로 넘어감 => 다시 로그인 화면
           auth().currentUser.sendEmailVerification().then(() => {
@@ -131,6 +138,7 @@ export default function LoginScreen({navigation}) {
           </TouchableOpacity>
           
           <View style={loginStyle.AutoLogin}>
+            {/**
             <CheckBox
               disabled={false}
               value={isSelected}
@@ -143,7 +151,14 @@ export default function LoginScreen({navigation}) {
             <TouchableOpacity onPress={onPressAutoLogin}>
               <Text style={loginStyle.AutoLoginText}>자동 로그인(Auto Login)</Text>
             </TouchableOpacity>
-            <Text> / </Text>
+             */}
+             <TouchableOpacity 
+              style={loginStyle.PasswordReset}
+              onPress={togglePasswordReset}
+            >
+              <Text style={loginStyle.PasswordResetText}>비밀번호 재설정</Text>
+            </TouchableOpacity>
+            <Text>  /  </Text>
             <TouchableOpacity
               onPress={() => navigation.navigate('SignUp')}
             >
@@ -155,9 +170,12 @@ export default function LoginScreen({navigation}) {
             onPress={togglePasswordReset}
           >
             <Text style={loginStyle.PasswordResetText}>비밀번호 재설정</Text>
-          </TouchableOpacity>
+          
         </View>
         <View style={loginStyle.Bot}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Test')}
+          >
         </View>
       </ImageBackground>
       {passwordResetModal ?
@@ -190,6 +208,8 @@ const loginStyle = StyleSheet.create({
   },
   Bot: {
     flex: 3,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   TitleText: {
     fontWeight: 'bold',
@@ -235,6 +255,7 @@ const loginStyle = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 10,
   },
   CheckBox: {
     transform: [{scaleX: 0.8}, {scaleY: 0.8}]
@@ -246,9 +267,10 @@ const loginStyle = StyleSheet.create({
   NewAccButton: {
     textDecorationLine: 'underline',
     fontWeight: 'bold',
+    fontSize: RFPercentage(2.5),
   },
   PasswordReset: {
-    marginTop: 10,
+    //marginTop: 10,
     //alignContent: 'center',
     //justifyContent: 'center',
     alignItems: 'center',
@@ -256,6 +278,7 @@ const loginStyle = StyleSheet.create({
   PasswordResetText: {
     textDecorationLine: 'underline',
     fontWeight: 'bold',
+    fontSize: RFPercentage(2.5),
   },
 });
 
