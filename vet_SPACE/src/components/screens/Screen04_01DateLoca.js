@@ -92,6 +92,14 @@ export default function DateLocaScreen({navigation}){
     setLocationStyle(true);
   };
 
+  React.useEffect(() => {
+    return () => {
+      setDateSelectModal(false);
+      setClassificationSelectModal(false);
+      setLocationSelectModal(false);
+    };
+  },[])
+
   return (
     <View style={DateLocaStyle.container}>
       <View style={DateLocaStyle.Top}>
