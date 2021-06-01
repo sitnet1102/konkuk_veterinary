@@ -8,23 +8,20 @@ import { Table, Row} from 'react-native-table-component';
 
 import {colors} from '../../utils/Styles';
 
+import firestore from '@react-native-firebase/firestore';
+import database from '@react-native-firebase/database';
+
 export default function ReservDetailScreen({route, navigation}) {
   /**
     수정할 사항
     1. 이전 페이지에서 데이터로 넣어주는 내용에서 데이터베이스 주요키를 넘겨주는 형식으로 하기
     2. 데이터 베이스 연결해서 넘어온 주요키를 사용해서 데이터 베이스 쿼리 사용 
    */
-  const t1 = '수의학관 216호\n';
-  const t2 = '2021년 03월 02일\n';
-  const t3 = '0900 ~ 1200';
-  const titledata=[
-    [t1],
-    [t2],
-    [t3],
-  ];
-  const state = {
-    widthArr: ['100%'],
-  };
+  
+  const [t1, setT1] = React.useState('');
+  const [t2, setT2] = React.useState('');
+  const [t3, setT3] = React.useState('');
+
   const columndata = [
     ['목 적'],
     ['신청자'],
@@ -33,63 +30,96 @@ export default function ReservDetailScreen({route, navigation}) {
     ['담당교수'],
     ['내선'],
   ];
-  const data1 = '세미나';
-  const data2 = '홍길동';
-  const data3 = '010-1234-5678';
-  const data4 = '2021년 01월 15일';
-  const data5 = '홍길동 교수님';
-  const data6 = '0445';
-  const tabledata = [
-    [data1],
-    [data2],
-    [data3],
-    [data4],
-    [data5],
-    [data6],
-  ];
-
+  const [data1,setData1] = React.useState('');
+  const [data2,setData2] = React.useState('');
+  const [data3,setData3] = React.useState('');
+  const [data4,setData4] = React.useState('');
+  const [data5,setData5] = React.useState('');
+  const [data6,setData6] = React.useState('');
+  
   const deleteFunc = () => {
     // 삭제에 필요한 내용 
     navigation.navigate('List');
   };
 
+  React.useEffect(() => {
+    const timestamp_tmp = route.params.data.detailData.apply_date._seconds * 1000;
+    let month_tmp = new Date(timestamp_tmp).getMonth()+1;
+    if(month_tmp < 10){
+      month_tmp = '0'+month_tmp;
+    }
+    let apply_date_tmp = new Date(timestamp_tmp).getFullYear() + '-' + month_tmp + '-' + new Date(timestamp_tmp).getDate() + ' ' + new Date(timestamp_tmp).toLocaleTimeString();
+
+    setT1(route.params.data.detailData.room_id.split('/')[2] + ' ' + route.params.data.detailData.room_id.split('/')[3]);
+    setT2(route.params.data.date);
+    setT3(route.params.data.detailData.start_time + ' ~ ' + route.params.data.detailData.end_time);
+
+    setData1(route.params.data.detailData.purpose);
+    setData2(route.params.data.detailData.user_name);
+    firestore().collection('User_info').doc(route.params.data.detailData.user_id).get()
+    .then(Snapshot => {
+      setData3(Snapshot.get('phone_number'));
+    });
+    setData4(apply_date_tmp);
+    setData5(route.params.data.detailData.prof_name);
+    database().ref('/Prof_info/Detail/'+route.params.data.detailData.prof_name+'/office_num').on('value', snapshot =>{
+      if(!snapshot.val()){
+        setData6('');
+      }else{
+        setData6(snapshot.val());
+      }
+    });
+  }, []);
+
   return(
     <View style={reservdetailStyle.container}>
       <View style={reservdetailStyle.top}>
-        <Text style={reservdetailStyle.titletext}>{titledata}</Text>
+        <Text style={reservdetailStyle.titletext}>{t1}</Text>
+        <Text style={reservdetailStyle.titletext}>{t2}</Text>
+        <Text style={reservdetailStyle.titletext}>{t3}</Text>
       </View>
       <View style={reservdetailStyle.mid}>
         <View style={reservdetailStyle.container0}>
           <View style={reservdetailStyle.container1}>
-            <Table>
-              {
-                columndata.map((rowData, index) => (
-                  <Row
-                    key={index}
-                    data={rowData}
-                    widthArr={state.widthArr}
-                    style={[reservdetailStyle.table1]}
-                    textStyle={reservdetailStyle.text1}
-                  />
-                ))
-              }
-            </Table>
+            <View style={reservdetailStyle.table1}>
+              <Text style={reservdetailStyle.text1}>{columndata[0]}</Text>
+            </View>
+            <View style={reservdetailStyle.table1}>
+              <Text style={reservdetailStyle.text1}>{columndata[1]}</Text>
+            </View>
+            <View style={reservdetailStyle.table1}>
+              <Text style={reservdetailStyle.text1}>{columndata[2]}</Text>
+            </View>
+            <View style={reservdetailStyle.table1}>
+              <Text style={reservdetailStyle.text1}>{columndata[3]}</Text>
+            </View>
+            <View style={reservdetailStyle.table1}>
+              <Text style={reservdetailStyle.text1}>{columndata[4]}</Text>
+            </View>
+            <View style={reservdetailStyle.table1}>
+              <Text style={reservdetailStyle.text1}>{columndata[5]}</Text>
+            </View>
           </View>
           <View style={reservdetailStyle.line}></View>
           <View style={reservdetailStyle.container2}>
-            <Table>
-              {
-                tabledata.map((rowData, index) => (
-                  <Row
-                    key={index}
-                    data={rowData}
-                    widthArr={state.widthArr}
-                    style={[reservdetailStyle.table2]}
-                    textStyle={reservdetailStyle.text2}
-                  />
-                ))
-              }
-            </Table>
+            <View style={reservdetailStyle.table2}>
+              <Text style={reservdetailStyle.text2}>{data1}</Text>
+            </View>
+            <View style={reservdetailStyle.table2}>
+              <Text style={reservdetailStyle.text2}>{data2}</Text>
+            </View>
+            <View style={reservdetailStyle.table2}>
+              <Text style={reservdetailStyle.text2}>{data3}</Text>
+            </View>
+            <View style={reservdetailStyle.table2}>
+              <Text style={reservdetailStyle.text2}>{data4}</Text>
+            </View>
+            <View style={reservdetailStyle.table2}>
+              <Text style={reservdetailStyle.text2}>{data5}</Text>
+            </View>
+            <View style={reservdetailStyle.table2}>
+              <Text style={reservdetailStyle.text2}>{data6}</Text>
+            </View>
           </View>
         </View>
       </View>
