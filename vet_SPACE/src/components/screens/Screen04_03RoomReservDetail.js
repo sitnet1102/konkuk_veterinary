@@ -18,7 +18,7 @@ export default function RoomReservDetailScreen({route, navigation}){
   const [__phone, setPhone] = React.useState(' ');
   firestore().collection('User_info').doc(auth().currentUser.uid).get().then(querySnapshot => {
     setPhone(querySnapshot.data().phone_number);
-  })
+  });
   const __time = route.params.data.startTimeData + " ~ " + route.params.data.endTimeData;
 
   const state = {
@@ -102,6 +102,7 @@ export default function RoomReservDetailScreen({route, navigation}){
           stored_from: 0,
           user_id: auth().currentUser.uid,
           user_name: auth().currentUser.displayName,
+          phone_number: __phone,
         }).then(DocumentReference => {
           firestore().collection('User_info').doc(auth().currentUser.uid).collection('reservation').doc(DocumentReference.id).set({
             id : DocumentReference.id,
