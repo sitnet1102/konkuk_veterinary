@@ -35,7 +35,11 @@ function MenuDrawer(props) {
     auth().signOut().then(() => {
       props.navigation.navigate('Login');
     }).catch( e => {
-      Alert.alert('error Log Out',e.code);
+      if(e.code === 'auth/no-current-user'){
+        Alert.alert('로그아웃 오류','이미 로그아웃 되었습니다');
+      }else{
+        Alert.alert('error Log Out',e.code);
+      }
     });
   };
   
