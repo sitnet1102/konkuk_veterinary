@@ -21,7 +21,7 @@ export default function TimeSelectScreen({route, navigation}){
     //6. 테이블 모양 가다듬기
     //7. 테이블에서 선택된 시간 스타일 변화
     //8. 테이블에서 이미 선택된 시간 스타일 변화
-    9. 테이블 데이터베이스 연동 
+    //9. 테이블 데이터베이스 연동 
     //10. 메뉴 연결
     //11. 홈 버튼 연결
   */
@@ -185,23 +185,7 @@ export default function TimeSelectScreen({route, navigation}){
     widthArr2: [115,255],
     widthArr3: [115,255],
   };
-  /*
-  const timeTableData = [];
-  for(let i = 0;i<14; i+=1){
-    const rowData = [];
-    const tmp = i+8;
-    const tmp2 = i+9;
-    if(tmp<10){
-      tmp = '0'+tmp;
-    }
-    if(tmp2<10){
-      tmp2 = '0'+tmp2;
-    }
-    rowData.push(tmp+'00~'+tmp2+'00');
-    rowData.push(i);
-    timeTableData.push(rowData);
-  }
-  */
+  
   return (
     <View style={timeSelectStyle.container}>
       <View style={timeSelectStyle.Top}>
@@ -290,7 +274,6 @@ export default function TimeSelectScreen({route, navigation}){
             data: {
               dateData: route.params.data.dateData,
               classData: route.params.data.classData,
-              //locaData: route.params.data.locaData,
               buildingData: route.params.data.buildingData,
               roomData: route.params.data.roomData,
               startTimeData: startTimeData,
@@ -324,30 +307,21 @@ const timeSelectStyle = StyleSheet.create({
     flex: 1,
   },
   Top:{
-    //flex: 0.5,
     height: 20,
   },
   Mid: {
-    //flex: 7.5,
-    //height: 450,
     flex: 1,
-    //backgroundColor: colors.kuMagenta,
   },
   Bot: {
-    //flex: 2,
     height: 130,
     justifyContent: 'center',
   },
   Time: {
-    //flex: 3,
     marginBottom: 30,
   },
   TimeSheet: {
     flex: 5,
     marginHorizontal: 20,
-    //margin: '5%',
-    //borderColor: colors.kuBlack,
-    //borderWidth: 1,
   },
   Container: {
     alignItems: 'center',
@@ -389,7 +363,6 @@ const timeSelectStyle = StyleSheet.create({
     fontWeight: 'bold',
   },
   Border: {
-    //width: '100%',
     borderWidth: 1,
     borderColor: colors.kuBlack,
   },
@@ -434,7 +407,6 @@ const timeSelectStyle = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: colors.kuDarkGreen,
     width: '70%',
-    //height: '60%',
     height: 50,
     opacity: 0.5,
     borderWidth: 1,
