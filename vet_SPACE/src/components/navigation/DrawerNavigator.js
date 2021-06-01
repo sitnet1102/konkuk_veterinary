@@ -29,7 +29,7 @@ function MenuDrawer(props) {
     copyright1: "COPYRIGHT ⓒALL RIGHT RESERVED.",
     copyright2: "COLLEGE OF VETERINARY, KONKUK UNIVERSITY",
   };
-  const name = auth().currentUser.displayName;
+  const [name,setName] = React.useState('');
 
   const onPressLogOut = () => {
     auth().signOut().then(() => {
@@ -38,6 +38,14 @@ function MenuDrawer(props) {
       Alert.alert('error Log Out',e.code);
     });
   };
+  
+  React.useEffect(() => {
+    if(!auth().currentUser){
+      props.navigation.navigate('Login');
+    }else{
+      setName(auth().currentUser.displayName);
+    }
+  },[]);
 
   return (
     <SafeAreaView style={menudrawerStyle.safearea}>
