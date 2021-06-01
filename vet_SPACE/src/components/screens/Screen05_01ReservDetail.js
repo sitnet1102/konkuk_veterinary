@@ -45,7 +45,7 @@ export default function ReservDetailScreen({route, navigation}) {
     }).then(() => {
       navigation.navigate('ReservCheck');
     }).catch(e => {
-      Alert.alert('error',e.code+'\n예약 취소가 불가합니다.');
+      Alert.alert('error510-1',e.code+'\n예약 취소가 불가합니다.');
     });
   };
   const onPressDeleteFunc = () => Alert.alert(
@@ -68,7 +68,12 @@ export default function ReservDetailScreen({route, navigation}) {
     if(month_tmp < 10){
       month_tmp = '0'+month_tmp;
     }
-    let apply_date_tmp = new Date(timestamp_tmp).getFullYear() + '-' + month_tmp + '-' + new Date(timestamp_tmp).getDate() + ' ' + new Date(timestamp_tmp).toLocaleTimeString();
+    let date_tmp = new Date(timestamp_tmp).getDate();
+    if(date_tmp < 10){
+      date_tmp = '0'+date_tmp;
+    }
+    let apply_date_tmp = new Date(timestamp_tmp).getFullYear() + '-' + month_tmp + '-' + date_tmp;
+    //+ ' ' + new Date(timestamp_tmp).toLocaleTimeString();
 
     setT1(route.params.data.detailData.room_id.split('/')[2] + ' ' + route.params.data.detailData.room_id.split('/')[3]);
     setT2(route.params.data.date);
