@@ -24,7 +24,7 @@ export default function LoginScreen({navigation}) {
     //6. 비밀번호 잊었을 때, 비밀번호 찾기 링크 보내주기 화면 만들기 
   */
   const [isSelected, setSelection] = React.useState(true);
-  const onPressAutoLogin = () => setSelection(()=>!isSelected);
+  //const onPressAutoLogin = () => setSelection(()=>!isSelected);
   const [__userID, setUserID] = React.useState("");
   const [__userPassword, setUserPassword] = React.useState("");
   const [passwordResetModal, setPasswordResetModal] = React.useState(false);
