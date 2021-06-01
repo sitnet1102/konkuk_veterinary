@@ -9,6 +9,7 @@ import { FIRESTORE_DATA1 } from '../../utils/firebaseData';
 import firestore from '@react-native-firebase/firestore';
 
 import TimeSelectModal from '../modal/TimeSelectModal';
+import { RFPercentage } from 'react-native-responsive-fontsize';
 
 export default function TimeSelectScreen({route, navigation}){
   /**
@@ -35,7 +36,7 @@ export default function TimeSelectScreen({route, navigation}){
   const [endTimeStyle, setEndTimeStyle] = React.useState(false);
 
   let [time, setTime] = React.useState([]);
-  let [timeStyle, setTimeStyle] = React.useState([]);
+  let [timeStyle, setTimeStyle] = React.useState([]); // 0 -> 예약 없음, 1 -> 예약 희망 (노랑), 2 -> 예약됨(승인됨) (주황), 3 -> 예약됨(승인대기중) (파랑)
 
   React.useEffect(() => {
     let time_tmp = [
@@ -86,9 +87,17 @@ export default function TimeSelectScreen({route, navigation}){
           const user_name = doc.get('user_name');
           const prof_name = doc.get('prof_name');
           const purpose = doc.get('purpose');
+          const confirmed = doc.get('reserv_confirm');
+          let confirm_text = '/대기중';
+          let confirm_style = 2;
+          if(confirmed){
+            confirm_text = '/예약됨';
+            confirm_style = 3;
+          }
+          console.log(confirmed);
           for(let i=startnum;i<endnum;i++){
-            time_tmp[i][1] = user_name+"/"+s_time+" ~ "+e_time+"\n"+purpose+"/담당 교수: "+prof_name;
-            timeStyle_tmp[i] = 2;
+            time_tmp[i][1] = user_name+"/"+s_time+" ~ "+e_time+confirm_text+"\n"+purpose+"/담당 교수: "+prof_name;
+            timeStyle_tmp[i] = confirm_style;
           }
         })
       }
@@ -250,7 +259,7 @@ export default function TimeSelectScreen({route, navigation}){
                     widthArr={state.widthArr3}
                     style={timeStyle[index] !== 0 ? 
                       timeStyle[index] !== 1 ?
-                      [timeSelectStyle.ScrollRowReserved]
+                      (timeStyle[index] === 3 ? [timeSelectStyle.ScrollRowConfirmed] : [timeSelectStyle.ScrollRowReserved])
                       : [timeSelectStyle.ScrollRowSelected]
                       : [timeSelectStyle.ScrollRow]
                     }
@@ -397,10 +406,14 @@ const timeSelectStyle = StyleSheet.create({
     height: 40,
     backgroundColor: colors.kuBlue,
   },
+  ScrollRowConfirmed: {
+    height: 40,
+    backgroundColor: colors.kuOrange,
+  },
   SheetText: {
     alignSelf: 'center',
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: RFPercentage(2),
   },
   NextButton: {
     alignSelf: 'center',
