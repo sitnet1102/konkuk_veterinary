@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, Text, TextInput,StyleSheet, Alert, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput,StyleSheet, Alert, TouchableOpacity, ScrollView} from 'react-native';
 import { colors } from '../../utils/Styles';
 
 import auth from '@react-native-firebase/auth';
@@ -138,7 +138,10 @@ export default function SignUpScreen({navigation}){
     <View style={signupStyle.container}>
       <View style={signupStyle.Top}>
       </View>
-      <View style={signupStyle.Mid}>
+      <ScrollView 
+        style={signupStyle.Mid}
+        persistentScrollbar={true}
+      >
         <View style={signupStyle.IDContainer}>
           <View style={signupStyle.InputBoxContainer2}>
             <TextInput 
@@ -193,7 +196,8 @@ export default function SignUpScreen({navigation}){
             placeholder="휴대전화번호 ('-'제외)"
             value={__phone}
             onChangeText={setPhone}
-            />
+            keyboardType={'number-pad'}
+          />
         </View>
         <View style={signupStyle.InputBoxContainer}>
           <TextInput 
@@ -201,6 +205,7 @@ export default function SignUpScreen({navigation}){
             placeholder="학번, 연구원번호, 사번, 등"
             value={__number}
             onChangeText={setNumber}
+            keyboardType={'number-pad'}
           />
         </View>
         <View style={signupStyle.InputBoxContainer}>
@@ -216,7 +221,7 @@ export default function SignUpScreen({navigation}){
             }>{sortingData}</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
       <View style={signupStyle.Bot}>
         <TouchableOpacity 
           style={signupStyle.Button}
@@ -245,10 +250,12 @@ const signupStyle = StyleSheet.create({
     flex : 1,
   },
   Mid: {
-    flex : 20,
+    //flex : 20,
+    height: '80%',
   },
   Bot: {
-   flex : 4,
+   //flex : 4,
+   height: RFPercentage(12),
    justifyContent: 'center',
   },
   IDContainer: {
