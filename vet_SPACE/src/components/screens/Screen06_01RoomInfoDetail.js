@@ -38,6 +38,7 @@ export default function RoomInfoDetailScreen({route}) {
     d2: '* 컴퓨터/전자교탁: ',
     d3: '* 강의용 TV: ',
     d4: '* 에어컨: ',
+    d5: '* 전자칠판: ',
   };
   const [roomsort, setRoomsort] = React.useState(' ');
   const [opacity, setOpacity] = React.useState(' ');
@@ -47,6 +48,7 @@ export default function RoomInfoDetailScreen({route}) {
   const [equip2, setEquip2] = React.useState(' ');
   const [equip3, setEquip3] = React.useState(' ');
   const [equip4, setEquip4] = React.useState(' ');
+  const [equip5, setEquip5] = React.useState(' ');
 
   const toggleLocationSelectModal = () => {
     setLocationSelectModal(prev => (!prev));
@@ -85,6 +87,7 @@ export default function RoomInfoDetailScreen({route}) {
         setEquip2(' ');
         setEquip3(' ');
         setEquip4(' ');
+        setEquip5(' ');
       }else{
         setArea(snapshot.child('area').val());
         setRoomsort(snapshot.child('classification').val());
@@ -93,6 +96,7 @@ export default function RoomInfoDetailScreen({route}) {
         setEquip2(snapshot.child('equip2').val());
         setEquip3(snapshot.child('equip3').val());
         setEquip4(snapshot.child('equip4').val());
+        setEquip5(snapshot.child('equip5').val());
       }
     })
   };
@@ -195,6 +199,10 @@ export default function RoomInfoDetailScreen({route}) {
               <Text style={roominfodetailStyle.text2}>{data2.d4}</Text>
               <Text style={roominfodetailStyle.text2}>{equip4+' 대'}</Text>
             </View>
+            <View style={roominfodetailStyle.container3}>
+              <Text style={roominfodetailStyle.text2}>{data2.d5}</Text>
+              <Text style={roominfodetailStyle.text2}>{equip5+' 대'}</Text>
+            </View>
           </View>
         </View>
       </View>
@@ -283,7 +291,7 @@ const roominfodetailStyle = StyleSheet.create({
     lineHeight: 30,
   },
   container3: {
-    marginTop: 15,
+    marginTop: RFPercentage(1),
     marginLeft: 10,
     flexDirection: 'row',
   },
