@@ -57,8 +57,8 @@ export default function ListScreen({navigation}) {
   };
   
   React.useEffect(() => {
-    let tableData_tmp = [];
-    let tableData_tmp2 = [];
+    //let tableData_tmp = [];
+    //let tableData_tmp2 = [];
     
     firestore().collection('User_info').doc(auth().currentUser.uid).collection('reservation').get()
     .then(querySnapshot => {
@@ -80,13 +80,13 @@ export default function ListScreen({navigation}) {
               }
               const today = Number(new Date().getFullYear() +''+ month_tmp+ date_tmp);
               if(date_num < today){
-                tableData_tmp2.push({
+                tableData2.push({
                   date : doc.get('date'),
                   id : doc.get('id'),
                   detailData : Snapshot.data(),
                 });
               }else{
-                tableData_tmp.push({
+                tableData.push({
                   date : doc.get('date'),
                   id : doc.get('id'),
                   detailData : Snapshot.data(),
@@ -98,8 +98,8 @@ export default function ListScreen({navigation}) {
           });
         });
         // 예약 데이터가 없는 경우에 이전 페이지로 넘겨주기 
-        setTableData(tableData_tmp);
-        setTableData2(tableData_tmp2);
+        //setTableData(tableData_tmp);
+        //setTableData2(tableData_tmp2);
         onPressRefresh();
       }
     }).catch(e => {
