@@ -62,6 +62,8 @@ export default function ListScreen({navigation}) {
     
     firestore().collection('User_info').doc(auth().currentUser.uid).collection('reservation').get()
     .then(querySnapshot => {
+      //setTableData([]);
+      //setTableData2([]);
       if(querySnapshot.empty){
         noReservation();
       }else{
@@ -106,6 +108,10 @@ export default function ListScreen({navigation}) {
       Alert.alert('error510',e.code);
       navigation.navigate('ReservCheck');
     });
+    return () => {
+      setTableData([]);
+      setTableData2([]);
+    };
   }, []);
 
   return(
@@ -149,6 +155,12 @@ export default function ListScreen({navigation}) {
         </View>
         */}
       </View>
+      <View style={listStyle.indexBox}>
+        <View style={listStyle.unconfirmedColor}></View>
+        <Text style={listStyle.indexText}>예약 대기</Text>
+        <View style={listStyle.confirmedColor}></View>
+        <Text style={listStyle.indexText}>예약 승인</Text>
+      </View>
       <View style={listStyle.bot}>
         <ScrollView 
           style={listStyle.scroll}
@@ -186,20 +198,15 @@ export default function ListScreen({navigation}) {
                             rowData.detailData.room_id.split('/')[2] + ' ' + rowData.detailData.room_id.split('/')[3] + '\n\n' + rowData.date + '\n\n' + rowData.detailData.start_time + '~' + rowData.detailData.end_time
                           }
                         </Text>
+                        <View style={listStyle.emptyBox}/>
                         <View style={listStyle.textBox}>
-                          <Text 
+                          <View
                             style={
                               rowData.detailData.reserv_confirm ?
-                              listStyle.textConfirmed
-                              : listStyle.textUnconfirmed
+                              listStyle.confirmedBox
+                              : listStyle.unconfirmedBox
                             }
-                          >
-                            {
-                              rowData.detailData.reserv_confirm ?
-                              ' 예약 승인됨 '
-                              : ' 예약 대기중 '
-                            }
-                          </Text>
+                          />
                         </View>
                       </View>
                     </TouchableOpacity>
@@ -271,6 +278,28 @@ const listStyle = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.kuDarkGray,
     borderRadius: 5,
+  },
+  indexBox: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginHorizontal : '3%',
+  },
+  confirmedColor: {
+    width: 15,
+    height: 15,
+    alignSelf: 'center',
+    marginHorizontal : '1%',
+    backgroundColor: colors.kuBlue,
+  },
+  unconfirmedColor: {
+    width: 15,
+    height: 15,
+    alignSelf: 'center',
+    marginHorizontal : '1%',
+    backgroundColor: colors.kuYellow,
+  },
+  indexText: {
+    fontWeight: 'bold',
   },
   bot: {
     flex: 1,
@@ -362,36 +391,28 @@ const listStyle = StyleSheet.create({
     marginTop: 10,
     marginBottom: 30,
   },
-  textUnconfirmed: {
-    fontWeight: 'bold',
-    fontSize: RFValue(15),
-    lineHeight: RFValue(25),
-    marginRight: 0,
-    alignSelf: 'center',
-    backgroundColor: colors.kuBlue,
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: colors.kuBlack,
-  },
   text6: {
     fontWeight: 'bold',
     fontSize: RFValue(20),
     lineHeight: RFValue(25),
     marginTop: 10,
   },
-  textConfirmed: {
-    fontWeight: 'bold',
-    fontSize: RFValue(15),
-    lineHeight: RFValue(25),
-    marginRight: 0,
-    alignSelf: 'center',
+  unconfirmedBox: {
+    flex: 1,
+    backgroundColor: colors.kuBlue,
+  },
+  confirmedBox: {
+    flex: 1,
     backgroundColor: colors.kuYellow,
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: colors.kuBlack,
   },
   textBox: {
-    flex: 1,
+    width: '14%',
+    height: '100%',
+    alignSelf: 'flex-end',
+    justifyContent: 'flex-end',
     marginTop: 20,
+  },
+  emptyBox: {
+    flex: 1,
   },
 });
