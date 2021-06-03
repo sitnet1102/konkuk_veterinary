@@ -1,10 +1,8 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {Text, View, StyleSheet, Alert} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {Text, View, StyleSheet, Alert,TouchableOpacity} from 'react-native';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-import { Table, Row} from 'react-native-table-component';
 
 import {colors} from '../../utils/Styles';
 import {FIRESTORE_DATA1} from '../../utils/firebaseData';

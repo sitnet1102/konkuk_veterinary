@@ -4,7 +4,7 @@ import * as React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import {Table, Row} from 'react-native-table-component';
 import { colors } from '../../utils/Styles';
-import { FIRESTORE_DATA1 } from '../../utils/firebaseData';
+import { FIRESTORE_DATA1, FIRESTORE_DATA2 } from '../../utils/firebaseData';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 
 import auth from '@react-native-firebase/auth';
@@ -16,7 +16,7 @@ import ProfSelectModal from '../modal/ProfSelectModal';
 export default function RoomReservDetailScreen({route, navigation}){
   const __name = auth().currentUser.displayName;
   const [__phone, setPhone] = React.useState(' ');
-  firestore().collection('User_info').doc(auth().currentUser.uid).get().then(querySnapshot => {
+  firestore().collection(FIRESTORE_DATA2).doc(auth().currentUser.uid).get().then(querySnapshot => {
     setPhone(querySnapshot.data().phone_number);
   });
   const __time = route.params.data.startTimeData + " ~ " + route.params.data.endTimeData;
@@ -104,7 +104,7 @@ export default function RoomReservDetailScreen({route, navigation}){
           user_name: auth().currentUser.displayName,
           phone_number: __phone,
         }).then(DocumentReference => {
-          firestore().collection('User_info').doc(auth().currentUser.uid).collection('reservation').doc(DocumentReference.id).set({
+          firestore().collection(FIRESTORE_DATA2).doc(auth().currentUser.uid).collection('reservation').doc(DocumentReference.id).set({
             id : DocumentReference.id,
             date : route.params.data.dateData,
           }).then(() => {

@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 
 import {Text, View, StyleSheet, ScrollView, Alert, TouchableOpacity} from 'react-native';
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { RFPercentage} from "react-native-responsive-fontsize";
 import { Table, Row} from 'react-native-table-component';
 
 import {colors} from '../../utils/Styles';

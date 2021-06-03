@@ -5,6 +5,7 @@ import {View, Text, TextInput,StyleSheet, Alert, TouchableOpacity, ScrollView} f
 import { RFPercentage } from 'react-native-responsive-fontsize';
 
 import { colors } from '../../utils/Styles';
+import {FIRESTORE_DATA2} from '../../utils/firebaseData';
 
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -94,7 +95,7 @@ export default function SignUpScreen({navigation}){
           Alert.alert('error 212', error.code);
         });
         //auth().currentUser.updatePhoneNumber();
-        firestore().collection('User_info').doc(auth().currentUser.uid).set({
+        firestore().collection(FIRESTORE_DATA2).doc(auth().currentUser.uid).set({
           ku_id: __number,
           user_type: __sort,
           phone_number: __phone,

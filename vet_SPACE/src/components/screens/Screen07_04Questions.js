@@ -1,14 +1,13 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {StyleSheet, View, Image, Text} from 'react-native';
+import {StyleSheet, View, Image, Text,TouchableOpacity} from 'react-native';
 import {WebView} from 'react-native-webview';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 
 import { colors } from '../../utils/Styles';
 import {IC_PREVIOUS} from '../../utils/icons';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function Question_Link({navigation}) {
   return (
