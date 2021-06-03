@@ -169,11 +169,6 @@ export default function LoginScreen({navigation}) {
           </View>
         </View>
         <View style={loginStyle.Bot}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Test')}
-          >
-            <Text>Test</Text>
-          </TouchableOpacity>
         </View>
       </ImageBackground>
       {passwordResetModal ?
@@ -206,8 +201,6 @@ const loginStyle = StyleSheet.create({
   },
   Bot: {
     flex: 3,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   TitleText: {
     fontWeight: 'bold',
