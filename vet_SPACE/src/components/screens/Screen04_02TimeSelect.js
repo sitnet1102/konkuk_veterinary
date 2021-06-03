@@ -76,7 +76,6 @@ export default function TimeSelectScreen({route, navigation}){
     .where("room_id", "==", "/"+route.params.data.classData+"/"+route.params.data.buildingData+"/"+route.params.data.roomData).where("use_check", "==", true).get()
     .then(querySnapshot => {
       if(querySnapshot.empty){
-        //console.log('empty');
         Alert.alert('예약','예약이 없습니다.');
       }else{
         querySnapshot.forEach(doc => {
@@ -94,7 +93,6 @@ export default function TimeSelectScreen({route, navigation}){
             confirm_text = '/예약됨';
             confirm_style = 3;
           }
-          console.log(confirmed);
           for(let i=startnum;i<endnum;i++){
             time_tmp[i][1] = user_name+"/"+s_time+" ~ "+e_time+confirm_text+"\n"+purpose+"/담당 교수: "+prof_name;
             timeStyle_tmp[i] = confirm_style;
