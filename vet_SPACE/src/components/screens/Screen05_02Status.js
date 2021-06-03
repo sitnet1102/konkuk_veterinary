@@ -147,9 +147,16 @@ export default function StatusScreen() {
           const user_name = doc.get('user_name');
           const prof_name = doc.get('prof_name');
           const purpose = doc.get('purpose');
+          const confirmed = doc.get('reserv_confirm');
+          let confirm_text = '/대기중';
+          let confirm_style = 2;
+          if(confirmed){
+            confirm_text = '/예약됨';
+            confirm_style = 3;
+          }
           for(let i=startnum;i<endnum;i++){
-            time_tmp[i][1] = user_name+"/"+s_time+" ~ "+e_time+"\n"+purpose+"/담당 교수: "+prof_name;
-            timeStyle_tmp[i] = 2;
+            time_tmp[i][1] = user_name+"/"+s_time+" ~ "+e_time+confirm_text+"\n"+purpose+"/담당 교수: "+prof_name;
+            timeStyle_tmp[i] = confirm_style;
           }
         })
       }
@@ -244,9 +251,9 @@ export default function StatusScreen() {
                     key={index}
                     data={rowData}
                     widthArr={state.widthArr3}
-                    style={timeStyle[index] === 0 ? 
-                      [statusStyle.ScrollRow]
-                      : [statusStyle.ScrollRowReserved]
+                    style={timeStyle[index] !== 0 ? 
+                      (timeStyle[index] === 3 ? [statusStyle.ScrollRowConfirmed] : [statusStyle.ScrollRowReserved])
+                      : [statusStyle.ScrollRow]
                     }
                     textStyle={statusStyle.SheetText}
                   />
@@ -343,7 +350,6 @@ const statusStyle = StyleSheet.create({
     fontWeight: 'bold',
     color: colors.kuBlack,
   },
-
   TimeSheet: {
     flex: 5,
     marginHorizontal: 20,
@@ -380,10 +386,13 @@ const statusStyle = StyleSheet.create({
     height: 40,
     backgroundColor: colors.kuBlue,
   },
+  ScrollRowConfirmed: {
+    height: 40,
+    backgroundColor: colors.kuOrange,
+  },
   SheetText: {
     alignSelf: 'center',
     fontWeight: 'bold',
     fontSize: 16,
   },
-
 });
