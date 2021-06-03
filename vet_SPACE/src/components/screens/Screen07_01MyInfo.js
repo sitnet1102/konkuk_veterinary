@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {Text, View, StyleSheet,TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet,TouchableOpacity, Alert} from 'react-native';
 import { RFPercentage} from "react-native-responsive-fontsize";
 
 import auth from '@react-native-firebase/auth';
@@ -16,8 +16,8 @@ export default function MyInfoScreen() {
   const [nameChangeModal, setNameChangeModal] = React.useState(false);
   const [phoneChangeModal, setPhoneChangeModal] = React.useState(false);
 
-  const [__name, setName] = React.useState(auth().currentUser.displayName);
-  const __id = auth().currentUser.email;
+  const [__name, setName] = React.useState('');
+  const [__id, setId] = React.useState(''); 
   const [__phoneNumber, setPhoneNumber] = React.useState(' '); 
   const [__num, setNum] = React.useState(' ');
   const [__sort, setSort] = React.useState(' ');
@@ -41,6 +41,26 @@ export default function MyInfoScreen() {
     setPhoneNumber(data);
     togglePhoneChangeModal();
   };
+
+  React.useEffect(() => {
+    setName(auth().currentUser.displayName);
+    setId(auth().currentUser.email);
+    firestore().collection('User_info').doc(auth().currentUser.uid).get()
+    .then(Snapshot => {
+      setPhoneNumber(Snapshot.data().phone_number);
+      setNum(Snapshot.data().ku_id);
+      setSort(Snapshot.data().user_type);
+    }).catch(e => {
+      Alert.alert('오류710','개인 정보를 불러올수없습니다.');
+    });
+    return () => {
+      setName('');
+      setId('');
+      setPhoneNumber('');
+      setNum('');
+      setSort('');
+    };
+  },[]);
 
   return(
     <View style={myinfoStyle.container}>
