@@ -2,13 +2,15 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 
 import {View, Text, TextInput,StyleSheet, Alert, TouchableOpacity, ScrollView} from 'react-native';
+import { RFPercentage } from 'react-native-responsive-fontsize';
+
 import { colors } from '../../utils/Styles';
 
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
 import SortingSelectModal from '../modal/SortingSelectModal';
-import { RFPercentage } from 'react-native-responsive-fontsize';
+import PrivacyPolicyModal from '../modal/PrivacyPolicyModal';
 
 export default function SignUpScreen({navigation}){
   /**
@@ -31,7 +33,7 @@ export default function SignUpScreen({navigation}){
   const [sortingData, setSortingData] = React.useState('분 류');
   const [sortingStyle, setSortingStyle] = React.useState(false);
 
-  //const [idDuplication, setIdDuplication] = React.useState(false);
+  const [privacyModal, setPrivacyModal] = React.useState(true);
 
   const toggleSortingSelectModal =  () => {
     setSortingSelectModal(prev => (!prev));
@@ -48,15 +50,15 @@ export default function SignUpScreen({navigation}){
 
   const idChange = (data) => {
     setId(data);
-    //setIdDuplication(false);
   };
 
-  /*
-  const idDuplicateCheck = () => {
-    setIdDuplication(true);
-    Alert.alert('중복확인','사용가능한 아이디입니다.');
+  const togglePrivacyModal =  () => {
+    setPrivacyModal(prev => (!prev));
   };
-  */
+  const cancleHandler = () => {
+    setPrivacyModal(prev => (!prev));
+    navigation.navigate('Login');
+  };
 
   const signUpOnPress = () => {
     let dot = __id.indexOf('@');
@@ -66,10 +68,6 @@ export default function SignUpScreen({navigation}){
       Alert.alert("아이디 오류", "올바른 이메일 형식을 입력하세요");
     }else if(__id.substr(dot+1, 12) !== "konkuk.ac.kr"){
       Alert.alert("아이디 오류", "건국 메일을 사용해주세요");
-    /*
-    }else if(idDuplication === false){
-      Alert.alert("아이디 오류", "아이디 중복 체크를 해주세요.");
-    */
     }else if(__password.length < 8 || __password.length > 16){
       Alert.alert("패스워드 오류", "비밀번호는 8자리 이상 16자리 이하 입니다.");
     }else if(!(__password.trim() !== "" && __password === __password2)){
@@ -87,9 +85,6 @@ export default function SignUpScreen({navigation}){
     }else{
       auth().createUserWithEmailAndPassword(__id, __password)
       .then(() => {
-        /**
-          회원가입이 되고, 각 개인 정보를 저장해야함 
-        */
         const update = {
           displayName : __name,
           photoURL: '',
@@ -104,7 +99,6 @@ export default function SignUpScreen({navigation}){
           user_type: __sort,
           phone_number: __phone,
         }).then(() => {
-          //console.log('User Data in firestore added!');
           auth().currentUser.sendEmailVerification().then(() => {
             Alert.alert("회원가입 완료","회원가입이 정상적으로 되었습니다.\n이메일 인증 후 이용이 가능합니다.\n이메일을 확인해주세요.");
             navigation.navigate('Login');
@@ -152,14 +146,6 @@ export default function SignUpScreen({navigation}){
               onChangeText={(value) => idChange(value)}
             />
           </View>
-          {/*
-          <TouchableOpacity 
-            style={signupStyle.IDCheckContainer}
-            onPress={() => idDuplicateCheck()}
-          >
-            <Text style={signupStyle.IDCheckText}>중복확인</Text>
-          </TouchableOpacity>
-          */}
         </View>
         <View style={signupStyle.InputBoxContainer}>
           <TextInput 
@@ -234,6 +220,13 @@ export default function SignUpScreen({navigation}){
         <SortingSelectModal 
           modalHandler={()=>toggleSortingSelectModal()}
           dataHandler={(data)=>sortingHandler(data)}
+        /> 
+        : <></>
+      }
+      {privacyModal ? 
+        <PrivacyPolicyModal 
+          modalHandler={()=>togglePrivacyModal()}
+          cancleHandler={()=>cancleHandler()}
         /> 
         : <></>
       }
