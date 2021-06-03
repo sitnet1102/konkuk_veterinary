@@ -90,13 +90,15 @@ export default function LoginScreen({navigation}) {
           Alert.alert("로그인 오류","아이디와 패스워드가 다릅니다");
         }else if(e.code === 'auth/user-not-found'){
           Alert.alert("로그인 오류","아이디와 비밀번호를 확인해주세요");
+        }else if(e.code === 'auth/user-disabled'){
+          Alert.alert("로그인 오류","사용할 수 없는 계정입니다.");
         }else{
           Alert.alert("error201",e.code);
         }
       });
     }
   };
-
+  
   return (
     <View style={loginStyle.container}>
       <ImageBackground
@@ -165,17 +167,13 @@ export default function LoginScreen({navigation}) {
               <Text style={loginStyle.NewAccButton}>회원가입(Sign Up)</Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity 
-            style={loginStyle.PasswordReset}
-            onPress={togglePasswordReset}
-          >
-            <Text style={loginStyle.PasswordResetText}>비밀번호 재설정</Text>
-          
         </View>
         <View style={loginStyle.Bot}>
           <TouchableOpacity
             onPress={() => navigation.navigate('Test')}
           >
+            <Text>Test</Text>
+          </TouchableOpacity>
         </View>
       </ImageBackground>
       {passwordResetModal ?
