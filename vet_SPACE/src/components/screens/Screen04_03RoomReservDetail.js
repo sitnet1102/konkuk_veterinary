@@ -331,7 +331,7 @@ const detailStyle = StyleSheet.create({
     fontWeight: 'bold',
   },
   midContainer: {
-    height: 360,
+    height: RFPercentage(55),
     flexDirection: 'row',
     marginHorizontal: 20,
     borderWidth: 1,
