@@ -13,7 +13,7 @@ moment.locale('ko');
 
 export default function DateSelectModal(props) {
   const [selected, setSelected] = React.useState(moment().utcOffset('+09:00').format('YYYY-MM-DD'));
-  const [selectedDay, setSelectedDay] = React.useState(moment().utcOffset('+09:00').add(1,'days').format('(dd)'));
+  const [selectedDay, setSelectedDay] = React.useState(moment().utcOffset('+09:00').format('(dd)'));
   const startDate = new Date();
   startDate.setMonth(startDate.getMonth() - 3);
   const endDate = new Date();
