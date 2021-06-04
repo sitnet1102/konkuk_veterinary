@@ -8,6 +8,7 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
 import {colors} from '../../utils/Styles';
+import {FIRESTORE_DATA2} from '../../utils/firebaseData';
 
 export default function PhoneChangeModal(props) {
   const [phone, setPhone] = React.useState('');
@@ -16,7 +17,7 @@ export default function PhoneChangeModal(props) {
       {
         text: '예',
         onPress: () => {
-          firestore().collection('User_info').doc(auth().currentUser.uid).update({
+          firestore().collection(FIRESTORE_DATA2).doc(auth().currentUser.uid).update({
             'phone_number': phone,
           }).then(() => {
             props.dataHandler(phone);

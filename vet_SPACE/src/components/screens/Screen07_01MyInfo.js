@@ -8,6 +8,7 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
 import {colors} from '../../utils/Styles';
+import {FIRESTORE_DATA2} from '../../utils/firebaseData';
 
 import NameChangeModal from '../modal/NameChangeModal';
 import PhoneChangeModal from '../modal/PhoneChangeModal';
@@ -21,7 +22,7 @@ export default function MyInfoScreen() {
   const [__phoneNumber, setPhoneNumber] = React.useState(' '); 
   const [__num, setNum] = React.useState(' ');
   const [__sort, setSort] = React.useState(' ');
-  firestore().collection('User_info').doc(auth().currentUser.uid).get().then(Snapshot => {
+  firestore().collection(FIRESTORE_DATA2).doc(auth().currentUser.uid).get().then(Snapshot => {
     setPhoneNumber(Snapshot.data().phone_number);
     setNum(Snapshot.data().ku_id);
     setSort(Snapshot.data().user_type);
@@ -45,7 +46,7 @@ export default function MyInfoScreen() {
   React.useEffect(() => {
     setName(auth().currentUser.displayName);
     setId(auth().currentUser.email);
-    firestore().collection('User_info').doc(auth().currentUser.uid).get()
+    firestore().collection(FIRESTORE_DATA2).doc(auth().currentUser.uid).get()
     .then(Snapshot => {
       setPhoneNumber(Snapshot.data().phone_number);
       setNum(Snapshot.data().ku_id);

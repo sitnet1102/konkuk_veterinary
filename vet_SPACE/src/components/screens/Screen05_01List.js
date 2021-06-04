@@ -8,7 +8,7 @@ import {Table, TableWrapper, Cell} from 'react-native-table-component';
 import {TouchableOpacity, ScrollView} from 'react-native-gesture-handler';
 
 import {colors} from '../../utils/Styles';
-import {FIRESTORE_DATA1} from '../../utils/firebaseData';
+import {FIRESTORE_DATA1, FIRESTORE_DATA2} from '../../utils/firebaseData';
 
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -60,7 +60,7 @@ export default function ListScreen({navigation}) {
     //let tableData_tmp = [];
     //let tableData_tmp2 = [];
     
-    firestore().collection('User_info').doc(auth().currentUser.uid).collection('reservation').get()
+    firestore().collection(FIRESTORE_DATA2).doc(auth().currentUser.uid).collection('reservation').get()
     .then(querySnapshot => {
       //setTableData([]);
       //setTableData2([]);
