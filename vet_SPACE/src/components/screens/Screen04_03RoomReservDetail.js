@@ -262,7 +262,11 @@ export default function RoomReservDetailScreen({route, navigation}){
       </View>
       <View style={detailStyle.Bot}>
         <TouchableOpacity 
-          disabled={!(purposeStyle && profStyle)}
+          disabled={
+            adminCheck ?
+            !(nameStyle && phoneStyle && purposeStyle && profStyle)
+            : !(purposeStyle && profStyle)
+          }
           style={
             purposeStyle && profStyle ?
             detailStyle.ActivedNextButton
