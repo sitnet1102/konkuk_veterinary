@@ -187,7 +187,7 @@ const reservdetailStyle = StyleSheet.create({
     lineHeight: 34,
   },
   container0: {
-    height: 360,
+    height: RFPercentage(55),
     flexDirection: 'row',
   },
   container1: {
