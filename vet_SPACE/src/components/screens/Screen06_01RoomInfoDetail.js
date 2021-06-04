@@ -242,7 +242,7 @@ const roominfodetailStyle = StyleSheet.create({
   },
   Text: {
     //fontSize: RFPercentage(3.5),
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: 'bold',
   },
   SelectBox: {
