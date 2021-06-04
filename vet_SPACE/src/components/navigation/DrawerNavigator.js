@@ -221,7 +221,7 @@ const menudrawerStyle = StyleSheet.create({
     alignSelf: 'stretch',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    height: 130,
+    height: RFPercentage(20),
     backgroundColor: colors.kuCoolGray,
   },
   item: {
