@@ -1,8 +1,9 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 
-import {View, StyleSheet, Image,TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import {IC_MENU, IC_HOME} from '../../utils/icons';
 
