@@ -176,6 +176,7 @@ const myinfoStyle = StyleSheet.create({
   text3: {
     fontSize: RFPercentage(3),
     fontWeight: 'bold',
+    textDecorationLine: 'underline',
   },
   rowContainer: {
     flexDirection: 'row',
