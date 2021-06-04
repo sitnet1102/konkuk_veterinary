@@ -411,7 +411,8 @@ const timeSelectStyle = StyleSheet.create({
   SheetText: {
     alignSelf: 'center',
     fontWeight: 'bold',
-    fontSize: RFPercentage(2),
+    //fontSize: RFPercentage(2),
+    fontSize: 15,
   },
   NextButton: {
     alignSelf: 'center',
