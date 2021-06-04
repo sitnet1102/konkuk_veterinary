@@ -27,7 +27,7 @@ export default function RoomInfoScreen({navigation}){
             }
           )}
           >
-          <Text style={roominfoStyle.text1}>실습실 / 실험실</Text>
+          <Text style={roominfoStyle.text1}>실습실</Text>
         </TouchableOpacity>
         <TouchableOpacity 
           style={roominfoStyle.touchBox}
