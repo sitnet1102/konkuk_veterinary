@@ -132,7 +132,7 @@ export default function RoomReservDetailScreen({route, navigation}){
           room_id: "/"+route.params.data.classData+"/"+route.params.data.buildingData+"/"+route.params.data.roomData,
           stored_from: 0,
           user_id: auth().currentUser.uid,
-          user_name: auth().currentUser.displayName,
+          user_name: __name,
           phone_number: __phone,
         }).then(DocumentReference => {
           firestore().collection(FIRESTORE_DATA2).doc(auth().currentUser.uid).collection('reservation').doc(DocumentReference.id).set({
