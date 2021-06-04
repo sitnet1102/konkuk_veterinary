@@ -12,13 +12,14 @@ import firestore from '@react-native-firebase/firestore';
 
 import PurposeSelectModal from '../modal/PurposeSelectModal';
 import ProfSelectModal from '../modal/ProfSelectModal';
+import NameInputModal from '../modal/NameInputModal';
+import PhoneInputModal from '../modal/PhoneInputModal';
 
 export default function RoomReservDetailScreen({route, navigation}){
-  const __name = auth().currentUser.displayName;
-  const [__phone, setPhone] = React.useState(' ');
-  firestore().collection(FIRESTORE_DATA2).doc(auth().currentUser.uid).get().then(querySnapshot => {
-    setPhone(querySnapshot.data().phone_number);
-  });
+  const [adminCheck, setAdminCheck] = React.useState(false);
+  const [__name, setName] = React.useState('선 택');
+  const [__phone, setPhone] = React.useState('선 택');
+  
   const __time = route.params.data.startTimeData + " ~ " + route.params.data.endTimeData;
 
   const state = {
@@ -46,6 +47,12 @@ export default function RoomReservDetailScreen({route, navigation}){
   const [profSelectModal, setProfSelectModal] = React.useState(false);
   const [profData, setProfData] = React.useState('선 택');
   const [profStyle, setProfStyle] = React.useState(false);
+  
+  const [nameInputModal, setNameInputModal] = React.useState(false);
+  const [nameStyle, setNameStyle] = React.useState(false);
+  
+  const [phoneInputModal, setPhoneInputModal] = React.useState(false);
+  const [phoneStyle, setPhoneStyle] = React.useState(false);
 
   const togglePurposeSelectModal =  () => {
     setPurposeSelectModal(prev => (!prev));
@@ -69,6 +76,30 @@ export default function RoomReservDetailScreen({route, navigation}){
   };
   const profStyleChange = () => {
     setProfStyle(true);
+  };
+  
+  const toggleNameInputModal =  () => {
+    setNameInputModal(prev => (!prev));
+  };
+  const nameHandler = (data) => {
+    setName(data);
+    toggleNameInputModal();
+    nameStyleChange();
+  };
+  const nameStyleChange = () => {
+    setNameStyle(true);
+  };
+
+  const togglePhoneInputModal =  () => {
+    setPhoneInputModal(prev => (!prev));
+  };
+  const phoneHandler = (data) => {
+    setPhone(data);
+    togglePhoneInputModal();
+    phoneStyleChange();
+  };
+  const phoneStyleChange = () => {
+    setPhoneStyle(true);
   };
 
   const onPressComplete = () => {
@@ -141,6 +172,17 @@ export default function RoomReservDetailScreen({route, navigation}){
     })
   };
 
+  React.useEffect(() => {
+    firestore().collection(FIRESTORE_DATA2).doc(auth().currentUser.uid).get().then(querySnapshot => {
+      if(querySnapshot.data().user_type === "관리자"){
+        setAdminCheck(true);
+      }else{
+        setName(auth().currentUser.displayName);
+        setPhone(querySnapshot.data().phone_number);
+      }
+    });
+  },[]);
+
 
   return (
     <View style={detailStyle.container}>
@@ -168,8 +210,34 @@ export default function RoomReservDetailScreen({route, navigation}){
           </View>
           <View style={detailStyle.line}></View>
           <View style={detailStyle.container2}>
-            <Text style={detailStyle.text2}>{__name}</Text>
-            <Text style={detailStyle.text2}>{__phone}</Text>
+            {
+              adminCheck ?
+              <>
+                <TouchableOpacity
+                  onPress={()=>toggleNameInputModal()}
+                >
+                  <Text style={
+                    nameStyle ?
+                    detailStyle.selectedText3
+                    : detailStyle.text3
+                  }>{__name}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={()=>togglePhoneInputModal()}
+                >
+                  <Text style={
+                    phoneStyle ?
+                    detailStyle.selectedText3
+                    : detailStyle.text3
+                  }>{__phone}</Text>
+                </TouchableOpacity>
+              </>
+              :
+              <>
+                <Text style={detailStyle.text2}>{__name}</Text>
+                <Text style={detailStyle.text2}>{__phone}</Text>
+              </>
+            }
             <Text style={detailStyle.text2}>{__time}</Text>
             <TouchableOpacity
               onPress={()=>togglePurposeSelectModal()}
@@ -205,6 +273,20 @@ export default function RoomReservDetailScreen({route, navigation}){
           <Text style={detailStyle.NextText}>제출하기</Text>
         </TouchableOpacity>
       </View>
+      {nameInputModal ? 
+        <NameInputModal 
+          modalHandler={()=>toggleNameInputModal()}
+          dataHandler={(data)=>nameHandler(data)}
+        /> 
+        : <></>
+      }
+      {phoneInputModal ? 
+        <PhoneInputModal 
+          modalHandler={()=>togglePhoneInputModal()}
+          dataHandler={(data)=>phoneHandler(data)}
+        /> 
+        : <></>
+      }
       {purposeSelectModal ? 
         <PurposeSelectModal 
           modalHandler={()=>togglePurposeSelectModal()}
