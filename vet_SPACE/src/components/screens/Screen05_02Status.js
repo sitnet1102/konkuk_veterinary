@@ -346,7 +346,7 @@ const statusStyle = StyleSheet.create({
   },
   InboxSelectedText3: {
     alignSelf: 'center',
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
     color: colors.kuBlack,
   },
