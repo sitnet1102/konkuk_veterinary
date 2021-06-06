@@ -99,7 +99,7 @@ function MenuDrawer(props) {
         />
         <DrawerItem
           style={menudrawerStyle.item}
-          label="나의 강의실 예약"
+          label="나의 예약 확인"
           labelStyle={menudrawerStyle.label}
           icon={({ focused, color, size }) => (
             <Image
