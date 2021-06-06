@@ -22,6 +22,8 @@ export default function ReservDetailScreen({route, navigation}) {
   const [t2, setT2] = React.useState('');
   const [t3, setT3] = React.useState('');
 
+  const [cancle, setCancle] = React.useState(true);
+
   const columndata = [
     ['목 적'],
     ['신청자'],
@@ -71,8 +73,22 @@ export default function ReservDetailScreen({route, navigation}) {
     if(date_tmp < 10){
       date_tmp = '0'+date_tmp;
     }
+    let month_tmp2 = new Date().getMonth()+1;
+    if(month_tmp2 < 10){
+      month_tmp2 = '0'+month_tmp2;
+    }
+    let date_tmp2 = new Date().getDate();
+    if(date_tmp2 < 10){
+      date_tmp2 = '0'+date_tmp2;
+    }
     let apply_date_tmp = new Date(timestamp_tmp).getFullYear() + '-' + month_tmp + '-' + date_tmp;
     //+ ' ' + new Date(timestamp_tmp).toLocaleTimeString();
+
+    const today = Number(new Date().getFullYear() +''+ month_tmp2+ date_tmp2);
+    const date_num = Number(route.params.data.date.substr(0,4)+route.params.data.date.substr(5,2)+route.params.data.date.substr(8,2));
+    if(date_num<today){
+      setCancle(false);
+    }
 
     setT1(route.params.data.detailData.room_id.split('/')[2] + ' ' + route.params.data.detailData.room_id.split('/')[3]);
     setT2(route.params.data.date);
@@ -145,12 +161,18 @@ export default function ReservDetailScreen({route, navigation}) {
         </View>
       </View>
       <View style={reservdetailStyle.bot}>
-        <TouchableOpacity 
-          style={reservdetailStyle.button}
-          onPress={() => onPressDeleteFunc()}
-        >
-          <Text style={reservdetailStyle.buttontext}>예약 취소</Text>
-        </TouchableOpacity>
+        {
+          cancle? 
+          <>
+            <TouchableOpacity 
+              style={reservdetailStyle.button}
+              onPress={() => onPressDeleteFunc()}
+            >
+              <Text style={reservdetailStyle.buttontext}>예약 취소</Text>
+            </TouchableOpacity>
+          </>
+          : <></>
+        }
       </View>
     </View>
   );
