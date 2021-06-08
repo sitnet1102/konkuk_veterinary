@@ -131,6 +131,7 @@ export default function TimeSelectScreen({route, navigation}){
   };
   const startTimeStyleChange = () => {
     setStartTimeStyle(true);
+    setEndTimeSelectModal(prev => (!prev));
   };
 
 
@@ -293,6 +294,7 @@ export default function TimeSelectScreen({route, navigation}){
       </View>
       {startTimeSelectModal ? 
         <TimeSelectModal 
+          title={'시작시간'}
           modalHandler={()=>toggleStartTimeSelectModal()}
           dataHandler={(selectedHour,selectedMin)=>startTimeHandler(selectedHour, selectedMin)}
         /> 
@@ -300,6 +302,7 @@ export default function TimeSelectScreen({route, navigation}){
       }
       {endTimeSelectModal ? 
         <TimeSelectModal 
+          title={'종료시간'}
           modalHandler={()=>toggleEndTimeSelectModal()}
           dataHandler={(selectedHour,selectedMin)=>endTimeHandler(selectedHour,selectedMin)}
         /> 
