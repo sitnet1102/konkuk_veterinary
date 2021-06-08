@@ -10,7 +10,7 @@ import database from '@react-native-firebase/database';
 import {colors} from '../../utils/Styles';
 
 export default function LocationSelectModal(props) {
-  const [selectedBuilding, setSelectedBuilding] = React.useState('건물 선택');
+  const [selectedBuilding, setSelectedBuilding] = React.useState('수의학관');
   const [selectedRoom, setSelectedRoom] = React.useState('호실 선택');
 
   const [roomData, setRoomData] = React.useState([]);
@@ -22,9 +22,9 @@ export default function LocationSelectModal(props) {
       "건물 선택",
       "수의학관",
       "동물생명과학관",
-      "기타",
     ],
   };
+  const [buildingData, setBuildingData] = React.useState([]);
 
   const buildingDataChanged = (itemValue) => {
     setSelectedBuilding(itemValue);
@@ -48,6 +48,20 @@ export default function LocationSelectModal(props) {
       props.dataHandler(selectedBuilding, selectedRoom);
     }
   };
+
+  React.useEffect(()=> {
+    if(props.classificationdata === "강의실"){
+      setBuildingData([
+        "수의학관",
+        "동물생명과학관",
+      ]);
+    }else{
+      setBuildingData([
+        "수의학관",
+      ]);
+    }
+  },[]);
+
   return(
     <View style={locationselectmodalStyle.container}>
       <TouchableOpacity 
@@ -68,7 +82,7 @@ export default function LocationSelectModal(props) {
             }}
             >
             {
-              state.BuildingData.map((rowData, index) => (
+              buildingData.map((rowData, index) => (
                 <Picker.Item 
                 key ={index}
                 label = {rowData}
