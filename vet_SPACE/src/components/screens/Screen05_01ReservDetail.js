@@ -43,6 +43,7 @@ export default function ReservDetailScreen({route, navigation}) {
     // 삭제에 필요한 내용 
     firestore().collection(FIRESTORE_DATA1).doc(route.params.data.date).collection('Data').doc(route.params.data.id).update({
       use_check: false,
+      delete_date: firestore.Timestamp.fromDate(new Date()),
     }).then(() => {
       navigation.navigate('ReservCheck');
     }).catch(e => {
