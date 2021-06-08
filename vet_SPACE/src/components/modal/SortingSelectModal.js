@@ -15,6 +15,7 @@ export default function SortingSelectModal(props) {
     "교수",
     "교직원",
     "대학원생",
+    "연구원",
     //"기타",
   ];
   return(
