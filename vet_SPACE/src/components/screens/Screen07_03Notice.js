@@ -27,7 +27,7 @@ export default function Notice_Link({navigation}) {
         </TouchableOpacity>
       </View>
       <WebView 
-        source={{uri: 'https://www.notion.so/2edfff2d224a4f778e035918c6582cfe?v=e0082d9b900c486c8ab54b981711b4c3'}}
+        source={{uri: 'https://www.notion.so/4d789110f3d640c3983f3cb7928bdd13?v=de228f3f9b344c1b827f95e61c143057'}}
       />
     </SafeAreaView>
   );
