@@ -116,6 +116,7 @@ export default function LoginScreen({navigation}) {
               autoCapitalize="none"
               placeholder="이메일(Email address)"
               keyboardType="email-address"
+              accessibilityLabel="email_input"
               value={__userID}
               onChangeText={setUserID}
             >
@@ -127,6 +128,7 @@ export default function LoginScreen({navigation}) {
               style={loginStyle.InputText}
               autoCapitalize="none"
               placeholder="비밀번호(Password)"
+              accessibilityLabel="password_input"
               value={__userPassword}
               onChangeText={setUserPassword}
             >
