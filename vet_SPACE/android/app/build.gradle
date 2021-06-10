@@ -175,6 +175,11 @@ android {
         }
     }
 
+    dexOptions {
+        jumboMode true
+        javaMaxHeapSize "4g"
+    }
+
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
@@ -192,7 +197,8 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:multidex:1.0.3' //enter the latest version
+    //implementation 'com.android.support:multidex:1.0.3' //enter the latest version
+    implementation("androidx.multidex:multidex:2.0.1")
 
     implementation platform("com.google.firebase:firebase-bom:27.1.0")
 
