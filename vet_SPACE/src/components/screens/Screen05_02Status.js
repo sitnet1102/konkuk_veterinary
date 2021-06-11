@@ -2,11 +2,11 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 
 import {Text, View, StyleSheet, ScrollView, Alert, TouchableOpacity} from 'react-native';
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { Table, Row} from 'react-native-table-component';
 
 import {colors} from '../../utils/Styles';
 import { FIRESTORE_DATA1 } from '../../utils/firebaseData';
+import {horizontalScale, verticalScale, moderateScale} from '../../utils/scailing';
 
 import firestore from '@react-native-firebase/firestore';
 
@@ -174,10 +174,10 @@ export default function StatusScreen() {
 
   const state = {
     tableTitle: ['예약 내역'],
-    widthArr: [370],
+    widthArr: [horizontalScale(373)],
     divisionArr: ['시간', '내용'],
-    widthArr2: [115,255],
-    widthArr3: [115,255],
+    widthArr2: [horizontalScale(118),horizontalScale(255)],
+    widthArr3: [horizontalScale(118),horizontalScale(255)],
   };
   
   React.useEffect(() => {
@@ -214,7 +214,7 @@ export default function StatusScreen() {
           >
             <Text style={
               classificationStyle ?
-              statusStyle.InboxSelectedText2
+              statusStyle.InboxSelectedText
               : statusStyle.InboxText
             }>{classificationData}</Text>
           </TouchableOpacity>
@@ -243,7 +243,7 @@ export default function StatusScreen() {
           <Table borderStyle={statusStyle.Border}>
             <Row data={state.divisionArr} widthArr={state.widthArr2} style={statusStyle.SheetDivision} textStyle={statusStyle.SheetTitleText}/>
           </Table>
-          <ScrollView style={statusStyle.Wrapper} persistentScrollbar={true}>
+          <ScrollView persistentScrollbar={true}>
             <Table borderStyle={statusStyle.Border}>
               {
                 time.map((rowData, index) => (
@@ -294,14 +294,10 @@ const statusStyle = StyleSheet.create({
     flex: 1,
   },
   top: {
-    height: 20,
+    height: verticalScale(20),
   },
   mid: {
-    height: 240,
-  },
-  bot: {
-    flex: 1,
-    marginBottom: 40,
+    marginBottom: verticalScale(20),
   },
   rowContainer: {
     alignItems: 'center',
@@ -314,13 +310,13 @@ const statusStyle = StyleSheet.create({
     width: '30%',
   },
   Text: {
-    fontSize: RFPercentage(5),
+    fontSize: moderateScale(36),
     fontWeight: 'bold',
   },
   SelectBox: {
     justifyContent: 'center',
-    height: 40,
-    width: 250,
+    height: verticalScale(40),
+    width: horizontalScale(250),
     backgroundColor: colors.kuWhite,
     borderRadius: 5,
     borderWidth: 1,
@@ -328,32 +324,30 @@ const statusStyle = StyleSheet.create({
   },
   InboxText: {
     alignSelf: 'center',
-    fontSize: 24,
+    fontSize: moderateScale(24),
     fontWeight: 'bold',
     color: colors.kuDarkGray,
   },
   InboxSelectedText: {
     alignSelf: 'center',
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: colors.kuBlack,
-  },
-  InboxSelectedText2: {
-    alignSelf: 'center',
-    fontSize: 24,
+    fontSize: moderateScale(24),
     fontWeight: 'bold',
     color: colors.kuBlack,
   },
   InboxSelectedText3: {
     alignSelf: 'center',
-    fontSize: 22,
+    fontSize: moderateScale(22),
     fontWeight: 'bold',
     color: colors.kuBlack,
   },
+  bot: {
+    flex: 1,
+    marginBottom: verticalScale(40),
+  },
   TimeSheet: {
     flex: 5,
-    marginHorizontal: 20,
-    marginBottom: 20,
+    marginHorizontal: horizontalScale(20),
+    marginBottom: verticalScale(20),
   },
   Border: {
     borderWidth: 1,
@@ -361,12 +355,12 @@ const statusStyle = StyleSheet.create({
   },
   SheetTitle: {
     justifyContent: 'center',
-    height: 40,
+    height: verticalScale(50),
     backgroundColor: colors.kuWarmGray,
   },
   SheetTitleText: {
     alignSelf: 'center',
-    fontSize: 20,
+    fontSize: moderateScale(24),
     fontWeight: 'bold',
   },
   SheetDivision:  {
@@ -375,24 +369,21 @@ const statusStyle = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  Wrapper: {
-    //marginTop: -1,
-  },
   ScrollRow: {
-    height: 40,
+    height: verticalScale(50),
     backgroundColor: colors.kuLightGray,
   },
   ScrollRowReserved: {
-    height: 40,
+    height: verticalScale(50),
     backgroundColor: colors.kuBlue,
   },
   ScrollRowConfirmed: {
-    height: 40,
+    height: verticalScale(50),
     backgroundColor: colors.kuOrange,
   },
   SheetText: {
     alignSelf: 'center',
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: moderateScale(16),
   },
 });
