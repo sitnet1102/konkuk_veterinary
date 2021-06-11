@@ -3,21 +3,15 @@ import * as React from 'react';
 
 import {Text, View, StyleSheet, Alert} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 import {colors} from '../../utils/Styles';
 import {FIRESTORE_DATA1} from '../../utils/firebaseData';
+import {horizontalScale, verticalScale, moderateScale} from '../../utils/scailing';
 
 import firestore from '@react-native-firebase/firestore';
 import database from '@react-native-firebase/database';
 
 export default function ReservDetailScreen({route, navigation}) {
-  /**
-    수정할 사항
-    1. 이전 페이지에서 데이터로 넣어주는 내용에서 데이터베이스 주요키를 넘겨주는 형식으로 하기
-    2. 데이터 베이스 연결해서 넘어온 주요키를 사용해서 데이터 베이스 쿼리 사용 
-   */
-  
   const [t1, setT1] = React.useState('');
   const [t2, setT2] = React.useState('');
   const [t3, setT3] = React.useState('');
@@ -119,43 +113,43 @@ export default function ReservDetailScreen({route, navigation}) {
       <View style={reservdetailStyle.mid}>
         <View style={reservdetailStyle.container0}>
           <View style={reservdetailStyle.container1}>
-            <View style={reservdetailStyle.table1}>
+            <View>
               <Text style={reservdetailStyle.text1}>{columndata[0]}</Text>
             </View>
-            <View style={reservdetailStyle.table1}>
+            <View>
               <Text style={reservdetailStyle.text1}>{columndata[1]}</Text>
             </View>
-            <View style={reservdetailStyle.table1}>
+            <View>
               <Text style={reservdetailStyle.text1}>{columndata[2]}</Text>
             </View>
-            <View style={reservdetailStyle.table1}>
+            <View>
               <Text style={reservdetailStyle.text1}>{columndata[3]}</Text>
             </View>
-            <View style={reservdetailStyle.table1}>
+            <View>
               <Text style={reservdetailStyle.text1}>{columndata[4]}</Text>
             </View>
-            <View style={reservdetailStyle.table1}>
+            <View>
               <Text style={reservdetailStyle.text1}>{columndata[5]}</Text>
             </View>
           </View>
           <View style={reservdetailStyle.line}></View>
           <View style={reservdetailStyle.container2}>
-            <View style={reservdetailStyle.table2}>
+            <View>
               <Text style={reservdetailStyle.text2}>{data1}</Text>
             </View>
-            <View style={reservdetailStyle.table2}>
+            <View>
               <Text style={reservdetailStyle.text2}>{data2}</Text>
             </View>
-            <View style={reservdetailStyle.table2}>
+            <View>
               <Text style={reservdetailStyle.text2}>{data3}</Text>
             </View>
-            <View style={reservdetailStyle.table2}>
+            <View>
               <Text style={reservdetailStyle.text2}>{data4}</Text>
             </View>
-            <View style={reservdetailStyle.table2}>
+            <View>
               <Text style={reservdetailStyle.text2}>{data5}</Text>
             </View>
-            <View style={reservdetailStyle.table2}>
+            <View>
               <Text style={reservdetailStyle.text2}>{data6}</Text>
             </View>
           </View>
@@ -190,65 +184,62 @@ const reservdetailStyle = StyleSheet.create({
   top: {
     flex: 2,
     justifyContent: 'center',
-    marginLeft: 20,
-    marginTop: 10,
+    marginLeft: horizontalScale(20),
+    marginTop: verticalScale(10),
+  },
+  titletext: {
+    fontSize: moderateScale(34),
+    fontWeight: 'bold',
+    lineHeight: verticalScale(44),
   },
   mid: {
-    marginTop: 10,
-    marginLeft: 20,
+    marginTop: verticalScale(10),
+    marginLeft: horizontalScale(20),
     flex: 7,
+  },
+  container0: {
+    height: verticalScale(430),
+    flexDirection: 'row',
+  },
+  container1: {
+    flex: 3,
+    marginRight: horizontalScale(10),
+  },
+  text1: {
+    fontSize: moderateScale(32),
+    fontWeight: 'bold',
+    alignSelf: 'flex-end',
+    lineHeight: verticalScale(70),
+  },
+  line: {
+    width: 1,
+    backgroundColor: colors.kuDarkGray,
+  },
+  container2: {
+    flex: 5,
+    marginLeft: horizontalScale(10),
+  },
+  text2: {
+    fontSize: moderateScale(30),
+    fontWeight: 'bold',
+    alignSelf: 'flex-start',
+    lineHeight: verticalScale(70),
   },
   bot: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  titletext: {
-    fontSize: RFPercentage(4),
-    //fontSize: RFValue(28),
-    fontWeight: 'bold',
-    lineHeight: 34,
-  },
-  container0: {
-    height: RFPercentage(55),
-    flexDirection: 'row',
-  },
-  container1: {
-    flex: 3,
-    marginRight: 10,
-  },
-  container2: {
-    flex: 5,
-    marginLeft: 10,
-  },
-  line: {
-    width: 1,
-    backgroundColor: colors.kuDarkGray,
-  },
-  table1: {
-  },
-  text1: {
-    fontSize: RFPercentage(4),
-    fontWeight: 'bold',
-    alignSelf: 'flex-end',
-    lineHeight: 60,
-  },
-  text2: {
-    fontSize: RFPercentage(3),
-    fontWeight: 'bold',
-    alignSelf: 'flex-start',
-    lineHeight: 60,
-  },
   button: {
     backgroundColor: colors.kuDarkGreen,
-    width: 150,
-    height: 40,
+    width: horizontalScale(150),
+    height: verticalScale(40),
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
   },
   buttontext: {
-    fontSize: 20,
+    fontSize: moderateScale(20),
     fontWeight: 'bold',
     color: colors.kuWhite,
   },
