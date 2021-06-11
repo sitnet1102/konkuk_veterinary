@@ -3,9 +3,10 @@ import * as React from 'react';
 
 import {View, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import {Table, Row} from 'react-native-table-component';
+
 import { colors } from '../../utils/Styles';
 import { FIRESTORE_DATA1, FIRESTORE_DATA2 } from '../../utils/firebaseData';
-import { RFPercentage } from 'react-native-responsive-fontsize';
+import {horizontalScale, verticalScale, moderateScale} from '../../utils/scailing';
 
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -201,7 +202,6 @@ export default function RoomReservDetailScreen({route, navigation}){
                     key={index}
                     data={rowData}
                     widthArr={state.widthArr}
-                    style={[detailStyle.table1]}
                     textStyle={detailStyle.text1}
                   />
                 ))
@@ -317,83 +317,74 @@ const detailStyle = StyleSheet.create({
     flex: 2,
     justifyContent: 'center',
   },
+  TitleText: {
+    alignSelf: 'center',
+    fontSize: moderateScale(48),
+    fontWeight: 'bold',
+  },
   Mid: {
     flex: 6,
   },
-  Bot: {
-    //flex: 2,
-    height: 130,
-    justifyContent: 'center',
-  },
-  TitleText: {
-    alignSelf: 'center',
-    fontSize: 48,
-    fontWeight: 'bold',
-  },
   midContainer: {
-    height: RFPercentage(55),
+    height: verticalScale(400),
     flexDirection: 'row',
-    marginHorizontal: 20,
+    marginHorizontal: horizontalScale(25),
     borderWidth: 1,
     borderRadius: 5,
     borderColor: colors.kuDarkGray,
   },
   container1: {
     flex: 3,
-    marginRight: 15,
+    marginRight: horizontalScale(15),
   },
-  container2: {
-    flex: 5,
-    marginLeft: 15,
+  text1: {
+    //fontSize: RFPercentage(3.2),
+    fontSize: moderateScale(24),
+    fontWeight: 'bold',
+    alignSelf: 'flex-end',
+    lineHeight: verticalScale(78),
   },
   line: {
     width: 1,
-    marginVertical: 20,
+    marginVertical: verticalScale(20),
     backgroundColor: colors.kuDarkGray,
   },
-  text1: {
-    fontSize: RFPercentage(3.2),
-    fontWeight: 'bold',
-    alignSelf: 'flex-end',
-    lineHeight: 70,
+  container2: {
+    flex: 5,
+    marginLeft: horizontalScale(15),
   },
   text2: {
-    fontSize: RFPercentage(3),
+    fontSize: moderateScale(24),
     fontWeight: 'bold',
     alignSelf: 'flex-start',
-    lineHeight: 70,
+    lineHeight: verticalScale(78),
   },
   text3: {
     color: colors.kuDarkGray,
-    fontSize: RFPercentage(3),
+    fontSize: moderateScale(24),
     fontWeight: 'bold',
     alignSelf: 'flex-start',
     textDecorationLine: 'underline',
-    lineHeight: 70,
+    lineHeight: verticalScale(78),
   },
   selectedText3: {
     color: colors.kuBlack,
-    fontSize: RFPercentage(3),
+    fontSize: moderateScale(24),
     fontWeight: 'bold',
     alignSelf: 'flex-start',
     textDecorationLine: 'underline',
-    lineHeight: 70,
+    lineHeight: verticalScale(78),
   },
-  tableTouchBox: {
-    width: '100%',
-    height: '100%',
+  Bot: {
+    height: verticalScale(130),
     justifyContent: 'center',
-    marginLeft: 20,
-    backgroundColor: colors.kuBlue,
   },
-
   NextButton: {
     alignSelf: 'center',
     justifyContent: 'center',
     backgroundColor: colors.kuDarkGreen,
     width: '70%',
-    //height: '60%',
-    height: 50,
+    height: verticalScale(50),
     opacity: 0.5,
     borderWidth: 1,
     borderRadius: 5,
@@ -403,13 +394,13 @@ const detailStyle = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: colors.kuDarkGreen,
     width: '70%',
-    height: 50,
+    height: verticalScale(50),
     borderWidth: 1,
     borderRadius: 5,
   }, 
   NextText: {
     alignSelf: 'center',
-    fontSize: 20,
+    fontSize: moderateScale(20),
     fontWeight: 'bold',
     color: colors.kuWhite,
   },
