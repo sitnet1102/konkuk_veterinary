@@ -59,6 +59,7 @@ export default function LoginScreen({navigation}) {
     return () => backHandler.remove();
   }, []);
 
+  /*
   const loginOnPress = () => {
     if(__userID.trim() == ""){
       Alert.alert("로그인 오류","아이디를 입력해주세요");
@@ -97,6 +98,19 @@ export default function LoginScreen({navigation}) {
         }
       });
     }
+  };
+  */
+  const loginOnPress = () => {
+    auth().signInWithEmailAndPassword('konkukapps2021@gmail.com','ku*tndml').then(()=>{
+      navigation.navigate('Drawer',{
+        screen: 'MainNavigator', 
+        params: {
+          screen: "Main",
+        }
+      });
+    }).catch(e=>{
+      Alert.alert('test error',e.code);
+    })
   };
   
   return (
