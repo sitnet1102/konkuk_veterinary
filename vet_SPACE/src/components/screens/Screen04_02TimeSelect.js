@@ -3,29 +3,16 @@ import * as React from 'react';
 
 import {View, Text, StyleSheet, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import {Table, Row} from 'react-native-table-component';
+
 import { colors } from '../../utils/Styles';
 import { FIRESTORE_DATA1 } from '../../utils/firebaseData';
+import {horizontalScale, verticalScale, moderateScale} from '../../utils/scailing';
 
 import firestore from '@react-native-firebase/firestore';
 
 import TimeSelectModal from '../modal/TimeSelectModal';
-import { RFPercentage } from 'react-native-responsive-fontsize';
 
 export default function TimeSelectScreen({route, navigation}){
-  /**
-    추가로 넣어주어야 하는 부분
-    //1. 시간 선택 시 스타일 변경
-    //2. 시간 선택 시 선택된 시간으로 선택 박스 변경
-    //3. 선택 박스 선택 시 넘어가는 UI
-    //4. 시간 시작 종료 모두 선택 시 다음 버튼 활성화
-    //5. 다음 버튼 활성화 시 스타일 변화 
-    //6. 테이블 모양 가다듬기
-    //7. 테이블에서 선택된 시간 스타일 변화
-    //8. 테이블에서 이미 선택된 시간 스타일 변화
-    //9. 테이블 데이터베이스 연동 
-    //10. 메뉴 연결
-    //11. 홈 버튼 연결
-  */
   
   const [startTimeSelectModal, setStartTimeSelectModal] = React.useState(false);
   const [startTimeData, setStartTimeData] = React.useState('선 택');
@@ -188,10 +175,10 @@ export default function TimeSelectScreen({route, navigation}){
 
   const state = {
     tableTitle: [route.params.data.dateData + "\n" + route.params.data.buildingData + "/" + route.params.data.roomData + "호 예약 내역"],
-    widthArr: [370],
+    widthArr: [horizontalScale(373)],
     divisionArr: ['시간', '내용'],
-    widthArr2: [115,255],
-    widthArr3: [115,255],
+    widthArr2: [horizontalScale(118),horizontalScale(255)],
+    widthArr3: [horizontalScale(118),horizontalScale(255)],
   };
   
   return (
@@ -246,7 +233,6 @@ export default function TimeSelectScreen({route, navigation}){
             <Row data={state.divisionArr} widthArr={state.widthArr2} style={timeSelectStyle.SheetDivision} textStyle={timeSelectStyle.SheetTitleText}/>
           </Table>
           <ScrollView 
-            style={timeSelectStyle.Wrapper}
             persistentScrollbar={true}  // 안드로이드 스크롤바 보이기
           >
             <Table borderStyle={timeSelectStyle.Border}>
@@ -317,21 +303,13 @@ const timeSelectStyle = StyleSheet.create({
     flex: 1,
   },
   Top:{
-    height: 20,
+    height: verticalScale(10),
   },
   Mid: {
     flex: 1,
   },
-  Bot: {
-    height: 130,
-    justifyContent: 'center',
-  },
   Time: {
-    marginBottom: 30,
-  },
-  TimeSheet: {
-    flex: 5,
-    marginHorizontal: 20,
+    marginBottom: verticalScale(25),
   },
   Container: {
     alignItems: 'center',
@@ -344,13 +322,13 @@ const timeSelectStyle = StyleSheet.create({
     width: '30%',
   },
   Text: {
-    fontSize: 40,
+    fontSize: moderateScale(36),
     fontWeight: 'bold',
   },
   SelectBox: {
     justifyContent: 'center',
-    height: 40,
-    width: 220,
+    height: verticalScale(40),
+    width: horizontalScale(220),
     backgroundColor: colors.kuWhite,
     borderRadius: 5,
     borderWidth: 1,
@@ -358,19 +336,23 @@ const timeSelectStyle = StyleSheet.create({
   },
   InboxText: {
     alignSelf: 'center',
-    fontSize: 32,
+    fontSize: moderateScale(30),
     fontWeight: 'bold',
     color: colors.kuDarkGray,
   },
   InboxSelectedText: {
     alignSelf: 'center',
-    fontSize: 32,
+    fontSize: moderateScale(30),
     fontWeight: 'bold',
     color: colors.kuBlack,
   },
   Text2: {
-    fontSize: 20,
+    fontSize: moderateScale(20),
     fontWeight: 'bold',
+  },
+  TimeSheet: {
+    flex: 5,
+    marginHorizontal: horizontalScale(20),
   },
   Border: {
     borderWidth: 1,
@@ -378,12 +360,12 @@ const timeSelectStyle = StyleSheet.create({
   },
   SheetTitle: {
     justifyContent: 'center',
-    height: 55,
+    height: verticalScale(60),
     backgroundColor: colors.kuWarmGray,
   },
   SheetTitleText: {
     alignSelf: 'center',
-    fontSize: 20,
+    fontSize: moderateScale(20),
     fontWeight: 'bold',
   },
   SheetDivision:  {
@@ -392,37 +374,37 @@ const timeSelectStyle = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  Wrapper: {
-    //marginTop: -1,
-  },
   ScrollRow: {
-    height: 40,
+    height: verticalScale(50),
     backgroundColor: colors.kuLightGray,
   },
   ScrollRowSelected: {
-    height: 40,
+    height: verticalScale(50),
     backgroundColor: colors.kuYellow,
   },
   ScrollRowReserved: {
-    height: 40,
+    height: verticalScale(50),
     backgroundColor: colors.kuBlue,
   },
   ScrollRowConfirmed: {
-    height: 40,
+    height: verticalScale(50),
     backgroundColor: colors.kuOrange,
   },
   SheetText: {
     alignSelf: 'center',
     fontWeight: 'bold',
-    //fontSize: RFPercentage(2),
-    fontSize: 15,
+    fontSize: moderateScale(16),
+  },
+  Bot: {
+    height: verticalScale(130),
+    justifyContent: 'center',
   },
   NextButton: {
     alignSelf: 'center',
     justifyContent: 'center',
     backgroundColor: colors.kuDarkGreen,
     width: '70%',
-    height: 50,
+    height: verticalScale(50),
     opacity: 0.5,
     borderWidth: 1,
     borderRadius: 5,
@@ -432,14 +414,15 @@ const timeSelectStyle = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: colors.kuDarkGreen,
     width: '70%',
-    height: 50,
+    height: verticalScale(50),
     borderWidth: 1,
     borderRadius: 5,
   }, 
   NextText: {
     alignSelf: 'center',
-    fontSize: 20,
+    fontSize: moderateScale(20),
     fontWeight: 'bold',
     color: colors.kuWhite,
   },
+  
 });
