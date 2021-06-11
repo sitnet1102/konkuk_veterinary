@@ -2,8 +2,9 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 
 import {View, Text, StyleSheet, TouchableOpacity, BackHandler, Alert} from 'react-native';
-import { colors } from '../../utils/Styles';
 
+import { colors } from '../../utils/Styles';
+import {horizontalScale, verticalScale, moderateScale} from '../../utils/scailing';
 
 export default function CompleteScreen({navigation}){
   /**
@@ -91,45 +92,17 @@ const completeStyle = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  TitleText: {
+    fontSize: moderateScale(44),
+    fontWeight: 'bold',
+  },
   Mid: {
     alignItems: 'center',
     flex: 6.5,
   },
-  Bot: {
-    //flex: 2,
-    height: 130,
-    justifyContent: 'center',
-  },
-  TitleText: {
-    fontSize: 44,
-    fontWeight: 'bold',
-  },
-  
   Text: {
-    fontSize: 32,
+    fontSize: moderateScale(32),
     fontWeight: 'bold',
-  },
-  Text2: {
-    fontSize: 28,
-    fontWeight: 'bold',
-  },
-  Text3: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    alignSelf: 'flex-start',
-    marginLeft: '10%',
-    marginBottom: '2%',
-    marginTop: '5%',
-  },
-  Text4: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginTop: '2%',
-  },
-  Text5: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginLeft: '6%',
   },
   Line: {
     height: 1,
@@ -137,22 +110,46 @@ const completeStyle = StyleSheet.create({
     backgroundColor: colors.kuBlack,
     margin: '2%',
   },
+  Text2: {
+    fontSize: moderateScale(28),
+    fontWeight: 'bold',
+  },
+  Text3: {
+    fontSize: moderateScale(28),
+    fontWeight: 'bold',
+    alignSelf: 'flex-start',
+    marginLeft: '10%',
+    marginBottom: '2%',
+    marginTop: '5%',
+  },
+  Text4: {
+    fontSize: moderateScale(24),
+    fontWeight: 'bold',
+    marginTop: '2%',
+  },
+  Text5: {
+    fontSize: moderateScale(24),
+    fontWeight: 'bold',
+    marginLeft: '6%',
+  },
+  Bot: {
+    height: verticalScale(130),
+    justifyContent: 'center',
+  },
   NextButton: {
     alignSelf: 'center',
     justifyContent: 'center',
     backgroundColor: colors.kuDarkGreen,
     width: '70%',
-    //height: '60%',
-    height: 50,
+    height: verticalScale(50),
     opacity: 1,
     borderWidth: 1,
     borderRadius: 5,
   }, 
   NextText: {
     alignSelf: 'center',
-    fontSize: 20,
+    fontSize: moderateScale(20),
     fontWeight: 'bold',
     color: colors.kuWhite,
-  },
-  
+  }, 
 });
