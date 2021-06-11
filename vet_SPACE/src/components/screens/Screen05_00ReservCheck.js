@@ -3,7 +3,9 @@ import * as React from 'react';
 
 import {View, Text, StyleSheet} from 'react-native';
 import { TouchableOpacity} from 'react-native-gesture-handler';
+
 import { colors } from '../../utils/Styles';
+import {horizontalScale, verticalScale, moderateScale} from '../../utils/scailing';
 
 export default function ReservCheckScreen({navigation}){
   return (
@@ -32,7 +34,7 @@ export default function ReservCheckScreen({navigation}){
   );
 }
   
-  const reservCheckStyle = StyleSheet.create({
+const reservCheckStyle = StyleSheet.create({
   // 폰트 사이즈 정리해야함
   container: {
     flex: 1,
@@ -54,13 +56,6 @@ export default function ReservCheckScreen({navigation}){
     justifyContent: 'center',
     flex: 4,
   },
-  Bot: {
-    flex: 2,
-  },
-  TitleText: {
-    fontWeight: 'bold',
-    fontSize: 42,
-  },
   TouchBox: {
     alignSelf: 'center',
     fontWeight: 'bold',
@@ -71,18 +66,21 @@ export default function ReservCheckScreen({navigation}){
     opacity: 0.8,
     marginVertical: '5%',
     width: '100%',
-    height: 100,
+    height: verticalScale(120),
     padding: '4%',
     borderRadius: 5,
     borderWidth: 1,
     borderColor: colors.kuDarkGreen,
   },
   SelectTitleText: {
-    fontSize: 42,
+    fontSize: moderateScale(42),
     fontWeight: 'bold',
   },
   SelectTitleText2: {
-    fontSize: 36,
+    fontSize: moderateScale(36),
     fontWeight: 'bold',
   },
-  });
+  Bot: {
+    flex: 2,
+  },
+});
