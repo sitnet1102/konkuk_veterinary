@@ -2,10 +2,10 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 
 import {View, Text, TextInput,StyleSheet, Alert, TouchableOpacity, ScrollView} from 'react-native';
-import { RFPercentage } from 'react-native-responsive-fontsize';
 
 import { colors } from '../../utils/Styles';
 import {FIRESTORE_DATA2} from '../../utils/firebaseData';
+import {horizontalScale, verticalScale, moderateScale} from '../../utils/scailing';
 
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -14,14 +14,6 @@ import SortingSelectModal from '../modal/SortingSelectModal';
 import PrivacyPolicyModal from '../modal/PrivacyPolicyModal';
 
 export default function SignUpScreen({navigation}){
-  /**
-    1. 회원 가입 버튼 눌렀을 때 처리해야 하는 내요 
-      1.1. 중복 확인이 된 아이디 인지 확인
-      //1.2. 비밀번호, 비밀번호 확인 이 서로 같은지 확인
-      1.3. 비밀번호가 올바른 형식인지 확인
-      //1.4. 모든 정보가 다 들어가 있는지 확인 
-    2. 텍스트 입력 박스 선택시 화면 찌그러지는 현상 수정 필요 
-  */
   const [__id, setId] = React.useState("");
   const [__password, setPassword] = React.useState("");
   const [__password2, setPassword2] = React.useState("");
@@ -96,7 +88,6 @@ export default function SignUpScreen({navigation}){
         .catch(error => {
           Alert.alert('error 212', error.code);
         });
-        //auth().currentUser.updatePhoneNumber();
         firestore().collection(FIRESTORE_DATA2).doc(auth().currentUser.uid).set({
           ku_id: __number,
           user_type: __sort,
@@ -139,16 +130,14 @@ export default function SignUpScreen({navigation}){
         style={signupStyle.Mid}
         persistentScrollbar={true}
       >
-        <View style={signupStyle.IDContainer}>
-          <View style={signupStyle.InputBoxContainer2}>
-            <TextInput 
-              style={signupStyle.InputTextBox}
-              autoCapitalize="none"
-              placeholder="이메일"
-              value={__id}
-              onChangeText={(value) => idChange(value)}
-            />
-          </View>
+        <View style={signupStyle.InputBoxContainer}>
+          <TextInput 
+            style={signupStyle.InputTextBox}
+            autoCapitalize="none"
+            placeholder="이메일"
+            value={__id}
+            onChangeText={(value) => idChange(value)}
+          />
         </View>
         <View style={signupStyle.InputBoxContainer}>
           <TextInput 
@@ -210,15 +199,15 @@ export default function SignUpScreen({navigation}){
             }>{sortingData}</Text>
           </TouchableOpacity>
         </View>
+        <View style={signupStyle.ButtonContainer}>
+          <TouchableOpacity 
+            style={signupStyle.Button}
+            onPress={() => signUpOnPress()}
+          >
+            <Text style={signupStyle.Text}>회원가입</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
-      <View style={signupStyle.Bot}>
-        <TouchableOpacity 
-          style={signupStyle.Button}
-          onPress={() => signUpOnPress()}
-        >
-          <Text style={signupStyle.Text}>회원가입</Text>
-        </TouchableOpacity>
-      </View>
       {sortingSelectModal ? 
         <SortingSelectModal 
           modalHandler={()=>toggleSortingSelectModal()}
@@ -243,49 +232,13 @@ const signupStyle = StyleSheet.create({
     flex: 1,
   },
   Top: {
-    flex : 1,
+    height: verticalScale(20),
   },
   Mid: {
-    //flex : 20,
-    height: '80%',
-  },
-  Bot: {
-   //flex : 4,
-   height: RFPercentage(12),
-   justifyContent: 'center',
-  },
-  IDContainer: {
-    //flex: 1,
-    height: RFPercentage(7),
-    flexDirection: 'row',
-    margin: '3%',
-    marginLeft: '8%',
-    marginRight: '8%',
-  },
-  InputBoxContainer2: {
-    flex: 1,
-    //height: RFPercentage(10),
-    justifyContent: 'center',
-    borderBottomColor: colors.kuDarkGreen,
-    borderBottomWidth: 1,
-  },
-  IDCheckContainer: {
-    height: RFPercentage(7),
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.kuDarkGreen,
-    borderRadius: 5,
-    width: 100,
-    height: '100%',
-  },
-  IDCheckText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: colors.kuWhite,
+    height: '95%',
   },
   InputBoxContainer: {
-    //flex: 1,
-    height: RFPercentage(7),
+    height: verticalScale(60),
     margin: '3%',
     marginLeft: '8%',
     marginRight: '8%',
@@ -295,34 +248,35 @@ const signupStyle = StyleSheet.create({
   },
   InputTextBox: {
     justifyContent: 'center',
-    fontSize: 20,
+    fontSize: moderateScale(24),
     fontWeight: 'bold',
-    //color: colors.kuCoolGray,
-    //marginLeft: '5%',
-    //marginRight: '5%',
   },
   InboxText: {
-    fontSize: 20,
+    fontSize: moderateScale(24),
     fontWeight:'bold',
     color: colors.kuCoolGray,
   },
   InboxSelectedText: {
-    fontSize: 20,
+    fontSize: moderateScale(24),
     fontWeight:'bold',
     color: colors.kuBlack,
+  },
+  ButtonContainer: {
+    height: verticalScale(100),
+    justifyContent: 'center',
   },
   Button: {
     alignSelf: 'center',
     justifyContent: 'center',
     backgroundColor: colors.kuDarkGreen,
-    width: '70%',
-    height: '60%',
+    width: horizontalScale(350),
+    height: verticalScale(60),
     borderWidth: 1,
     borderRadius: 5,
   }, 
   Text: {
     alignSelf: 'center',
-    fontSize: 20,
+    fontSize: moderateScale(20),
     fontWeight: 'bold',
     color: colors.kuWhite,
   },
