@@ -15,7 +15,7 @@ import Help_Link from '../screens/Screen07_05Help';
 import packageJson from '../../../package.json';
 import { colors } from '../../utils/Styles';
 import {IMG_KULOGO, IC_BACK, IC_FAQ, IC_HELP, IC_LOUDSPEAKER, IC_NOTEBOOK, IC_PROFILE} from '../../utils/icons';
-
+import {horizontalScale, verticalScale, moderateScale} from '../../utils/scailing';
 
 const Drawer = createDrawerNavigator();
 
@@ -79,8 +79,6 @@ function MenuDrawer(props) {
         <View style={menudrawerStyle.line}></View>
       </View>
       <DrawerContentScrollView {...props}
-        style={menudrawerStyle.container}
-        //scrollEnabled={false}
       >
         <DrawerItem
           style={menudrawerStyle.item}
@@ -156,6 +154,7 @@ function MenuDrawer(props) {
         />
       </DrawerContentScrollView>
       <View style={menudrawerStyle.bot}>
+        <Text></Text>
         <Text style={menudrawerStyle.text1}>{footerText.address1}</Text>
         <Text style={menudrawerStyle.text1}>{footerText.address2}</Text>
         <Text style={menudrawerStyle.text1}>{footerText.tel1}</Text>
@@ -174,74 +173,73 @@ const menudrawerStyle = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.gray,
   },
-  container: {
-  },
   top: {
-    height: 50,
+    height: verticalScale(50),
     backgroundColor: colors.kuDarkGreen,
+    justifyContent: 'center',
+  },
+  touchBox: {
+    padding: 5,
+    marginRight: '10%',
   },
   mid: {
-    height: 100,
+    height: verticalScale(110),
     backgroundColor: colors.lightGray,
   },
   idBox: {
-    marginTop: 30,
+    marginTop: verticalScale(30),
     alignItems: 'center',
     flexDirection: 'row',
   },
   image: {
-    marginLeft: 15,
-    width: 50,
-    height: 50,
+    marginLeft: horizontalScale(15),
+    width: moderateScale(50),
+    height: moderateScale(50),
     resizeMode: 'stretch',
   },
-  line: {
-    height: 2,
-    backgroundColor: colors.kuBlack,
-    marginHorizontal: 12,
-    marginTop: 10,
-  },
   idText:{
-    fontSize: RFPercentage(3),
+    fontSize: moderateScale(24),
     fontWeight: 'bold',
-    marginLeft: 10,
+    marginLeft: horizontalScale(10),
   },
   box2: {
     flex: 1,
   },
   logOut: {
-    marginRight: 15,
+    marginRight: horizontalScale(15),
   },
   logOutText: {
     color: colors.kuDarkGreen,
-    fontSize: RFPercentage(2),
+    fontSize: moderateScale(16),
     fontWeight: '400',
   },
-  bot: {
-    alignSelf: 'stretch',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    height: RFPercentage(20),
-    backgroundColor: colors.kuCoolGray,
+  line: {
+    height: 2,
+    backgroundColor: colors.kuBlack,
+    marginHorizontal: horizontalScale(12),
+    marginTop: horizontalScale(10),
   },
   item: {
     backgroundColor: colors.lightGray,
   },
   label: {
     color: colors.kuBlack,
-    fontSize: RFPercentage(2.9),
+    fontSize: moderateScale(24),
     fontWeight: '500',
   },
+  bot: {
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    backgroundColor: colors.kuCoolGray,
+  },
   text: {
-    fontSize: RFPercentage(1.3),
+    fontSize: moderateScale(10),
   },
   text1: {
-    fontSize: RFPercentage(1.7),
+    fontSize: moderateScale(14),
   },
-  touchBox: {
-    padding: 5,
-    marginRight: '10%',
-  },
+  
 });
 
 
