@@ -2,13 +2,13 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 
 import {Text, View, StyleSheet, TextInput, TouchableOpacity, Alert} from 'react-native';
-import { RFPercentage} from 'react-native-responsive-fontsize';
 
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
 import {colors} from '../../utils/Styles';
 import {FIRESTORE_DATA2} from '../../utils/firebaseData';
+import {horizontalScale, verticalScale, moderateScale} from '../../utils/scailing';
 
 export default function PhoneChangeModal(props) {
   const [phone, setPhone] = React.useState('');
@@ -76,17 +76,17 @@ const phonechangemodalStyle = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.5)',
   },
   modal: {
-    marginHorizontal: 20,
+    marginHorizontal: horizontalScale(20),
     borderRadius: 10,
     alignItems: 'center',
     backgroundColor: colors.kuWhite,
   },
   titleText: {
     color: colors.kuDarkGreen,
-    fontSize: RFPercentage(3),
+    fontSize: moderateScale(28),
     fontWeight: 'bold',
-    marginTop: 20,
-    marginBottom: 10,
+    marginTop: verticalScale(20),
+    marginBottom: verticalScale(10),
   },
   line: {
     height: 1,
@@ -95,12 +95,12 @@ const phonechangemodalStyle = StyleSheet.create({
   },
   buttonText: {
     color: colors.kuDarkGreen,
-    fontSize: RFPercentage(3),
+    fontSize: moderateScale(28),
     fontWeight: 'bold',
-    margin: 20,
+    margin: moderateScale(20),
   },
   text: {
-    fontSize: RFPercentage(3),
-    marginVertical: RFPercentage(2),
+    fontSize: moderateScale(28),
+    marginVertical: verticalScale(16),
   }, 
 });
