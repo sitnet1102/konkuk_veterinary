@@ -5,7 +5,7 @@ import {Text, View, StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import {colors} from '../../utils/Styles';
-
+import {horizontalScale, verticalScale, moderateScale} from '../../utils/scailing';
 
 export default function RoomInfoScreen({navigation}){
   return(
@@ -58,17 +58,16 @@ const roominfoStyle = StyleSheet.create({
   },
   container1: {
     flex: 1,
-    margin: 20,
+    margin: moderateScale(24),
     borderWidth: 1,
     borderRadius: 5,
     borderColor: colors.kuDarkGray,
-    //backgroundColor: colors.kuYellow,
     justifyContent: 'center',
   },
   touchBox: {
-    marginHorizontal: 40,
-    marginVertical: 20,
-    height: 80,
+    marginHorizontal: horizontalScale(40),
+    marginVertical: verticalScale(20),
+    height: verticalScale(80),
     backgroundColor: colors.kuLightGray,
     borderWidth: 1,
     borderRadius: 5,
@@ -77,7 +76,7 @@ const roominfoStyle = StyleSheet.create({
     justifyContent: 'center',
   },
   text1: {
-    fontSize: 42,
+    fontSize: moderateScale(42),
     fontWeight: 'bold',
   },
 })

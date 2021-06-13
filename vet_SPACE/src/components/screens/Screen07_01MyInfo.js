@@ -9,6 +9,7 @@ import firestore from '@react-native-firebase/firestore';
 
 import {colors} from '../../utils/Styles';
 import {FIRESTORE_DATA2} from '../../utils/firebaseData';
+import {horizontalScale, verticalScale, moderateScale} from '../../utils/scailing';
 
 import NameChangeModal from '../modal/NameChangeModal';
 import PhoneChangeModal from '../modal/PhoneChangeModal';
@@ -72,7 +73,6 @@ export default function MyInfoScreen() {
           <Text style={myinfoStyle.text}>이름</Text>
           <View style={myinfoStyle.emptyBox}></View>
           <TouchableOpacity 
-            style={myinfoStyle.update}
             onPress={()=>toggleNameChangeModal()}
           >
             <Text style={myinfoStyle.text3}>수정하기</Text>
@@ -91,7 +91,6 @@ export default function MyInfoScreen() {
           <Text style={myinfoStyle.text}>전화번호</Text>
           <View style={myinfoStyle.emptyBox}></View>
           <TouchableOpacity 
-            style={myinfoStyle.update}
             onPress={()=>togglePhoneChangeModal()}
           >
             <Text style={myinfoStyle.text3}>수정하기</Text>
@@ -134,11 +133,11 @@ const myinfoStyle = StyleSheet.create({
   },
   title: {
     color: colors.kuBlack,
-    fontSize: RFPercentage(4),
+    fontSize: moderateScale(32),
     fontWeight: 'bold',
-    marginLeft: 30,
-    marginTop: 20,
-    marginBottom: 10,
+    marginLeft: horizontalScale(30),
+    marginTop: verticalScale(20),
+    marginBottom: verticalScale(10),
   },
   line: {
     height: 1,
@@ -147,11 +146,26 @@ const myinfoStyle = StyleSheet.create({
     alignSelf: 'center',
   },
   dataContainer: {
-    height: RFPercentage(12),
-    marginVertical: RFPercentage(0.5),
-    marginHorizontal: 35,
-    //backgroundColor: colors.kuOrange,
-    //flexDirection: 'row',
+    height: verticalScale(100),
+    marginVertical: verticalScale(5),
+    marginHorizontal: horizontalScale(35),
+  },
+  rowContainer: {
+    flexDirection: 'row',
+  },
+  text: {
+    fontSize: moderateScale(28),
+    fontWeight: 'bold',
+    marginVertical: verticalScale(5),
+  },
+  emptyBox: {
+    flex: 1,
+  },
+  text3: {
+    fontSize: moderateScale(24),
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
+    marginVertical: verticalScale(5),
   },
   line2: {
     height: 1,
@@ -159,32 +173,10 @@ const myinfoStyle = StyleSheet.create({
     backgroundColor: colors.kuCoolGray,
     alignSelf: 'center',
   },
-  text: {
-    fontSize: RFPercentage(3.5),
-    fontWeight: 'bold',
-    //alignSelf: 'center',
-    //marginRight: 40,
-    marginVertical: RFPercentage(0.5),
-  },
   text2: {
-    fontSize: RFPercentage(3),
+    fontSize: moderateScale(24),
     fontWeight: 'bold',
-    marginVertical: RFPercentage(1),
-    marginLeft: 20,
-    //alignSelf: 'center',
-  },
-  text3: {
-    fontSize: RFPercentage(3),
-    fontWeight: 'bold',
-    textDecorationLine: 'underline',
-  },
-  rowContainer: {
-    flexDirection: 'row',
-  },
-  emptyBox: {
-    flex: 1,
-  },
-  update: {
-
+    marginVertical: verticalScale(10),
+    marginLeft: horizontalScale(20),
   },
 });

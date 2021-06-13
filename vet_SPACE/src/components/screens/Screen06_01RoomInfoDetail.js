@@ -3,21 +3,16 @@ import * as React from 'react';
 
 import {Text, View, StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import { RFPercentage} from "react-native-responsive-fontsize";
 import {SliderBox} from 'react-native-image-slider-box';
 
 import {colors} from '../../utils/Styles';
+import {horizontalScale, verticalScale, moderateScale} from '../../utils/scailing';
 
 import database from '@react-native-firebase/database';
 
 import LocationSelectModal from '../modal/LocationSelectModal';
 
 export default function RoomInfoDetailScreen({route}) {
-  /**
-    //1. 이미지 선택시 오류가 생길 수도 있음 -> 추후 수정 
-    //2. 이미지 크기 고정이면 좋을것 같음 1024x768 -> 상관없음 
-    //3. 강의실이 선택되지 않았을 때에 어떤식으로 할 것인지 고려해야함 
-   */
   const [locationSelectModal, setLocationSelectModal] = React.useState(false);
   const [locationData, setLocationData] = React.useState('선 택');
   const [locationStyle, setLocationStyle] = React.useState(false);
@@ -120,20 +115,20 @@ export default function RoomInfoDetailScreen({route}) {
           >
             <Text style={
               locationStyle ? 
-              roominfodetailStyle.InboxSelectedText3
+              roominfodetailStyle.InboxSelectedText
               : roominfodetailStyle.InboxText
             }>{locationData}</Text>
           </TouchableOpacity>
         </View>
       </View>
-      <View style={roominfodetailStyle.mid}>
+      <View>
         <SliderBox
           //ImageComponent={FastImage}
           images={images}
-          sliderBoxHeight={RFPercentage(30)}
+          sliderBoxHeight={verticalScale(260)}
           dotColor={colors.kuLightGreen}
           inactiveDotColor={colors.kuCoolGray}
-          paginationBoxVerticalPadding={20}
+          paginationBoxVerticalPadding={verticalScale(20)}
           //autoplay
           circleLoop
           resizeMethod={'resize'}
@@ -145,7 +140,7 @@ export default function RoomInfoDetailScreen({route}) {
             alignItems: "center",
             alignSelf: "center",
             justifyContent: "center",
-            paddingVertical: 10
+            paddingVertical: verticalScale(10)
           }}
           dotStyle={{
             width: 10,
@@ -223,12 +218,7 @@ const roominfodetailStyle = StyleSheet.create({
     flex: 1,
   },
   top: {
-    height: RFPercentage(12),
-  },
-  mid: {
-  },
-  bot: {
-    height: RFPercentage(50),
+    marginBottom: verticalScale(20),
   },
   topContainer: {
     alignItems: 'center',
@@ -242,13 +232,13 @@ const roominfodetailStyle = StyleSheet.create({
   },
   Text: {
     //fontSize: RFPercentage(3.5),
-    fontSize: 24,
+    fontSize: moderateScale(28),
     fontWeight: 'bold',
   },
   SelectBox: {
     justifyContent: 'center',
-    height: 40,
-    width: 250,
+    height: verticalScale(40),
+    width: horizontalScale(250),
     backgroundColor: colors.kuWhite,
     borderRadius: 5,
     borderWidth: 1,
@@ -256,43 +246,46 @@ const roominfodetailStyle = StyleSheet.create({
   },
   InboxText: {
     alignSelf: 'center',
-    fontSize: 32,
+    fontSize: moderateScale(32),
     fontWeight: 'bold',
     color: colors.kuDarkGray,
   },
-  InboxSelectedText3: {
+  InboxSelectedText: {
     alignSelf: 'center',
-    fontSize: 20,
+    fontSize: moderateScale(24),
     fontWeight: 'bold',
     color: colors.kuBlack,
   },
+  bot: {
+    height: verticalScale(400),
+  },
   container1: {
     flex: 1,
-    marginTop: 20,
-    marginBottom: 50,
-    marginHorizontal: 10,
+    marginTop: verticalScale(20),
+    marginBottom: verticalScale(50),
+    marginHorizontal: horizontalScale(10),
     borderWidth: 1,
     borderColor: colors.kuDarkGray,
     flexDirection: 'row',
     justifyContent: 'center',
   },
   container2: {
-    marginVertical: 20,
-    marginHorizontal: 20,
-  },
-  text1: {
-    fontSize: RFPercentage(4),
-    fontWeight: 'bold',
-    lineHeight: 40,
-  },
-  text2: {
-    fontSize: RFPercentage(2),
-    fontWeight: 'bold',
-    lineHeight: 30,
+    marginVertical: verticalScale(20),
+    marginHorizontal: horizontalScale(20),
   },
   container3: {
-    marginTop: RFPercentage(1),
-    marginLeft: 10,
+    marginTop: verticalScale(10),
+    marginLeft: horizontalScale(10),
     flexDirection: 'row',
+  },
+  text1: {
+    fontSize: moderateScale(32),
+    fontWeight: 'bold',
+    lineHeight: verticalScale(50),
+  },
+  text2: {
+    fontSize: moderateScale(16),
+    fontWeight: 'bold',
+    lineHeight: verticalScale(36),
   },
 });

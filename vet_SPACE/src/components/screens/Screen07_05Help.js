@@ -3,12 +3,12 @@ import * as React from 'react';
 
 import {StyleSheet, View, Image, Text} from 'react-native';
 import {WebView} from 'react-native-webview';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { RFPercentage } from 'react-native-responsive-fontsize';
 
 import { colors } from '../../utils/Styles';
 import {IC_PREVIOUS} from '../../utils/icons';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {horizontalScale, verticalScale, moderateScale} from '../../utils/scailing';
 
 export default function Help_Link({navigation}) {
   return (
@@ -38,17 +38,17 @@ const helpStyle = StyleSheet.create({
     flex: 1,
   },
   top: {
-    height: RFPercentage(7),
+    height: verticalScale(55),
     justifyContent: 'center',
     backgroundColor: colors.kuDarkGreen,
   },
   touchBox: {
     alignItems: 'center',
     flexDirection: 'row',
-    marginLeft: RFPercentage(1),
+    marginLeft: horizontalScale(10),
   },
   text: {
-    fontSize: RFPercentage(3),
+    fontSize: moderateScale(28),
     fontWeight: 'bold',
     color: colors.kuWhite,
   },
