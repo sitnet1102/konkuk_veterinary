@@ -12,7 +12,7 @@ This is an android and ios application for users who would like to use lecture r
 [안드로이드](https://play.google.com/store/apps/details?id=com.vet_space)
 
 ### iOS App Store 
-[iOS]()
+[iOS]() To be supported
 
 ## Development Environment
 > - React-native 0.63.4
