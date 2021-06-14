@@ -326,9 +326,10 @@ const detailStyle = StyleSheet.create({
     flex: 6,
   },
   midContainer: {
-    height: verticalScale(400),
+    //height: verticalScale(400),
     flexDirection: 'row',
     marginHorizontal: horizontalScale(25),
+    paddingBottom: verticalScale(10),
     borderWidth: 1,
     borderRadius: 5,
     borderColor: colors.kuDarkGray,

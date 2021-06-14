@@ -198,7 +198,7 @@ const reservdetailStyle = StyleSheet.create({
     flex: 7,
   },
   container0: {
-    height: verticalScale(430),
+    //height: verticalScale(430),
     flexDirection: 'row',
   },
   container1: {
