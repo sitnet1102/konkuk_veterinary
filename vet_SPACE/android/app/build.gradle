@@ -133,8 +133,8 @@ android {
         applicationId "com.vet_space"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
-        versionName "1.0.7"
+        versionCode 3
+        versionName "1.0.8"
         multiDexEnabled true
     }
     splits {
