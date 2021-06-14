@@ -5,7 +5,7 @@ Personal Project
 email address : sitnet1102@naver.com
 
 ## Introduction
-
+*** 
 This is an android and ios application for users who would like to use lecture room in COLLEGE OF VETERINARY, KONKUK UNIVERSITY.
 
 ## Download
