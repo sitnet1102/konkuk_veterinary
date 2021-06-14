@@ -6,7 +6,7 @@ email address : sitnet1102@naver.com
 
 ## Introduction
 
-This is an android and ios application for users who would like to use lecture room in Konkuk Univ. college of veterinary.
+This is an android and ios application for users who would like to use lecture room in COLLEGE OF VETERINARY, KONKUK UNIVERSITY.
 
 ## Development Environment
 
