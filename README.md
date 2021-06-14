@@ -1,84 +1,74 @@
-# konkuk_veterinary
+# vet_SPACE
 
- 
-## 버전
+1. 기능
 
-버전:	12.4 (12D4e)
+2. 개발 환경
 
-위치:	/Applications/Xcode.app
+3. Sdk Version
 
-응용 프로그램:
+4. APIs
 
-> ### Xcode:	12.4 (17801)
->
-> ### Instruments:	12.4 (64543.2)
+5. DB import하는 방법
 
-### SDK:
+6. Screen Shots
 
->iOS:
+7. License
 
->>14.4:	(18D46)
+Personal Project 
 
->iOS Simulator:
+email address : sitnet1102@naver.com
 
->>14.4:	(18D46)
+## Introduction
 
-macOS:
+This is an android and ios application for users who would like to use lecture room in Konkuk Univ. college of veterinary.
 
-11.1:	(20C63)
+## Development Environment
 
-20.2:
+- React-native 0.63.4
 
-tvOS:
+- React-navigation 
 
-14.3:	(18K559)
+- Firebase 12.0.0
 
-tvOS Simulator:
+- Node.js
 
-14.3:	(18K559)
+- @react-native-community/checkbox: 0.5.7
+- @react-native-community/masked-view: 0.1.10
+- @react-native-community/picker: 1.8.1
+- @react-native-firebase/app: 12.0.0
+- @react-native-firebase/auth: 12.0.0
+- @react-native-firebase/database: 12.0.0
+- @react-native-firebase/firestore: 12.0.0
+- @react-navigation/drawer: 5.12.4
+- @react-navigation/native: 5.9.3
+- @react-navigation/stack: 5.14.3
+- body-parser: 1.19.0
+- express: 4.17.1
+- moment: 2.29.1
+- react: 16.13.1
+- react-dom: 17.0.1
+- react-native: 0.63.4
+- react-native-calendars: 1.1254.0
+- react-native-gesture-handler: 1.10.3
+- react-native-image-slider-box: 1.0.12
+- react-native-reanimated: 2.0.1
+- react-native-responsive-fontsize: 0.5.0
+- react-native-safe-area-context: 3.1.9
+- react-native-screens: 2.18.1
+- react-native-table-component: 1.2.1
+- react-native-web: 0.15.0
+- react-native-webview: 11.3.2
+- react-redux: 7.2.4
+- redux: 4.1.0
+- redux-devtools-extension: 2.13.9
+- redux-logger: 3.0.6
 
-watchOS:
+## Application Version
 
-7.2:	(18S561)
+- targetSdkVersion : 29
 
-watchOS Simulator:
+## ScreenShot
 
-7.2:	(18S561)
+### Android
 
-java :
-
-1.8.0_281
-
-brew :
-
-3.0.2
-
-pod :
-
-1.10.1
-
-react-native-cli: 
-
-2.0.1
-
-react-native: 
-
-0.63.4
-
-watchman :
-
-4.9.0
-
-jdk : adoptopenjdk8
-
-안드로이드 스튜디오 버전 
-
-Android Debug Bridge version 1.0.41
-
-Version 31.0.0-7110759
-
-ios 
-
-flipper : 
-
-2.3.0
+<img src="/screen_Images/안드로이드 화면/2.png" width="180px" height="320px" title="Login" alt="Login"></img>
