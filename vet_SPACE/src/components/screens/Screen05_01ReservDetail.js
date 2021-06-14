@@ -39,7 +39,7 @@ export default function ReservDetailScreen({route, navigation}) {
       use_check: false,
       delete_date: firestore.Timestamp.fromDate(new Date()),
     }).then(() => {
-      navigation.navigate('ReservCheck');
+      navigation.navigate('Main');
     }).catch(e => {
       Alert.alert('error510-1',e.code+'\n예약 취소가 불가합니다.');
     });
