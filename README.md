@@ -91,37 +91,37 @@ This is an android and ios application for users who would like to use lecture r
 
 ### iOS
 
-<img src="/screen_Images/iOS 화면/2.png" width="180px" height="320px" title="Login" alt="Login"></img>
-<img src="/screen_Images/iOS 화면/2-1.png" width="180px" height="320px" title="Privacy Policy" alt="Privacy Policy"></img>
-<img src="/screen_Images/iOS 화면/2-2.png" width="180px" height="320px" title="Sign Up" alt="Sign Up"></img>
-<img src="/screen_Images/iOS 화면/2-3.png" width="180px" height="320px" title="Password Reset" alt="Password Reset"></img>
-<img src="/screen_Images/iOS 화면/3.png" width="180px" height="320px" title="Main" alt="Main"></img>
-<img src="/screen_Images/iOS 화면/3-1.png" width="180px" height="320px" title="Menu" alt="Menu"></img>
-<img src="/screen_Images/iOS 화면/4-1-1.png" width="180px" height="320px" title="RoomReserv-Date,Location" alt="RoomReserv-Date,Location"></img>
-<img src="/screen_Images/iOS 화면/4-1-2.png" width="180px" height="320px" title="RoomReserv-Date,Location-DateSelect" alt="RoomReserv-Date,Location-DateSelect"></img>
-<img src="/screen_Images/iOS 화면/4-1-3.png" width="180px" height="320px" title="RoomReserv-Date,Location-Classification" alt="RoomReserv-Date,Location-Classification"></img>
-<img src="/screen_Images/iOS 화면/4-1-4.png" width="180px" height="320px" title="RoomReserv-Date,Location-Location" alt="RoomReserv-Date,Location-Location"></img>
-<img src="/screen_Images/iOS 화면/4-1-5.png" width="180px" height="320px" title="RoomReserv-Date,Location-completed" alt="RoomReserv-Date,Location-completed"></img>
-<img src="/screen_Images/iOS 화면/4-2-1.png" width="180px" height="320px" title="RoomReserv-Time" alt="RoomReserv-Time"></img>
-<img src="/screen_Images/iOS 화면/4-2-2.png" width="180px" height="320px" title="RoomReserv-Time-StartTime" alt="RoomReserv-Time-StartTime"></img>
-<img src="/screen_Images/iOS 화면/4-2-3.png" width="180px" height="320px" title="RoomReserv-Time-EndTime" alt="RoomReserv-Time-EndTime"></img>
-<img src="/screen_Images/iOS 화면/4-2-4.png" width="180px" height="320px" title="RoomReserv-Time-Completed" alt="RoomReserv-Time-Completed"></img>
-<img src="/screen_Images/iOS 화면/4-3-1.png" width="180px" height="320px" title="RoomReserv-Detail" alt="RoomReserv-Detail"></img>
-<img src="/screen_Images/iOS 화면/4-3-2.png" width="180px" height="320px" title="RoomReserv-Detail-Purpose" alt="RoomReserv-Detail-Purpose"></img>
-<img src="/screen_Images/iOS 화면/4-3-3.png" width="180px" height="320px" title="RoomReserv-Detail-Professor" alt="RoomReserv-Detail-Professor"></img>
-<img src="/screen_Images/iOS 화면/4-3-4.png" width="180px" height="320px" title="RoomReserv-Detail-completed" alt="RoomReserv-Detail-completed"></img>
-<img src="/screen_Images/iOS 화면/4-4.png" width="180px" height="320px" title="RoomReserv-Complete" alt="RoomReserv-Complete"></img>
-<img src="/screen_Images/iOS 화면/5-0.png" width="180px" height="320px" title="ReservCheck" alt="ReservCheck"></img>
-<img src="/screen_Images/iOS 화면/5-1.png" width="180px" height="320px" title="ReservCheck-MyList" alt="ReservCheck-MyList"></img>
-<img src="/screen_Images/iOS 화면/5-1-1.png" width="180px" height="320px" title="ReservCheck-MyList-Detail" alt="ReservCheck-MyList-Detail"></img>
-<img src="/screen_Images/iOS 화면/5-2.png" width="180px" height="320px" title="ReservCheck-CurrentCheck" alt="ReservCheck-CurrentCheck"></img>
-<img src="/screen_Images/iOS 화면/6-0.png" width="180px" height="320px" title="RoomInfo" alt="RoomInfo"></img>
-<img src="/screen_Images/iOS 화면/6-1.png" width="180px" height="320px" title="RoomInfo-Detail" alt="RoomInfo-Detail"></img>
-<img src="/screen_Images/iOS 화면/6-2.png" width="180px" height="320px" title="RoomInfo-Detail-Selected" alt="RoomInfo-Detail-Selected"></img>
-<img src="/screen_Images/iOS 화면/7-1.png" width="180px" height="320px" title="MyInfo" alt="MyInfo"></img>
-<img src="/screen_Images/iOS 화면/7-3.png" width="180px" height="320px" title="Notice" alt="Notice"></img>
-<img src="/screen_Images/iOS 화면/7-4.png" width="180px" height="320px" title="Question" alt="Question"></img>
-<img src="/screen_Images/iOS 화면/7-5.png" width="180px" height="320px" title="Help" alt="Help"></img>
+<img src="/screen_Images/iOS 화면/2.png" width="180px" height="400px" title="Login" alt="Login"></img>
+<img src="/screen_Images/iOS 화면/2-1.png" width="180px" height="400px" title="Privacy Policy" alt="Privacy Policy"></img>
+<img src="/screen_Images/iOS 화면/2-2.png" width="180px" height="400px" title="Sign Up" alt="Sign Up"></img>
+<img src="/screen_Images/iOS 화면/2-3.png" width="180px" height="400px" title="Password Reset" alt="Password Reset"></img>
+<img src="/screen_Images/iOS 화면/3.png" width="180px" height="400px" title="Main" alt="Main"></img>
+<img src="/screen_Images/iOS 화면/3-1.png" width="180px" height="400px" title="Menu" alt="Menu"></img>
+<img src="/screen_Images/iOS 화면/4-1-1.png" width="180px" height="400px" title="RoomReserv-Date,Location" alt="RoomReserv-Date,Location"></img>
+<img src="/screen_Images/iOS 화면/4-1-2.png" width="180px" height="400px" title="RoomReserv-Date,Location-DateSelect" alt="RoomReserv-Date,Location-DateSelect"></img>
+<img src="/screen_Images/iOS 화면/4-1-3.png" width="180px" height="400px" title="RoomReserv-Date,Location-Classification" alt="RoomReserv-Date,Location-Classification"></img>
+<img src="/screen_Images/iOS 화면/4-1-4.png" width="180px" height="400px" title="RoomReserv-Date,Location-Location" alt="RoomReserv-Date,Location-Location"></img>
+<img src="/screen_Images/iOS 화면/4-1-5.png" width="180px" height="400px" title="RoomReserv-Date,Location-completed" alt="RoomReserv-Date,Location-completed"></img>
+<img src="/screen_Images/iOS 화면/4-2-1.png" width="180px" height="400px" title="RoomReserv-Time" alt="RoomReserv-Time"></img>
+<img src="/screen_Images/iOS 화면/4-2-2.png" width="180px" height="400px" title="RoomReserv-Time-StartTime" alt="RoomReserv-Time-StartTime"></img>
+<img src="/screen_Images/iOS 화면/4-2-3.png" width="180px" height="400px" title="RoomReserv-Time-EndTime" alt="RoomReserv-Time-EndTime"></img>
+<img src="/screen_Images/iOS 화면/4-2-4.png" width="180px" height="400px" title="RoomReserv-Time-Completed" alt="RoomReserv-Time-Completed"></img>
+<img src="/screen_Images/iOS 화면/4-3-1.png" width="180px" height="400px" title="RoomReserv-Detail" alt="RoomReserv-Detail"></img>
+<img src="/screen_Images/iOS 화면/4-3-2.png" width="180px" height="400px" title="RoomReserv-Detail-Purpose" alt="RoomReserv-Detail-Purpose"></img>
+<img src="/screen_Images/iOS 화면/4-3-3.png" width="180px" height="400px" title="RoomReserv-Detail-Professor" alt="RoomReserv-Detail-Professor"></img>
+<img src="/screen_Images/iOS 화면/4-3-4.png" width="180px" height="400px" title="RoomReserv-Detail-completed" alt="RoomReserv-Detail-completed"></img>
+<img src="/screen_Images/iOS 화면/4-4.png" width="180px" height="400px" title="RoomReserv-Complete" alt="RoomReserv-Complete"></img>
+<img src="/screen_Images/iOS 화면/5-0.png" width="180px" height="400px" title="ReservCheck" alt="ReservCheck"></img>
+<img src="/screen_Images/iOS 화면/5-1.png" width="180px" height="400px" title="ReservCheck-MyList" alt="ReservCheck-MyList"></img>
+<img src="/screen_Images/iOS 화면/5-1-1.png" width="180px" height="400px" title="ReservCheck-MyList-Detail" alt="ReservCheck-MyList-Detail"></img>
+<img src="/screen_Images/iOS 화면/5-2.png" width="180px" height="400px" title="ReservCheck-CurrentCheck" alt="ReservCheck-CurrentCheck"></img>
+<img src="/screen_Images/iOS 화면/6-0.png" width="180px" height="400px" title="RoomInfo" alt="RoomInfo"></img>
+<img src="/screen_Images/iOS 화면/6-1.png" width="180px" height="400px" title="RoomInfo-Detail" alt="RoomInfo-Detail"></img>
+<img src="/screen_Images/iOS 화면/6-2.png" width="180px" height="400px" title="RoomInfo-Detail-Selected" alt="RoomInfo-Detail-Selected"></img>
+<img src="/screen_Images/iOS 화면/7-1.png" width="180px" height="400px" title="MyInfo" alt="MyInfo"></img>
+<img src="/screen_Images/iOS 화면/7-3.png" width="180px" height="400px" title="Notice" alt="Notice"></img>
+<img src="/screen_Images/iOS 화면/7-4.png" width="180px" height="400px" title="Question" alt="Question"></img>
+<img src="/screen_Images/iOS 화면/7-5.png" width="180px" height="400px" title="Help" alt="Help"></img>
 
 ## Screen Flow
 <img src="/user_program/Navigation, Screen Flow/navigation_flow-Navigator + Screen.png" width="800px" height="450px" title="Screen Flow" alt="Screen Flow"></img>
