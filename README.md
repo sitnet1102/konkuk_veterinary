@@ -1,19 +1,5 @@
 # vet_SPACE
 
-1. 기능
-
-2. 개발 환경
-
-3. Sdk Version
-
-4. APIs
-
-5. DB import하는 방법
-
-6. Screen Shots
-
-7. License
-
 Personal Project 
 
 email address : sitnet1102@naver.com
@@ -136,3 +122,7 @@ This is an android and ios application for users who would like to use lecture r
 <img src="/screen_Images/iOS 화면/7-3.png" width="180px" height="320px" title="Login" alt="Login"></img>
 <img src="/screen_Images/iOS 화면/7-4.png" width="180px" height="320px" title="Login" alt="Login"></img>
 <img src="/screen_Images/iOS 화면/7-5.png" width="180px" height="320px" title="Login" alt="Login"></img>
+
+## License
+COPYRIGHT ⓒALL RIGHT RESERVED.
+COLLEGE OF VETERINARY, KONKUK UNIVERSITY
