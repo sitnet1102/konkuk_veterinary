@@ -8,6 +8,10 @@ email address : sitnet1102@naver.com
 
 This is an android and ios application for users who would like to use lecture room in COLLEGE OF VETERINARY, KONKUK UNIVERSITY.
 
+## Download
+### Android Google Play Store
+https://play.google.com/store/apps/details?id=com.vet_space
+
 ## Development Environment
 
 - React-native 0.63.4
