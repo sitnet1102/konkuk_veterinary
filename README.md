@@ -5,18 +5,17 @@ Personal Project
 email address : sitnet1102@naver.com
 
 ## Introduction
-*** 
 This is an android and ios application for users who would like to use lecture room in COLLEGE OF VETERINARY, KONKUK UNIVERSITY.
 
 ## Download
 ### Android Google Play Store
-https://play.google.com/store/apps/details?id=com.vet_space
+[안드로이드](https://play.google.com/store/apps/details?id=com.vet_space)
 
 ### iOS App Store 
-To be supported
+[iOS]()
 
 ## Development Environment
-
+'''
 - React-native 0.63.4
 
 - React-navigation 
@@ -55,7 +54,7 @@ To be supported
 - redux: 4.1.0
 - redux-devtools-extension: 2.13.9
 - redux-logger: 3.0.6
-
+'''
 ## Application Version
 
 - targetSdkVersion : 29
