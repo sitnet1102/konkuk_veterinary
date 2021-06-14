@@ -124,7 +124,7 @@ This is an android and ios application for users who would like to use lecture r
 <img src="/screen_Images/iOS 화면/7-5.png" width="180px" height="320px" title="Help" alt="Help"></img>
 
 ## Screen Flow
-<img src="/user_program/Navigation, Screen Flow/navigation_flow-Navigator + Screen.png" width="600px" height="400px" title="Screen Flow" alt="Screen Flow"></img>
+<img src="/user_program/Navigation, Screen Flow/navigation_flow-Navigator + Screen.png" width="800px" height="450px" title="Screen Flow" alt="Screen Flow"></img>
 
 ## License
 COPYRIGHT ⓒALL RIGHT RESERVED.
