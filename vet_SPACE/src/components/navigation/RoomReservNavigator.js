@@ -4,6 +4,7 @@ import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import {colors} from '../../utils/Styles';
+import {moderateScale} from '../../utils/scailing';
 
 import DateLocaScreen from '../screens/Screen04_01DateLoca';
 import TimeSelectScreen from '../screens/Screen04_02TimeSelect';
@@ -38,7 +39,7 @@ export default function RoomReservNavigator({navigation}) {
             headerTitleAlign: 'center',
             headerTitleStyle: {
               fontWeight: 'bold',
-              fontSize: 24,
+              fontSize: moderateScale(24),
             },
           }}
       />
@@ -58,7 +59,7 @@ export default function RoomReservNavigator({navigation}) {
             headerTitleAlign: 'center',
             headerTitleStyle: {
               fontWeight: 'bold',
-              fontSize: 24,
+              fontSize: moderateScale(24),
             },
           }}
       />
@@ -78,7 +79,7 @@ export default function RoomReservNavigator({navigation}) {
           headerTitleAlign: 'center',
           headerTitleStyle: {
             fontWeight: 'bold',
-            fontSize: 24,
+            fontSize: moderateScale(24),
           },
         }}
       />
@@ -100,7 +101,7 @@ export default function RoomReservNavigator({navigation}) {
           headerTitleAlign: 'center',
           headerTitleStyle: {
             fontWeight: 'bold',
-            fontSize: 24,
+            fontSize: moderateScale(24),
           },
         }}
       />

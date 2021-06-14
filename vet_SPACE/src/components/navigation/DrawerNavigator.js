@@ -3,7 +3,6 @@ import * as React from 'react';
 
 import {View, Text, StyleSheet,SafeAreaView, TouchableOpacity, Image, Alert} from 'react-native';
 import {createDrawerNavigator, DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
-import { RFPercentage } from 'react-native-responsive-fontsize';
 
 import auth from '@react-native-firebase/auth';
 

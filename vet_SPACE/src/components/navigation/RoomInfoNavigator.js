@@ -4,6 +4,8 @@ import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import {colors} from '../../utils/Styles';
+import {moderateScale} from '../../utils/scailing';
+
 import RoomInfoScreen from '../screens/Screen06_00RoomInfo';
 import RoomInfoDetailScreen from '../screens/Screen06_01RoomInfoDetail';
 
@@ -35,7 +37,7 @@ export default function RoomInfoNavigator({navigation}) {
           headerTitleAlign: 'center',
           headerTitleStyle: {
             fontWeight: 'bold',
-            fontSize: 24,
+            fontSize: moderateScale(24),
           },
         }}
       />
@@ -55,7 +57,7 @@ export default function RoomInfoNavigator({navigation}) {
           headerTitleAlign: 'center',
           headerTitleStyle: {
             fontWeight: 'bold',
-            fontSize: 24,
+            fontSize: moderateScale(24),
           },
         }}
       />

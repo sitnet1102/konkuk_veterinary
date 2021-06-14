@@ -4,6 +4,7 @@ import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import {colors} from '../../utils/Styles';
+import {moderateScale} from '../../utils/scailing';
 
 import MainScreen from '../screens/Screen03_00Main';
 import MyInfoScreen from '../screens/Screen07_01MyInfo';
@@ -71,7 +72,7 @@ export default function MainNavigator({navigation}) {
           headerTitleAlign: 'center',
           headerTitleStyle: {
             fontWeight: 'bold',
-            fontSize: 24,
+            fontSize: moderateScale(24),
           },
         }}
       />
