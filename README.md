@@ -15,49 +15,47 @@ This is an android and ios application for users who would like to use lecture r
 [iOS]()
 
 ## Development Environment
-'''
-- React-native 0.63.4
+> - React-native 0.63.4
 
-- React-navigation 
+> - React-navigation 
 
-- Firebase 12.0.0
+> - Firebase 12.0.0
 
-- Node.js
+> - Node.js
 
-- @react-native-community/checkbox: 0.5.7
-- @react-native-community/masked-view: 0.1.10
-- @react-native-community/picker: 1.8.1
-- @react-native-firebase/app: 12.0.0
-- @react-native-firebase/auth: 12.0.0
-- @react-native-firebase/database: 12.0.0
-- @react-native-firebase/firestore: 12.0.0
-- @react-navigation/drawer: 5.12.4
-- @react-navigation/native: 5.9.3
-- @react-navigation/stack: 5.14.3
-- body-parser: 1.19.0
-- express: 4.17.1
-- moment: 2.29.1
-- react: 16.13.1
-- react-dom: 17.0.1
-- react-native: 0.63.4
-- react-native-calendars: 1.1254.0
-- react-native-gesture-handler: 1.10.3
-- react-native-image-slider-box: 1.0.12
-- react-native-reanimated: 2.0.1
-- react-native-responsive-fontsize: 0.5.0
-- react-native-safe-area-context: 3.1.9
-- react-native-screens: 2.18.1
-- react-native-table-component: 1.2.1
-- react-native-web: 0.15.0
-- react-native-webview: 11.3.2
-- react-redux: 7.2.4
-- redux: 4.1.0
-- redux-devtools-extension: 2.13.9
-- redux-logger: 3.0.6
-'''
+> - @react-native-community/checkbox: 0.5.7
+> - @react-native-community/masked-view: 0.1.10
+> - @react-native-community/picker: 1.8.1
+> - @react-native-firebase/app: 12.0.0
+> - @react-native-firebase/auth: 12.0.0
+> - @react-native-firebase/database: 12.0.0
+> - @react-native-firebase/firestore: 12.0.0
+> - @react-navigation/drawer: 5.12.4
+> - @react-navigation/native: 5.9.3
+> - @react-navigation/stack: 5.14.3
+> - body-parser: 1.19.0
+> - express: 4.17.1
+> - moment: 2.29.1
+> - react: 16.13.1
+> - react-dom: 17.0.1
+> - react-native: 0.63.4
+> - react-native-calendars: 1.1254.0
+> - react-native-gesture-handler: 1.10.3
+> - react-native-image-slider-box: 1.0.12
+> - react-native-reanimated: 2.0.1
+> - react-native-responsive-fontsize: 0.5.0
+> - react-native-safe-area-context: 3.1.9
+> - react-native-screens: 2.18.1
+> - react-native-table-component: 1.2.1
+> - react-native-web: 0.15.0
+> - react-native-webview: 11.3.2
+> - react-redux: 7.2.4
+> - redux: 4.1.0
+> - redux-devtools-extension: 2.13.9
+> - redux-logger: 3.0.6
 ## Application Version
 
-- targetSdkVersion : 29
+> - targetSdkVersion : 29
 
 ## ScreenShot
 
