@@ -16,13 +16,9 @@ This is an android and ios application for users who would like to use lecture r
 
 ## Development Environment
 > - React-native 0.63.4
-
 > - React-navigation 
-
 > - Firebase 12.0.0
-
 > - Node.js
-
 > - @react-native-community/checkbox: 0.5.7
 > - @react-native-community/masked-view: 0.1.10
 > - @react-native-community/picker: 1.8.1
