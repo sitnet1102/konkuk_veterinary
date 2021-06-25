@@ -36,7 +36,7 @@ export default function ListScreen({navigation}) {
   // 예약이 없는 경우 처리하기
   const noReservation = () => {
     Alert.alert('예약','예약이 없습니다.');
-    navigation.navigate('ReservCheck');
+    navigation.navigate('Main');
   };
   
   React.useEffect(() => {
