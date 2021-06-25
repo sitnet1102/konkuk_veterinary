@@ -28,18 +28,15 @@ export default function LocationSelectModal(props) {
 
   const buildingDataChanged = (itemValue) => {
     setSelectedBuilding(itemValue);
-    if(itemValue === "수의학관"){
-      setSelectedRoom('207');
-    }else{
-      setSelectedRoom('710-3');
-    }
     onRoomData = database()
     .ref('/Room_info/Room_info_list/'+props.classificationdata+'/'+itemValue)
     .on('value', snapshot => {
       if(!snapshot.val()){
         setRoomData(["없음"]);
+        setSelectedRoom("없음");
       }else{
         setRoomData(snapshot.val());
+        setSelectedRoom(snapshot.val()[0]);
       }
     });
   };
@@ -64,6 +61,7 @@ export default function LocationSelectModal(props) {
         "수의학관",
       ]);
     }
+    buildingDataChanged('수의학관');
   },[]);
 
   return(
