@@ -28,7 +28,11 @@ export default function LocationSelectModal(props) {
 
   const buildingDataChanged = (itemValue) => {
     setSelectedBuilding(itemValue);
-    setSelectedRoom('호실 선택');
+    if(itemValue === "수의학관"){
+      setSelectedRoom('207');
+    }else{
+      setSelectedRoom('710-3');
+    }
     onRoomData = database()
     .ref('/Room_info/Room_info_list/'+props.classificationdata+'/'+itemValue)
     .on('value', snapshot => {
