@@ -160,8 +160,8 @@ export default function ListScreen({navigation}) {
                           <View
                             style={
                               rowData.detailData.reserv_confirm ?
-                              listStyle.confirmedBox
-                              : listStyle.unconfirmedBox
+                              listStyle.unconfirmedBox
+                              : listStyle.confirmedBox
                             }
                           />
                         </View>
