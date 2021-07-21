@@ -155,7 +155,7 @@ export default function StatusScreen() {
             confirm_style = 3;
           }
           for(let i=startnum;i<endnum;i++){
-            time_tmp[i][1] = user_name+"/"+s_time+" ~ "+e_time+confirm_text+"\n"+purpose+"/담당 교수: "+prof_name;
+            time_tmp[i][1] = user_name+"/"+s_time+" ~ "+e_time+" / "+purpose+"/담당 교수: "+prof_name+confirm_text;
             timeStyle_tmp[i] = confirm_style;
           }
         })
@@ -370,20 +370,20 @@ const statusStyle = StyleSheet.create({
     alignItems: 'center',
   },
   ScrollRow: {
-    height: verticalScale(50),
+    height: verticalScale(60),
     backgroundColor: colors.kuLightGray,
   },
   ScrollRowReserved: {
-    height: verticalScale(50),
+    height: verticalScale(60),
     backgroundColor: colors.kuBlue,
   },
   ScrollRowConfirmed: {
-    height: verticalScale(50),
+    height: verticalScale(60),
     backgroundColor: colors.kuOrange,
   },
   SheetText: {
     alignSelf: 'center',
     fontWeight: 'bold',
-    fontSize: moderateScale(16),
+    fontSize: moderateScale(14),
   },
 });

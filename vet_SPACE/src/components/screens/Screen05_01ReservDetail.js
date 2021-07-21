@@ -10,6 +10,7 @@ import {horizontalScale, verticalScale, moderateScale} from '../../utils/scailin
 
 import firestore from '@react-native-firebase/firestore';
 import database from '@react-native-firebase/database';
+import auth from '@react-native-firebase/auth';
 
 export default function ReservDetailScreen({route, navigation}) {
   const [t1, setT1] = React.useState('');
@@ -38,6 +39,7 @@ export default function ReservDetailScreen({route, navigation}) {
     firestore().collection(FIRESTORE_DATA1).doc(route.params.data.date).collection('Data').doc(route.params.data.id).update({
       use_check: false,
       delete_date: firestore.Timestamp.fromDate(new Date()),
+      deleted_from: auth().currentUser.uid,
     }).then(() => {
       navigation.navigate('Main');
     }).catch(e => {
