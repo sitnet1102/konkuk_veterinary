@@ -128,4 +128,4 @@ This is an android and ios application for users who would like to use lecture r
 
 ## License
 COPYRIGHT ⓒALL RIGHT RESERVED.
-COLLEGE OF VETERINARY, KONKUK UNIVERSITY
+juno
