@@ -1,7 +1,5 @@
 # vet_SPACE
 
-Personal Project 
-
 email address : sitnet1102@naver.com
 
 ## Introduction
