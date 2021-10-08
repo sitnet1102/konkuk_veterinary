@@ -123,7 +123,3 @@ This is an android and ios application for users who would like to use lecture r
 
 ## Screen Flow
 <img src="/user_program/Navigation, Screen Flow/navigation_flow-Navigator + Screen.png" width="800px" height="450px" title="Screen Flow" alt="Screen Flow"></img>
-
-## License
-COPYRIGHT ⓒALL RIGHT RESERVED.
-juno
